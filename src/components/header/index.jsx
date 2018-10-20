@@ -151,7 +151,7 @@ class Header extends React.Component {
               </div>
             ) : null
           }
-          {
+          {/* {
             onLanguageChange !== noop ?
             (<span
               className={
@@ -166,7 +166,7 @@ class Header extends React.Component {
             </span>)
             :
             null
-          }
+          } */}
           <div
             className={
               classnames({

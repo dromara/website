@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Carousel from 'nuka-carousel';
 import { getScrollTop, getLink } from '../../../utils';
 import Header from '../../components/header';
 import Button from '../../components/button';
@@ -37,7 +38,7 @@ class Home extends Language {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
     const { headerType } = this.state;
-    const headerLogo = headerType === 'primary' ? "/img/dubbo_white.png" : "/img/dubbo_colorful.png";
+    const headerLogo = headerType === 'primary' ? '/img/dubbo_white.png' : '/img/dubbo_colorful.png';
     return (
       <div className="home-page">
         <section className="top-section">
@@ -48,16 +49,44 @@ class Home extends Language {
             language={language}
             onLanguageChange={this.onLanguageChange}
           />
-          <div className="vertical-middle">
-            <div className="product-name">
-              <h2>{dataSource.brand.brandName}</h2>
-            </div>
-            <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
-            <div className="button-area">
-            {
-              dataSource.brand.buttons.map(b => <Button type={b.type} key={b.type} link={b.link} target={b.target}>{b.text}</Button>)
-            }
-            </div>
+          <div className="home-carousel">
+              <Carousel
+                autoplay
+                autoplayInterval={3000}
+                swiping
+                wrapAround
+                renderCenterLeftControls={({ previousSlide }) => (
+                  <button style={{ display: 'none' }} onClick={previousSlide}>Previous</button>
+                )}
+                renderCenterRightControls={({ nextSlide }) => (
+                  <button style={{ display: 'none' }} onClick={nextSlide}>Next</button>
+                )}
+              >
+              {dataSource.brand.map((item) => {
+                return (
+                  <div className="vertical-middle">
+                    <div className="product-name">
+                      <h2>{item.brandName}</h2>
+                    </div>
+                    <p className="product-desc">
+                      {item.briefIntroduction}
+                    </p>
+                    <div className="button-area">
+                      {item.buttons.map(b => (
+                        <Button
+                          type={b.type}
+                          key={b.type}
+                          link={b.link}
+                          target={b.target}
+                        >
+                          {b.text}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </Carousel>
           </div>
           <div className="animation animation1" />
           <div className="animation animation2" />

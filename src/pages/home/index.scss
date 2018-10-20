@@ -122,15 +122,17 @@ $animation5Height: 460px;
         }
       }
     }
-    .vertical-middle {
+    .home-carousel{
       position: absolute;
       left: 0;
       top: 50%;
       transform: translateY(-50%);
       box-sizing: border-box;
       width: 100%;
+    }
+    .vertical-middle {
       text-align: center;
-      padding: 0 20px;
+      padding: 60px 20px;
     }
     .product-name {
       position: relative;

@@ -2,22 +2,72 @@ import React from 'react';
 
 export default {
   'zh-cn': {
-    brand: {
-      brandName: '开源产品品牌名称',
-      briefIntroduction: '关于开源产品的简单介绍',
-      buttons: [
-        {
-          text: '立即开始',
-          link: '/zh-cn/docs/demo1.html',
-          type: 'primary',
-        },
-        {
-          text: '查看Github',
-          link: '',
-          type: 'normal',
-        },
-      ],
-    },
+    brand: [
+      {
+        brandName: 'dubbo',
+        briefIntroduction: 'dubbo关于开源产品的简单介绍',
+        buttons: [
+          {
+            text: '立即开始',
+            link: '/zh-cn/docs/demo1.html',
+            type: 'primary',
+          },
+          {
+            text: '查看Github',
+            link: '',
+            type: 'normal',
+          },
+        ],
+      },
+      {
+        brandName: 'spring',
+        briefIntroduction: 'spring关于开源产品的简单介绍',
+        buttons: [
+          {
+            text: '立即开始',
+            link: '/zh-cn/docs/demo1.html',
+            type: 'primary',
+          },
+          {
+            text: '查看Github',
+            link: '',
+            type: 'normal',
+          },
+        ],
+      },
+      {
+        brandName: 'divide',
+        briefIntroduction: 'divide关于开源产品的简单介绍',
+        buttons: [
+          {
+            text: '立即开始',
+            link: '/zh-cn/docs/demo1.html',
+            type: 'primary',
+          },
+          {
+            text: '查看Github',
+            link: '',
+            type: 'normal',
+          },
+        ],
+      },
+      {
+        brandName: 'waf',
+        briefIntroduction: 'waf关于开源产品的简单介绍',
+        buttons: [
+          {
+            text: '立即开始',
+            link: '/zh-cn/docs/demo1.html',
+            type: 'primary',
+          },
+          {
+            text: '查看Github',
+            link: '',
+            type: 'normal',
+          },
+        ],
+      }
+    ],
     introduction: {
       title: '开源产品的介绍',
       desc: '开源产品的简单介绍，提供一些该产品的优点、特性描述等',
