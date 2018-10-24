@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Carousel from 'nuka-carousel';
 import { getScrollTop, getLink } from '../../../utils';
 import Header from '../../components/header';
 import Button from '../../components/button';
@@ -16,6 +15,7 @@ class Home extends Language {
     super(props);
     this.state = {
       headerType: 'primary',
+      current: 0
     };
   }
 
@@ -37,7 +37,12 @@ class Home extends Language {
   render() {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
-    const { headerType } = this.state;
+    const { headerType, current } = this.state;
+    const currentPlugin = dataSource.plugins[current];
+    const allPlugins = dataSource.plugins.map((item) => {
+      const { name, brand } = item;
+      return { name, brand };
+    });
     const headerLogo = headerType === 'primary' ? '/img/dubbo_white.png' : '/img/dubbo_colorful.png';
     return (
       <div className="home-page">
@@ -50,43 +55,31 @@ class Home extends Language {
             onLanguageChange={this.onLanguageChange}
           />
           <div className="home-carousel">
-              <Carousel
-                autoplay
-                autoplayInterval={3000}
-                swiping
-                wrapAround
-                renderCenterLeftControls={({ previousSlide }) => (
-                  <button style={{ display: 'none' }} onClick={previousSlide}>Previous</button>
-                )}
-                renderCenterRightControls={({ nextSlide }) => (
-                  <button style={{ display: 'none' }} onClick={nextSlide}>Next</button>
-                )}
-              >
-              {dataSource.brand.map((item) => {
-                return (
-                  <div className="vertical-middle">
-                    <div className="product-name">
-                      <h2>{item.brandName}</h2>
-                    </div>
-                    <p className="product-desc">
-                      {item.briefIntroduction}
-                    </p>
-                    <div className="button-area">
-                      {item.buttons.map(b => (
-                        <Button
-                          type={b.type}
-                          key={b.type}
-                          link={b.link}
-                          target={b.target}
-                        >
-                          {b.text}
-                        </Button>
-                      ))}
-                    </div>
+            {allPlugins && allPlugins.map((item, index) => {
+              const { name, brand } = item;
+              return (
+                <div key={index} className="vertical-middle">
+                  <div className="product-name">
+                    <h2>{name}</h2>
                   </div>
-                );
-              })}
-            </Carousel>
+                  <p className="product-desc">
+                    {brand.briefIntroduction}
+                  </p>
+                  <div className="button-area">
+                    {brand.buttons.map(b => (
+                      <Button
+                        type={b.type}
+                        key={b.type}
+                        link={b.link}
+                        target={b.target}
+                      >
+                        {b.text}
+                      </Button>
+                    ))}
+                </div>
+                </div>
+              );
+            })}
           </div>
           <div className="animation animation1" />
           <div className="animation animation2" />
@@ -97,23 +90,23 @@ class Home extends Language {
         <section className="introduction-section">
           <div className="introduction-body">
             <div className="introduction">
-              <h3>{dataSource.introduction.title}</h3>
-              <p>{dataSource.introduction.desc}</p>
+              <h3>{currentPlugin.introduction.title}</h3>
+              <p>{currentPlugin.introduction.desc}</p>
             </div>
-            <img src={getLink(dataSource.introduction.img)} />
+            <img src={getLink(currentPlugin.introduction.img)} />
           </div>
         </section>
         <section className="feature-section">
-          <h3>{dataSource.features.title}</h3>
+          <h3>{currentPlugin.features.title}</h3>
           <ul>
           {
-            dataSource.features.list.map((feature, i) => (
+            currentPlugin.features.list.map((feature, i) => (
               <Item feature={feature} key={i} />
             ))
           }
           </ul>
         </section>
-        <section className="start-section">
+       {/*  <section className="start-section">
           <div className="start-body">
             <div className="left-part">
               <h3>{dataSource.start.title}</h3>
@@ -122,13 +115,13 @@ class Home extends Language {
               </div>
             <div className="right-part"><img src={getLink('/img/quick_start.png')} /></div>
           </div>
-        </section>
+        </section> */}
         <section className="users-section">
-          <h3>{dataSource.users.title}</h3>
-          <p>{dataSource.users.desc}</p>
+          <h3>{currentPlugin.users.title}</h3>
+          <p>{currentPlugin.users.desc}</p>
           <div className="users">
           {
-            dataSource.users.list.map((user, i) => (
+            currentPlugin.users.list.map((user, i) => (
               <img src={getLink(user)} key={i} />
             ))
           }
