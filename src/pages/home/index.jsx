@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import classnames from 'classnames';
 import { getScrollTop, getLink } from '../../../utils';
 import Header from '../../components/header';
 import Button from '../../components/button';
@@ -34,6 +35,10 @@ class Home extends Language {
     });
   }
 
+  itemClick= (index) => {
+    this.setState({ current: index });
+  }
+
   render() {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
@@ -58,7 +63,7 @@ class Home extends Language {
             {allPlugins && allPlugins.map((item, index) => {
               const { name, brand } = item;
               return (
-                <div key={index} className="vertical-middle">
+                <div onClick={() => { this.itemClick(index); }} key={index} className={classnames({ 'vertical-middle': true, 'vertical-selected': index === current })}>
                   <div className="product-name">
                     <h2>{name}</h2>
                   </div>
@@ -66,10 +71,10 @@ class Home extends Language {
                     {brand.briefIntroduction}
                   </p>
                   <div className="button-area">
-                    {brand.buttons.map(b => (
+                    {brand.buttons.map((b, bIndex) => (
                       <Button
                         type={b.type}
-                        key={b.type}
+                        key={bIndex}
                         link={b.link}
                         target={b.target}
                       >
@@ -106,16 +111,6 @@ class Home extends Language {
           }
           </ul>
         </section>
-       {/*  <section className="start-section">
-          <div className="start-body">
-            <div className="left-part">
-              <h3>{dataSource.start.title}</h3>
-              <p>{dataSource.start.desc}</p>
-              <a href={getLink(dataSource.start.button.link)} target={dataSource.start.button.link || '_self'}>{dataSource.start.button.text}</a>
-              </div>
-            <div className="right-part"><img src={getLink('/img/quick_start.png')} /></div>
-          </div>
-        </section> */}
         <section className="users-section">
           <h3>{currentPlugin.users.title}</h3>
           <p>{currentPlugin.users.desc}</p>
