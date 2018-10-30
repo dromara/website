@@ -48,7 +48,7 @@ class Home extends Language {
       const { name, brand } = item;
       return { name, brand };
     });
-    const headerLogo = headerType === 'primary' ? '/img/dubbo_white.png' : '/img/dubbo_colorful.png';
+    const headerLogo = headerType === 'primary' ? '/img/dromara.png' : '/img/dromara.png';
     return (
       <div className="home-page">
         <section className="top-section">

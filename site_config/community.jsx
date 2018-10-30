@@ -254,27 +254,27 @@ export default {
     },
     contributorGuide: {
       title: '贡献指南',
-      desc: '一些描述',
+      desc: 'Dromara社区欢迎任何形式的贡献',
       list: [
         {
           img: '/img/mailinglist.png',
           title: '邮件列表',
-          content: <span>这是描述</span>,
+          content: <span>联系<a href="https://github.com/Dromara"></a></span>,
         },
         {
           img: '/img/issue.png',
           title: '报告缺陷',
-          content: <span>这是描述</span>,
+          content: <span>联系<a href="https://github.com/Dromara"></a></span>,
         },
         {
           img: '/img/documents.png',
           title: '文档',
-          content: <span>这是描述</span>,
+          content: <span>优化Dromara <a href="http://dromara.org/zh-cn/docs/user/quick-start.html"> 文档</a>。</span>,
         },
         {
           img: '/img/pullrequest.png',
           title: 'Pull Request',
-          content: <span>这是描述</span>,
+          content: <span>提交 <a href="https://github.com/Dromara"> Pull requests </a>来修复问题。</span>,
         },
       ],
     },
