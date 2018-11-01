@@ -1774,18 +1774,20 @@ h1, h2, h3, h4, h5, h6 {
     box-sizing: border-box;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
     padding: 0 50px; }
+  .home-page .top-section .home-carousel-wrap {
+    display: flex;
+    flex-wrap: wrap; }
   .home-page .top-section .vertical-middle {
     background: #539FEE;
     text-align: center;
     margin-top: 20px;
-    padding: 30px 20px;
     margin-right: 30px;
     border: 1px solid #fff;
-    border-radius: 8px;
     cursor: pointer;
-    width: 240px; }
+    width: 320px;
+    padding-bottom: 40px; }
   .home-page .top-section .vertical-selected {
     border: 1px solid #725CFB;
     background: #6676F6;
@@ -1799,35 +1801,33 @@ h1, h2, h3, h4, h5, h6 {
       background: #fff;
       transform: rotate(-45deg);
       right: -25px;
-      top: -25px;
+      bottom: -25px;
       display: block; }
   .home-page .top-section .product-name {
     position: relative;
     display: inline-block; }
-    .home-page .top-section .product-name h2 {
-      font-family: Avenir-Heavy;
-      font-size: 46px;
-      color: #fff;
-      text-align: center;
-      word-break: break-word;
-      margin: 0; }
+    .home-page .top-section .product-name img {
+      width: 100%;
+      height: 120px;
+      display: block; }
   .home-page .top-section .product-desc {
     opacity: 0.6;
     font-family: Avenir-Medium;
     font-size: 24px;
     color: #fff;
     text-align: center;
-    margin: 12px auto 0;
+    margin: 30px auto 0;
     max-width: 730px; }
   .home-page .top-section .button-area {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 50px;
+    padding: 0 10px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap; }
     .home-page .top-section .button-area .button {
       font-size: 14px;
-      min-width: 100px;
+      min-width: 90px;
       height: 36px;
       line-height: 36px;
       cursor: pointer;
