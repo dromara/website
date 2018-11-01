@@ -6,7 +6,7 @@ export default {
       {
         name: 'Soul',
         brand: {
-          briefIntroduction: '高性能,异步响应式，微服务API网关',
+          briefIntroduction: '高性能微服务API网关',
           buttons: [
             {
               text: '立即开始',
@@ -27,7 +27,7 @@ export default {
         },
         introduction: {
           title: 'Soul的介绍',
-          desc: '无缝集成dubbo,springcloud,提供丰富的插件功能(限流，熔断),动态路由负载，动态配置策略',
+          desc: 'Soul是一个异步的,高性能的,跨语言的,响应式的API网关,提供了统一的HTTP访问,无缝支持dubbo,Springcloud,并且提供了丰富的插件(限流,熔断,代理转发)',
           img: '/img/soul-framework.png',
         },
         features: {
@@ -52,7 +52,17 @@ export default {
               img: '/img/feature_hogh.png',
               title: '插件热插拔，易扩展',
               content: '插件热插拔,易扩展',
-            }
+            },
+            {
+              img: '/img/feature_maintenance.png',
+              title: '无缝支持Dubbo，SrpingCloud，HTTP REST',
+              content: '无缝支持Dubbo，SrpingCloud，HTTP REST',
+            },
+            {
+              img: '/img/feature_runtime.png',
+              title: '高可用,高并发',
+              content: '支持集群部署',
+            },
           ],
         },
         users: {
@@ -65,7 +75,7 @@ export default {
       {
         name: 'Hmily',
         brand: {
-          briefIntroduction: '高性能,异步分布式事务TCC中间件',
+          briefIntroduction: 'TCC分布式事务框架',
           buttons: [
             {
               text: '立即开始',
@@ -86,7 +96,7 @@ export default {
         },
         introduction: {
           title: 'Hmily介绍',
-          desc: '无缝支持多种Rpc(dubbo,springcloud,motan)。多事务日志,序列化方式支持。异步执行高性能。',
+          desc: 'Hmily是高性能分布式事务tcc开源框架。基于java语言来开发（JDK1.8），无缝支持dubbo，springcloud,motan等rpc框架进行分布式事务。',
           img: '/img/hmily-framework.png',
         },
         features: {
@@ -134,7 +144,7 @@ export default {
       {
         name: 'Raincat',
         brand: {
-          briefIntroduction: '二阶段提交分布式事务中间件',
+          briefIntroduction: '强一致分布式事务框架',
           buttons: [
             {
               text: '立即开始',
@@ -155,7 +165,7 @@ export default {
         },
         introduction: {
           title: 'Raincat介绍',
-          desc: '基于二阶段提交,本地事务补偿机制来实现强一致性分布式事务中间件',
+          desc: 'Raincat是基于二阶段提交+本地事务补偿机制来实现的强一致性分布式事务框架。无缝支持dubbo,motan,springcloud等Rpc框架的微服务。',
           img: '/img/raincat-framework.png',
         },
         features: {
@@ -173,8 +183,8 @@ export default {
             },
             {
               img: '/img/feature_service.png',
-              title: '协调者高可以',
-              content: '采用eureka作为注册中心，集群配置，达到服务的高可用，采用redis集群来分布式存储事务数据.',
+              title: '高可用的协调者',
+              content: '采用eureka作为注册中心，可集群部署，达到服务的高可用，采用redis集群来分布式存储事务数据.',
             },
             {
               img: '/img/feature_hogh.png',
@@ -203,7 +213,7 @@ export default {
       {
         name: 'Myth',
         brand: {
-          briefIntroduction: '基于可靠消息最终一致性分布式事务框架',
+          briefIntroduction: '可靠消息分布式事务框架',
           buttons: [
             {
               text: '立即开始',
@@ -224,7 +234,7 @@ export default {
         },
         introduction: {
           title: 'Myth介绍',
-          desc: '基于可靠消息最终一致性分布式事务框架',
+          desc: 'Myth是基于可靠消息最终一致性分布式事务框架，无缝支持dubbo，springcloud,motan等rpc框架的微服务',
           img: '',
         },
         features: {
@@ -254,7 +264,12 @@ export default {
               img: '/img/feature_runtime.png',
               title: '支持各种MQ中间件',
               content: 'jms(activimq),amqp(rabbitmq),kafka,roceketmq',
-            }
+            },
+            {
+              img: '/img/feature_maintenance.png',
+              title: '支持内嵌事务',
+              content: '支持rpc的且套调用',
+            },
            
           ],
         },
@@ -272,7 +287,7 @@ export default {
       {
         name: 'Soul',
         brand: {
-          briefIntroduction: '高性能,异步响应式，微服务API网关',
+          briefIntroduction: '异步响应式               微服务1API网关',
           buttons: [
             {
               text: '立即开始',
@@ -293,7 +308,7 @@ export default {
         },
         introduction: {
           title: 'Soul的介绍',
-          desc: '无缝集成dubbo,springcloud,提供丰富的插件功能(限流，熔断),动态路由负载，动态配置策略',
+          desc: 'Soul是一个异步的,高性能的,跨语言的,响应式的API网关,提供了统一的HTTP访问,无缝支持dubbo,Springcloud,并且提供了丰富的插件(限流,熔断,代理转发)',
           img: '/img/soul-framework.png',
         },
         features: {
@@ -318,7 +333,17 @@ export default {
               img: '/img/feature_hogh.png',
               title: '插件热插拔，易扩展',
               content: '插件热插拔,易扩展',
-            }
+            },
+            {
+              img: '/img/feature_maintenance.png',
+              title: '无缝支持Dubbo，SrpingCloud，HTTP REST',
+              content: '无缝支持Dubbo，SrpingCloud，HTTP REST',
+            },
+            {
+              img: '/img/feature_runtime.png',
+              title: '高可用,高并发',
+              content: '支持集群部署',
+            },
           ],
         },
         users: {
@@ -331,7 +356,7 @@ export default {
       {
         name: 'Hmily',
         brand: {
-          briefIntroduction: '高性能,异步分布式事务TCC中间件',
+          briefIntroduction: '高性能异步TCC 分布式事务框架',
           buttons: [
             {
               text: '立即开始',
@@ -352,7 +377,7 @@ export default {
         },
         introduction: {
           title: 'Hmily介绍',
-          desc: '无缝支持多种Rpc(dubbo,springcloud,motan)。多事务日志,序列化方式支持。异步执行高性能。',
+          desc: 'Hmily是高性能分布式事务tcc开源框架。基于java语言来开发（JDK1.8），无缝支持dubbo，springcloud,motan等rpc框架进行分布式事务。',
           img: '/img/hmily-framework.png',
         },
         features: {
@@ -400,7 +425,7 @@ export default {
       {
         name: 'Raincat',
         brand: {
-          briefIntroduction: '二阶段提交分布式事务中间件',
+          briefIntroduction: '二阶段提交  分布式事务框架',
           buttons: [
             {
               text: '立即开始',
@@ -421,7 +446,7 @@ export default {
         },
         introduction: {
           title: 'Raincat介绍',
-          desc: '基于二阶段提交,本地事务补偿机制来实现强一致性分布式事务中间件',
+          desc: 'Raincat是基于二阶段提交+本地事务补偿机制来实现的强一致性分布式事务框架。无缝支持dubbo,motan,springcloud等Rpc框架的微服务。',
           img: '/img/raincat-framework.png',
         },
         features: {
@@ -439,8 +464,8 @@ export default {
             },
             {
               img: '/img/feature_service.png',
-              title: '协调者高可以',
-              content: '采用eureka作为注册中心，集群配置，达到服务的高可用，采用redis集群来分布式存储事务数据.',
+              title: '高可用的协调者',
+              content: '采用eureka作为注册中心，可集群部署，达到服务的高可用，采用redis集群来分布式存储事务数据.',
             },
             {
               img: '/img/feature_hogh.png',
@@ -469,7 +494,7 @@ export default {
       {
         name: 'Myth',
         brand: {
-          briefIntroduction: '基于可靠消息最终一致性分布式事务框架',
+          briefIntroduction: '可靠消息最终一致性 分布式事务框架',
           buttons: [
             {
               text: '立即开始',
@@ -490,7 +515,7 @@ export default {
         },
         introduction: {
           title: 'Myth介绍',
-          desc: '基于可靠消息最终一致性分布式事务框架',
+          desc: 'Myth是基于可靠消息最终一致性分布式事务框架，无缝支持dubbo，springcloud,motan等rpc框架的微服务',
           img: '',
         },
         features: {
@@ -520,7 +545,12 @@ export default {
               img: '/img/feature_runtime.png',
               title: '支持各种MQ中间件',
               content: 'jms(activimq),amqp(rabbitmq),kafka,roceketmq',
-            }
+            },
+            {
+              img: '/img/feature_maintenance.png',
+              title: '支持内嵌事务',
+              content: '支持rpc的且套调用',
+            },
            
           ],
         },
@@ -532,5 +562,5 @@ export default {
         },
       }
     ],
-  }
+  },
 };

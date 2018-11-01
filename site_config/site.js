@@ -30,7 +30,7 @@ export default {
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: 'the disclaimer content',
+      content: '任何单位或个人转载本网站的所有相关信息，请注明来源。',
     },
     documentation: {
       title: 'Documentation',
@@ -89,7 +89,7 @@ export default {
     ],
     disclaimer: {
       title: '免责声明',
-      content: '免责声明的具体内容',
+      content: '任何单位或个人转载本网站的所有相关信息，请注明来源。',
     },
     documentation: {
       title: '文档',
