@@ -49,6 +49,7 @@ class Home extends Language {
       return { name, brand };
     });
     const headerLogo = headerType === 'primary' ? '/img/dromara.png' : '/img/dromara.png';
+    const imagePath = ['/img/soul.png', '/img/hmily.png', '/img/raincat.png', '/img/myth.png'];
     return (
       <div className="home-page">
         <section className="top-section">
@@ -60,31 +61,33 @@ class Home extends Language {
             onLanguageChange={this.onLanguageChange}
           />
           <div className="home-carousel">
-            {allPlugins && allPlugins.map((item, index) => {
-              const { name, brand } = item;
-              return (
-                <div onClick={() => { this.itemClick(index); }} key={index} className={classnames({ 'vertical-middle': true, 'vertical-selected': index === current })}>
-                  <div className="product-name">
-                    <h2>{name}</h2>
+            <div className="home-carousel-wrap">
+              {allPlugins && allPlugins.map((item, index) => {
+                const { brand } = item;
+                return (
+                  <div onClick={() => { this.itemClick(index); }} key={index} className={classnames({ 'vertical-middle': true, 'vertical-selected': index === current })}>
+                    <div className="product-name">
+                      <img src={imagePath[index]} alt="" />
+                    </div>
+                    <p className="product-desc">
+                      {brand.briefIntroduction}
+                    </p>
+                    <div className="button-area">
+                      {brand.buttons.map((b, bIndex) => (
+                        <Button
+                          type={b.type}
+                          key={bIndex}
+                          link={b.link}
+                          target={b.target}
+                        >
+                          {b.text}
+                        </Button>
+                      ))}
                   </div>
-                  <p className="product-desc">
-                    {brand.briefIntroduction}
-                  </p>
-                  <div className="button-area">
-                    {brand.buttons.map((b, bIndex) => (
-                      <Button
-                        type={b.type}
-                        key={bIndex}
-                        link={b.link}
-                        target={b.target}
-                      >
-                        {b.text}
-                      </Button>
-                    ))}
-                </div>
-                </div>
-              );
-            })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div className="animation animation1" />
           <div className="animation animation2" />
