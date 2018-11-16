@@ -1,0 +1,7 @@
+{
+  "filename": "springcloud.md",
+  "__html": "<ul>\n<li>\n<p>使用Springcloud插件注意：需要在Soul-bootstrap的yml中配置上你的eureka注册中心才可以使用。</p>\n</li>\n<li>\n<p>springcloud插件，是soul支持springcloud框架的插件。Springcloud插件开启，并且当请求头的rpcType字段为springcloud的时候，会走这个插件。</p>\n</li>\n<li>\n<p>springcloud的选择器列图：\n<img src=\"https://yu199195.github.io/images/soul/springcloud-selector.png\" alt=\"\"></p>\n<ul>\n<li>\n<p>当插件开启时候，并且请求头的module字段值是order时候，会被匹配上。之后会去匹配规则。</p>\n</li>\n<li>\n<p>规则图：\n<img src=\"https://yu199195.github.io/images/soul/springcloud-rule.png\" alt=\"\"></p>\n<ul>\n<li>\n<p>上图代表当你在上一步选择器匹配之后，如果请求头中的method字段值是findById，那么该规则就会被匹配。</p>\n</li>\n<li>\n<p>Hystrix ： 进行Springcloud http调用时候熔断器的参数。</p>\n</li>\n<li>\n<p>Springcloud配置：这就是Springcoud的配置,serviceId为springcloud在注册中心的serviceId。</p>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n",
+  "title": "springcloud插件",
+  "keywords": "springcloud",
+  "description": "springcloud插件"
+}

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="introduction" />
+	<meta name="description" content="introduction" />
+	<!-- 网页标签标题 -->
+	<title>introduction</title>
+	<link rel="shortcut icon" href="/website/img/docsite.ico"/>
+	<link rel="stylesheet" href="/website/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/website/zh-cn/index.html"><img class="logo" src="/website/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><div class="header-menu"><img class="header-menu-toggle" src="/website/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/website/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal"><a href="/website/zh-cn/docs/soul/soul.html" target="_self">文档</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/website/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/website/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Hmily框架特性[<a href="https://github.com/yu199195/hmily">https://github.com/yu199195/hmily</a>]</h1>
+<ul>
+<li>
+<p>无缝集成Spring,Spring boot start。</p>
+</li>
+<li>
+<p>无缝集成Dubbo,SpringCloud,Motan等rpc框架。</p>
+</li>
+<li>
+<p>多种事务日志的存储方式（redis，mongdb,mysql等）。</p>
+</li>
+<li>
+<p>多种不同日志序列化方式（Kryo,protostuff,hession）。</p>
+</li>
+<li>
+<p>事务自动恢复。</p>
+</li>
+<li>
+<p>支持内嵌事务的依赖传递。</p>
+</li>
+<li>
+<p>代码零侵入,配置简单灵活。</p>
+</li>
+</ul>
+<h1>Hmily为什么这么高性能？</h1>
+<h3>1.采用disruptor进行事务日志的异步读写（disruptor是一个无锁，无GC的并发编程框架）</h3>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> com.hmily.tcc.core.disruptor.publisher;
+
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.bean.entity.TccTransaction;
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.enums.EventTypeEnum;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.concurrent.threadpool.HmilyThreadFactory;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.coordinator.CoordinatorService;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.disruptor.event.HmilyTransactionEvent;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.disruptor.factory.HmilyTransactionEventFactory;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.disruptor.handler.HmilyConsumerDataHandler;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.disruptor.translator.HmilyTransactionEventTranslator;
+<span class="hljs-keyword">import</span> com.lmax.disruptor.BlockingWaitStrategy;
+<span class="hljs-keyword">import</span> com.lmax.disruptor.IgnoreExceptionHandler;
+<span class="hljs-keyword">import</span> com.lmax.disruptor.RingBuffer;
+<span class="hljs-keyword">import</span> com.lmax.disruptor.dsl.Disruptor;
+<span class="hljs-keyword">import</span> com.lmax.disruptor.dsl.ProducerType;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.DisposableBean;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> java.util.concurrent.Executor;
+<span class="hljs-keyword">import</span> java.util.concurrent.LinkedBlockingQueue;
+<span class="hljs-keyword">import</span> java.util.concurrent.ThreadPoolExecutor;
+<span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+<span class="hljs-keyword">import</span> java.util.concurrent.atomic.AtomicInteger;
+
+<span class="hljs-comment">/**
+ * event publisher.
+ *
+ * <span class="hljs-doctag">@author</span> xiaoyu(Myth)
+ */</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HmilyTransactionEventPublisher</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">DisposableBean</span> </span>{
+
+    <span class="hljs-keyword">private</span> Disruptor&lt;HmilyTransactionEvent&gt; disruptor;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> CoordinatorService coordinatorService;
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">HmilyTransactionEventPublisher</span><span class="hljs-params">(<span class="hljs-keyword">final</span> CoordinatorService coordinatorService)</span> </span>{
+        <span class="hljs-keyword">this</span>.coordinatorService = coordinatorService;
+    }
+
+    <span class="hljs-comment">/**
+     * disruptor start.
+     *
+     * <span class="hljs-doctag">@param</span> bufferSize this is disruptor buffer size.
+     * <span class="hljs-doctag">@param</span> threadSize this is disruptor consumer thread size.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">start</span><span class="hljs-params">(<span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> bufferSize, <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> threadSize)</span> </span>{
+        disruptor = <span class="hljs-keyword">new</span> Disruptor&lt;&gt;(<span class="hljs-keyword">new</span> HmilyTransactionEventFactory(), bufferSize, r -&gt; {
+            AtomicInteger index = <span class="hljs-keyword">new</span> AtomicInteger(<span class="hljs-number">1</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">null</span>, r, <span class="hljs-string">"disruptor-thread-"</span> + index.getAndIncrement());
+        }, ProducerType.MULTI, <span class="hljs-keyword">new</span> BlockingWaitStrategy());
+
+        <span class="hljs-keyword">final</span> Executor executor = <span class="hljs-keyword">new</span> ThreadPoolExecutor(threadSize, threadSize, <span class="hljs-number">0</span>, TimeUnit.MILLISECONDS,
+                <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;&gt;(),
+                HmilyThreadFactory.create(<span class="hljs-string">"hmily-log-disruptor"</span>, <span class="hljs-keyword">false</span>),
+                <span class="hljs-keyword">new</span> ThreadPoolExecutor.AbortPolicy());
+
+        HmilyConsumerDataHandler[] consumers = <span class="hljs-keyword">new</span> HmilyConsumerDataHandler[threadSize];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadSize; i++) {
+            consumers[i] = <span class="hljs-keyword">new</span> HmilyConsumerDataHandler(executor, coordinatorService);
+        }
+        disruptor.handleEventsWithWorkerPool(consumers);
+        disruptor.setDefaultExceptionHandler(<span class="hljs-keyword">new</span> IgnoreExceptionHandler());
+        disruptor.start();
+    }
+
+    <span class="hljs-comment">/**
+     * publish disruptor event.
+     *
+     * <span class="hljs-doctag">@param</span> tccTransaction {<span class="hljs-doctag">@linkplain</span> com.hmily.tcc.common.bean.entity.TccTransaction }
+     * <span class="hljs-doctag">@param</span> type           {<span class="hljs-doctag">@linkplain</span> EventTypeEnum}
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">publishEvent</span><span class="hljs-params">(<span class="hljs-keyword">final</span> TccTransaction tccTransaction, <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> type)</span> </span>{
+        <span class="hljs-keyword">final</span> RingBuffer&lt;HmilyTransactionEvent&gt; ringBuffer = disruptor.getRingBuffer();
+        ringBuffer.publishEvent(<span class="hljs-keyword">new</span> HmilyTransactionEventTranslator(type), tccTransaction);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span> </span>{
+        disruptor.shutdown();
+    }
+}
+</code></pre>
+<ul>
+<li>在这里bufferSize 的默认值是4094 * 4,用户可以根据自行的情况进行配置。</li>
+</ul>
+<pre><code class="language-java">
+   HmilyConsumerDataHandler[] consumers = <span class="hljs-keyword">new</span> HmilyConsumerDataHandler[threadSize];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; threadSize; i++) {
+            consumers[i] = <span class="hljs-keyword">new</span> HmilyConsumerDataHandler(executor, coordinatorService);
+        }
+        disruptor.handleEventsWithWorkerPool(consumers);
+</code></pre>
+<ul>
+<li>这里是采用多个消费者去处理队列里面的任务。</li>
+</ul>
+<h3>2.异步执行confrim,cancel方法。</h3>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> com.hmily.tcc.core.service.handler;
+
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.bean.context.TccTransactionContext;
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.bean.entity.TccTransaction;
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.enums.TccActionEnum;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.concurrent.threadpool.HmilyThreadFactory;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.service.HmilyTransactionHandler;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.service.executor.HmilyTransactionExecutor;
+<span class="hljs-keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> java.util.concurrent.Executor;
+<span class="hljs-keyword">import</span> java.util.concurrent.LinkedBlockingQueue;
+<span class="hljs-keyword">import</span> java.util.concurrent.ThreadPoolExecutor;
+<span class="hljs-keyword">import</span> java.util.concurrent.TimeUnit;
+
+<span class="hljs-comment">/**
+ * this is transaction starter.
+ *
+ * <span class="hljs-doctag">@author</span> xiaoyu
+ */</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StarterHmilyTransactionHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HmilyTransactionHandler</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAX_THREAD = Runtime.getRuntime().availableProcessors() &lt;&lt; <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> HmilyTransactionExecutor hmilyTransactionExecutor;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Executor executor = <span class="hljs-keyword">new</span> ThreadPoolExecutor(MAX_THREAD, MAX_THREAD, <span class="hljs-number">0</span>, TimeUnit.MILLISECONDS,
+            <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;&gt;(),
+            HmilyThreadFactory.create(<span class="hljs-string">"hmily-execute"</span>, <span class="hljs-keyword">false</span>),
+            <span class="hljs-keyword">new</span> ThreadPoolExecutor.AbortPolicy());
+
+    <span class="hljs-meta">@Autowired</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">StarterHmilyTransactionHandler</span><span class="hljs-params">(<span class="hljs-keyword">final</span> HmilyTransactionExecutor hmilyTransactionExecutor)</span> </span>{
+        <span class="hljs-keyword">this</span>.hmilyTransactionExecutor = hmilyTransactionExecutor;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">handler</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ProceedingJoinPoint point, <span class="hljs-keyword">final</span> TccTransactionContext context)</span>
+            <span class="hljs-keyword">throws</span> Throwable </span>{
+        Object returnValue;
+        <span class="hljs-keyword">try</span> {
+            TccTransaction tccTransaction = hmilyTransactionExecutor.begin(point);
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-comment">//execute try</span>
+                returnValue = point.proceed();
+                tccTransaction.setStatus(TccActionEnum.TRYING.getCode());
+                hmilyTransactionExecutor.updateStatus(tccTransaction);
+            } <span class="hljs-keyword">catch</span> (Throwable throwable) {
+                <span class="hljs-comment">//if exception ,execute cancel</span>
+                <span class="hljs-keyword">final</span> TccTransaction currentTransaction = hmilyTransactionExecutor.getCurrentTransaction();
+                executor.execute(() -&gt; hmilyTransactionExecutor
+                        .cancel(currentTransaction));
+                <span class="hljs-keyword">throw</span> throwable;
+            }
+            <span class="hljs-comment">//execute confirm</span>
+            <span class="hljs-keyword">final</span> TccTransaction currentTransaction = hmilyTransactionExecutor.getCurrentTransaction();
+            executor.execute(() -&gt; hmilyTransactionExecutor.confirm(currentTransaction));
+        } <span class="hljs-keyword">finally</span> {
+            hmilyTransactionExecutor.remove();
+        }
+        <span class="hljs-keyword">return</span> returnValue;
+    }
+}
+</code></pre>
+<ul>
+<li>当try方法的AOP切面有异常的时候，采用线程池异步去执行cancel，无异常的时候去执行confrim方法。</li>
+</ul>
+<h3>这里有人可能会问：那么cancel方法异常，或者confrim方法异常怎么办呢？</h3>
+<p>答：首先这种情况是非常罕见的，因为你上一面才刚刚执行完try。其次如果出现这种情况，在try阶段会保存好日志，Hmily有内置的调度线程池来进行恢复，不用担心。</p>
+<h3>有人又会问：这里如果日志保存异常了怎么办？</h3>
+<p>答：首先这又是一个牛角尖问题，首先日志配置的参数，在框架启动的时候，会要求你配置的。其次，就算在运行过程中日志保存异常，这时候框架会取缓存中的，并不会影响程序正确执行。最后，万一日志保存异常了，系统又在很极端的情况下down机了，恭喜你，你可以去买彩票了，最好的解决办法就是不去解决它。</p>
+<h3>3.ThreadLocal缓存的使用。</h3>
+<pre><code class="language-java">  <span class="hljs-comment">/**
+     * transaction begin.
+     *
+     * <span class="hljs-doctag">@param</span> point cut point.
+     * <span class="hljs-doctag">@return</span> TccTransaction
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> TccTransaction <span class="hljs-title">begin</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ProceedingJoinPoint point)</span> </span>{
+        LogUtil.debug(LOGGER, () -&gt; <span class="hljs-string">"......hmily transaction！start...."</span>);
+        <span class="hljs-comment">//build tccTransaction</span>
+        <span class="hljs-keyword">final</span> TccTransaction tccTransaction = buildTccTransaction(point, TccRoleEnum.START.getCode(), <span class="hljs-keyword">null</span>);
+        <span class="hljs-comment">//save tccTransaction in threadLocal</span>
+        CURRENT.set(tccTransaction);
+        <span class="hljs-comment">//publishEvent</span>
+        hmilyTransactionEventPublisher.publishEvent(tccTransaction, EventTypeEnum.SAVE.getCode());
+        <span class="hljs-comment">//set TccTransactionContext this context transfer remote</span>
+        TccTransactionContext context = <span class="hljs-keyword">new</span> TccTransactionContext();
+        <span class="hljs-comment">//set action is try</span>
+        context.setAction(TccActionEnum.TRYING.getCode());
+        context.setTransId(tccTransaction.getTransId());
+        context.setRole(TccRoleEnum.START.getCode());
+        TransactionContextLocal.getInstance().set(context);
+        <span class="hljs-keyword">return</span> tccTransaction;
+    }
+</code></pre>
+<ul>
+<li>首先要理解，threadLocal保存的发起者一方法的事务信息。这个很重要，不要会有点懵逼。rpc的调用，会形成调用链，进行保存。</li>
+</ul>
+<pre><code class="language-java">
+<span class="hljs-comment">/**
+    * add participant.
+    *
+    * <span class="hljs-doctag">@param</span> participant {<span class="hljs-doctag">@linkplain</span> Participant}
+    */</span>
+   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">enlistParticipant</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Participant participant)</span> </span>{
+       <span class="hljs-keyword">if</span> (Objects.isNull(participant)) {
+           <span class="hljs-keyword">return</span>;
+       }
+       Optional.ofNullable(getCurrentTransaction())
+               .ifPresent(c -&gt; {
+                   c.registerParticipant(participant);
+                   updateParticipant(c);
+               });
+   }
+</code></pre>
+<h3>4.GuavaCache的使用</h3>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> com.hmily.tcc.core.cache;
+
+<span class="hljs-keyword">import</span> com.google.common.cache.CacheBuilder;
+<span class="hljs-keyword">import</span> com.google.common.cache.CacheLoader;
+<span class="hljs-keyword">import</span> com.google.common.cache.LoadingCache;
+<span class="hljs-keyword">import</span> com.google.common.cache.Weigher;
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.bean.entity.TccTransaction;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.coordinator.CoordinatorService;
+<span class="hljs-keyword">import</span> com.hmily.tcc.core.helper.SpringBeanUtils;
+<span class="hljs-keyword">import</span> org.apache.commons.lang3.StringUtils;
+
+<span class="hljs-keyword">import</span> java.util.Optional;
+<span class="hljs-keyword">import</span> java.util.concurrent.ExecutionException;
+
+<span class="hljs-comment">/**
+ * use google guava cache.
+ * <span class="hljs-doctag">@author</span> xiaoyu
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TccTransactionCacheManager</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAX_COUNT = <span class="hljs-number">10000</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> LoadingCache&lt;String, TccTransaction&gt; LOADING_CACHE =
+            CacheBuilder.newBuilder().maximumWeight(MAX_COUNT)
+                    .weigher((Weigher&lt;String, TccTransaction&gt;) (string, tccTransaction) -&gt; getSize())
+                    .build(<span class="hljs-keyword">new</span> CacheLoader&lt;String, TccTransaction&gt;() {
+                        <span class="hljs-meta">@Override</span>
+                        <span class="hljs-function"><span class="hljs-keyword">public</span> TccTransaction <span class="hljs-title">load</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String key)</span> </span>{
+                            <span class="hljs-keyword">return</span> cacheTccTransaction(key);
+                        }
+                    });
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> CoordinatorService coordinatorService = SpringBeanUtils.getInstance().getBean(CoordinatorService.class);
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> TccTransactionCacheManager TCC_TRANSACTION_CACHE_MANAGER = <span class="hljs-keyword">new</span> TccTransactionCacheManager();
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">TccTransactionCacheManager</span><span class="hljs-params">()</span> </span>{
+
+    }
+
+    <span class="hljs-comment">/**
+     * TccTransactionCacheManager.
+     *
+     * <span class="hljs-doctag">@return</span> TccTransactionCacheManager
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> TccTransactionCacheManager <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> TCC_TRANSACTION_CACHE_MANAGER;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSize</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) LOADING_CACHE.size();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> TccTransaction <span class="hljs-title">cacheTccTransaction</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String key)</span> </span>{
+        <span class="hljs-keyword">return</span> Optional.ofNullable(coordinatorService.findByTransId(key)).orElse(<span class="hljs-keyword">new</span> TccTransaction());
+    }
+
+    <span class="hljs-comment">/**
+     * cache tccTransaction.
+     *
+     * <span class="hljs-doctag">@param</span> tccTransaction {<span class="hljs-doctag">@linkplain</span> TccTransaction}
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cacheTccTransaction</span><span class="hljs-params">(<span class="hljs-keyword">final</span> TccTransaction tccTransaction)</span> </span>{
+        LOADING_CACHE.put(tccTransaction.getTransId(), tccTransaction);
+    }
+
+    <span class="hljs-comment">/**
+     * acquire TccTransaction.
+     *
+     * <span class="hljs-doctag">@param</span> key this guava key.
+     * <span class="hljs-doctag">@return</span> {<span class="hljs-doctag">@linkplain</span> TccTransaction}
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> TccTransaction <span class="hljs-title">getTccTransaction</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String key)</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> LOADING_CACHE.get(key);
+        } <span class="hljs-keyword">catch</span> (ExecutionException e) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TccTransaction();
+        }
+    }
+
+    <span class="hljs-comment">/**
+     * remove guava cache by key.
+     * <span class="hljs-doctag">@param</span> key guava cache key.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeByKey</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String key)</span> </span>{
+        <span class="hljs-keyword">if</span> (StringUtils.isNotEmpty(key)) {
+            LOADING_CACHE.invalidate(key);
+        }
+    }
+
+}
+</code></pre>
+<ul>
+<li>在参与者中，我们使用了ThreadLocal，而在参与者中，我们为什么不使用呢？
+其实原因有二点：首先.因为try，和confrim 会不在一个线程里，会造成ThreadLocal失效。当考虑到RPC集群的时候，可能会负载到不同的机器上。这里有一个细节就是：</li>
+</ul>
+<pre><code class="language-java">   <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> TccTransaction <span class="hljs-title">cacheTccTransaction</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String key)</span> </span>{
+        <span class="hljs-keyword">return</span> Optional.ofNullable(coordinatorService.findByTransId(key)).orElse(<span class="hljs-keyword">new</span> TccTransaction());
+    }
+</code></pre>
+<p>当GuavaCache里面没有的时候，会去查询日志返回，这样就保证了对集群环境的支持。</p>
+<h3>以上4点造就了Hmily是一个异步的高性能分布式事务TCC框架的原因。</h3>
+<h3>Hmily如何使用？（<a href="https://github.com/yu199195/hmily/tree/master/hmily-tcc-demo%EF%BC%89">https://github.com/yu199195/hmily/tree/master/hmily-tcc-demo）</a></h3>
+<p>首先因为之前的包命名问题，框架包并没有上传到maven中心仓库，固需要使用者自己拉取代码，编译deploy到自己的私服。</p>
+<h3>1.dubbo用户</h3>
+<ul>
+<li>在你的Api接口项目引入</li>
+</ul>
+<pre><code class="language-xml">
+  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-annotation<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>{you version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>在你的服务提供者项目引入</li>
+</ul>
+<pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>{you version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>配置启动bean</li>
+</ul>
+<pre><code class="language-xml">
+<span class="hljs-comment">&lt;!-- Aspect 切面配置，是否开启AOP切面--&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">aop:aspectj-autoproxy</span> <span class="hljs-attr">expose-proxy</span>=<span class="hljs-string">"true"</span>/&gt;</span>
+  <span class="hljs-comment">&lt;!--扫描框架的包--&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">context:component-scan</span> <span class="hljs-attr">base-package</span>=<span class="hljs-string">"com.hmily.tcc.*"</span>/&gt;</span>
+  <span class="hljs-comment">&lt;!--启动类属性配置--&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"hmilyTransactionBootstrap"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.core.bootstrap.HmilyTransactionBootstrap"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"serializer"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"kryo"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"recoverDelayTime"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"120"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"retryMax"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"3"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"scheduledDelay"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"120"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"scheduledThreadMax"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"4"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"repositorySupport"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"db"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tccDbConfig"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.common.config.TccDbConfig"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span>
+                          <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true&amp;amp;characterEncoding=utf8"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"123456"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+</code></pre>
+<ul>
+<li>当然配置属性很多，这里我只给出了demo，具体可以参考这个类：</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> com.hmily.tcc.common.config;
+
+<span class="hljs-keyword">import</span> com.hmily.tcc.common.enums.RepositorySupportEnum;
+<span class="hljs-keyword">import</span> lombok.Data;
+
+<span class="hljs-comment">/**
+ * hmily config.
+ *
+ * <span class="hljs-doctag">@author</span> xiaoyu
+ */</span>
+<span class="hljs-meta">@Data</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TccConfig</span> </span>{
+
+
+    <span class="hljs-comment">/**
+     * Resource suffix this parameter please fill in about is the transaction store path.
+     * If it's a table store this is a table suffix, it's stored the same way.
+     * If this parameter is not filled in, the applicationName of the application is retrieved by default
+     */</span>
+    <span class="hljs-keyword">private</span> String repositorySuffix;
+
+    <span class="hljs-comment">/**
+     * log serializer.
+     * {<span class="hljs-doctag">@linkplain</span> com.hmily.tcc.common.enums.SerializeEnum}
+     */</span>
+    <span class="hljs-keyword">private</span> String serializer = <span class="hljs-string">"kryo"</span>;
+
+    <span class="hljs-comment">/**
+     * scheduledPool Thread size.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> scheduledThreadMax = Runtime.getRuntime().availableProcessors() &lt;&lt; <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">/**
+     * scheduledPool scheduledDelay unit SECONDS.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> scheduledDelay = <span class="hljs-number">60</span>;
+
+    <span class="hljs-comment">/**
+     * retry max.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> retryMax = <span class="hljs-number">3</span>;
+
+    <span class="hljs-comment">/**
+     * recoverDelayTime Unit seconds
+     * (note that this time represents how many seconds after the local transaction was created before execution).
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> recoverDelayTime = <span class="hljs-number">60</span>;
+
+    <span class="hljs-comment">/**
+     * Parameters when participants perform their own recovery.
+     * 1.such as RPC calls time out
+     * 2.such as the starter down machine
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> loadFactor = <span class="hljs-number">2</span>;
+
+    <span class="hljs-comment">/**
+     * repositorySupport.
+     * {<span class="hljs-doctag">@linkplain</span> RepositorySupportEnum}
+     */</span>
+    <span class="hljs-keyword">private</span> String repositorySupport = <span class="hljs-string">"db"</span>;
+
+    <span class="hljs-comment">/**
+     * disruptor bufferSize.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> bufferSize = <span class="hljs-number">4096</span> * <span class="hljs-number">2</span> * <span class="hljs-number">2</span>;
+
+    <span class="hljs-comment">/**
+     * this is disruptor consumerThreads.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> consumerThreads = Runtime.getRuntime().availableProcessors() &lt;&lt; <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">/**
+     * db config.
+     */</span>
+    <span class="hljs-keyword">private</span> TccDbConfig tccDbConfig;
+
+    <span class="hljs-comment">/**
+     * mongo config.
+     */</span>
+    <span class="hljs-keyword">private</span> TccMongoConfig tccMongoConfig;
+
+    <span class="hljs-comment">/**
+     * redis config.
+     */</span>
+    <span class="hljs-keyword">private</span> TccRedisConfig tccRedisConfig;
+
+    <span class="hljs-comment">/**
+     * zookeeper config.
+     */</span>
+    <span class="hljs-keyword">private</span> TccZookeeperConfig tccZookeeperConfig;
+
+    <span class="hljs-comment">/**
+     * file config.
+     */</span>
+    <span class="hljs-keyword">private</span> TccFileConfig tccFileConfig;
+
+}
+</code></pre>
+<h3>SpringCloud用户</h3>
+<pre><code class="language-xml">     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-springcloud<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>{you version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<h3>Motan用户</h3>
+<pre><code class="language-xml">     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-motan<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>{you version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<h3>hmily-spring-boot-start那这个就更容易了，只需要根据你的RPC框架去引入不同的jar包。</h3>
+<ul>
+<li>如果你是dubbo用户，那么引入</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-spring-boot-starter-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${your version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>如果你是SpringCloud用户，那么引入</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-spring-boot-starter-springcloud<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${your version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>如果你是Motan用户，那么引入:</li>
+</ul>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.hmily.tcc<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hmily-tcc-spring-boot-starter-motan<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${your version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+</code></pre>
+<ul>
+<li>然后在你的yml里面进行如下配置：</li>
+</ul>
+<pre><code class="language-yml"><span class="hljs-attr">hmily:</span>
+    <span class="hljs-string">tcc</span> <span class="hljs-string">:</span>
+        <span class="hljs-string">serializer</span> <span class="hljs-string">:</span> <span class="hljs-string">kryo</span>
+        <span class="hljs-string">recoverDelayTime</span> <span class="hljs-string">:</span> <span class="hljs-number">128</span>
+        <span class="hljs-string">retryMax</span> <span class="hljs-string">:</span> <span class="hljs-number">3</span>
+        <span class="hljs-string">scheduledDelay</span> <span class="hljs-string">:</span> <span class="hljs-number">128</span>
+        <span class="hljs-string">scheduledThreadMax</span> <span class="hljs-string">:</span>  <span class="hljs-number">10</span>
+        <span class="hljs-string">repositorySupport</span> <span class="hljs-string">:</span> <span class="hljs-string">db</span>
+        <span class="hljs-string">tccDbConfig</span> <span class="hljs-string">:</span>
+                 <span class="hljs-string">driverClassName</span>  <span class="hljs-string">:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
+                 <span class="hljs-string">url</span> <span class="hljs-string">:</span>  <span class="hljs-attr">jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true&amp;amp;characterEncoding=utf8</span>
+                 <span class="hljs-string">username</span> <span class="hljs-string">:</span> <span class="hljs-string">root</span>
+                 <span class="hljs-string">password</span> <span class="hljs-string">:</span> <span class="hljs-number">123456</span>
+
+        <span class="hljs-comment">#repositorySupport : redis</span>
+        <span class="hljs-comment">#tccRedisConfig:</span>
+                 <span class="hljs-comment">#masterName: mymaster</span>
+                 <span class="hljs-comment">#sentinel : true</span>
+                 <span class="hljs-comment">#sentinelUrl : 192.168.1.91:26379;192.168.1.92:26379;192.168.1.93:26379</span>
+                 <span class="hljs-comment">#password  : foobaredbbexONE123</span>
+
+
+       <span class="hljs-comment"># repositorySupport : zookeeper</span>
+       <span class="hljs-comment">#         host      : 92.168.1.73:2181</span>
+       <span class="hljs-comment">#         sessionTimeOut      :  100000</span>
+       <span class="hljs-comment">#         rootPath  : /tcc</span>
+
+       <span class="hljs-comment"># repositorySupport : mongodb</span>
+       <span class="hljs-comment">#       mongoDbUrl  : 192.168.1.68:27017</span>
+       <span class="hljs-comment">#       mongoDbName  :  happylife</span>
+       <span class="hljs-comment">#       mongoUserName  : xiaoyu</span>
+       <span class="hljs-comment">#       mongoUserPwd   : 123456</span>
+
+       <span class="hljs-comment"># repositorySupport : file</span>
+       <span class="hljs-comment">#         path      : /account</span>
+       <span class="hljs-comment">#         prefix    :  account</span>
+</code></pre>
+<ul>
+<li>
+<p>就这么简单，然后就可以在接口方法上加上@Tcc注解，进行愉快的使用了。</p>
+</li>
+<li>
+<p>当然因为篇幅问题，很多东西只是简单的描述，尤其是逻辑方面的。</p>
+</li>
+<li>
+<p>如果你感兴趣，可以在github上进行star和fork，也可以加微信和QQ群进行交流。</p>
+</li>
+<li>
+<p>下面是github地址：<a href="https://github.com/yu199195/hmily">https://github.com/yu199195/hmily</a></p>
+</li>
+<li>
+<p>最后再次感谢大家，如果有兴趣的朋友，可以提供你的优秀牛逼轰轰的PR。。。。</p>
+</li>
+</ul>
+</section><footer class="footer-container"><div class="footer-body"><img src="/website/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/website/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/website/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2018 549477611@qq.com by xiaoyu</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '/website';
+  </script>
+	<script src="/website/build/blogDetail.js"></script>
+</body>
+</html>

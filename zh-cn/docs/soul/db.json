@@ -1,0 +1,7 @@
+{
+  "filename": "db.md",
+  "__html": "<ul>\n<li>\n<p>插件采用数据库设计，来存储插件，选择器，规则配置数据，以及对应关系。</p>\n</li>\n<li>\n<p>数据库表UML类图:</p>\n</li>\n</ul>\n<p><img src=\"https://yu199195.github.io/images/soul/soul-db.png\" alt=\"\"></p>\n<ul>\n<li>\n<p>设计详解:</p>\n<ul>\n<li>\n<p>一个插件对应多个选择器，一个选择器对应多个规则。</p>\n</li>\n<li>\n<p>一个选择器对应多个匹配条件，一个规则对应多个匹配条件。</p>\n</li>\n<li>\n<p>每个规则在对应插件下，不同的处理表现为handle字段，这个一个不同处理的json字符串。具体的可以在admin使用过程中进行查看。</p>\n</li>\n</ul>\n</li>\n</ul>\n",
+  "title": "数据库设计",
+  "keywords": "db",
+  "description": "数据库设计"
+}

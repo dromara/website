@@ -1,0 +1,7 @@
+{
+  "filename": "rateLimiter.md",
+  "__html": "<ul>\n<li>\n<p>采用redis令牌桶算法进行限流。</p>\n</li>\n<li>\n<p>可以针对到接口级别的限流。</p>\n</li>\n<li>\n<p>根据请求参数，选择器进行匹配，再匹配到具体的规则，根据规则进行接口级别的限流。</p>\n</li>\n<li>\n<p>流程图：\n<img src=\"https://yu199195.github.io/images/soul/limiting.png\" alt=\"\"></p>\n</li>\n<li>\n<p>规则图：\n<img src=\"https://yu199195.github.io/images/soul/admin-limiter.png\" alt=\"\"></p>\n<ul>\n<li>上图代表当你请求头中method字段值是findById的时候处理速率为1，总容量为100，来进行限流。</li>\n</ul>\n</li>\n<li>\n<p>用户如果使用，需要在启动的配置文件中，设置redis相关信息，在admin后台把插件开启。</p>\n</li>\n<li>\n<p>如果用户无需使用，在admin后台把插件禁用。</p>\n</li>\n</ul>\n",
+  "title": "rateLimiter插件",
+  "keywords": "rateLimiter",
+  "description": "rateLimiter插件"
+}

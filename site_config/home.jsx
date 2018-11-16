@@ -10,7 +10,7 @@ export default {
           buttons: [
             {
               text: '立即开始',
-              link: '/zh-cn/docs/demo1.html',
+              link: '/zh-cn/docs/soul/soul.html',
               type: 'primary',
             },
             {
@@ -79,7 +79,7 @@ export default {
           buttons: [
             {
               text: '立即开始',
-              link: '/zh-cn/docs/demo1.html',
+              link: '/zh-cn/docs/hmily/index.html',
               type: 'primary',
             },
             {
@@ -148,7 +148,7 @@ export default {
           buttons: [
             {
               text: '立即开始',
-              link: '/zh-cn/docs/demo1.html',
+              link: '/zh-cn/docs/raincat/index.html',
               type: 'primary',
             },
             {
@@ -217,7 +217,7 @@ export default {
           buttons: [
             {
               text: '立即开始',
-              link: '/zh-cn/docs/demo1.html',
+              link: '/zh-cn/docs/myth/index.html',
               type: 'primary',
             },
             {
