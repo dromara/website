@@ -11,7 +11,7 @@ description: dubbo插件
 * dubbo的选择器列图：
     ![](https://yu199195.github.io/images/soul/dubbo-selector.png)
 
-   * 当插件开启时候，并且请求头的module字段值是order时候，会被匹配上。之后会去匹配规则。
+   * 当插件开启时候，如上图：并且请求头的module字段值是order时候，会被匹配上。之后会去匹配规则。
    
    * 规则图：
             ![](https://yu199195.github.io/images/soul/dubbo-rule.png)
@@ -22,7 +22,7 @@ description: dubbo插件
 
        * dubbo配置：这就是dubbo的配置，注册地址请填写zookeeper的地址。其他的我不说，我相信你们也懂。。
 
-* dubbo参数协议,在http body中 请求的数据格式为  
+* dubbo参数协议,在http body中 请求的数据格式为 ：
 
 ```json
 {
@@ -49,7 +49,7 @@ description: dubbo插件
 
 *   paramClass 意思是如果你请求的方法参数是一个java对象，那么这里填写你java对象的路径。
 
-*    classParams 意思是你请求java对象参数的属性，用json表示。
+*   classParams 意思是你请求java对象参数的属性，用json表示。
 
 *   params  这个字段是你的请求参数类型，比如你的参数是一个String，Int 等。 如果是连续相同类型的参数，那么就要写成一个数组。
 
