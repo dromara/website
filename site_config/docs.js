@@ -124,7 +124,47 @@ export default {
           {
             title: '使用文档',
             link: '/zh-cn/docs/hmily/index.html',
-          }
+          },
+          {
+            title: '配置详解',
+            link: '/zh-cn/docs/hmily/configuration.html',
+          },
+          {
+            title: '启动admin',
+            link: '/zh-cn/docs/hmily/admin.html',
+          },
+          {
+            title: '用户文档文档',
+            opened: true,
+            children: [
+              {
+                title: 'dubbo用户',
+                link: '/zh-cn/docs/hmily/user-dubbo.html',
+              },
+              {
+                title: 'motan用户',
+                link: '/zh-cn/docs/hmily/user-motan.html',
+              },
+              {
+                title: 'springcloud用户',
+                link: '/zh-cn/docs/hmily/user-springcloud.html',
+              }
+            ],
+          },
+          {
+            title: '快速体验',
+            opened: true,
+            children: [
+              {
+                title: 'quick-start-dubbo',
+                link: '/zh-cn/docs/hmily/quick-start-dubbo.html',
+              },
+              {
+                title: 'quick-start-springcloud',
+                link: '/zh-cn/docs/hmily/quick-start-springcloud.html',
+              }
+            ],
+          },
         ],
       },
       {
