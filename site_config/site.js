@@ -67,7 +67,7 @@ export default {
   'zh-cn': {
     pageMenu: [
       {
-        key: 'home',
+        key: 'droamra.org',
         text: '首页',
         link: '/zh-cn/index.html',
       },

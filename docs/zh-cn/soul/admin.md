@@ -43,7 +43,12 @@ mybatis:
   config-location: classpath:/mybatis/mybatis-config.xml
   mapper-locations: classpath:/mappers/*.xml
 ```
+
+* 修改 static 文件夹下面index.html 中的httpPath 属性，改成你的ip + 端口 或者域名。
+
 * 启动 SoulAdminApplication.
+
+* 访问  http://ip:port/index.html  默认的用户名和密码为 admin 123456
 
 
 * 服务启动：
