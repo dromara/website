@@ -7,14 +7,12 @@ description:  motan用户指南
 
 # jar包依赖
 
-* jar包没有发布到maven中央仓库，所以需要自己打包，然后上传到自己的私服。（后续会上传，现在还在审核中）
-
 *  在你的接口项目中引入jar包。
 ```java
       <dependency>
           <groupId>org.dromara.hmily</groupId>
           <artifactId>hmily-annotation</artifactId>
-          <version>{you version}</version>
+         <version>2.0.0-RELEASE</version>
       </dependency>
 ```
 * 在你的motan rpc接口上加入 @Hmily注解
@@ -26,7 +24,7 @@ description:  motan用户指南
         <dependency>
             <groupId>org.dromara.hmily</groupId>
             <artifactId>hmily-motan</artifactId>
-            <version>{you version}</version>
+              <version>2.0.0-RELEASE</version>
         </dependency>
 ```
 
@@ -81,7 +79,7 @@ description:  motan用户指南
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>hmily-spring-boot-starter-motan</artifactId>
-            <version>{you version}</version>
+              <version>2.0.0-RELEASE</version>
         </dependency>
 ```
 

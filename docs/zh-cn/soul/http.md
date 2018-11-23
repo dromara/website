@@ -10,7 +10,7 @@ description: 请求soul网关
 
 * [启动admin](admin.md)。在请求前，请确保在admin后台开启了相应的插件，是否在相应的插件配置了规则  
 
-* [启动soul](sever.md)
+* [启动soul](server.md)
 
 * Http请求头(header)设置：
 

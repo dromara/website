@@ -10,6 +10,8 @@ import Item from './featureItem';
 import homeConfig from '../../../site_config/home';
 import './index.scss';
 
+import Particles from '../../../utils/particles.min.js';
+
 class Home extends Language {
 
   constructor(props) {
@@ -33,6 +35,36 @@ class Home extends Language {
         });
       }
     });
+
+    Particles.init({
+      selector: '.particles_bg',
+      maxParticles: 80,
+      connectParticles: true,
+      sizeVariations: 1,
+      color: '#dadada',
+      responsive: [
+        {
+          breakpoint: 768,
+          options: {
+            maxParticles: 200,
+            color: '#48F2E3',
+            connectParticles: false
+          }
+        }, {
+          breakpoint: 425,
+          options: {
+            maxParticles: 100,
+            connectParticles: true
+          }
+        }, {
+          breakpoint: 320,
+          options: {
+            maxParticles: 0
+          }
+        }
+      ]
+
+    });
   }
 
   itemClick= (index) => {
@@ -52,6 +84,9 @@ class Home extends Language {
     const imagePath = ['/img/soul.png', '/img/hmily.png', '/img/raincat.png', '/img/myth.png'];
     return (
       <div className="home-page">
+        <div className="particles-wrap">
+          <canvas height="720" className="particles_bg" />
+        </div>
         <section className="top-section">
           <Header
             currentKey="home"
