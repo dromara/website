@@ -122,7 +122,7 @@ export default {
         title: 'Hmily',
         children: [
           {
-            title: '使用文档',
+            title: '介绍文档',
             link: '/zh-cn/docs/hmily/index.html',
           },
           {
@@ -134,7 +134,7 @@ export default {
             link: '/zh-cn/docs/hmily/admin.html',
           },
           {
-            title: '用户文档文档',
+            title: '用户文档',
             opened: true,
             children: [
               {
@@ -171,8 +171,52 @@ export default {
         title: 'raincat',
         children: [
           {
-            title: '使用文档',
+            title: '介绍文档',
             link: '/zh-cn/docs/raincat/index.html',
+          },
+          {
+            title: '启动raincat-manager',
+            link: '/zh-cn/docs/raincat/start-manager.html',
+          },
+          {
+            title: '配置详解',
+            link: '/zh-cn/docs/raincat/config.html',
+          },
+          {
+            title: '启动admin',
+            link: '/zh-cn/docs/raincat/admin.html',
+          },
+          {
+            title: '用户文档',
+            opened: true,
+            children: [
+              {
+                title: 'dubbo用户',
+                link: '/zh-cn/docs/raincat/user-dubbo.html',
+              },
+              {
+                title: 'motan用户',
+                link: '/zh-cn/docs/raincat/user-motan.html',
+              },
+              {
+                title: 'springcloud用户',
+                link: '/zh-cn/docs/raincat/user-springcloud.html',
+              }
+            ],
+          },
+          {
+            title: '快速体验',
+            opened: true,
+            children: [
+              {
+                title: 'quick-start-dubbo',
+                link: '/zh-cn/docs/raincat/quick-start-dubbo.html',
+              },
+              {
+                title: 'quick-start-springcloud',
+                link: '/zh-cn/docs/raincat/quick-start-springcloud.html',
+              }
+            ],
           },
       
         ],
@@ -181,7 +225,7 @@ export default {
         title: 'myth',
         children: [
           {
-            title: '使用文档',
+            title: '介绍文档',
             link: '/zh-cn/docs/myth/index.html',
           },
         ],

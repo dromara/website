@@ -42,7 +42,7 @@ description:  Hmily配置详解
         <property name="scheduledThreadMax" value="4"/>
         <property name="bufferSize" value="4096"/>
         <property name="consumerThreads" value="32"/>
-        <property name="started" value="false"/>
+        <property name="started" value="true"/>
         <property name="asyncThreads" value="32"/>
         <property name="repositorySupport" value="db"/>
         <property name="hmilyDbConfig">
