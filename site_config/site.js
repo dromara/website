@@ -8,7 +8,7 @@ export default {
   'en-us': {
     pageMenu: [
       {
-        key: 'home',
+        key: 'dromara',
         text: '首页',
         link: '/zh-cn/index.html',
       },

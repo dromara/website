@@ -22,7 +22,7 @@ description: dubbo插件
 
        * dubbo配置：这就是dubbo的配置，注册地址请填写zookeeper的地址。其他的我不说，我相信你们也懂。。
 
-* dubbo参数协议,在http body中 请求的数据格式为 ：
+##  dubbo参数协议,在http header 头中，设置字段Key为"dubbo_params" value值为json格式 ：
 
 ```json
 {

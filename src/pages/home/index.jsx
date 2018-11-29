@@ -89,7 +89,7 @@ class Home extends Language {
         </div>
         <section className="top-section">
           <Header
-            currentKey="home"
+            currentKey="dromara"
             type={headerType}
             logo={headerLogo}
             language={language}
