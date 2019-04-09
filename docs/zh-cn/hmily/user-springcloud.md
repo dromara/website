@@ -12,7 +12,7 @@ description:   Springcloud用户指南
 
 ```xml
         <dependency>
-            <groupId>org.dromara.hmily</groupId>
+            <groupId>org.dromara</groupId>
             <artifactId>hmily-springcloud</artifactId>
             <version>2.0.0-RELEASE</version>
         </dependency>

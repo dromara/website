@@ -93,162 +93,127 @@
 </ul>
 <h3>如果是实现SoulPlugin的话，只需要将你的实现类声明为Spring的bean就行。</h3>
 <ul>
-<li>第二种是继承AbstractSoulPlugin插件,这种就比较困难了，您需要开发后台插件来实现你自己想要功能</li>
+<li>第二种是继承 <code>org.dromara.soul.web.plugin.AbstractSoulPlugin</code></li>
 </ul>
-<pre><code class="language-java"><span class="hljs-comment">/*
- *
- *  * Licensed to the Apache Software Foundation (ASF) under one or more
- *  * contributor license agreements.  See the NOTICE file distributed with
- *  * this work for additional information regarding copyright ownership.
- *  * The ASF licenses this file to You under the Apache License, Version 2.0
- *  * (the "License"); you may not use this file except in compliance with
- *  * the License.  You may obtain a copy of the License at
- *  *
- *  *     http://www.apache.org/licenses/LICENSE-2.0
- *  *
- *  * Unless required by applicable law or agreed to in writing, software
- *  * distributed under the License is distributed on an "AS IS" BASIS,
- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  * See the License for the specific language governing permissions and
- *  * limitations under the License.
- *
- */</span>
+<pre><code class="language-java"><span class="hljs-keyword">package</span> org.dromara.soul.extend.demo.custom;
 
-<span class="hljs-keyword">package</span> org.dromara.soul.web.plugin;
-
-<span class="hljs-keyword">import</span> lombok.RequiredArgsConstructor;
-<span class="hljs-keyword">import</span> org.apache.commons.collections4.CollectionUtils;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.constant.Constants;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.dto.zk.PluginZkDTO;
 <span class="hljs-keyword">import</span> org.dromara.soul.common.dto.zk.RuleZkDTO;
 <span class="hljs-keyword">import</span> org.dromara.soul.common.dto.zk.SelectorZkDTO;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.enums.PluginEnum;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.enums.SelectorTypeEnum;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.result.SoulResult;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.utils.JSONUtils;
-<span class="hljs-keyword">import</span> org.dromara.soul.common.utils.LogUtils;
+<span class="hljs-keyword">import</span> org.dromara.soul.common.enums.PluginTypeEnum;
+<span class="hljs-keyword">import</span> org.dromara.soul.common.utils.GsonUtils;
+<span class="hljs-keyword">import</span> org.dromara.soul.extend.demo.entity.Test;
 <span class="hljs-keyword">import</span> org.dromara.soul.web.cache.ZookeeperCacheManager;
-<span class="hljs-keyword">import</span> org.dromara.soul.web.condition.strategy.MatchStrategyFactory;
-<span class="hljs-keyword">import</span> org.dromara.soul.web.request.RequestDTO;
+<span class="hljs-keyword">import</span> org.dromara.soul.web.plugin.AbstractSoulPlugin;
+<span class="hljs-keyword">import</span> org.dromara.soul.web.plugin.SoulPluginChain;
 <span class="hljs-keyword">import</span> org.slf4j.Logger;
 <span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;
-<span class="hljs-keyword">import</span> org.springframework.http.HttpStatus;
 <span class="hljs-keyword">import</span> org.springframework.web.server.ServerWebExchange;
 <span class="hljs-keyword">import</span> reactor.core.publisher.Mono;
 
-<span class="hljs-keyword">import</span> java.util.List;
-<span class="hljs-keyword">import</span> java.util.Objects;
-
 
 <span class="hljs-comment">/**
- * abstract soul plugin please extends.
+ * This is your custom plugin.
+ * He is running in after before plugin, implement your own functionality.
+ * extends AbstractSoulPlugin so you must user soul-admin And add related plug-in development.
  *
  * <span class="hljs-doctag">@author</span> xiaoyu(Myth)
  */</span>
-<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"unchecked"</span>)
-<span class="hljs-meta">@RequiredArgsConstructor</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractSoulPlugin</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SoulPlugin</span> </span>{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractSoulPlugin</span> </span>{
 
     <span class="hljs-comment">/**
      * logger.
      */</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(AbstractSoulPlugin.class);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(CustomPlugin.class);
 
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ZookeeperCacheManager zookeeperCacheManager;
-
-    <span class="hljs-comment">/**
-     * this is Template Method child has Implement your own logic.
-     *
-     * <span class="hljs-doctag">@param</span> exchange exchange the current server exchange {<span class="hljs-doctag">@linkplain</span> ServerWebExchange}
-     * <span class="hljs-doctag">@param</span> chain    chain the current chain  {<span class="hljs-doctag">@linkplain</span> ServerWebExchange}
-     * <span class="hljs-doctag">@param</span> rule     rule    {<span class="hljs-doctag">@linkplain</span> RuleZkDTO}
-     * <span class="hljs-doctag">@return</span> {<span class="hljs-doctag">@code</span> Mono&lt;Void&gt;} to indicate when request handling is complete
-     */</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> Mono&lt;Void&gt; <span class="hljs-title">doExecute</span><span class="hljs-params">(ServerWebExchange exchange, SoulPluginChain chain, RuleZkDTO rule)</span></span>;
-
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CustomPlugin</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ZookeeperCacheManager dataCacheManager)</span> </span>{
+        <span class="hljs-keyword">super</span>(dataCacheManager);
+    }
 
     <span class="hljs-comment">/**
-     * Process the Web request and (optionally) delegate to the next
-     * {<span class="hljs-doctag">@code</span> WebFilter} through the given {<span class="hljs-doctag">@link</span> SoulPluginChain}.
+     * return plugin type.
+     * The type of plug-ins indicates their order at runtime
+     * The PluginTypeEnum.BEFORE is first
+     * The PluginTypeEnum.LAST is last.
      *
-     * <span class="hljs-doctag">@param</span> exchange the current server exchange
-     * <span class="hljs-doctag">@param</span> chain    provides a way to delegate to the next filter
-     * <span class="hljs-doctag">@return</span> {<span class="hljs-doctag">@code</span> Mono&lt;Void&gt;} to indicate when request processing is complete
+     * <span class="hljs-doctag">@return</span> {<span class="hljs-doctag">@linkplain</span> PluginTypeEnum}
      */</span>
     <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> Mono&lt;Void&gt; <span class="hljs-title">execute</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ServerWebExchange exchange, <span class="hljs-keyword">final</span> SoulPluginChain chain)</span> </span>{
-        <span class="hljs-keyword">final</span> PluginZkDTO redisDTO = zookeeperCacheManager.findPluginByName(named());
-        <span class="hljs-keyword">if</span> (!(skip(exchange) || redisDTO == <span class="hljs-keyword">null</span> || !redisDTO.getEnabled())) {
-            <span class="hljs-comment">//获取selector</span>
-            <span class="hljs-keyword">final</span> List&lt;SelectorZkDTO&gt; selectors = zookeeperCacheManager.findSelectorByPluginName(named());
-            <span class="hljs-keyword">if</span> (CollectionUtils.isEmpty(selectors)) {
-                <span class="hljs-keyword">return</span> chain.execute(exchange);
-            }
-            RuleZkDTO rule = selectors.stream()
-                    .filter(selector -&gt; selector.getEnabled() &amp;&amp; filterSelector(selector, exchange))
-                    .findFirst()
-                    .map(selectorZkDTO -&gt; {
-                        <span class="hljs-comment">//如果打印日志</span>
-                        <span class="hljs-keyword">if</span> (selectorZkDTO.getLoged()) {
-                            LogUtils.info(LOGGER, named() + <span class="hljs-string">" selector success selector name :{}"</span>, selectorZkDTO::getName);
-                        }
-                        <span class="hljs-keyword">final</span> List&lt;RuleZkDTO&gt; rules =
-                                zookeeperCacheManager.findRuleBySelectorId(selectorZkDTO.getId());
-                        <span class="hljs-keyword">if</span> (CollectionUtils.isEmpty(rules)) {
-                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-                        }
-                        <span class="hljs-keyword">return</span> filterRule(exchange, rules);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> PluginTypeEnum <span class="hljs-title">pluginType</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> PluginTypeEnum.FUNCTION;
+    }
 
-                    }).orElse(<span class="hljs-keyword">null</span>);
+    <span class="hljs-comment">/**
+     * return plugin order .
+     * The same plugin he executes in the same order.
+     *
+     * <span class="hljs-doctag">@return</span> int
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getOrder</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
 
-            <span class="hljs-keyword">final</span> RequestDTO body = exchange.getAttribute(Constants.REQUESTDTO);
+    <span class="hljs-comment">/**
+     * acquire plugin name.
+     * return you custom plugin name.
+     * It must be the same name as the plug-in you added in the admin background.
+     *
+     * <span class="hljs-doctag">@return</span> plugin name.
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">named</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"soul"</span>;
+    }
 
-            <span class="hljs-keyword">if</span> (Objects.nonNull(rule)) {
-                <span class="hljs-keyword">if</span> (rule.getLoged()) {
-                    LogUtils.info(LOGGER, () -&gt; {
-                        <span class="hljs-keyword">assert</span> body != <span class="hljs-keyword">null</span>;
-                        <span class="hljs-keyword">return</span> body.getModule() + <span class="hljs-string">":"</span> + body.getMethod() + <span class="hljs-string">"  match  "</span> + named() + <span class="hljs-string">"  rule  is name :"</span> + rule.getName();
-                    });
-                }
-                <span class="hljs-keyword">return</span> doExecute(exchange, chain, rule);
-            } <span class="hljs-keyword">else</span> {
-                <span class="hljs-comment">//If the divide or dubbo or spring cloud plug-in does not match, return directly</span>
-                <span class="hljs-keyword">if</span> (PluginEnum.DIVIDE.getName().equals(named())
-                        || PluginEnum.DUBBO.getName().equals(named())
-                        || PluginEnum.SPRING_CLOUD.getName().equals(named())) {
-                    LogUtils.info(LOGGER, () -&gt; Objects.requireNonNull(body).getModule() + <span class="hljs-string">":"</span> + body.getMethod() + <span class="hljs-string">" not match  "</span> + named() + <span class="hljs-string">"  rule"</span>);
-                    <span class="hljs-keyword">final</span> SoulResult error = SoulResult.error(HttpStatus.NOT_FOUND.value(), Constants.UPSTREAM_NOT_FIND);
-                    <span class="hljs-keyword">return</span> exchange.getResponse().writeWith(Mono.just(exchange.getResponse().bufferFactory().wrap(Objects.requireNonNull(JSONUtils.toJson(error)).getBytes())));
-                }
-                <span class="hljs-keyword">return</span> chain.execute(exchange);
-            }
-        }
+    <span class="hljs-comment">/**
+     * plugin is execute.
+     * Do I need to skip.
+     * if you need skip return true.
+     *
+     * <span class="hljs-doctag">@param</span> exchange the current server exchange
+     * <span class="hljs-doctag">@return</span> default false.
+     */</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">skip</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ServerWebExchange exchange)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> Mono&lt;Void&gt; <span class="hljs-title">doExecute</span><span class="hljs-params">(ServerWebExchange exchange, SoulPluginChain chain, SelectorZkDTO selector, RuleZkDTO rule)</span> </span>{
+        LOGGER.debug(<span class="hljs-string">".......... function plugin start.............."</span>);
+
+        <span class="hljs-comment">/*
+         * Processing after your selector matches the rule.
+         * rule.getHandle() is you Customize the json string to be processed.
+         * for this example.
+         * Convert your custom json string pass to an entity class.
+         */</span>
+        <span class="hljs-keyword">final</span> String ruleHandle = rule.getHandle();
+
+        <span class="hljs-keyword">final</span> Test test = GsonUtils.getInstance().fromJson(ruleHandle, Test.class);
+
+        <span class="hljs-comment">/*
+         * Then do your own business processing.
+         * The last execution  chain.execute(exchange).
+         * Let it continue on the chain until the end.
+         */</span>
+
+        System.out.println(test.toString());
+
+
         <span class="hljs-keyword">return</span> chain.execute(exchange);
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">private</span> Boolean <span class="hljs-title">filterSelector</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SelectorZkDTO selector, <span class="hljs-keyword">final</span> ServerWebExchange exchange)</span> </span>{
-        <span class="hljs-keyword">if</span> (selector.getType() == SelectorTypeEnum.CUSTOM_FLOW.getCode()) {
-            <span class="hljs-keyword">if</span> (CollectionUtils.isEmpty(selector.getConditionZkDTOList())) {
-                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
-            }
-            <span class="hljs-keyword">return</span> MatchStrategyFactory.of(selector.getMatchMode())
-                    .match(selector.getConditionZkDTOList(), exchange);
-        }
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-    }
-
-    <span class="hljs-function"><span class="hljs-keyword">private</span> RuleZkDTO <span class="hljs-title">filterRule</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ServerWebExchange exchange, <span class="hljs-keyword">final</span> List&lt;RuleZkDTO&gt; rules)</span> </span>{
-        <span class="hljs-keyword">return</span> rules.stream()
-                .filter(rule -&gt; Objects.nonNull(rule) &amp;&amp; rule.getEnabled())
-                .filter((RuleZkDTO ruleZkDTO) -&gt; MatchStrategyFactory.of(ruleZkDTO.getMatchMode())
-                        .match(ruleZkDTO.getConditionZkDTOList(), exchange))
-                .findFirst().orElse(<span class="hljs-keyword">null</span>);
     }
 }
 
+
 </code></pre>
 <ul>
-<li>doExecute() 需要实现此抽象方法来实现你的特殊定制，当然，你还要开发admin管理后台，这个插件的具体规则是什么？难度比较高，需要对Soul比较熟悉。</li>
+<li>
+<p>然后把自己定义的插件类注册成为Spring的bean。</p>
+</li>
+<li>
+<p>注意named() 方法返回的要与你在soul-admin后台添加的插件名称一样。</p>
+</li>
 </ul>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/website/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/website/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/website/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2018 549477611@qq.com by xiaoyu</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>

@@ -61,7 +61,6 @@
         <span class="hljs-string">url</span> <span class="hljs-string">:</span> <span class="hljs-attr">localhost:2181</span>
 <span class="hljs-attr">        sessionTimeout:</span> <span class="hljs-number">5000</span>
         <span class="hljs-string">connectionTimeout</span> <span class="hljs-string">:</span> <span class="hljs-number">2000</span>
-        <span class="hljs-string">serializer</span> <span class="hljs-string">:</span> <span class="hljs-string">KryoSerializer</span>
 <span class="hljs-attr">soul:</span>
 <span class="hljs-attr">    timeDelay:</span> <span class="hljs-number">1000</span>
 <span class="hljs-attr">    bufferSize:</span> <span class="hljs-number">2048</span>
@@ -76,25 +75,42 @@
 <span class="hljs-attr">      defaultZone:</span> <span class="hljs-attr">http://eureka.didispace.com/eureka/</span>
 </code></pre>
 <ul>
-<li>
-<p>执行 SoulBootstrapApplication main方法启动。</p>
-</li>
-<li>
-<p>服务启动：</p>
+<li>执行 SoulBootstrapApplication main方法启动。</li>
+</ul>
+<h2>自定义方式服务启动：</h2>
+<ul>
+<li>新建一个项目可以参考soul-bootstrap项目 首先引入soul所需要的jar包</li>
+</ul>
+<pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.4-RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+</code></pre>
+<p>or</p>
+<pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0.4-RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+
+</code></pre>
 <ul>
 <li>
-<p>其实soul-bootstrap项目就是一个springboot 的jar包。</p>
+<p>参考soul-bootstrap ,引入webflux依赖包。</p>
 </li>
 <li>
-<p>使用soul提供的脚步执行<a href="https://github.com/Dromara/soul/blob/master/script/start-web.sh">start-web</a></p>
+<p>参考soul-bootstrap 配置yml文件。然后maven 打包，自己启动的jar包。</p>
+</li>
+<li>
+<p>可以使用soul提供的脚步执行<a href="https://github.com/Dromara/soul/blob/master/script/start-web.sh">start-web</a></p>
 </li>
 <li>
 <p>把jar包上传到服务器的/data/apps/soul目录</p>
 </li>
 <li>
 <p>执行脚步  ./start-admin.sh  start prod 这个就会使用application-prod.yml 启动 ，同理 dev 就是使用application-dev.yml</p>
-</li>
-</ul>
 </li>
 </ul>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/website/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/website/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/website/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/website/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2018 549477611@qq.com by xiaoyu</span></div></div></footer></div></div>

@@ -50,13 +50,13 @@ export default {
             },
             {
               img: '/img/feature_hogh.png',
-              title: '插件热插拔，易扩展',
-              content: '插件热插拔,易扩展',
+              title: '插件热插拔，易扩展，支持用户自定义开发',
+              content: '插件热插拔,易扩展，支持用户自定义开发',
             },
             {
               img: '/img/feature_maintenance.png',
-              title: '无缝支持Dubbo，SrpingCloud，HTTP REST',
-              content: '无缝支持Dubbo，SrpingCloud，HTTP REST',
+              title: '无缝支持Dubbo，SpringCloud，HTTP REST',
+              content: '无缝支持Dubbo，SpringCloud，HTTP REST',
             },
             {
               img: '/img/feature_runtime.png',

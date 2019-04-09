@@ -9,7 +9,7 @@ description:  dubbo用户指南
 *  在你的接口项目中引入jar包。
 ```java
       <dependency>
-          <groupId>org.dromara.hmily</groupId>
+          <groupId>org.dromara</groupId>
           <artifactId>hmily-annotation</artifactId>
           <version>2.0.0-RELEASE</version>
       </dependency>
@@ -21,7 +21,7 @@ description:  dubbo用户指南
 
 ```xml
         <dependency>
-            <groupId>org.dromara.hmily</groupId>
+            <groupId>org.dromara</groupId>
             <artifactId>hmily-dubbo</artifactId>
             <version>2.0.0-RELEASE</version>
         </dependency>

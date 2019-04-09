@@ -59,6 +59,20 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'soul网关发布1.0.4-RELEASE版本',
+        author: 'xiaoyu',
+        dateStr: '2019-4-9',
+        desc: 'soul网关发布1.0.4-RELEASE版本',
+        link: '/zh-cn/blog/soul/soul_1.0.4.html',
+      },
+      {
+        title: 'Hmily发布2.0.2-RELEASE版本',
+        author: 'xiaoyu',
+        dateStr: '2019-4-5',
+        desc: 'Hmily发布2.0.2-RELEASE版本',
+        link: '/zh-cn/blog/hmily/hmily_2.0.2.html',
+      },
+      {
         title: 'Hmily：轻松搞定高并发分布式事务',
         author: 'xiaoyu',
         dateStr: '2018-11-14',
@@ -72,6 +86,7 @@ export default {
         desc: '高性能异步分布式事务TCC框架',
         link: '/zh-cn/blog/hmily/introduction.html',
       }
+     
     ],
   },
 };

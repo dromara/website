@@ -46,7 +46,6 @@ spring:
         url : localhost:2181
         sessionTimeout: 5000
         connectionTimeout : 2000
-        serializer : KryoSerializer
 soul:
     timeDelay: 1000
     bufferSize: 2048
@@ -63,11 +62,35 @@ eureka:
 
 * 执行 SoulBootstrapApplication main方法启动。
 
-* 服务启动：
+## 自定义方式服务启动：
+
+   * 新建一个项目可以参考soul-bootstrap项目 首先引入soul所需要的jar包
+
+   ```xml
+     <dependency>
+            <groupId>org.dromara</groupId>
+            <artifactId>soul-spring-boot-starter</artifactId>
+            <version>1.0.4-RELEASE</version>
+     </dependency>
+
+   ```
+
+   or
+
+  ```xml
+   <dependency>
+            <groupId>org.dromara</groupId>
+            <artifactId>soul-web</artifactId>
+            <version>1.0.4-RELEASE</version>
+     </dependency>
+
+  ```
   
-   * 其实soul-bootstrap项目就是一个springboot 的jar包。
+   * 参考soul-bootstrap ,引入webflux依赖包。
+
+   * 参考soul-bootstrap 配置yml文件。然后maven 打包，自己启动的jar包。
  
-   * 使用soul提供的脚步执行[start-web](https://github.com/Dromara/soul/blob/master/script/start-web.sh)
+   * 可以使用soul提供的脚步执行[start-web](https://github.com/Dromara/soul/blob/master/script/start-web.sh)
 
    * 把jar包上传到服务器的/data/apps/soul目录
 

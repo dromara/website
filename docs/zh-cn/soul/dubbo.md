@@ -22,7 +22,7 @@ description: dubbo插件
 
        * dubbo配置：这就是dubbo的配置，注册地址请填写zookeeper的地址。其他的我不说，我相信你们也懂。。
 
-##  dubbo参数协议,在http header 头中，设置字段Key为"dubbo_params" value值为json格式 ：
+##  dubbo参数json格式如下 ：
 
 ```json
 {
@@ -45,7 +45,9 @@ description: dubbo插件
 }
 
 ```
-*   interfaceName，method 字段为必填，意思是你请求的接口与方法。
+*   interfaceName 字段为必填，意思是你请求的接口。
+
+*   method字段为必填，意思是你请求的方法。
 
 *   paramClass 意思是如果你请求的方法参数是一个java对象，那么这里填写你java对象的路径。
 
@@ -53,6 +55,12 @@ description: dubbo插件
 
 *   params  这个字段是你的请求参数类型，比如你的参数是一个String，Int 等。 如果是连续相同类型的参数，那么就要写成一个数组。
 
-* soul网关会根据你的请求参数进行dubbo的泛化调用，然后把结果返回。
+*  soul网关会根据你的请求参数进行dubbo的泛化调用，然后把结果返回。
 
 * dubbo使用参数类型建议，如果是很复杂的对象，建议使用String，参数填写json字符串，然后在提供方进行解析字符串。
+
+## 注意 如果你的方法参数类型，自由去组合的。 上面列子中，方法的参数类型 为 DubboTest，String ，String  ，Integer
+
+## 在soul 1.0.2 版本中,dubbo参数在http header 头中，设置字段Key为"dubbo_params" value值为json格式。
+
+## 在soul 1.0.4 版本中，直接在body里面设置上述json格式数据。

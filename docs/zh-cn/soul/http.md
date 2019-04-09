@@ -12,6 +12,8 @@ description: 请求soul网关
 
 * [启动soul](server.md)
 
+* 发起http请求：请求地址为 http://ip:port   ip与端口就是你启动的soul服务的ip与端口，后面不需要带其他的路径，然后设置http请求头就可以了。
+
 * Http请求头(header)设置：
 
      * module ： 必填,指请求的系统模块，建议：所有插件的选择器中应该根据此字段来过滤请求。
@@ -19,7 +21,7 @@ description: 请求soul网关
      * method ：必填,请求的方法，指真实请求的方法，如果是http/springcloud，那么指请求的方法路径。如果是dubbo，那就是请求的真实方法.
                  建议：所有插件规则应该根据此字段来过滤请求。  
                   
-     *  rpcType: 请求的类型，填写http 则会使用divide插件，填写dubbo则会使用dubbo插件，填写springcloud则会使用springcloud插件。、
+     * rpcType: 请求的类型，填写http 则会使用divide插件，填写dubbo则会使用dubbo插件，填写springcloud则会使用springcloud插件。、
 
      * httpMethod: 目前只支持get / post 一般建议都使用post请求,如果是rpcType是http/springcloud 则必填
 
