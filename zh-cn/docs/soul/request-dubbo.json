@@ -1,0 +1,10 @@
+{
+  "filename": "request-dubbo.md",
+  "__html": "<h2>说明</h2>\n<ul>\n<li>\n<p>本篇文章主要是说明，dubbo用户如何对网关进行请求。</p>\n</li>\n<li>\n<p>请求之前，请确保你启动了 <code>soul-admin</code> ,<code>soul-bootstrap</code> 以及你自己dubbo项目以及接入到网关。</p>\n</li>\n</ul>\n<h2>dubbo用户</h2>\n<ul>\n<li>\n<p>说白了，就是把http请求，转成dubbo协议，内部使用dubbo泛化来进行调用。</p>\n</li>\n<li>\n<p>首先你要回想下，你的dubbo服务在接入网关的时候，是不是加了个 <code>soulClient</code> 注解，里面是不是有个path字段来指定你请求的路径？</p>\n</li>\n<li>\n<p>你是不是还在yml中配置了一个 <code>contextPath</code>?</p>\n</li>\n<li>\n<p>如果您还记得，那我们就开始。</p>\n</li>\n<li>\n<p>假如你有一个这样的方法, contextPath 配置的是 <code>/dubbo</code></p>\n</li>\n</ul>\n<pre><code>   @Override\n    @SoulClient(path = &quot;/insert&quot;, desc = &quot;插入一条数据&quot;)\n    public DubboTest insert(final DubboTest dubboTest) {\n        return dubboTest;\n    }\n\n</code></pre>\n<ul>\n<li>\n<p>那么我们请求的路径为: <a href=\"http://localhost:9195/dubbo/insert\">http://localhost:9195/dubbo/insert</a> ,再说一下，localhost:9195是网关的域名，如果你更改了，这里也要改。</p>\n</li>\n<li>\n<p>那么请求参数呢？ <code>DubboTest</code> 是一个javabean对象，那么我们通过body中传递这个对象的json数据就好。</p>\n</li>\n</ul>\n<pre><code>{&quot;id&quot;:&quot;1234&quot;,&quot;name&quot;:&quot;XIAO5y&quot;}\n\n</code></pre>\n<ul>\n<li>如果你的接口中,没有参数，那么body传值为:</li>\n</ul>\n<pre><code>{}\n\n</code></pre>\n<ul>\n<li>如果你的接口有很多个参数？ 目前soul，默认情况下只支持一个参数，如果你有多个，请实现 <code>org.dromara.soul.web.plugin.dubbo.GenericParamResolveService</code> 来覆盖默认实现\n这一部分，我们可以在开发者文档<a href=\"dev-dubbo.md\">dubbo参数自定义解析</a>来详细说明.</li>\n</ul>\n",
+  "link": "\\zh-cn\\docs\\soul\\request-dubbo.html",
+  "meta": {
+    "title": "dubbo用户请求网关",
+    "keywords": "soul",
+    "description": "dubbo用户请求网关"
+  }
+}

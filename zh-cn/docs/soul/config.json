@@ -1,7 +1,10 @@
 {
   "filename": "config.md",
-  "__html": "<ul>\n<li>\n<p>Soul的插件全都是热插拔的，热插拔是什么意思呢？在后台你可以把插件停用启用。</p>\n</li>\n<li>\n<p>所有插件的选择器，规则都是动态配置，立即生效，不需要重启服务。</p>\n</li>\n<li>\n<p>配置中心数据结构图：\n<img src=\"https://yu199195.github.io/images/soul/soul-zookeeper.png\" alt=\"\"></p>\n</li>\n<li>\n<p>下面是数据流程图：\n<img src=\"https://yu199195.github.io/images/soul/plugin-data.png\" alt=\"\"></p>\n</li>\n<li>\n<p>当soul启动的时候，会从Zookeeper拉取所有插件的数据，包括选择器，规则等等。然后写到本地缓存（Map来存储），并且监听所有的\n节点，当节点有数据变更的时候，会通过zookeeper的订阅模式获取，进行本地缓存的更新。</p>\n</li>\n<li>\n<p>这么设计的作用：</p>\n<ul>\n<li>所有的配置都可以动态的更新，任何修改不需要重启服务。</li>\n<li>使用了本地缓存，在高并发的时候，提供高效的性能。</li>\n</ul>\n</li>\n</ul>\n",
-  "title": "配置中心介绍",
-  "keywords": "config",
-  "description": "配置中心介绍"
+  "__html": "<h2>说明</h2>\n<ul>\n<li>本篇是对admin后台操作数据以后，同步到网关的流程介绍。</li>\n</ul>\n<h2>使用</h2>\n<ul>\n<li>\n<p>用户可以在 soul-admin 后台任意修改数据，并马上同步到网关的jvm内存中。</p>\n</li>\n<li>\n<p>同步soul的插件数据，选择器，规则数据，元数据，签名数据等等。</p>\n</li>\n<li>\n<p>所有插件的选择器，规则都是动态配置，立即生效，不需要重启服务。</p>\n</li>\n<li>\n<p>下面是数据流程图：\n<img src=\"https://yu199195.github.io/images/soul/plugin-data.png\" alt=\"\"></p>\n</li>\n</ul>\n<h2>作用</h2>\n<ul>\n<li>\n<p>用户所有的配置都可以动态的更新，任何修改不需要重启服务。</p>\n</li>\n<li>\n<p>使用了本地缓存，在高并发的时候，提供高效的性能。</p>\n</li>\n</ul>\n",
+  "link": "\\zh-cn\\docs\\soul\\config.html",
+  "meta": {
+    "title": "配置流程介绍",
+    "keywords": "soul",
+    "description": "配置流程介绍"
+  }
 }

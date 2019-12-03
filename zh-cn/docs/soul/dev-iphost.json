@@ -1,0 +1,10 @@
+{
+  "filename": "dev-iphost.md",
+  "__html": "<h2>说明</h2>\n<ul>\n<li>\n<p>本文是说明，如果网关前面有一层nginx的时候，如果获取正确的ip与端口。</p>\n</li>\n<li>\n<p>获取正确的之后，在插件以及选择器中，可以根据 ip，与host来进行匹配。</p>\n</li>\n</ul>\n<h2>默认实现</h2>\n<ul>\n<li>\n<p>默认的实现是通过 <code>exchange.getRequest().getRemoteAddress()</code></p>\n</li>\n<li>\n<p>在soul-bootstrap中新增了 <code>XForwardedRemoteAddressResolver实现</code></p>\n</li>\n<li>\n<p>把你新增的实现类注册成为spring的bean,如下</p>\n</li>\n</ul>\n<h2>扩展</h2>\n<ul>\n<li>新增一个类A,实现 <code>org.dromara.soul.web.support.RemoteAddressResolver</code>。</li>\n</ul>\n<pre><code>public interface RemoteAddressResolver {\n\n    /**\n     * Resolve inet socket address.\n     *\n     * @param exchange the exchange\n     * @return the inet socket address\n     */\n    default InetSocketAddress resolve(ServerWebExchange exchange) {\n        return exchange.getRequest().getRemoteAddress();\n    }\n}\n\n</code></pre>\n<ul>\n<li>把你的类，注册成Spring的bean覆盖默认的实现。</li>\n</ul>\n<pre><code>@Bean\npublic RemoteAddressResolver remoteAddressResolver() {\n  return new 你的类(1);\n}\n</code></pre>\n",
+  "link": "\\zh-cn\\docs\\soul\\dev-iphost.html",
+  "meta": {
+    "title": "扩展获取Ip与host",
+    "keywords": "soul",
+    "description": "扩展获取Ip与host"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "filename": "dev-client.md",
+  "__html": "<h2>说明</h2>\n<ul>\n<li>本文主要讲解如果自定义开发 soul-client,来对接网关。</li>\n</ul>\n<h2>首先要明白的事情</h2>\n<ul>\n<li>\n<p>soul-client 只是讲你的接口，变成网关需要的元数据，来更快的接入网关。</p>\n</li>\n<li>\n<p>请先看下 <a href=\"metaData.md\">元数据设计</a>。</p>\n</li>\n</ul>\n<h2>请求</h2>\n<ul>\n<li>soul网关默认的需要参数,通过body里面传，json类型。</li>\n</ul>\n<pre><code>\n{\n\t&quot;appName&quot;: &quot;xxx&quot;, //应用名称\n\t&quot;path&quot;: &quot;xxx&quot;,    //路径需要唯一\n\t&quot;pathDesc&quot;: &quot;xxx&quot;, //路径描述\n\t&quot;rpcType&quot;: &quot;xxx&quot;,  //rpc类型\n\t&quot;serviceName&quot;: &quot;xxx&quot;,  //接口全路径\n\t&quot;methodName&quot;: &quot;xxx&quot;,   //方法名称\n\t&quot;parameterTypes&quot;: &quot;xxx&quot;,//方法参数类型\n\t&quot;rpcExt&quot;: &quot;xxx&quot;,//方法参数类型\n\t&quot;enabled&quot;: &quot;true&quot;  \n}\n</code></pre>\n<ul>\n<li>\n<p>请求方式 ： post</p>\n</li>\n<li>\n<p>请求地址 : <a href=\"http://xn--soul-adminip-5v43a\">http://soul-admin的ip</a> + 端口/meta-data/register</p>\n</li>\n<li>\n<p>如果提供的 client不满足你的邀请，可以参考<code>soul-client</code> 模块来实现一个。</p>\n</li>\n</ul>\n",
+  "link": "\\zh-cn\\docs\\soul\\dev-client.html",
+  "meta": {
+    "title": "自定义开发soul的客户端",
+    "keywords": "soul",
+    "description": "自定义开发soul的客户端"
+  }
+}

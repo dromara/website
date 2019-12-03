@@ -1,7 +1,10 @@
 {
   "filename": "rewrite.md",
-  "__html": "<ul>\n<li>\n<p>重写插件可以对匹配的规则的url进行重写，用来覆盖head请求头的中的method字段。</p>\n</li>\n<li>\n<p>如果请求匹配到了重写插件，重写插件的rewriteURI会拼装在divide插件的url后面。</p>\n</li>\n<li>\n<p>如果用户不需要，可以把插件禁用。</p>\n</li>\n</ul>\n",
-  "title": "rewrite插件",
-  "keywords": "rewrite",
-  "description": "rewrite插件"
+  "__html": "<h1>说明</h1>\n<ul>\n<li>本篇主要讲rewrite插件适用的场景</li>\n</ul>\n<h2>插件设置</h2>\n<ul>\n<li>在 <code>soul-admin</code> 管理后台，插件管理-&gt; rewrite ,设置为开启。</li>\n</ul>\n<h2>场景</h2>\n<ul>\n<li>\n<p>顾名思义，重新插件就是对uri的重新定义</p>\n</li>\n<li>\n<p>当匹配到请求后，设置自定义的路径，那么自定义的路径就会覆盖之前的真实路径。</p>\n</li>\n<li>\n<p>在调用的时候，就会使用用户自定义的路径。</p>\n</li>\n<li>\n<p>如果用户不需要，可以把插件禁用。</p>\n</li>\n</ul>\n",
+  "link": "\\zh-cn\\docs\\soul\\rewrite.html",
+  "meta": {
+    "title": "rewrite插件",
+    "keywords": "rewrite",
+    "description": "rewrite插件"
+  }
 }

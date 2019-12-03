@@ -1,16 +1,25 @@
 ---
-title: soul扩展
-keywords: soul extend
-description: soul扩展
+title: 插件扩展
+keywords: soul
+description: 插件扩展
 ---
 
+## 说明
+
+* 本篇说明如何自定义soul插件，来进行扩展。
 
 
-* soul 提供了扩展demo 项目是[soul-extend-demo](https://github.com/Dromara/soul/tree/master/soul-extend-demo)
+## 技术实现
 
-* soul 提供了2种方式的扩展：
- 
-* 第一种是实现 SoulPlugin接口：
+* soul的插件是责任链模式，用户只需要实现相关的接口，并且把它注册为spring的bean即可。
+
+
+## 方式一：
+
+### 步骤一 ：
+
+* 用户新增一个类 A,直接实现 `org.dromara.soul.web.plugin.SoulPlugin`
+
 ```java
 package org.dromara.soul.web.plugin;
 
@@ -73,16 +82,40 @@ public interface SoulPlugin {
     }
 
 ```
-* plugnType():是表示该插件的执行顺序与功能，BEFORE是最开始执行，Function 是中间，Last是最后执行。方便使用与扩展。
-* getOrder():是指同一种类型插件执行时候的先后顺序。
-* named()：插件命名。
-* skip(): 该插件是否需要跳过，默认不跳过。
-* execute():插件执行的链条，会传递到下一个插件，责任链模式了解一下。
+     
+     
+   * `execute` 方法为核心的执行方法，用户可以在里面自由的实现自己想要的功能.
+   
+   *  `pluginType` 指定插件的类型。
+   
+   *  `getOrder` 指定插件在同一类型中的排序。
+   
+   *  `named` 指定插件的名称。
+   
+   *  `skip` 在特定的条件下，该插件是否被跳过。
+   
+   * 如果还不懂，可以参考  [soul-extend-demo](https://github.com/Dromara/soul/tree/master/soul-extend-demo)
 
-### 如果是实现SoulPlugin的话，只需要将你的实现类声明为Spring的bean就行。
+
+### 步骤二：
+
+* 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
+```
+    @Bean
+    public SoulPlugin a() {
+        return new A();
+    }
+```
+ 
 
 
-* 第二种是继承 `org.dromara.soul.web.plugin.AbstractSoulPlugin`
+## 方式二 ：
+
+### 步骤一：
+
+*  新增一个类A，继承 `org.dromara.soul.web.plugin.AbstractSoulPlugin`
+
+* 以下是参考 ：
 
 ```java
 package org.dromara.soul.extend.demo.custom;
@@ -195,9 +228,23 @@ public class CustomPlugin extends AbstractSoulPlugin {
     }
 }
 
-
 ```
 
-* 然后把自己定义的插件类注册成为Spring的bean。
+* 继承该类的插件，插件会进行选择器规则匹配，那如何来设置呢？
 
-* 注意named() 方法返回的要与你在soul-admin后台添加的插件名称一样。
+* 首先在 `soul-admin` 后台 -->插件管理中，新增一个插件，注意 名称与 你自定义插件的 `named（）` 方法要一致。
+
+* 重新登陆  `soul-admin` 后台 ，你会发现在插件列表就多了一个你刚新增的插件，你就可以进行选择器规则匹配
+
+* 在规则中，有个 `handler` 字段，是你自定义处理数据，在 `doExecute()` 方法中，通过 ` final String ruleHandle = rule.getHandle();` 获取，然后进行你的操作。
+
+
+### 步骤二：
+
+* 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
+```
+    @Bean
+    public SoulPlugin a() {
+        return new A();
+    }
+```

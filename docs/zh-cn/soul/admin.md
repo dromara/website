@@ -5,9 +5,30 @@ description: 启动admin
 ---
 
 
+### 说明
 
+ * soul-admin 使用了mysql数据库,启动前请确保你正确安装了mysql.
 
-* Clone & Build
+ * soul-admin 是一个springboot的jar包,启动方式,可以直接 `java -jar soul-admin.jar` ,当然如果您也可以根据脚本来指定相关的jvm参数.
+ 
+ * soul-admin 会自动创建数据库，以及表结构，并初始化默认数据.
+
+### 服务端启动
+
+* 拉取jar包，并启动
+```
+> wget  https://yu199195.github.io/jar/soul-admin.jar
+
+> java -jar soul-admin.jar --spring.datasource.url="jdbc:mysql://你的url:3306/soul?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&failOverReadOnly=false&autoReconnect=true&useSSL=false"  
+  --spring.datasource.username='you username'  --spring.datasource.password='you password'
+ 
+```
+* 访问 `http://localhost:9095/index.html ` 默认的用户名： admin  密码:123456
+
+### 本地启动
+ 
+
+*  拉取代码
    ```
    > git clone https://github.com/Dromara/soul.git
 
@@ -15,50 +36,49 @@ description: 启动admin
 
    > mvn -DskipTests clean install -U
    ```
-* 执行[soul.sql](https://github.com/Dromara/soul/blob/master/script/soul.sql)
-
-### 本地启动:
- 
-   * 使用你的idea 打开项目,maven install
-   * 修改yml文件，修改你的数据库与zookeeper配置，注意环境。
+   
+ * 使用你的idea 打开项目.
+ * 修改yml文件，修改你的数据库注意环境,默认使用 `application-local.yml`.
 ```yml
+
 server:
-  port: 8082
+  port: 9095
   address: 0.0.0.0
 
 spring:
-   datasource:
-     url: jdbc:mysql://192.168.1.98:3306/soul?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&failOverReadOnly=false&autoReconnect=true
-     username: root
-     password: 123456
-     dbcp2:
-       driver-class-name: com.mysql.jdbc.Driver
-   zookeeper:
-     url : localhost:2181
-     sessionTimeout: 5000
-     connectionTimeout : 2000
+  thymeleaf:
+    cache: true
+    encoding: utf-8
+    enabled: true
+    prefix: classpath:/static/
+    suffix: .html
+  datasource:
+    url: jdbc:mysql://你的地址:3306/soul-open?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=CONVERT_TO_NULL&failOverReadOnly=false&autoReconnect=true&useSSL=false
+    username: 你的用户名
+    password: 你的密码
+    dbcp2:
+      driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
   config-location: classpath:/mybatis/mybatis-config.xml
   mapper-locations: classpath:/mappers/*.xml
+
+
+logging:
+  level:
+    root: info
+    org.springframework.boot: info
+    org.apache.ibatis: info
+    org.dromara.soul.bonuspoint: info
+    org.dromara.soul.lottery: info
+    org.dromara.soul: info
+
+  path: "./logs/soul-admin"
 ```
 
 * 启动 `org.dromara.soul.admin.SoulAdminApplication`.
 
-* 访问  http://localhost:8888/index.html  默认的用户名和密码为 admin 123456
+* 访问  http://localhost:9095/index.html  默认的用户名和密码为 admin 123456
 
 
-### 服务端启动：
-  
-   * 其实admin项目就是一个springboot 的jar包。admin jar包也已经上传到maven 私服。
-
-   * 最好的方式是自己git clone 代码，然后修改配置，自己打包上传，然后spring boot 的方式启动这个jar包就行了.
-
-   * 注意:因为soul使用的前后端分离的技术,如果你想指定不同的ip 使用-Dsoul.httpPath  比如：-Dsoul.httpPath=http://127.0.0.1:8888 端口就不要变啦，改变ip就行。
- 
-   * 也可以使用soul提供的脚步执行.[start-admin](https://github.com/Dromara/soul/blob/master/script/start-admin.sh)
-
-   * 把jar包上传到服务器的/data/apps/soul目录
-
-   * 执行脚步  ./start-admin.sh  start prod 这个就会使用application-prod.yml 启动 ，同理 dev 就是使用application-dev.yml
  

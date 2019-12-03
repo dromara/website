@@ -6,45 +6,93 @@ description: sign插件
 
 
 
-* sign是用来检验访问是否有效的前置插件，它会根据请求参数中的，timestamp,module,method,rpcType 4个字段做Key，Value值的拼接，
-   再拼接上appSecret，再进行MD5加密生成一个签名，然后对比，来检测请求是否合法。
+## 插件设置
 
-* 签名算法如下：
+* 在管理后台->插件管理中，把sign插件设置为开启
 
-  * 首先构造一个Map
-    ```java
-     private Map<String, String> buildParamsMap(final RequestDTO dto) {
-        Map<String, String> map = Maps.newHashMapWithExpectedSize(4);
-        map.put("timestamp", dto.getTimestamp());
-        map.put("module", dto.getModule());
-        map.put("method", dto.getMethod());
-        map.put("rpcType", dto.getRpcType());
-        return map;
-    }
-    ```
 
-   * 对Map进行Key的排序后，获取值，再拼装，再拼接appSecret，进行Md5加密，最后转成大写。代码如下：
-    ```java
-       /**
-     * acquired sign.
-     *
-     * @param signKey sign key
-     * @param params params
-     * @return sign
-     */
-    private static String generateSign(final String signKey, final Map<String, String> params) {
-        List<String> storedKeys = Arrays.stream(params.keySet()
+## 新增 AK/SK
+
+* 在认证管理中，点击新增，新增一条 AK/SK
+
+* 在新版本中，新增了一个AK/SK 所对应多少个注册到网关的接口的配置.
+
+## 网关技术实现
+ 
+ * 采用Ak/SK鉴权技术方案
+ * 采用鉴权插件，责任链的模式的模式来完成.
+ * 当鉴权插件开启，并配置所有接口鉴权时候生效。
+ 
+ 
+ ## 鉴权使用指南
+ 
+ * 第一步：AK/SK由网关来进行分配. 比如分配给你的AK为: `1TEST123456781`  	SK为：`506EEB535CF740D7A755CB4B9F4A1536` 
+ 
+ * 第一步：确定好你要访问的网关路径 比如 `/api/service/abc`
+ 
+ * 第三步:构造参数（以下是通用参数）
+ 
+| 字段        | 值    |  描述  |
+| --------   | -----:  | :----: |
+| timestamp  |  当前时间戳(String类型)   |  当前时间的毫秒数（网关会过滤掉5分钟之前的请求）    |
+| path       | /api/service/abc  | 就是你需要访问的接口路径(根据你访问网关接口自己变更) |
+| version       | 1.0.0  | 目前定位1.0.0 写死，String类型 |
+
+ 对上述2个字段进行key的自然排序，然后进行字段与字段值拼接最后再拼接上SK,代码示例。
+ 
+```
+第一步:首先构造一个Map 
+
+   Map<String, String> map = Maps.newHashMapWithExpectedSize(2);
+   //timestamp为毫秒数的字符串形式 String.valueOf(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli()) 
+   map.put("timestamp","1571711067186");  //值应该为毫秒数的字符串形式 
+   map.put("path", "/api/service/abc");
+   map.put("version", "1.0.0");
+
+第二步:进行Key的自然排序，然后Key，Value值拼接最后再拼接分配给你的Sk
+
+List<String> storedKeys = Arrays.stream(map.keySet()
                 .toArray(new String[]{}))
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
-        final String sign = storedKeys.stream()
-                .filter(key -> !Objects.equals(key, Constants.SIGN))
+final String sign = storedKeys.stream()
                 .map(key -> String.join("", key, params.get(key)))
                 .collect(Collectors.joining()).trim()
-                .concat(signKey);
-        return DigestUtils.md5DigestAsHex(sign.getBytes()).toUpperCase();
-    }
-    ````
-* 在soul的admin后台会有一个功能来专门维护appKey和appSecret，appKey的含义对应的就是请求参数中的moudule，appSecret是分配给某一个系统模块的秘钥。前端只需要根据算法得到并传递签名值，和moulde。soul也会进行同样的算法生成签名，来对比，从而检验请求的合法性。
+                .concat("506EEB535CF740D7A755CB4B9F4A1536");
 
-* 如果用户觉得麻烦，不想进行安全性的校验，可以在admin后台把Sign插件停用。
+你得到的sign值应该为:path/api/service/abctimestamp1571711067186version1.0.0506EEB535CF740D7A755CB4B9F4A1536
+
+第三步:进行Md5加密后转成大写
+
+DigestUtils.md5DigestAsHex(sign.getBytes()).toUpperCase()
+
+最后得到的值为:A021BF82BE342668B78CD9ADE593D683
+```
+ 
+## 请求网关
+
+* 假如你访问的路径为 :/api/service/abc
+
+* 访问地址 ：http:网关的域名/api/service/abc
+
+* 设置`header`头，`header`头参数为：
+
+| 字段        | 值    |  描述  |
+| --------   | -----:  | :----: |
+| timestamp  |   `1571711067186`  |  上述你进行签名的时候使用的时间值   |
+| appKey     | `1TEST123456781`  | 分配给你的Ak值 |
+| sign       | `A90E66763793BDBC817CF3B52AAAC041`  | 上述得到的签名值 |
+| version       | `1.0.0`  | 写死，就为这个值 |
+
+* 签名插件会默认过滤5分钟之后的请求
+
+## 如果认证不通过会返回 code 为401 message可能会有变动。
+
+```json
+"code":401,"message":"sign is not pass,Please check you sign algorithm!","data":null}
+```
+
+## 插件扩展
+
+
+* 请参考开发者文档中的 自定义sign插件实现.

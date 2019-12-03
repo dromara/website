@@ -6,7 +6,7 @@ description: 请求soul网关
 
 
 
-* soul有对请求有自己的特殊处理，[请求参数](request.md)。
+* soul有对请求有自己的特殊处理，[请求参数](request-http.md)。
 
 * [启动admin](admin.md)。在请求前，请确保在admin后台开启了相应的插件，是否在相应的插件配置了规则  
 
