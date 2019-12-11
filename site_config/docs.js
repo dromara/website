@@ -119,6 +119,10 @@ export default {
                             {
                                 title: 'rewrite插件',
                                 link: '/zh-cn/docs/soul/rewrite.html',
+                            },
+                            {
+                                title: 'websocket支持',
+                                link: '/zh-cn/docs/soul/websocket.html',
                             }
                         ],
                     },

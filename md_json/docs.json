@@ -490,6 +490,15 @@
         "keywords": "waf",
         "description": "waf插件"
       }
+    },
+    {
+      "filename": "websocket.md",
+      "link": "\\zh-cn\\docs\\soul\\websocket.html",
+      "meta": {
+        "title": "websocket支持",
+        "keywords": "soul",
+        "description": "websocket支持"
+      }
     }
   ]
 }

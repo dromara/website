@@ -23,7 +23,7 @@ description: 接入soul网关
  <dependency>
      <groupId>org.dromara</groupId>
      <artifactId>soul-client-alibaba-dubbo</artifactId>
-     <version>2.1.0-RELEASE</version>
+     <version>2.1.1-RELEASE</version>
 </dependency>
 ```
 
@@ -82,7 +82,7 @@ public @interface SoulClient {
  <dependency>
      <groupId>org.dromara</groupId>
      <artifactId>soul-client-apache-dubbo</artifactId>
-     <version>2.1.0-RELEASE</version>
+     <version>2.1.1-RELEASE</version>
 </dependency>
 ```
 
