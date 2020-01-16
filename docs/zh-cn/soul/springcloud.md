@@ -14,35 +14,6 @@ description: springcloud插件
 
 * 在 `soul-admin` 管理后台，插件管理-> springCloud ,设置为开启。
 
-## 启动项目设置
-
-* 首先确保你的启动项目中，新增了springCloud需要的jar包。
-
-```
- <dependency>
-     <groupId>org.springframework.cloud</groupId>
-     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-     <version>2.0.0.RELEASE</version>
-</dependency>
-
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-commons</artifactId>
-    <version>2.0.0.RELEASE</version>
-</dependency>
-```
-
-* 确保 `soul-bootstrap` 中的 eureka配置,或者通过`--eureka.client.serviceUrl.defaultZone=你的地址` 然后重启项目. 
-
-```yml
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/   你的地址
-```
 
 ## 使用
 
@@ -56,10 +27,7 @@ eureka:
    
 * 规则图：
 
- ![](https://yu199195.github.io/images/soul/springcloud-rule.png)
-
-       
-* Hystrix ： 进行Springcloud http调用时候熔断器的参数。
+ ![](https://yu199195.github.io/images/soul/springcloud-rule.png)    
 
 * Springcloud配置：废弃。
 

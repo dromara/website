@@ -23,7 +23,7 @@ description: 接入soul网关
  <dependency>
      <groupId>org.dromara</groupId>
      <artifactId>soul-client-alibaba-dubbo</artifactId>
-     <version>2.1.1-RELEASE</version>
+     <version>2.1.2-RELEASE</version>
 </dependency>
 ```
 
@@ -82,7 +82,7 @@ public @interface SoulClient {
  <dependency>
      <groupId>org.dromara</groupId>
      <artifactId>soul-client-apache-dubbo</artifactId>
-     <version>2.1.1-RELEASE</version>
+     <version>2.1.2-RELEASE</version>
 </dependency>
 ```
 
@@ -138,9 +138,9 @@ public @interface SoulClient {
 
 * 首先在 `soul-admin` 插件管理中，把dubbo插件设置为开启。
 
-* 其次在 dubbo插件中配置你的注册地址: 改成你的zookeeper地址，或者其他注册中心的地址.
+* 其次在 dubbo插件中配置你的注册地址,或者其他注册中心的地址.
 
 ```
-{"register":"zookeeper://localhost:2181"}
+{"register":"zookeeper://localhost:2181"}   or {"register":"nacos://localhost:8848"}
 
 ```

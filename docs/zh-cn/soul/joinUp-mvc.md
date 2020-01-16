@@ -23,7 +23,7 @@ description: 接入soul网关
 <dependency>
    <groupId>org.dromara</groupId>
    <artifactId>soul-client-springmvc</artifactId>
-   <version>2.1.1-RELEASE</version>
+   <version>2.1.2-RELEASE</version>
  </dependency>
 ```
 
@@ -101,6 +101,26 @@ soul:
 ```
 
 * 大功告成，你的服务已经接入到 soul,里面就可以访问拉 ，如果还有不懂的，可以参考 `soul-test-http`项目.
+
+
+## 关于restful风格的路径注册问题
+
+1. 参考 soul-test-http模块下的controller
+
+2. 我在这里举个例子
+
+```
+    @GetMapping("/path/{id}")
+    @SoulClient(path = "/path/**", desc = "test restful get 风格支持")
+    public String getPathVariable(@PathVariable("id") final String id, @RequestParam("name") final String name) {
+        return id + "_" + name;
+    }
+    @GetMapping("/path/{id}/name")
+    @SoulClient(path = "/path/**/name", desc = "test restful风格支持")
+    public String testRestFul(@PathVariable("id") final String id) {
+        return id;
+    }
+```
 
 
 ## 插件设置

@@ -348,6 +348,15 @@
       }
     },
     {
+      "filename": "hystrix.md",
+      "link": "\\zh-cn\\docs\\soul\\hystrix.html",
+      "meta": {
+        "title": "hystrix插件",
+        "keywords": "soul",
+        "description": "hystrix插件"
+      }
+    },
+    {
       "filename": "joinUp-dubbo.md",
       "link": "\\zh-cn\\docs\\soul\\joinUp-dubbo.html",
       "meta": {

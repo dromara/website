@@ -41,7 +41,7 @@ description: 环境搭建
 <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter</artifactId>
-      <version>2.1.1-RELEASE</version>
+      <version>2.1.2-RELEASE</version>
 </dependency>
 ```
 

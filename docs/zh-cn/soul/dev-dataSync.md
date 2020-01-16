@@ -36,7 +36,7 @@ soul:
 
 ### 配置 soul-bootstrap
 
-* 在 `soul-bootstrap` 中的yml文件中做如下更改 （配置zookeeper）。
+* 在 `soul-bootstrap` 中的yml文件中做如下更改。
 
 ```
 soul:
@@ -79,7 +79,7 @@ soul:
 
 ### 配置 soul-bootstrap
 
-* 在 `soul-bootstrap` 中的yml文件中做如下更改 （配置zookeeper）。
+* 在 `soul-bootstrap` 中的yml文件中做如下更改。
 
 ```
 soul :
@@ -119,7 +119,7 @@ soul:
 
 ### 配置 soul-bootstrap
 
-* 在 `soul-bootstrap` 中的yml文件中做如下更改 （配置zookeeper）。
+* 在 `soul-bootstrap` 中的yml文件中做如下更改。
 
 ```
 soul :

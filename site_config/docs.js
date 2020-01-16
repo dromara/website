@@ -105,6 +105,10 @@ export default {
                                 link: '/zh-cn/docs/soul/rateLimiter.html',
                             },
                             {
+                                title: 'hystrix插件',
+                                link: '/zh-cn/docs/soul/hystrix.html',
+                            },
+                            {
                                 title: 'monitor插件',
                                 link: '/zh-cn/docs/soul/monitor.html',
                             },

@@ -15,8 +15,6 @@ description: 接入soul网关
 * 接入前，请正确的启动 `soul-admin` ,`soul-bootstrap`.
 
 
-
-
 ## springcloud 用户
 * 引入jar包，在你的提供者服务里面
 
@@ -24,7 +22,7 @@ description: 接入soul网关
  <dependency>
      <groupId>org.dromara</groupId>
      <artifactId>soul-client-springcloud</artifactId>
-     <version>2.1.1-RELEASE</version>
+     <version>2.1.2-RELEASE</version>
 </dependency>
 ```
 
@@ -32,7 +30,7 @@ description: 接入soul网关
 
 ```yml
 soul:
-  http:
+  springcloud:
     adminUrl: http://localhost:9095
     contextPath: /http
     appName: http
@@ -72,8 +70,26 @@ public @interface SoulClient {
 ```
 
 
-* 最后一步，配置 `soul-bootstrap` 中的 eureka配置,或者通过`--eureka.client.serviceUrl.defaultZone=你的地址` 然后重启项目. 
+* 最后一步，配置 `soul-bootstrap` 中的 springcloud注册中心,然后启动项目.
 
+* 如果你使用 `eureka` 做为springcloud的注册中心
+
+1. 在 `soul-bootstrap` 的 pom.xml 文件引入如下2个jar包
+  
+```
+ <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+     <version>2.0.0.RELEASE</version>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-commons</artifactId>
+    <version>2.0.0.RELEASE</version>
+</dependency>
+```
+2. 增加如下配置
 ```yml
 eureka:
   instance:
@@ -83,6 +99,31 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/   你的地址
 ```
+
+* 如果你使用 `nacos` 做为springcloud的注册中心
+
+1. 在 `soul-bootstrap` 的 pom.xml 文件引入如下jar包
+
+```
+ <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        <version>2.1.0.RELEASE</version>
+ </dependency>
+```
+2. 增加如下配置
+```yml
+spring:
+   main:
+     allow-bean-definition-overriding: true
+   application:
+    name: soul-bootstrap
+   cloud:
+     nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848  你的地址
+```
+
 
 * 启动你的项目，标上 `soulClient` 的方法已经注册到soul网关. 如果有不懂的，可以参考`soul-http-springcloud`
 
