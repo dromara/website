@@ -30,7 +30,7 @@ export default {
     'zh-cn': {
         sidemenu: [
             {
-                title: 'Soul（2.1.X）',
+                title: 'Soul',
                 children: [
                     {
                         title: 'soul介绍',
@@ -53,80 +53,72 @@ export default {
                         link: '/zh-cn/docs/soul/metaData.html',
                     },
                     {
-                        title: '使用文档',
+                        title: '用户使用文档',
                         opened: true,
                         children: [
                             {
-                                title: '启动soul-admin',
-                                link: '/zh-cn/docs/soul/admin.html',
+                                title: '搭建soul网关环境',
+                                link: '/zh-cn/docs/soul/setup.html',
                             },
                             {
-                                title: '启动soul-bootstrap',
-                                link: '/zh-cn/docs/soul/server.html',
+                                title: 'http用户',
+                                link: '/zh-cn/docs/soul/user-http.html',
                             },
                             {
-                                title: 'http用户接入',
-                                link: '/zh-cn/docs/soul/joinUp-mvc.html',
+                                title: 'dubbo用户',
+                                link: '/zh-cn/docs/soul/user-dubbo.html',
                             },
                             {
-                                title: 'dubbo用户接入',
-                                link: '/zh-cn/docs/soul/joinUp-dubbo.html',
-                            },
-                            {
-                                title: 'springcloud用户接入',
-                                link: '/zh-cn/docs/soul/joinUp-springcloud.html',
-                            },
-                            {
-                                title: 'http用户请求',
-                                link: '/zh-cn/docs/soul/request-http.html',
-                            },
-                            {
-                                title: 'dubbo用户请求',
-                                link: '/zh-cn/docs/soul/request-dubbo.html',
+                                title: 'springCloud用户',
+                                link: '/zh-cn/docs/soul/user-springcloud.html',
                             },
                             {
                                 title: '选择器规则详解',
                                 link: '/zh-cn/docs/soul/selector.html',
                             },
                             {
+                                title: '数据同步策略',
+                                link: '/zh-cn/docs/soul/user-dataSync.html',
+                            },
+                            {
                                 title: 'divide插件',
-                                link: '/zh-cn/docs/soul/divide.html',
+                                link: '/zh-cn/docs/soul/plugin-divide.html',
                             },
                             {
                                 title: 'dubbo插件',
-                                link: '/zh-cn/docs/soul/dubbo.html',
+                                link: '/zh-cn/docs/soul/plugin-dubbo.html',
                             },
                             {
                                 title: 'springcloud插件',
-                                link: '/zh-cn/docs/soul/springcloud.html',
+                                link: '/zh-cn/docs/soul/plugin-springcloud.html',
                             },
                             {
                                 title: 'rateLimiter插件',
-                                link: '/zh-cn/docs/soul/rateLimiter.html',
+                                link: '/zh-cn/docs/soul/plugin-rateLimiter.html',
                             },
                             {
                                 title: 'hystrix插件',
-                                link: '/zh-cn/docs/soul/hystrix.html',
+                                link: '/zh-cn/docs/soul/plugin-hystrix.html',
                             },
                             {
                                 title: 'monitor插件',
-                                link: '/zh-cn/docs/soul/monitor.html',
+                                link: '/zh-cn/docs/soul/plugin-monitor.html',
                             },
                             {
                                 title: 'waf插件',
-                                link: '/zh-cn/docs/soul/waf.html',
+                                link: '/zh-cn/docs/soul/plugin-waf.html',
                             },
                             {
                                 title: 'sign插件',
-                                link: '/zh-cn/docs/soul/sign.html',
+                                link: '/zh-cn/docs/soul/plugin-sign.html',
                             },
                             {
                                 title: 'rewrite插件',
-                                link: '/zh-cn/docs/soul/rewrite.html',
+                                link: '/zh-cn/docs/soul/plugin-rewrite.html',
                             },
                             {
                                 title: 'websocket支持',
-                                link: '/zh-cn/docs/soul/websocket.html',
+                                link: '/zh-cn/docs/soul/plugin-websocket.html',
                             }
                         ],
                     },
@@ -135,24 +127,12 @@ export default {
                         opened: true,
                         children: [
                             {
-                                title: '环境搭建',
-                                link: '/zh-cn/docs/soul/dev-env.html',
-                            },
-                            {
                                 title: '自定义filter',
                                 link: '/zh-cn/docs/soul/dev-filter.html',
                             },
                             {
                                 title: '自定义插件',
                                 link: '/zh-cn/docs/soul/dev-plugin.html',
-                            },
-                            {
-                                title: '设置数据同步策略',
-                                link: '/zh-cn/docs/soul/dev-dataSync.html',
-                            },
-                            {
-                                title: '自定义dubbo参数解析',
-                                link: '/zh-cn/docs/soul/dev-dubbo.html',
                             },
                             {
                                 title: '文件上传下载',
@@ -163,10 +143,6 @@ export default {
                                 link: '/zh-cn/docs/soul/dev-iphost.html',
                             },
                             {
-                                title: '自定义soul参数',
-                                link: '/zh-cn/docs/soul/dev-param.html',
-                            },
-                            {
                                 title: '自定义返回结果',
                                 link: '/zh-cn/docs/soul/dev-result.html',
                             },
@@ -175,7 +151,7 @@ export default {
                                 link: '/zh-cn/docs/soul/dev-sign.html',
                             },
                             {
-                                title: '自定义开发soul-client',
+                                title: '多语言http客户端接入',
                                 link: '/zh-cn/docs/soul/dev-client.html',
                             },
                             {

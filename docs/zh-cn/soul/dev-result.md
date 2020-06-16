@@ -4,19 +4,20 @@ keywords: soul
 description: 自定义网关返回数据格式
 ---
 
-
-
 ## 说明
 
-* 本文是说明,如何soul网关，返回自定义的数据格式
+* 本文是说明,基于soul网关，返回自定义的数据个数。
 
-* 网关需要统一的返回格式,而每个公司都有自己定义的一套，所以需要对次进行扩展
+* 网关需要统一的返回格式,而每个公司都有自己定义的一套，所以需要对次进行扩展。
 
 
-###  默认实现
+### 默认实现
 
-*  默认的实现为 `org.dromara.soul.web.result.SoulDefaultEntity`
-```
+* 默认的实现为 `org.dromara.soul.plugin.api.result.DefaultSoulResult`
+
+* 返回的数据格式如下：
+
+```java
 public class SoulDefaultEntity implements Serializable {
 
     private static final long serialVersionUID = -2792556188993845048L;
@@ -28,11 +29,10 @@ public class SoulDefaultEntity implements Serializable {
     private Object data;
 
 }
-
 ```
 
 * 返回的json 格式如下:
-```
+```json
 {
     "code": -100, //返回码,
     "message": "您的参数错误,请检查相关文档!", //提示字段
@@ -42,9 +42,9 @@ public class SoulDefaultEntity implements Serializable {
 
 ## 扩展
 
-*  新增一个类 A 实现 `org.dromara.soul.web.result.SoulResult`
+*  新增一个类 A 实现 `org.dromara.soul.plugin.api.result.SoulResult`
 
-```
+```java
  public interface SoulResult<T> {
  
      /**
@@ -56,7 +56,7 @@ public class SoulDefaultEntity implements Serializable {
       * @return the t
       */
      T success(int code, String message, Object object);
- 
+
      /**
       * Error t.
       *
@@ -66,9 +66,7 @@ public class SoulDefaultEntity implements Serializable {
       * @return the t
       */
      T error(int code, String message, Object object);
- 
  }
-
 
 ```
 
@@ -77,9 +75,9 @@ public class SoulDefaultEntity implements Serializable {
 
 * 把你新增的实现类注册成为spring的bean,如下
 
-```
+```java
     @Bean
-    public SoulResult soulResult() {
+    public SoulResult a() {
           return new A();
     }
 ```

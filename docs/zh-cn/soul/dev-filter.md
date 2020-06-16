@@ -5,16 +5,14 @@ description: filter扩展
 ---
 
 
-
 ## 说明
 
-* 本文是说明,如何进行 `org.springframework.web.server.WebFliter` 的扩展
-
+* 本文是说明,如何进行 `org.springframework.web.server.WebFliter` 的扩展。
 
 
 ##  跨域支持
 
-*  新增 `org.dromara.soul.bootstrap.cors.CrossFilter` 实现 WebFilter.
+*  新增 `org.dromara.soul.bootstrap.cors.CrossFilter` 实现 WebFilter。
 
  ```java
  public class CrossFilter implements WebFilter {
@@ -65,37 +63,28 @@ public final class HealthFilter implements WebFilter {
 
     private static final String[] FILTER_TAG = {"/actuator/health", "/health_check"};
 
-    private final HealthEndpoint healthEndpoint;
-
-    @Autowired
-    private HealthFilter(final HealthEndpoint endpoint) {
-        healthEndpoint = endpoint;
-    }
-
     @Override
     public Mono<Void> filter(@Nullable final ServerWebExchange exchange, @Nullable final WebFilterChain chain) {
         ServerHttpRequest request = Objects.requireNonNull(exchange).getRequest();
         String urlPath = request.getURI().getPath();
         for (String check : FILTER_TAG) {
             if (check.equals(urlPath)) {
-                Health health = healthEndpoint.health();
-                String result = Objects.requireNonNull(JsonUtils.toJson(health));
+                String result = JsonUtils.toJson(new Health.Builder().up().build());
                 DataBuffer dataBuffer = exchange.getResponse().bufferFactory().wrap(result.getBytes());
                 return exchange.getResponse().writeWith(Mono.just(dataBuffer));
             }
         }
         return Objects.requireNonNull(chain).filter(exchange);
     }
-
 }
 
 ```
 
 ##  继承 `org.dromara.soul.web.filter.AbstractWebFilter`
 
-* 新增一个类，继承它
+* 新增一个类，继承它。
 
-* 实现它的2个方法
+* 实现它的2个方法。
 
 ```java
    /**
@@ -115,7 +104,7 @@ public final class HealthFilter implements WebFilter {
      */
     protected abstract Mono<Void> doDenyResponse(ServerWebExchange exchange);
 ```
-* `doFilter` 方法返回 Mono<true> 表示通过,反之则不通过，不通过的时候，会调用 `doDenyResponse`,输出相关信息到前端.
+* `doFilter` 方法返回 Mono<true> 表示通过,反之则不通过，不通过的时候，会调用 `doDenyResponse`,输出相关信息到前端。
 
 
 

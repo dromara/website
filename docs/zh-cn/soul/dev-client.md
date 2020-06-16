@@ -1,43 +1,39 @@
 ---
-title: 自定义开发soul的客户端
+title: 多语言http客户端
 keywords: soul
-description: 自定义开发soul的客户端
+description: 多语言http客户端
 ---
-
-
 
 ## 说明
 
-* 本文主要讲解如果自定义开发 soul-client,来对接网关。
+* 本文主要讲解其他语言的http服务如何接入网关。
 
-##  首先要明白的事情
+* 如何自定义开发 soul-http-client
 
-* soul-client 只是讲你的接口，变成网关需要的元数据，来更快的接入网关。
 
-* 请先看下 [元数据设计](metaData.md)。
+## 自定义开发
 
-## 请求
+* 请求方式: `POST`
+
+* 请求路径
+
+    * `http://soul-admin/soul-client/springmvc-register`  soul-admin, 表示为 admin的 ip + port
+
+* 请求参数
 
 * soul网关默认的需要参数,通过body里面传，json类型。
-```
-
+```json
 {
-	"appName": "xxx", //应用名称
-	"path": "xxx",    //路径需要唯一
-	"pathDesc": "xxx", //路径描述
-	"rpcType": "xxx",  //rpc类型
-	"serviceName": "xxx",  //接口全路径
-	"methodName": "xxx",   //方法名称
-	"parameterTypes": "xxx",//方法参数类型
-	"rpcExt": "xxx",//方法参数类型
-	"enabled": "true"  
+	"appName": "xxx", //应用名称 必填
+	"context": "/xxx" //请求前缀 必填
+	"path": "xxx", //路径需要唯一 必填
+	"rpcType": "http", //rpc类型  必填
+	"host": "xxx", //服务host 必填
+	"port": xxx, //服务端口 必填
+	"ruleName": "xxx", //可以同path一样  必填
+	"enabled": "true"
 }
 ```
-* 请求方式 ： post 
-
-* 请求地址 : http://soul-admin的ip + 端口/meta-data/register
-
-* 如果提供的 client不满足你的邀请，可以参考`soul-client` 模块来实现一个。
 
 
 

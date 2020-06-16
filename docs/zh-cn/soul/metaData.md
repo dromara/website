@@ -8,7 +8,6 @@ description: 元数据概念设计
 
 * 本篇主要讲解在soul网关中元数据的概念，设计，以及如何对接。
 
-
 ## 技术方案
 
 * 在数据库中，新增了一张表，然后通过数据同步的方案，会把这张表的数据同步到网关JVM内存。
@@ -33,6 +32,8 @@ CREATE TABLE  IF NOT EXISTS `meta_data` (
 
 ```
 
+* 元数据设计，目前最主要的是对dubbo的泛化调用上进行使用。
+
 * 我重点讲一下 `path` 字段，在请求网关的时候，会根据你的path字段来匹配到一条数据，然后进行后续的流程
 
 * 重点讲一下 `rcp_ext`字段,如果是dubbo类型的服务接口，如果服务接口设置了 group,version字段的时候，会存在这个字段.
@@ -55,10 +56,12 @@ CREATE TABLE  IF NOT EXISTS `meta_data` (
       }
   ```
 
-## 实现情况
+## 元数据存储
 
-* 目前我提供了 soul-client模块，来进行项目的对接，一方面就是来写这张表，然后进行同步，另一方法，进行一些初始化的配置。
+* 每个dubbo接口方法，对应一条元数据。
 
-* 如果我提供的 soul-client模块无法满足您的需求,你可以自己来开发 client  （尤其是其他的语言） [soul-client](dev-client.md) 我们详细讨论它。
+* springcloud协议，只会存储一条数据， path为 `/contextPath/**`。
+
+* http服务，则不会有任何数据。
 
 

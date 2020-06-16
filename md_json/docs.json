@@ -207,36 +207,9 @@
       "filename": "dev-client.md",
       "link": "\\zh-cn\\docs\\soul\\dev-client.html",
       "meta": {
-        "title": "自定义开发soul的客户端",
+        "title": "多语言http客户端",
         "keywords": "soul",
-        "description": "自定义开发soul的客户端"
-      }
-    },
-    {
-      "filename": "dev-dataSync.md",
-      "link": "\\zh-cn\\docs\\soul\\dev-dataSync.html",
-      "meta": {
-        "title": "设置数据同步策略",
-        "keywords": "soul",
-        "description": "设置数据同步策略"
-      }
-    },
-    {
-      "filename": "dev-dubbo.md",
-      "link": "\\zh-cn\\docs\\soul\\dev-dubbo.html",
-      "meta": {
-        "title": "dubbo参数自定义扩展",
-        "keywords": "soul",
-        "description": "dubbo参数自定义扩展"
-      }
-    },
-    {
-      "filename": "dev-env.md",
-      "link": "\\zh-cn\\docs\\soul\\dev-env.html",
-      "meta": {
-        "title": "环境搭建",
-        "keywords": "soul",
-        "description": "环境搭建"
+        "description": "多语言http客户端"
       }
     },
     {
@@ -261,9 +234,9 @@
       "filename": "dev-iphost.md",
       "link": "\\zh-cn\\docs\\soul\\dev-iphost.html",
       "meta": {
-        "title": "扩展获取Ip与host",
+        "title": "正确获取Ip与host",
         "keywords": "soul",
-        "description": "扩展获取Ip与host"
+        "description": "正确获取Ip与host"
       }
     },
     {
@@ -273,15 +246,6 @@
         "title": "soul性能优化",
         "keywords": "soul",
         "description": "soul性能优化"
-      }
-    },
-    {
-      "filename": "dev-param.md",
-      "link": "\\zh-cn\\docs\\soul\\dev-param.html",
-      "meta": {
-        "title": "soul参数扩展",
-        "keywords": "soul",
-        "description": "soul参数扩展"
       }
     },
     {
@@ -321,69 +285,6 @@
       }
     },
     {
-      "filename": "divide.md",
-      "link": "\\zh-cn\\docs\\soul\\divide.html",
-      "meta": {
-        "title": "divide插件",
-        "keywords": "divide",
-        "description": "divide插件"
-      }
-    },
-    {
-      "filename": "dubbo.md",
-      "link": "\\zh-cn\\docs\\soul\\dubbo.html",
-      "meta": {
-        "title": "dubbo插件",
-        "keywords": "dubbo",
-        "description": "dubbo插件"
-      }
-    },
-    {
-      "filename": "http.md",
-      "link": "\\zh-cn\\docs\\soul\\http.html",
-      "meta": {
-        "title": "请求soul网关",
-        "keywords": "soul http",
-        "description": "请求soul网关"
-      }
-    },
-    {
-      "filename": "hystrix.md",
-      "link": "\\zh-cn\\docs\\soul\\hystrix.html",
-      "meta": {
-        "title": "hystrix插件",
-        "keywords": "soul",
-        "description": "hystrix插件"
-      }
-    },
-    {
-      "filename": "joinUp-dubbo.md",
-      "link": "\\zh-cn\\docs\\soul\\joinUp-dubbo.html",
-      "meta": {
-        "title": "接入soul网关",
-        "keywords": "soul",
-        "description": "接入soul网关"
-      }
-    },
-    {
-      "filename": "joinUp-mvc.md",
-      "link": "\\zh-cn\\docs\\soul\\joinUp-mvc.html",
-      "meta": {
-        "title": "接入soul网关",
-        "keywords": "soul",
-        "description": "接入soul网关"
-      }
-    },
-    {
-      "filename": "joinUp-springcloud.md",
-      "link": "\\zh-cn\\docs\\soul\\joinUp-springcloud.html",
-      "meta": {
-        "title": "接入soul网关",
-        "keywords": "soul",
-        "description": "接入soul网关"
-      }
-    },
-    {
       "filename": "metaData.md",
       "link": "\\zh-cn\\docs\\soul\\metaData.html",
       "meta": {
@@ -393,8 +294,35 @@
       }
     },
     {
-      "filename": "monitor.md",
-      "link": "\\zh-cn\\docs\\soul\\monitor.html",
+      "filename": "plugin-divide.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-divide.html",
+      "meta": {
+        "title": "divide插件",
+        "keywords": "divide",
+        "description": "divide插件"
+      }
+    },
+    {
+      "filename": "plugin-dubbo.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-dubbo.html",
+      "meta": {
+        "title": "dubbo插件",
+        "keywords": "dubbo",
+        "description": "dubbo插件"
+      }
+    },
+    {
+      "filename": "plugin-hystrix.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-hystrix.html",
+      "meta": {
+        "title": "hystrix插件",
+        "keywords": "soul",
+        "description": "hystrix插件"
+      }
+    },
+    {
+      "filename": "plugin-monitor.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-monitor.html",
       "meta": {
         "title": "monitor插件",
         "keywords": "monitor",
@@ -402,17 +330,8 @@
       }
     },
     {
-      "filename": "preFilter.md",
-      "link": "\\zh-cn\\docs\\soul\\preFilter.html",
-      "meta": {
-        "title": "前置过滤器设计",
-        "keywords": "preFiter",
-        "description": "前置过滤器设计"
-      }
-    },
-    {
-      "filename": "rateLimiter.md",
-      "link": "\\zh-cn\\docs\\soul\\rateLimiter.html",
+      "filename": "plugin-rateLimiter.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-rateLimiter.html",
       "meta": {
         "title": "rateLimiter插件",
         "keywords": "rateLimiter",
@@ -420,30 +339,48 @@
       }
     },
     {
-      "filename": "request-dubbo.md",
-      "link": "\\zh-cn\\docs\\soul\\request-dubbo.html",
-      "meta": {
-        "title": "dubbo用户请求网关",
-        "keywords": "soul",
-        "description": "dubbo用户请求网关"
-      }
-    },
-    {
-      "filename": "request-http.md",
-      "link": "\\zh-cn\\docs\\soul\\request-http.html",
-      "meta": {
-        "title": "http请求网关",
-        "keywords": "soul",
-        "description": "http请求网关"
-      }
-    },
-    {
-      "filename": "rewrite.md",
-      "link": "\\zh-cn\\docs\\soul\\rewrite.html",
+      "filename": "plugin-rewrite.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-rewrite.html",
       "meta": {
         "title": "rewrite插件",
         "keywords": "rewrite",
         "description": "rewrite插件"
+      }
+    },
+    {
+      "filename": "plugin-sign.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-sign.html",
+      "meta": {
+        "title": "sign插件",
+        "keywords": "sign",
+        "description": "sign插件"
+      }
+    },
+    {
+      "filename": "plugin-springcloud.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-springcloud.html",
+      "meta": {
+        "title": "springcloud插件",
+        "keywords": "springcloud",
+        "description": "springcloud插件"
+      }
+    },
+    {
+      "filename": "plugin-waf.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-waf.html",
+      "meta": {
+        "title": "waf插件",
+        "keywords": "waf",
+        "description": "waf插件"
+      }
+    },
+    {
+      "filename": "plugin-websocket.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-websocket.html",
+      "meta": {
+        "title": "websocket支持",
+        "keywords": "soul",
+        "description": "websocket支持"
       }
     },
     {
@@ -456,21 +393,12 @@
       }
     },
     {
-      "filename": "server.md",
-      "link": "\\zh-cn\\docs\\soul\\server.html",
+      "filename": "setup.md",
+      "link": "\\zh-cn\\docs\\soul\\setup.html",
       "meta": {
-        "title": "启动服务",
-        "keywords": "soul-server",
-        "description": "启动服务"
-      }
-    },
-    {
-      "filename": "sign.md",
-      "link": "\\zh-cn\\docs\\soul\\sign.html",
-      "meta": {
-        "title": "sign插件",
-        "keywords": "sign",
-        "description": "sign插件"
+        "title": "环境搭建",
+        "keywords": "soul",
+        "description": "环境搭建"
       }
     },
     {
@@ -483,30 +411,39 @@
       }
     },
     {
-      "filename": "springcloud.md",
-      "link": "\\zh-cn\\docs\\soul\\springcloud.html",
+      "filename": "user-dataSync.md",
+      "link": "\\zh-cn\\docs\\soul\\user-dataSync.html",
       "meta": {
-        "title": "springcloud插件",
-        "keywords": "springcloud",
-        "description": "springcloud插件"
-      }
-    },
-    {
-      "filename": "waf.md",
-      "link": "\\zh-cn\\docs\\soul\\waf.html",
-      "meta": {
-        "title": "waf插件",
-        "keywords": "waf",
-        "description": "waf插件"
-      }
-    },
-    {
-      "filename": "websocket.md",
-      "link": "\\zh-cn\\docs\\soul\\websocket.html",
-      "meta": {
-        "title": "websocket支持",
+        "title": "使用不同的数据同步策略",
         "keywords": "soul",
-        "description": "websocket支持"
+        "description": "使用不同的数据同步策略"
+      }
+    },
+    {
+      "filename": "user-dubbo.md",
+      "link": "\\zh-cn\\docs\\soul\\user-dubbo.html",
+      "meta": {
+        "title": "dubbo接入soul网关",
+        "keywords": "soul",
+        "description": "dubbo接入soul网关"
+      }
+    },
+    {
+      "filename": "user-http.md",
+      "link": "\\zh-cn\\docs\\soul\\user-http.html",
+      "meta": {
+        "title": "http用户",
+        "keywords": "soul",
+        "description": "http用户"
+      }
+    },
+    {
+      "filename": "user-springcloud.md",
+      "link": "\\zh-cn\\docs\\soul\\user-springcloud.html",
+      "meta": {
+        "title": "springCloud接入soul网关",
+        "keywords": "soul",
+        "description": "springCloud接入soul网关"
       }
     }
   ]

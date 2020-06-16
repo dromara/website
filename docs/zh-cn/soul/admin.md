@@ -63,17 +63,6 @@ mybatis:
   config-location: classpath:/mybatis/mybatis-config.xml
   mapper-locations: classpath:/mappers/*.xml
 
-
-logging:
-  level:
-    root: info
-    org.springframework.boot: info
-    org.apache.ibatis: info
-    org.dromara.soul.bonuspoint: info
-    org.dromara.soul.lottery: info
-    org.dromara.soul: info
-
-  path: "./logs/soul-admin"
 ```
 
 * 启动 `org.dromara.soul.admin.SoulAdminApplication`.

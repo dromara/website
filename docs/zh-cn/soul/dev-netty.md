@@ -17,7 +17,7 @@ description: soul性能优化
 
 * soul内置依赖 `spring-webflux` 而其底层是使用的netty。这一块只要是使用的netty线程模型。
 
-* 我们可以自定义netty的相关参数来对soul 进行优化,以下是示例，
+* 我们可以自定义netty的相关参数来对soul 进行优化,以下是示例：
 
 ```java
    @Bean
