@@ -285,6 +285,15 @@
       }
     },
     {
+      "filename": "induction.md",
+      "link": "\\zh-cn\\docs\\soul\\induction.html",
+      "meta": {
+        "title": "soul极简入门",
+        "keywords": "soul",
+        "description": "soul极简入门"
+      }
+    },
+    {
       "filename": "metaData.md",
       "link": "\\zh-cn\\docs\\soul\\metaData.html",
       "meta": {

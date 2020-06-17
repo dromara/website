@@ -37,6 +37,10 @@ export default {
                         link: '/zh-cn/docs/soul/soul.html',
                     },
                     {
+                        title: 'soul极简入门',
+                        link: '/zh-cn/docs/soul/induction.html',
+                    },
+                    {
                         title: '数据库设计',
                         link: '/zh-cn/docs/soul/db.html',
                     },
