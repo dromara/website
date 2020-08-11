@@ -1,106 +1,145 @@
 ---
-title: motan用户指南
+title: Motan用户指南
 keywords: motan
-description:  motan用户指南
+description: Hmily-Motan分布式事务用户指南
 ---
 
-
-# jar包依赖
+# Motan接口部分
 
 *  在你的接口项目中引入jar包。
-```java
+
+```xml
       <dependency>
           <groupId>org.dromara</groupId>
           <artifactId>hmily-annotation</artifactId>
-         <version>2.0.0-RELEASE</version>
+          <version>{last.version}</version>
       </dependency>
 ```
-* 在你的motan rpc接口上加入 @Hmily注解
+
+* 在需要进行Hmily分布式事务的接口方法上加上 `@HmilyTCC` 或者 `@HmilyTAC` 标识。
 
 
-* 在你的实现项目中引入jar包，并在实现接口上添加:@Hmily(confirmMethod = "confrim", cancelMethod = "cancel")confirmMethod，cancelMethod对应为的方法名称
+# Dubbo实现项目引入依赖jar包与配置
+
+## Spring-Namespace
+
+* 引入依赖
 
 ```xml
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>hmily-motan</artifactId>
-              <version>2.0.0-RELEASE</version>
+           <version>{last.version}</version>
         </dependency>
 ```
 
-* 注意 confrim 与cancel 方法的参数列表与你的接口保持一致。
-
-* confrim 方法为你try 方法的确认方法,由用户自己开发。
-
-* cancel方法是try 方法的回滚方法,由用户自己开发。
-
-
-# Spring XML 配置 HmilyTransactionBootstrap
+* 在xml中进行如下配置
 
 ```xml
-  <!-- Aspect 切面配置，是否开启AOP切面-->
-  <aop:aspectj-autoproxy expose-proxy="true"/>
-  <!--扫描框架的包-->
-  <context:component-scan base-package="org.dromara.hmily.*"/>
-  <!--启动类属性配置-->
-  <bean id="hmilyTransactionBootstrap" class="org.dromara.hmily.core.bootstrap.HmilyTransactionBootstrap">
+    <!--配置扫码hmily框架的包-->
+    <context:component-scan base-package="org.dromara.hmily.*"/>
+    <!--设置开启aspectj-autoproxy-->
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    <!--配置Hmily启动的bean参数-->
+    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware">
+        <property name="appName" value="inventory"/>
         <property name="serializer" value="kryo"/>
-        <property name="recoverDelayTime" value="120"/>
+        <property name="recoverDelayTime" value="60"/>
         <property name="retryMax" value="3"/>
-        <property name="loadFactor" value="2"/>
-        <property name="scheduledDelay" value="120"/>
+        <property name="scheduledRecoveryDelay" value="60"/>
         <property name="scheduledThreadMax" value="4"/>
-        <property name="bufferSize" value="4096"/>
-        <property name="consumerThreads" value="32"/>
-        <property name="started" value="false"/>
-        <property name="asyncThreads" value="32"/>
-        <property name="repositorySupport" value="db"/>
+        <property name="repository" value="mysql"/>
         <property name="hmilyDbConfig">
-            <bean class="org.dromara.hmily.common.config.HmilyDbConfig">
+            <bean class="org.dromara.hmily.config.HmilyDbConfig">
                 <property name="url"
-                          value="jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true&amp;characterEncoding=utf8"/>
+                          value="jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&amp;characterEncoding=utf8"/>
                 <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
                 <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="password" value=""/>
             </bean>
         </property>
     </bean>
-  ```  
-* 配置开启AOP切面。
+```
 
-* 扫描Hmily框架的包。
+* 具体的参数配置可以参考[配置详解](config.md)
 
-* 配置Hmiiy框架参数。
-     
-# Spring boot start 配置 HmilyTransactionBootstrap
+## Spring-Boot-starter
 
-* 在你的实现项目中引入Springboot-start支持的包，并在实现接口上添加:
+* Alibaba-Dubbo 用户引入
+
 ```xml
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>hmily-spring-boot-starter-motan</artifactId>
-              <version>2.0.0-RELEASE</version>
+           <version>{last.version}</version>
         </dependency>
 ```
 
 * 在你的yml中配置
 
-```yml
+```yaml
 org:
     dromara:
          hmily :
+            app-name: account
             serializer : kryo
-            recoverDelayTime : 128
+            recoverDelayTime : 60
             retryMax : 30
-            scheduledDelay : 128
+            scheduledRecoveryDelay : 60
             scheduledThreadMax :  10
-            repositorySupport : db
-            started: false
+            repository : mysql
             hmilyDbConfig :
-                 driverClassName  : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true&amp;characterEncoding=utf8
+                 driverClassName : com.mysql.jdbc.Driver
+                 url :  jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
                  username : root
-                 password : 123456
+                 password :
 
 ```
-* 具体的详解请看[配置详解](configuration.md)
+
+* 具体的参数配置可以参考[配置详解](config.md)
+
+# Motan实现项目使用
+
+在上述中，我们已经完成了集成，与配置，现在我们来详解说一下如何进行使用。
+
+## TCC模式
+
+ * 在添加`@HmilyTCC` 标识 接口方法的实现上 加上` @HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
+
+ * `confirmMethod` : 注解标识方法的，确认方法名称，该方法参数列表与返回类型应与标识方法一致。
+
+ * `cancelMethod` :  注解标识方法的，回滚方法名称，该方法参数列表与返回类型应与标识方法一致。
+ 
+ TCC模式应该保证 `confirm` 和 `cancel` 方法的幂等性，用户需要自行去开发这个2个方法，所有的事务的确认与回滚
+ 
+ 完全由用户决定。Hmily框架只是负责来进行调用。
+ 
+## TAC模式 
+
+  *  在添加`@HmilyTCC` 标识 接口方法的实现上 加上` @HmilyTAC`
+  
+
+## 重要注意事项
+
+  在调用任何RPC调用之前，必须在本地一个`service`方法上，先行添加 `@HmilyTCC` 或者 `@HmilyTAC` 注解,标识开启全局事务。
+
+#### 负载均衡
+
+  * 如果服务部署了几个节点， 负载均衡算法最好使用 `hmily`, 这样 `try`, `confirm`, `cancel` 调用会落在同一个节点
+    充分利用了缓存，提搞了效率。
+    
+```xml
+   <motan:reference  interface="xxx"  id="xxx" loadbalance="hmily"/>           
+```      
+    
+#### 设置永不重试
+    
+  * 需要进行分布式事务的Motan接口，调用放要设置为永远不重试(retries="0")
+
+```xml
+   <motan:reference  interface="xxx"  id="xxx" retries="0"/>           
+```  
+
+#### 异常
+  
+  * `try`, `confirm`, `cancel` 方法的所有异常不要自行`catch` 任何异常都应该抛出给 `Hmily`框架处理。

@@ -27,12 +27,30 @@
       }
     },
     {
-      "filename": "configuration.md",
-      "link": "\\zh-cn\\docs\\hmily\\configuration.html",
+      "filename": "annotation.md",
+      "link": "\\zh-cn\\docs\\hmily\\annotation.html",
       "meta": {
-        "title": "Hmily配置详解",
+        "title": "Hmily-annotation",
+        "keywords": "annotation",
+        "description": "annotation"
+      }
+    },
+    {
+      "filename": "config.md",
+      "link": "\\zh-cn\\docs\\hmily\\config.html",
+      "meta": {
+        "title": "Hmily-Config",
         "keywords": "configuration",
         "description": "Hmily配置详解"
+      }
+    },
+    {
+      "filename": "context.md",
+      "link": "\\zh-cn\\docs\\hmily\\context.html",
+      "meta": {
+        "title": "Hmily-Context",
+        "keywords": "Hmily-Context",
+        "description": "Hmily-Context事务上下文"
       }
     },
     {
@@ -41,21 +59,57 @@
       "meta": {}
     },
     {
+      "filename": "metrics.md",
+      "link": "\\zh-cn\\docs\\hmily\\metrics.html",
+      "meta": {
+        "title": "Hmily-Metrics",
+        "keywords": "Metrics",
+        "description": "Metrics"
+      }
+    },
+    {
       "filename": "quick-start-dubbo.md",
       "link": "\\zh-cn\\docs\\hmily\\quick-start-dubbo.html",
       "meta": {
-        "title": "dubbo 快速体验",
-        "keywords": "dubbo-start",
-        "description": "dubbo 快速体验"
+        "title": "Dubbo快速体验",
+        "keywords": "Dubbo",
+        "description": "Dubbo快速体验"
       }
     },
     {
       "filename": "quick-start-springcloud.md",
       "link": "\\zh-cn\\docs\\hmily\\quick-start-springcloud.html",
       "meta": {
-        "title": "springcloud快速体验",
-        "keywords": "springcloud-start",
-        "description": "springcloud快速体验"
+        "title": "SpringCloud快速体验",
+        "keywords": "SpringCloud",
+        "description": "Hmily-SpringCloud分布式事务体验"
+      }
+    },
+    {
+      "filename": "tac.md",
+      "link": "\\zh-cn\\docs\\hmily\\tac.html",
+      "meta": {
+        "title": "Hmily-tac",
+        "keywords": "tac",
+        "description": "tac"
+      }
+    },
+    {
+      "filename": "tcc.md",
+      "link": "\\zh-cn\\docs\\hmily\\tcc.html",
+      "meta": {
+        "title": "Hmily-tcc",
+        "keywords": "tcc",
+        "description": "tcc"
+      }
+    },
+    {
+      "filename": "term.md",
+      "link": "\\zh-cn\\docs\\hmily\\term.html",
+      "meta": {
+        "title": "术语",
+        "keywords": "Hmily",
+        "description": "术语"
       }
     },
     {
@@ -71,18 +125,18 @@
       "filename": "user-motan.md",
       "link": "\\zh-cn\\docs\\hmily\\user-motan.html",
       "meta": {
-        "title": "motan用户指南",
+        "title": "Motan用户指南",
         "keywords": "motan",
-        "description": "motan用户指南"
+        "description": "Hmily-Motan分布式事务用户指南"
       }
     },
     {
       "filename": "user-springcloud.md",
       "link": "\\zh-cn\\docs\\hmily\\user-springcloud.html",
       "meta": {
-        "title": "Springcloud用户指南",
-        "keywords": "Springcloud",
-        "description": "Springcloud用户指南"
+        "title": "SpringCloud用户指南",
+        "keywords": "SpringCloud",
+        "description": "Hmily-SpringCloud分布式事务用户指南"
       }
     },
     {

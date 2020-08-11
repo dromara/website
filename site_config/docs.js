@@ -178,12 +178,32 @@ export default {
                         link: '/zh-cn/docs/hmily/index.html',
                     },
                     {
-                        title: '配置详解',
-                        link: '/zh-cn/docs/hmily/configuration.html',
+                        title: '术语',
+                        link: '/zh-cn/docs/hmily/term.html',
                     },
                     {
-                        title: '启动admin',
-                        link: '/zh-cn/docs/hmily/admin.html',
+                        title: '配置详解',
+                        link: '/zh-cn/docs/hmily/config.html',
+                    },
+                    {
+                        title: '注解详解',
+                        link: '/zh-cn/docs/hmily/annotation.html',
+                    },
+                    {
+                        title: '事务上下文',
+                        link: '/zh-cn/docs/hmily/context.html',
+                    },
+                    {
+                        title: 'metrics信息',
+                        link: '/zh-cn/docs/hmily/metrics.html',
+                    },
+                    {
+                        title: 'TCC模式',
+                        link: '/zh-cn/docs/hmily/tcc.html',
+                    },
+                    {
+                        title: 'TAC模式',
+                        link: '/zh-cn/docs/hmily/tac.html',
                     },
                     {
                         title: '用户文档',
@@ -217,6 +237,16 @@ export default {
                             }
                         ],
                     },
+                    {
+                        title: '运维平台',
+                        opened: true,
+                        children: [
+                            {
+                                title: '启动admin',
+                                link: '/zh-cn/docs/hmily/admin.html',
+                            }
+                        ],
+                    }
                 ],
             },
             {

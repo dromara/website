@@ -1,9 +1,8 @@
 ---
-title: springcloud快速体验
-keywords: springcloud-start
-description:  springcloud快速体验
+title: SpringCloud快速体验
+keywords: SpringCloud
+description: Hmily-SpringCloud分布式事务体验
 ---
-
 
 # 环境准备
 
@@ -24,48 +23,53 @@ description:  springcloud快速体验
    > mvn -DskipTests clean install -U
    ```
 
- # 执行demo 模块的sql语句。
+# 执行demo 模块的sql语句。
 
    [sql语句] (https://github.com/yu199195/hmily/blob/master/hmily-demo/sql/hmily-demo.sql) 
 
+# 使用你的工具 idea 打开项目，找到hmily-demo-springcloud项目。
 
-# 使用你的工具 idea 或者eclipse 打开项目。
+## 启动 hmily-demo-springcloud-eureka项目中的 EurekaServerApplication.java。
 
-* 修改业务数据库
+
+## 修改项目配置（hmily-demo-springcloud-account为列子）
+
+* 修改业务数据库(account项目为列子)
+
 ```yml
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.1.68:3306/tcc_account?useUnicode=true&characterEncoding=utf8
-        username: xiaoyu
-        password: Wgj@555888
+        url: jdbc:mysql://localhost:3306/tcc_account?useUnicode=true&characterEncoding=utf8
+        username: 你的用户名
+        password: 你的密码
 ```
+
 * 修改事务日志数据库 (account项目为列子)
 ```yml
 org:
     dromara:
          hmily :
+            app-name: sc-account
             serializer : kryo
             recoverDelayTime : 128
             retryMax : 30
-            scheduledDelay : 128
+            scheduled-recovery-delay: 60
             scheduledThreadMax :  10
-            repositorySupport : db
-            started: false
+            repository : mysql
             hmilyDbConfig :
                  driverClassName  : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true&amp;characterEncoding=utf8
-                 username : root
-                 password : 123456
+                 url: jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
+                 username : 你的用户名
+                 password : 你的密码
 
 ```
 
-*  #####  run EurekaServerApplication.java
+* run  SpringCloudHmilyAccountApplication.java
 
-*  #####  run  SpringCloudHmilyAccountApplication.java
+### 启动hmily-demo-springcloud-inventory 参考上述。
 
-*  #####  run  SpringCloudHmilyInventoryApplication.java
+### 启动hmily-demo-springcloud-order 参考上述。
 
-*  #####  run  SpringCloudHmilyOrderApplication.java  
+### 访问 http://127.0.0.1:8884/swagger-ui.html。 运行 orderPay进行体验。
 
-*  ####  访问 http://127.0.0.1:8084/swagger-ui.html

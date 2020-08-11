@@ -1,0 +1,10 @@
+{
+  "filename": "term.md",
+  "__html": "<h3>术语</h3>\n<ul>\n<li>\n<p>发起者: 全局事务的开启者，一个请求最先遇到 <code>@HmilyTCC</code> or <code>@HmilyTAC</code> 注解的方法，该所属方法应用被称为发起者</p>\n</li>\n<li>\n<p>参与者： 在发起者方法内部调用了被  <code>@HmilyTCC</code> or <code>@HmilyTAC</code> 注解的RPC方法，该RPC应用被称为事务参与者。</p>\n</li>\n<li>\n<p>TCC ：<code>try</code>, <code>confirm</code>, <code>cancel</code> 3个阶段的简称。</p>\n</li>\n<li>\n<p>TAC ：try执行完以后，会生成反向回滚SQL，如果有异常，会由框架来自动调用回滚SQL。 AC(Auto Cancel)。</p>\n</li>\n</ul>\n",
+  "link": "\\zh-cn\\docs\\hmily\\term.html",
+  "meta": {
+    "title": "术语",
+    "keywords": "Hmily",
+    "description": "术语"
+  }
+}

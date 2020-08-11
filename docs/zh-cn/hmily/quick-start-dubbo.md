@@ -1,9 +1,8 @@
 ---
-title: dubbo 快速体验
-keywords: dubbo-start
-description:  dubbo 快速体验
+title: Dubbo快速体验
+keywords: Dubbo
+description: Dubbo快速体验
 ---
-
 
 # 环境准备
 
@@ -12,7 +11,6 @@ description:  dubbo 快速体验
   *   #### Maven 3.2.x
 
   *   #### Git
-
 
 # 代码拉取
 
@@ -24,53 +22,57 @@ description:  dubbo 快速体验
    > mvn -DskipTests clean install -U
    ```
 
- # 执行demo 模块的sql语句。
+# 执行demo 模块的sql语句。
 
    [sql语句] (https://github.com/yu199195/hmily/blob/master/hmily-demo/sql/hmily-demo.sql) 
 
 
-# 使用你的工具 idea 或者eclipse 打开项目。
+# 使用你的工具 idea 打开项目，找到hmily-demo-dubbo项目。
 
-* 修改业务数据库
+## 修改项目配置（hmily-demo-dubbo-account为列子）
+
+* 修改业务数据库(account项目为列子)
+
 ```yml
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://192.168.1.68:3306/tcc_account?useUnicode=true&characterEncoding=utf8
-        username: xiaoyu
-        password: Wgj@555888
+        url: jdbc:mysql://localhost:3306/tcc_account?useUnicode=true&characterEncoding=utf8
+        username: 
+        password:
 ```
+
 * 修改事务日志数据库 (account项目为列子)
 ```yml
 org:
     dromara:
          hmily :
+            app-name: account
             serializer : kryo
-            recoverDelayTime : 128
+            recoverDelayTime : 60
             retryMax : 30
-            scheduledDelay : 128
+            scheduledRecoveryDelay : 60
             scheduledThreadMax :  10
-            repositorySupport : db
-            started: false
+            repository : mysql
             hmilyDbConfig :
-                 driverClassName  : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true&amp;characterEncoding=utf8
+                 driverClassName : com.mysql.jdbc.Driver
+                 url :  jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
                  username : root
-                 password : 123456
+                 password :
 
 ```
 
 * 在spring-dubbo中修改你的zookeeper地址
 
  ```xml
-  <dubbo:registry protocol="zookeeper" address="192.168.1.148:2181"/>
+  <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 ```
 
+* run  DubboHmilyAccountApplication.java
 
-*  #####  run  DubboHmilyAccountApplication.java
+### 启动hmily-demo-dubbo-inventory 参考上述。
 
-*  #####  run  DubboHmilyInventoryApplication.java
+### 启动hmily-demo-dubbo-order 参考上述。
 
-*  #####  run  DubboHmilyOrderApplication.java  
+### 访问 http://127.0.0.1:8087/swagger-ui.html。 运行 orderPay进行体验。
 
-*  ####  访问 http://127.0.0.1:8087/swagger-ui.html
