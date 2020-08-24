@@ -21,7 +21,13 @@ description: dubbo用户指南
 
 # Dubbo实现项目引入依赖jar包与配置
 
-## Spring-Namespace
+## 引入 hmily配置
+
+  * 在项目的 `resource` 添加文件名为:`hmily.yml`配置文件
+  
+  * 具体的参数配置可以参考[配置详解](config.md),[本地配置模式](config-local.md), [zookeeper配置模式](config-zookeeper.md), [nacos配置模式](config-nacos.md),[apollo配置模式](config-apollo.md)
+
+### Spring-Namespace
 
 * Alibaba-Dubbo 用户引入
 
@@ -51,29 +57,13 @@ description: dubbo用户指南
     <!--设置开启aspectj-autoproxy-->
     <aop:aspectj-autoproxy expose-proxy="true"/>
     <!--配置Hmily启动的bean参数-->
-    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware">
-        <property name="appName" value="inventory"/>
-        <property name="serializer" value="kryo"/>
-        <property name="recoverDelayTime" value="60"/>
-        <property name="retryMax" value="3"/>
-        <property name="scheduledRecoveryDelay" value="60"/>
-        <property name="scheduledThreadMax" value="4"/>
-        <property name="repository" value="mysql"/>
-        <property name="hmilyDbConfig">
-            <bean class="org.dromara.hmily.config.HmilyDbConfig">
-                <property name="url"
-                          value="jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&amp;characterEncoding=utf8"/>
-                <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-                <property name="username" value="root"/>
-                <property name="password" value=""/>
-            </bean>
-        </property>
-    </bean>
+    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware"/>
+
 ```
 
 * 具体的参数配置可以参考[配置详解](config.md)
 
-## Spring-Boot
+### Spring-Boot
 
 * Alibaba-Dubbo 用户引入
 
@@ -94,29 +84,6 @@ description: dubbo用户指南
            <version>{last.version}</version>
         </dependency>
 ```
-
-* 在你的yml中配置
-
-```yaml
-org:
-    dromara:
-         hmily :
-            app-name: account
-            serializer : kryo
-            recoverDelayTime : 60
-            retryMax : 30
-            scheduledRecoveryDelay : 60
-            scheduledThreadMax :  10
-            repository : mysql
-            hmilyDbConfig :
-                 driverClassName : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
-                 username : root
-                 password :
-
-```
-
-* 具体的参数配置可以参考[配置详解](config.md)
 
 # Dubbo实现项目使用
 
@@ -145,8 +112,10 @@ TCC模式应该保证 `confirm` 和 `cancel` 方法的幂等性，用户需要�
   * 如果服务部署了几个节点， 负载均衡算法最好使用 `hmily`, 这样 `try`, `confirm`, `cancel` 调用会落在同一个节点
     充分利用了缓存，提搞了效率。
     
+  * 支持一下几种 `hmilyConsistentHash `, `hmilyLeastActive `,  `hmilyRandom `, `hmilyRoundRobin ` 几种方式均是继承dubbo原生的
+    
 ```xml
-   <dubbo:reference  interface="xxx"  id="xxx" loadbalance="hmily"/>           
+   <dubbo:reference  interface="xxx"  id="xxx" loadbalance="hmilyConsistentHash"/>           
 ```      
     
 #### 设置永不重试

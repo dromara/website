@@ -6,6 +6,12 @@ description: Hmily-SpringCloud分布式事务用户指南
 
 # SpringCloud引入依赖与配置
 
+## 引入 hmily配置
+
+  * 在项目的 `resource` 添加文件名为:`hmily.yml` 的配置文件
+  
+  * 具体的参数配置可以参考[配置详解](config.md),[本地配置模式](config-local.md), [zookeeper配置模式](config-zookeeper.md), [nacos配置模式](config-nacos.md),[apollo配置模式](config-apollo.md)
+
 ## Spring-Namespace
 
 * 引入依赖
@@ -26,26 +32,8 @@ description: Hmily-SpringCloud分布式事务用户指南
     <!--设置开启aspectj-autoproxy-->
     <aop:aspectj-autoproxy expose-proxy="true"/>
     <!--配置Hmily启动的bean参数-->
-    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware">
-        <property name="appName" value="inventory"/>
-        <property name="serializer" value="kryo"/>
-        <property name="recoverDelayTime" value="60"/>
-        <property name="retryMax" value="3"/>
-        <property name="scheduledRecoveryDelay" value="60"/>
-        <property name="scheduledThreadMax" value="4"/>
-        <property name="repository" value="mysql"/>
-        <property name="hmilyDbConfig">
-            <bean class="org.dromara.hmily.config.HmilyDbConfig">
-                <property name="url"
-                          value="jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&amp;characterEncoding=utf8"/>
-                <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-                <property name="username" value="root"/>
-                <property name="password" value=""/>
-            </bean>
-        </property>
-    </bean>
-```
-* 具体的参数配置可以参考[配置详解](config.md)  
+    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware"/>
+``` 
 
 ## Spring-Boot-Starter
 
@@ -59,36 +47,13 @@ description: Hmily-SpringCloud分布式事务用户指南
         </dependency>
 ```
 
-* 在yml中进行如下配置
-
-```yaml
-org:
-    dromara:
-         hmily :
-            app-name: sc-account
-            serializer : kryo
-            recoverDelayTime : 128
-            retryMax : 30
-            scheduled-recovery-delay: 60
-            scheduledThreadMax :  10
-            repository : mysql
-            hmilyDbConfig :
-                 driverClassName  : com.mysql.jdbc.Driver
-                 url: jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
-                 username : root
-                 password :
-```
-
-* 具体的参数配置可以参考[配置详解](config.md)  
-
-
 # SpringCloud项目使用
 
 ## TCC模式
 
 ### 服务提供者
 
-  * 只需要在参与分布式事务调用的具体实现方法上加`@HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
+   * 只需要在参与分布式事务调用的具体实现方法上加`@HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
   
    * `confirmMethod` : 注解标识方法的，确认方法名称，该方法参数列表与返回类型应与标识方法一致。
   

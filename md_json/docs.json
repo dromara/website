@@ -36,6 +36,42 @@
       }
     },
     {
+      "filename": "config-apollo.md",
+      "link": "\\zh-cn\\docs\\hmily\\config-apollo.html",
+      "meta": {
+        "title": "Hmily-Config-Apollo",
+        "keywords": "config",
+        "description": "apollo配置中心模式"
+      }
+    },
+    {
+      "filename": "config-local.md",
+      "link": "\\zh-cn\\docs\\hmily\\config-local.html",
+      "meta": {
+        "title": "Hmily-Config-Local",
+        "keywords": "config",
+        "description": "本地配置模式"
+      }
+    },
+    {
+      "filename": "config-nacos.md",
+      "link": "\\zh-cn\\docs\\hmily\\config-nacos.html",
+      "meta": {
+        "title": "Hmily-Config-Nacos",
+        "keywords": "config",
+        "description": "nacos配置中心模式"
+      }
+    },
+    {
+      "filename": "config-zookeeper.md",
+      "link": "\\zh-cn\\docs\\hmily\\config-zookeeper.html",
+      "meta": {
+        "title": "Hmily-Config-Zookeeper",
+        "keywords": "config",
+        "description": "zookeeper配置中心模式"
+      }
+    },
+    {
       "filename": "config.md",
       "link": "\\zh-cn\\docs\\hmily\\config.html",
       "meta": {

@@ -182,8 +182,30 @@ export default {
                         link: '/zh-cn/docs/hmily/term.html',
                     },
                     {
-                        title: '配置详解',
-                        link: '/zh-cn/docs/hmily/config.html',
+                        title: '配置模块',
+                        opened: true,
+                        children: [
+                            {
+                                title: '配置详解',
+                                link: '/zh-cn/docs/hmily/config.html',
+                            },
+                            {
+                                title: '本地模式',
+                                link: '/zh-cn/docs/hmily/config-local.html',
+                            },
+                            {
+                                title: 'zookeeper配置中心',
+                                link: '/zh-cn/docs/hmily/config-zookeeper.html',
+                            },
+                            {
+                                title: 'nacos配置中心',
+                                link: '/zh-cn/docs/hmily/config-nacos.html',
+                            },
+                            {
+                                title: 'apollo配置中心',
+                                link: '/zh-cn/docs/hmily/config-apollo.html',
+                            }
+                        ],
                     },
                     {
                         title: '注解详解',

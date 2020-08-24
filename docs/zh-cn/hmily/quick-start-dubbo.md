@@ -37,32 +37,24 @@ description: Dubbo快速体验
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/tcc_account?useUnicode=true&characterEncoding=utf8
-        username: 
-        password:
+        url: jdbc:mysql://改成你的ip+端口/tcc_account?useUnicode=true&characterEncoding=utf8
+        username:  #改成你的用户名
+        password:  #改成你的密码
 ```
 
-* 修改事务日志数据库 (account项目为列子)
+* 修改 `hmily.yml`,这里使用`mysql`来存储
+
 ```yml
-org:
-    dromara:
-         hmily :
-            app-name: account
-            serializer : kryo
-            recoverDelayTime : 60
-            retryMax : 30
-            scheduledRecoveryDelay : 60
-            scheduledThreadMax :  10
-            repository : mysql
-            hmilyDbConfig :
-                 driverClassName : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
-                 username : root
-                 password :
+repository:
+  database:
+    driverClassName: com.mysql.jdbc.Driver
+    url : jdbc:mysql://改成你的ip+端口/hmily?useUnicode=true&characterEncoding=utf8
+    username: root #改成你的用户名
+    password: #改成你的密码
 
 ```
 
-* 在spring-dubbo中修改你的zookeeper地址
+* 在spring-dubbo中修改你的zookeeper地址（可以在自己电脑本地启动一个）
 
  ```xml
   <dubbo:registry protocol="zookeeper" address="localhost:2181"/>

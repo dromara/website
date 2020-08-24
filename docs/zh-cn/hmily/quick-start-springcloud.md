@@ -40,28 +40,20 @@ description: Hmily-SpringCloud分布式事务体验
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/tcc_account?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://改成你的ip+端口/tcc_account?useUnicode=true&characterEncoding=utf8
         username: 你的用户名
         password: 你的密码
 ```
 
-* 修改事务日志数据库 (account项目为列子)
+* 修改 `hmily.yml`,这里使用`mysql`来存储
+
 ```yml
-org:
-    dromara:
-         hmily :
-            app-name: sc-account
-            serializer : kryo
-            recoverDelayTime : 128
-            retryMax : 30
-            scheduled-recovery-delay: 60
-            scheduledThreadMax :  10
-            repository : mysql
-            hmilyDbConfig :
-                 driverClassName  : com.mysql.jdbc.Driver
-                 url: jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
-                 username : 你的用户名
-                 password : 你的密码
+repository:
+  database:
+    driverClassName: com.mysql.jdbc.Driver
+    url : jdbc:mysql://改成你的ip+端口/hmily?useUnicode=true&characterEncoding=utf8
+    username: root #改成你的用户名
+    password: #改成你的密码
 
 ```
 

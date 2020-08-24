@@ -19,7 +19,13 @@ description: Hmily-Motan分布式事务用户指南
 * 在需要进行Hmily分布式事务的接口方法上加上 `@HmilyTCC` 或者 `@HmilyTAC` 标识。
 
 
-# Dubbo实现项目引入依赖jar包与配置
+# Motan实现项目引入依赖jar包与配置
+
+## 引入 hmily配置
+
+  * 在项目的 `resource` 添加文件名为:`hmily.yml`配置文件
+  
+  * 具体的参数配置可以参考[配置详解](config.md),[本地配置模式](config-local.md), [zookeeper配置模式](config-zookeeper.md), [nacos配置模式](config-nacos.md),[apollo配置模式](config-apollo.md)
 
 ## Spring-Namespace
 
@@ -41,31 +47,12 @@ description: Hmily-Motan分布式事务用户指南
     <!--设置开启aspectj-autoproxy-->
     <aop:aspectj-autoproxy expose-proxy="true"/>
     <!--配置Hmily启动的bean参数-->
-    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware">
-        <property name="appName" value="inventory"/>
-        <property name="serializer" value="kryo"/>
-        <property name="recoverDelayTime" value="60"/>
-        <property name="retryMax" value="3"/>
-        <property name="scheduledRecoveryDelay" value="60"/>
-        <property name="scheduledThreadMax" value="4"/>
-        <property name="repository" value="mysql"/>
-        <property name="hmilyDbConfig">
-            <bean class="org.dromara.hmily.config.HmilyDbConfig">
-                <property name="url"
-                          value="jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&amp;characterEncoding=utf8"/>
-                <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-                <property name="username" value="root"/>
-                <property name="password" value=""/>
-            </bean>
-        </property>
-    </bean>
+    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware"/>
 ```
-
-* 具体的参数配置可以参考[配置详解](config.md)
 
 ## Spring-Boot-starter
 
-* Alibaba-Dubbo 用户引入
+* 用户引入
 
 ```xml
         <dependency>
@@ -74,29 +61,6 @@ description: Hmily-Motan分布式事务用户指南
            <version>{last.version}</version>
         </dependency>
 ```
-
-* 在你的yml中配置
-
-```yaml
-org:
-    dromara:
-         hmily :
-            app-name: account
-            serializer : kryo
-            recoverDelayTime : 60
-            retryMax : 30
-            scheduledRecoveryDelay : 60
-            scheduledThreadMax :  10
-            repository : mysql
-            hmilyDbConfig :
-                 driverClassName : com.mysql.jdbc.Driver
-                 url :  jdbc:mysql://127.0.0.1:3306/hmily?useUnicode=true&characterEncoding=utf8
-                 username : root
-                 password :
-
-```
-
-* 具体的参数配置可以参考[配置详解](config.md)
 
 # Motan实现项目使用
 
@@ -116,7 +80,7 @@ org:
  
 ## TAC模式 
 
-  *  在添加`@HmilyTCC` 标识 接口方法的实现上 加上` @HmilyTAC`
+  * 在添加`@HmilyTCC` 标识 接口方法的实现上 加上` @HmilyTAC`
   
 
 ## 重要注意事项
@@ -127,9 +91,11 @@ org:
 
   * 如果服务部署了几个节点， 负载均衡算法最好使用 `hmily`, 这样 `try`, `confirm`, `cancel` 调用会落在同一个节点
     充分利用了缓存，提搞了效率。
+  
+  * 支持一下几种 `hmilyActiveWeight `, `hmilyConfigurableWeight `,  `hmilyConsistent `, `hmilyLocalFirst `, `hmilyRandom `, `hmilyRoundRobin ` 几种方式均是继承`Motan`原生的
     
 ```xml
-   <motan:reference  interface="xxx"  id="xxx" loadbalance="hmily"/>           
+   <motan:reference  interface="xxx"  id="xxx" loadbalance="hmilyActiveWeight"/>           
 ```      
     
 #### 设置永不重试
