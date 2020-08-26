@@ -23,7 +23,7 @@
       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在需要进行Hmily分布式事务的接口方法上加上 <code>@HmilyTCC</code> 或者 <code>@HmilyTAC</code> 标识。</li>
+<li>在需要进行Hmily分布式事务的接口方法上加上 <code>@Hmily</code> 标识。</li>
 </ul>
 <h1>Motan实现项目引入依赖jar包与配置</h1>
 <h2>引入 hmily配置</h2>
@@ -70,7 +70,7 @@
 <h2>TCC模式</h2>
 <ul>
 <li>
-<p>在添加<code>@HmilyTCC</code> 标识 接口方法的实现上 加上<code>@HmilyTCC(confirmMethod = &quot;confirm&quot;, cancelMethod = &quot;cancel&quot;)</code></p>
+<p>在添加<code>@HmilyTCC</code> 标识 接口方法的具体实现上 加上<code>@HmilyTCC(confirmMethod = &quot;confirm&quot;, cancelMethod = &quot;cancel&quot;)</code></p>
 </li>
 <li>
 <p><code>confirmMethod</code> : 注解标识方法的，确认方法名称，该方法参数列表与返回类型应与标识方法一致。</p>
@@ -83,7 +83,7 @@
 <p>完全由用户决定。Hmily框架只是负责来进行调用。</p>
 <h2>TAC模式</h2>
 <ul>
-<li>在添加<code>@HmilyTCC</code> 标识 接口方法的实现上 加上<code>@HmilyTAC</code></li>
+<li>在添加<code>@HmilyTCC</code> 标识, 接口方法的具体实现加上<code>@HmilyTAC</code></li>
 </ul>
 <h2>重要注意事项</h2>
 <p>在调用任何RPC调用之前，必须在本地一个<code>service</code>方法上，先行添加 <code>@HmilyTCC</code> 或者 <code>@HmilyTAC</code> 注解,标识开启全局事务。</p>

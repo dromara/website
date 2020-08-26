@@ -61,7 +61,7 @@ description: Hmily-SpringCloud分布式事务用户指南
 
 ### 服务消费者
 
-  * 在服务被调用方的`@FeignClient` 接口方法上加上 `@HmilyTCC`注解。
+  * 在服务被调用方的`@FeignClient` 接口方法上加上 `@Hmily`注解。
 
 ## TAC模式
 
@@ -71,7 +71,7 @@ description: Hmily-SpringCloud分布式事务用户指南
 
 ### 服务消费者
 
-  * 在服务被调用方的`@FeignClient` 接口方法上加上 `@HmilyTAC`注解。
+  * 在服务被调用方的`@FeignClient` 接口方法上加上 `@Hmily`注解。
 
 ## 重要注意事项
 

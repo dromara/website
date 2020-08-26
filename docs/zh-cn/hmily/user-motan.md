@@ -16,7 +16,7 @@ description: Hmily-Motan分布式事务用户指南
       </dependency>
 ```
 
-* 在需要进行Hmily分布式事务的接口方法上加上 `@HmilyTCC` 或者 `@HmilyTAC` 标识。
+* 在需要进行Hmily分布式事务的接口方法上加上 `@Hmily` 标识。
 
 
 # Motan实现项目引入依赖jar包与配置
@@ -68,7 +68,7 @@ description: Hmily-Motan分布式事务用户指南
 
 ## TCC模式
 
- * 在添加`@HmilyTCC` 标识 接口方法的实现上 加上` @HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
+ * 在添加`@HmilyTCC` 标识 接口方法的具体实现上 加上` @HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
 
  * `confirmMethod` : 注解标识方法的，确认方法名称，该方法参数列表与返回类型应与标识方法一致。
 
@@ -80,7 +80,7 @@ description: Hmily-Motan分布式事务用户指南
  
 ## TAC模式 
 
-  * 在添加`@HmilyTCC` 标识 接口方法的实现上 加上` @HmilyTAC`
+  * 在添加`@HmilyTCC` 标识, 接口方法的具体实现加上` @HmilyTAC`
   
 
 ## 重要注意事项

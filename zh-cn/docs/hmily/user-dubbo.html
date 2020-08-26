@@ -23,7 +23,7 @@
       <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在需要进行Hmily分布式事务的接口方法上加上 <code>@HmilyTCC</code> 或者 <code>@HmilyTAC</code> 标识。</li>
+<li>在需要进行Hmily分布式事务的接口方法上加上 <code>@Hmily</code> 标识。</li>
 </ul>
 <h1>Dubbo实现项目引入依赖jar包与配置</h1>
 <h2>引入 hmily配置</h2>
@@ -92,7 +92,7 @@
 <h3>TCC模式</h3>
 <ul>
 <li>
-<p>在添加<code>@HmilyTCC</code> 标识 接口方法的实现上 加上<code>@HmilyTCC(confirmMethod = &quot;confirm&quot;, cancelMethod = &quot;cancel&quot;)</code></p>
+<p>在添加<code>@HmilyTCC</code> 标识 接口方法的具体实现上 加上<code>@HmilyTCC(confirmMethod = &quot;confirm&quot;, cancelMethod = &quot;cancel&quot;)</code></p>
 </li>
 <li>
 <p><code>confirmMethod</code> : 注解标识方法的，确认方法名称，该方法参数列表与返回类型应与标识方法一致。</p>
@@ -104,7 +104,7 @@
 <p>TCC模式应该保证 <code>confirm</code> 和 <code>cancel</code> 方法的幂等性，用户需要自行去开发这个2个方法，所有的事务的确认与回滚，完全由用户决定。Hmily框架只是负责来进行调用</p>
 <h3>TAC模式</h3>
 <ul>
-<li>在添加<code>@HmilyTCC</code> 标识 接口方法的实现上 加上<code>@HmilyTAC</code></li>
+<li>在添加<code>@HmilyTCC</code> 标识 接口方法的具体实现上 加上<code>@HmilyTAC</code></li>
 </ul>
 <h2>重要注意事项</h2>
 <p>在调用任何RPC调用之前，必须在本地一个<code>service</code>方法上，先行添加 <code>@HmilyTCC</code> 或者 <code>@HmilyTAC</code> 注解,标识开启全局事务。</p>
