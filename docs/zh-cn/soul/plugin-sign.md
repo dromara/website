@@ -22,7 +22,7 @@ description: sign插件
   <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-plugin-sign</artifactId>
-      <version>2.2.0</version>
+     <version>${last.version}</version>
   </dependency>
   <!-- soul sign plugin end-->
 ``` 

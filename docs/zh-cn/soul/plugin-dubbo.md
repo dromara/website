@@ -12,6 +12,20 @@ description: dubbo插件
 
 * apache dubbo 和 alibaba dubbo用户，都是使用该同一插件。
 
+```xml
+  <!--if you use dubbo start this-->
+   <dependency>
+       <groupId>org.dromara</groupId>
+       <artifactId>soul-spring-boot-starter-plugin-alibab-dubbo</artifactId>
+       <version>${last.version}</version>
+   </dependency>
+
+   <dependency>
+       <groupId>org.dromara</groupId>
+       <artifactId>soul-spring-boot-starter-plugin-apache-dubbo</artifactId>
+       <version>${last.version}</version>
+   </dependency>
+```
 
 ## 插件设置
 

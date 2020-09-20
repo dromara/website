@@ -37,6 +37,10 @@ export default {
                         link: '/zh-cn/docs/soul/soul.html',
                     },
                     {
+                        title: '团队介绍',
+                        link: '/zh-cn/docs/soul/team.html',
+                    },
+                    {
                         title: 'soul极简入门',
                         link: '/zh-cn/docs/soul/induction.html',
                     },
@@ -180,6 +184,10 @@ export default {
                     {
                         title: '术语',
                         link: '/zh-cn/docs/hmily/term.html',
+                    },
+                    {
+                        title: '团队介绍',
+                        link: '/zh-cn/docs/hmily/team.html',
                     },
                     {
                         title: '配置模块',

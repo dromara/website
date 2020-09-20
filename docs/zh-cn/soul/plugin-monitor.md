@@ -40,7 +40,7 @@ description: monitor插件
   <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-plugin-monitor</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
   </dependency>
   <!-- soul monitor plugin end-->
 ``` 

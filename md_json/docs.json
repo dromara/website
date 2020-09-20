@@ -140,6 +140,15 @@
       }
     },
     {
+      "filename": "team.md",
+      "link": "\\zh-cn\\docs\\hmily\\team.html",
+      "meta": {
+        "title": "团队介绍",
+        "keywords": "hmily-team",
+        "description": "团队介绍"
+      }
+    },
+    {
       "filename": "term.md",
       "link": "\\zh-cn\\docs\\hmily\\term.html",
       "meta": {
@@ -507,6 +516,15 @@
         "title": "soul介绍",
         "keywords": "soul",
         "description": "soul介绍"
+      }
+    },
+    {
+      "filename": "team.md",
+      "link": "\\zh-cn\\docs\\soul\\team.html",
+      "meta": {
+        "title": "团队介绍",
+        "keywords": "soul-team",
+        "description": "团队介绍"
       }
     },
     {

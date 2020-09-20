@@ -19,13 +19,13 @@ description: divide插件
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-divide</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
    </dependency>
 
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-httpclient</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
    </dependency>
 
 ```

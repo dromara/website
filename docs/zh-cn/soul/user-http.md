@@ -20,13 +20,13 @@ description: http用户
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-divide</artifactId>
-       <version>2.2.0</version>
+        <version>${last.version}</version>
    </dependency>
 
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-httpclient</artifactId>
-       <version>2.2.0</version>
+        <version>${last.version}</version>
    </dependency>
 ```
 
@@ -45,7 +45,7 @@ description: http用户
      <dependency>
          <groupId>org.dromara</groupId>
          <artifactId>soul-spring-boot-starter-client-springmvc</artifactId>
-         <version>2.2.0</version>
+         <version>${last.version}</version>
      </dependency>
  ```
    * 在yml中新增如下配置 ：  
@@ -69,7 +69,7 @@ description: http用户
        <dependency>
            <groupId>org.dromara</groupId>
            <artifactId>soul-client-springmvc</artifactId>
-           <version>2.2.0</version>
+           <version>${last.version}</version>
        </dependency>
  ```     
   * 在你的 bean定义的xml文件中新增如下 ：   

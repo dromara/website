@@ -27,7 +27,7 @@ description: dubbo接入soul网关
           <dependency>
               <groupId>org.dromara</groupId>
               <artifactId>soul-spring-boot-starter-plugin-alibaba-dubbo</artifactId>
-              <version>2.2.0</version>
+               <version>${last.version}</version>
           </dependency>
            <!-- soul  alibaba dubbo plugin end-->
           <dependency>
@@ -61,7 +61,7 @@ description: dubbo接入soul网关
            <dependency>
                <groupId>org.dromara</groupId>
                <artifactId>soul-spring-boot-starter-plugin-apache-dubbo</artifactId>
-               <version>2.2.0</version>
+               <version>${last.version}</version>
            </dependency>
            <!--soul apache dubbo plugin end-->
   
@@ -115,7 +115,7 @@ description: dubbo接入soul网关
         <dependency>
              <groupId>org.dromara</groupId>
              <artifactId>soul-spring-boot-starter-client-alibaba-dubbo</artifactId>
-             <version>2.2.0</version>
+             <version>${last.version}</version>
         </dependency>
  ```
       
@@ -139,7 +139,7 @@ description: dubbo接入soul网关
        <dependency>
            <groupId>org.dromara</groupId>
            <artifactId>soul-client-alibaba-dubbo</artifactId>
-           <version>2.2.0</version>
+           <version>${last.version}</version>
         </dependency>
    ```
    * 在你的 bean定义的xml文件中新增如下 ：      
@@ -165,7 +165,7 @@ description: dubbo接入soul网关
         <dependency>
              <groupId>org.dromara</groupId>
              <artifactId>soul-spring-boot-starter-client-apache-dubbo</artifactId>
-             <version>2.2.0</version>
+             <version>${last.version}</version>
         </dependency>
    ```
       
@@ -187,13 +187,13 @@ description: dubbo接入soul网关
       
      * 引入以下依赖 ：
        
-     ```xml
+ ```xml
        <dependency>
            <groupId>org.dromara</groupId>
            <artifactId>soul-client-apache-dubbo</artifactId>
-           <version>2.2.0</version>
+           <version>${last.version}</version>
         </dependency>
-       ```
+ ```
 
 * 在你的 bean定义的xml文件中新增如下 ：
        

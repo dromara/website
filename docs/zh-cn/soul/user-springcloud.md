@@ -21,8 +21,14 @@ description: springCloud接入soul网关
   <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-springcloud</artifactId>
-       <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
+
+  <dependency>
+       <groupId>org.dromara</groupId>
+       <artifactId>soul-spring-boot-starter-plugin-httpclient</artifactId>
+       <version>${last.version}</version>
+   </dependency>
    <!--soul springCloud plugin end-->
 
    <dependency>
