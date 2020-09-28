@@ -12,11 +12,10 @@ description: Hmily-SpringCloud分布式事务体验
 
   *   #### Git
 
-
 # 代码拉取
 
  ```
-   > git clone https://github.com/yu199195/hmily.git
+   > git clone https://github.com/dromara/hmily.git
 
    > cd hmily
 
@@ -25,9 +24,9 @@ description: Hmily-SpringCloud分布式事务体验
 
 # 执行demo 模块的sql语句。
 
-   [sql语句] (https://github.com/yu199195/hmily/blob/master/hmily-demo/sql/hmily-demo.sql) 
+   [sql语句] (https://github.com/dromara/hmily/blob/master/hmily-demo/sql/hmily-demo.sql) 
 
-# 使用你的工具 idea 打开项目，找到hmily-demo-springcloud项目。
+# 使用你的工具 idea 打开项目，找到hmily-demo-springcloud项目, 进行maven构建。
 
 ## 启动 hmily-demo-springcloud-eureka项目中的 EurekaServerApplication.java。
 
@@ -40,7 +39,7 @@ description: Hmily-SpringCloud分布式事务体验
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://改成你的ip+端口/tcc_account?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://改成你的ip+端口/hmily_account?useUnicode=true&characterEncoding=utf8
         username: 你的用户名
         password: 你的密码
 ```
@@ -54,14 +53,13 @@ repository:
     url : jdbc:mysql://改成你的ip+端口/hmily?useUnicode=true&characterEncoding=utf8
     username: root #改成你的用户名
     password: #改成你的密码
-
 ```
 
-* run  SpringCloudHmilyAccountApplication.java
+* run SpringCloudHmilyAccountApplication.java
 
 ### 启动hmily-demo-springcloud-inventory 参考上述。
 
 ### 启动hmily-demo-springcloud-order 参考上述。
 
-### 访问 http://127.0.0.1:8884/swagger-ui.html。 运行 orderPay进行体验。
+### 访问：http://127.0.0.1:8884/swagger-ui.html。
 

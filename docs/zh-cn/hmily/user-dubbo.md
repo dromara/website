@@ -17,17 +17,25 @@ description: dubbo用户指南
 ```
 
 * 在需要进行Hmily分布式事务的接口方法上加上 `@Hmily` 标识。
+```java
+public interface HelloService {
 
+    @Hmily
+    void say(String hello);
+}
+```
 
-# Dubbo实现项目引入依赖jar包与配置
-
-## 引入 hmily配置
-
-  * 在项目的 `resource` 添加文件名为:`hmily.yml`配置文件
+# Dubbo实现项目
+ 
+  * 步骤一 ： 引入依赖`hmily`的jar包
   
-  * 具体的参数配置可以参考[配置详解](config.md),[本地配置模式](config-local.md), [zookeeper配置模式](config-zookeeper.md), [nacos配置模式](config-nacos.md),[apollo配置模式](config-apollo.md)
+  * 步骤二 ： 新增`Hmily`配置
+  
+  * 步骤三 ： 在实现方法上添加注解。`TC`C模式，则需要完成 `confirm`，`cancel`方法的开发
 
-### Spring-Namespace
+### 引入依赖
+
+##### Spring-Namespace
 
 * Alibaba-Dubbo 用户引入
 
@@ -52,18 +60,14 @@ description: dubbo用户指南
 * 在xml中进行如下配置
 
 ```xml
-    <!--配置扫码hmily框架的包-->
-    <context:component-scan base-package="org.dromara.hmily.*"/>
     <!--设置开启aspectj-autoproxy-->
     <aop:aspectj-autoproxy expose-proxy="true"/>
-    <!--配置Hmily启动的bean参数-->
-    <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware"/>
+    <bean id = "hmilyTransactionAspect" class="org.dromara.hmily.spring.aop.SpringHmilyTransactionAspect"/>
+    <bean id = "hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware"/>
 
 ```
 
-* 具体的参数配置可以参考[配置详解](config.md)
-
-### Spring-Boot
+##### Spring-Boot
 
 * Alibaba-Dubbo 用户引入
 
@@ -85,27 +89,80 @@ description: dubbo用户指南
         </dependency>
 ```
 
-# Dubbo实现项目使用
+## 引入 hmily配置
 
-在上述中，我们已经完成了集成，与配置，现在我们来详解说一下如何进行使用。
+  * 在项目的 `resource` 新建文件名为:`hmily.yml`配置文件
+  
+  * 具体的参数配置可以参考[配置详解](config.md),[本地配置模式](config-local.md), [zookeeper配置模式](config-zookeeper.md), [nacos配置模式](config-nacos.md),[apollo配置模式](config-apollo.md)
+  
+  
+## 实现接口上添加注解
 
-### TCC模式
+上述我们已经完成了集成，下面将讲述具体的实现。
 
- * 在添加`@HmilyTCC` 标识 接口方法的具体实现上 加上` @HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
+##### TCC模式
 
- * `confirmMethod` : 注解标识方法的，确认方法名称，该方法参数列表与返回类型应与标识方法一致。
+ * 对`@Hmily` 标识的接口方法的具体实现上，加上` @HmilyTCC(confirmMethod = "confirm", cancelMethod = "cancel")`
 
- * `cancelMethod` :  注解标识方法的，回滚方法名称，该方法参数列表与返回类型应与标识方法一致。
+ * `confirmMethod` : 确认方法名称，该方法参数列表与返回类型应与标识方法一致。
+
+ * `cancelMethod` :  回滚方法名称，该方法参数列表与返回类型应与标识方法一致。
  
-TCC模式应该保证 `confirm` 和 `cancel` 方法的幂等性，用户需要自行去开发这个2个方法，所有的事务的确认与回滚，完全由用户决定。Hmily框架只是负责来进行调用
- 
-### TAC模式 
+ * `TCC`模式应该保证 `confirm` 和 `cancel` 方法的幂等性，用户需要自行去开发这个2个方法，所有的事务的确认与回滚，完全由用户决定。Hmily框架只是负责来进行调用
 
-  *  在添加`@HmilyTCC` 标识 接口方法的具体实现上 加上` @HmilyTAC`
+```java
+
+public class HelloServiceImpl implements HelloService  {
+
+    @HmilyTCC(confirmMethod = "sayConfrim", cancelMethod = "sayCancel")
+    public void say(String hello) {
+         System.out.println("hello world");
+    }
+    
+    public void sayConfrim(String hello) {
+         System.out.println(" confirm hello world");
+    }
+
+    public void sayCancel(String hello) {
+         System.out.println(" cancel hello world");
+    }
+}
+``` 
+
+# dubbo注解用户 
+
+ 对于使用 `@Reference ` 注解来注入dubbo服务的用户，请注意：你可以需要做如下配置:
+   
+#### spring-namespace 用户
+
+在你的xml配置中，需要将 `org.dromara.hmily.spring.annotation.RefererAnnotationBeanPostProcessor` 注入成spring的bean
+```xml
+ <bean id = "refererAnnotationBeanPostProcessor" class="org.dromara.hmily.spring.annotation.RefererAnnotationBeanPostProcessor"/>
+```   
+
+#### spring-boot用户
+
+需要在yml文件里面开启注解支持：
+```yml
+hmily.support.rpc.annotation = true 
+```      
+
+或者在项目中显示注入：
+
+```java
+@Bean
+public BeanPostProcessor refererAnnotationBeanPostProcessor() {
+    return new RefererAnnotationBeanPostProcessor();
+}
+```
+
+### TAC模式(在开发，未发布)
+
+  *  对`@Hmily` 标识的接口方法的具体实现上加上` @HmilyTAC`
   
 ## 重要注意事项
 
-  在调用任何RPC调用之前，必须在本地一个`service`方法上，先行添加 `@HmilyTCC` 或者 `@HmilyTAC` 注解,标识开启全局事务。
+  在调用任何RPC调用之前，当你需要聚合rpc调用成为一次分布式事务的时候，需要在聚合RPC调用的方法上，先行添加 `@HmilyTCC` 或者 `@HmilyTAC` 注解,表示开启全局事务。
 
 #### 负载均衡
 

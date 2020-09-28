@@ -20,14 +20,14 @@ export default {
             },
             {
               text: '查看Github',
-              link: 'https://github.com/Dromara/soul',
+              link: 'https://github.com/dromara/soul',
               type: 'normal',
             },
           ],
         },
         introduction: {
           title: 'Soul的介绍',
-          desc: 'Soul是一个异步的,高性能的,跨语言的,响应式的API网关,提供了统一的HTTP访问,无缝支持dubbo,Springcloud,并且提供了丰富的插件(限流,熔断,代理转发)',
+          desc: 'Soul是一个异步高性能,跨语言,响应式的API网关,提供了统一的HTTP访问,无缝支持dubbo,spring-cloud,http并且提供了丰富的插件(限流,熔断,代理转发)',
           img: '/img/soul-framework.png',
         },
         features: {
@@ -75,7 +75,7 @@ export default {
       {
         name: 'Hmily',
         brand: {
-          briefIntroduction: 'TCC分布式事务框架',
+          briefIntroduction: '金融级分布式事务解决方案',
           buttons: [
             {
               text: '立即开始',
@@ -89,14 +89,14 @@ export default {
             },
             {
               text: '查看Github',
-              link: 'https://github.com/yu199195/hmily',
+              link: 'https://github.com/dromara/hmily',
               type: 'normal',
             },
           ],
         },
         introduction: {
           title: 'Hmily介绍',
-          desc: 'Hmily是高性能分布式事务tcc开源框架。基于java语言来开发（JDK1.8），无缝支持dubbo，springcloud,motan等rpc框架进行分布式事务。',
+          desc: 'Hmily是一款高性能，零侵入，金融级分布式事务解决方案，目前主要提供柔性事务的支持，包含 TCC, TAC(自动生成回滚SQL) 方案，未来还会支持 XA 等方案',
           img: '/img/hmily-framework.png',
         },
         features: {
@@ -104,33 +104,38 @@ export default {
           list: [
             {
               img: '/img/feature_transpart.png',
-              title: '支持多种Rpc',
-              content: 'hmily为dubbo,springcloud,motan提供了单独的jar包提供支持',
+              title: '高可靠性',
+              content: '支持分布式场景下，事务异常回滚，超时异常恢复，防止事务悬挂',
             },
             {
               img: '/img/feature_loadbalances.png',
-              title: '支持Spring-boot-start',
-              content: '提供支持spring-boot-start方式启动的jar包',
+              title: '易用性',
+              content: '提供零侵入性式的 Spring-Boot, Spring-Namespace 快速与业务系统集成',
             },
             {
               img: '/img/feature_service.png',
-              title: '支持多种事务日志的存储以及多种序列化方式',
-              content: '用户根据参数配置来动态的选择自身需要的方式,达到最优。',
+              title: '高性能 ',
+              content: '去中心化设计，与业务系统完全融合，天然支持集群部署',
             },
             {
               img: '/img/feature_hogh.png',
-              title: '事务日志高性能异步读写',
-              content: '采用disruptor框架进行事务日志的异步读写',
+              title: '多种RPC支持',
+              content: 'Dubbo, SpringCloud,Montan, brpc, tars 等知名RPC框架',
             },
             {
               img: '/img/feature_runtime.png',
-              title: '异步高性能执行confirm或者cancel方法',
-              content: 'hmily采用线程池的方式异步来执行(可配置线程数量)',
+              title: '可观测性',
+              content: 'Metrics多项指标性能监控，以及admin管理后台UI展示',
             },
             {
               img: '/img/feature_maintenance.png',
-              title: '支持内嵌事务，友好解决服务超时分布式事务问题',
-              content: '支持rpc的且套调用,解决超时问题',
+              title: '多种日志存储',
+              content: 'mysql, oracle, mongodb, redis, zookeeper 等方式',
+            },
+            {
+              img: '/img/feature_maintenance.png',
+              title: '复杂场景',
+              content: '支持RPC嵌套调用事务',
             },
           ],
         },

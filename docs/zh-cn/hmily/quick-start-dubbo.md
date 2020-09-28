@@ -11,11 +11,13 @@ description: Dubbo快速体验
   *   #### Maven 3.2.x
 
   *   #### Git
+  
+  *   #### Zookeeper
 
 # 代码拉取
 
  ```
-   > git clone https://github.com/yu199195/hmily.git
+   > git clone https://github.com/dromara/hmily.git
 
    > cd hmily
 
@@ -24,7 +26,7 @@ description: Dubbo快速体验
 
 # 执行demo 模块的sql语句。
 
-   [sql语句] (https://github.com/yu199195/hmily/blob/master/hmily-demo/sql/hmily-demo.sql) 
+   [sql语句] (https://github.com/dromara/hmily/blob/master/hmily-demo/sql/hmily-demo.sql) 
 
 
 # 使用你的工具 idea 打开项目，找到hmily-demo-dubbo项目。
@@ -37,7 +39,7 @@ description: Dubbo快速体验
 spring:
     datasource:
         driver-class-name:  com.mysql.jdbc.Driver
-        url: jdbc:mysql://改成你的ip+端口/tcc_account?useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://改成你的ip+端口/hmily_account?useUnicode=true&characterEncoding=utf8
         username:  #改成你的用户名
         password:  #改成你的密码
 ```
@@ -54,17 +56,17 @@ repository:
 
 ```
 
-* 在spring-dubbo中修改你的zookeeper地址（可以在自己电脑本地启动一个）
+* 在spring-dubbo中修改你的zookeeper地址（可以在自己电脑本地启动一个zookeeper服务）
 
  ```xml
   <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
 ```
 
-* run  DubboHmilyAccountApplication.java
+* run DubboHmilyAccountApplication.java
 
 ### 启动hmily-demo-dubbo-inventory 参考上述。
 
 ### 启动hmily-demo-dubbo-order 参考上述。
 
-### 访问 http://127.0.0.1:8087/swagger-ui.html。 运行 orderPay进行体验。
+### 访问：http://127.0.0.1:8087/swagger-ui.html。
 

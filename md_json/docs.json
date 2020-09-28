@@ -36,12 +36,39 @@
       }
     },
     {
+      "filename": "code-conduct.md",
+      "link": "\\zh-cn\\docs\\hmily\\code-conduct.html",
+      "meta": {
+        "title": "Hmily-code-conduct",
+        "keywords": "Hmily-code-conduct",
+        "description": "hmily编码指南"
+      }
+    },
+    {
+      "filename": "committer.md",
+      "link": "\\zh-cn\\docs\\hmily\\committer.html",
+      "meta": {
+        "title": "Hmily-committer",
+        "keywords": "Hmily-committer",
+        "description": "Hmily-committer提交者指南"
+      }
+    },
+    {
       "filename": "config-apollo.md",
       "link": "\\zh-cn\\docs\\hmily\\config-apollo.html",
       "meta": {
         "title": "Hmily-Config-Apollo",
         "keywords": "config",
         "description": "apollo配置中心模式"
+      }
+    },
+    {
+      "filename": "config-etcd.md",
+      "link": "\\zh-cn\\docs\\hmily\\config-etcd.html",
+      "meta": {
+        "title": "Hmily-Config-Etcd",
+        "keywords": "hmily-config",
+        "description": "etcd配置中心模式"
       }
     },
     {
@@ -90,6 +117,24 @@
       }
     },
     {
+      "filename": "contributor.md",
+      "link": "\\zh-cn\\docs\\hmily\\contributor.html",
+      "meta": {
+        "title": "Hmily-contributor",
+        "keywords": "Hmily-contributor",
+        "description": "Hmily-contributor贡献者指南"
+      }
+    },
+    {
+      "filename": "faq.md",
+      "link": "\\zh-cn\\docs\\hmily\\faq.html",
+      "meta": {
+        "title": "问题",
+        "keywords": "FAQ",
+        "description": "问题描述"
+      }
+    },
+    {
       "filename": "index.md",
       "link": "\\zh-cn\\docs\\hmily\\index.html",
       "meta": {}
@@ -110,6 +155,24 @@
         "title": "Dubbo快速体验",
         "keywords": "Dubbo",
         "description": "Dubbo快速体验"
+      }
+    },
+    {
+      "filename": "quick-start-motan.md",
+      "link": "\\zh-cn\\docs\\hmily\\quick-start-motan.html",
+      "meta": {
+        "title": "Motan快速体验",
+        "keywords": "motan",
+        "description": "motan快速体验"
+      }
+    },
+    {
+      "filename": "quick-start-sofa-rpc.md",
+      "link": "\\zh-cn\\docs\\hmily\\quick-start-sofa-rpc.html",
+      "meta": {
+        "title": "sofa-rpc快速体验",
+        "keywords": "sofa-rpc",
+        "description": "sofa-rpc快速体验"
       }
     },
     {
@@ -173,6 +236,15 @@
         "title": "Motan用户指南",
         "keywords": "motan",
         "description": "Hmily-Motan分布式事务用户指南"
+      }
+    },
+    {
+      "filename": "user-sofa-rpc.md",
+      "link": "\\zh-cn\\docs\\hmily\\user-sofa-rpc.html",
+      "meta": {
+        "title": "sofa-rpc用户指南",
+        "keywords": "sofa-rpc",
+        "description": "sofa-rpc用户指南"
       }
     },
     {
@@ -276,12 +348,39 @@
       }
     },
     {
+      "filename": "code-conduct.md",
+      "link": "\\zh-cn\\docs\\soul\\code-conduct.html",
+      "meta": {
+        "title": "soul-code-conduct",
+        "keywords": "soul-code-conduct",
+        "description": "soul编码指南"
+      }
+    },
+    {
+      "filename": "committer.md",
+      "link": "\\zh-cn\\docs\\soul\\committer.html",
+      "meta": {
+        "title": "soul-committer",
+        "keywords": "soul-committer",
+        "description": "soul-committer提交者指南"
+      }
+    },
+    {
       "filename": "config.md",
       "link": "\\zh-cn\\docs\\soul\\config.html",
       "meta": {
         "title": "配置流程介绍",
         "keywords": "soul",
         "description": "配置流程介绍"
+      }
+    },
+    {
+      "filename": "contributor.md",
+      "link": "\\zh-cn\\docs\\soul\\contributor.html",
+      "meta": {
+        "title": "soul-contributor",
+        "keywords": "soul-contributor",
+        "description": "soul-contributor贡献者指南"
       }
     },
     {

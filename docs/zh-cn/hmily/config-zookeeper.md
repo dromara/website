@@ -27,9 +27,11 @@ remote:
     serverList: 127.0.0.1:2181 #你的zookeeper服务地址，多个使用逗号分隔
     fileExtension: yml #zookeeper上配置文件的格式（properties或者yml）二选一
     path: /hmily/xiaoyu #zookeeper上配置文件的路径
+    update :   #默认是false ，是否需要将本地的配置文件写到zookeeper
+    updateFileName:  #update属性为true时候 ，配置文件名称，位于项目的 resource文件夹下的yaml格式
 ```
 
-* 然后，你可以在上述的路径下，去写入`hmily`框架所需要的配置，配置格式如果下（yml）：
+* 然后，你可以在上述的 `path` 配置路径下，去写入`hmily`框架所需要的配置，配置格式如果下（yml）：
 ```yaml
 hmily:
   config:

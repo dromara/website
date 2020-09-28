@@ -1,6 +1,6 @@
 {
   "filename": "metrics.md",
-  "__html": "<h3>Metrics</h3>\n<p>目前hmily的metrics模块，采用 prometheus来进行采集，使用pull模式对外暴露metrics信息接口。</p>\n<p>收集的metrics主要分为二个大类。</p>\n<ul>\n<li>\n<p>应用的JVM信息：内存，cpu，线程使用等等</p>\n</li>\n<li>\n<p>事务信息：包括事务的总数，事务的迟延，事务的状态，事务的角色</p>\n</li>\n</ul>\n<h3>指标详解</h3>\n<h3>如果获取</h3>\n<ul>\n<li>用户可以使用 <code>Grafana</code> 从应用里面的<code>metrics</code>配置拉取的metrics信息</li>\n</ul>\n",
+  "__html": "<h3>Metrics</h3>\n<p>目前hmily的metrics模块，采用 prometheus来进行采集，使用pull模式对外暴露metrics信息接口。</p>\n<p>收集的metrics主要分为二个大类。</p>\n<ul>\n<li>\n<p>应用的JVM信息：内存，cpu，线程使用等等</p>\n</li>\n<li>\n<p>事务信息：包括事务的总数，事务的迟延，事务的状态，事务的角色</p>\n</li>\n</ul>\n<h3>指标详解</h3>\n<h3>如何展示</h3>\n<ul>\n<li>用户可以使用 <code>Grafana</code> 从应用里面的<code>metrics</code>配置拉取的metrics信息</li>\n</ul>\n",
   "link": "\\zh-cn\\docs\\hmily\\metrics.html",
   "meta": {
     "title": "Hmily-Metrics",

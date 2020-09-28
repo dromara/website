@@ -172,6 +172,24 @@ export default {
                             },
                         ],
                     },
+                    {
+                        title: '社区贡献',
+                        opened: true,
+                        children: [
+                            {
+                                title: '贡献者指南',
+                                link: '/zh-cn/docs/soul/contributor.html',
+                            },
+                            {
+                                title: '提交者指南',
+                                link: '/zh-cn/docs/soul/committer.html',
+                            },
+                            {
+                                title: '编码规范',
+                                link: '/zh-cn/docs/soul/code-conduct.html',
+                            }
+                        ],
+                    }
                 ],
             },
             {
@@ -188,6 +206,10 @@ export default {
                     {
                         title: '团队介绍',
                         link: '/zh-cn/docs/hmily/team.html',
+                    },
+                    {
+                        title: 'FAQ',
+                        link: '/zh-cn/docs/hmily/faq.html',
                     },
                     {
                         title: '配置模块',
@@ -212,6 +234,10 @@ export default {
                             {
                                 title: 'apollo配置中心',
                                 link: '/zh-cn/docs/hmily/config-apollo.html',
+                            },
+                            {
+                                title: 'Etcd配置中心',
+                                link: '/zh-cn/docs/hmily/config-etcd.html',
                             }
                         ],
                     },
@@ -250,6 +276,10 @@ export default {
                             {
                                 title: 'springcloud用户',
                                 link: '/zh-cn/docs/hmily/user-springcloud.html',
+                            },
+                            {
+                                title: 'sofa-rpc用户',
+                                link: '/zh-cn/docs/hmily/user-sofa-rpc.html',
                             }
                         ],
                     },
@@ -264,6 +294,14 @@ export default {
                             {
                                 title: 'quick-start-springcloud',
                                 link: '/zh-cn/docs/hmily/quick-start-springcloud.html',
+                            },
+                            {
+                                title: 'quick-start-motan',
+                                link: '/zh-cn/docs/hmily/quick-start-motan.html',
+                            },
+                            {
+                                title: 'quick-start-sofa-rpc',
+                                link: '/zh-cn/docs/hmily/quick-start-sofa-rpc.html',
                             }
                         ],
                     },
@@ -274,6 +312,24 @@ export default {
                             {
                                 title: '启动admin',
                                 link: '/zh-cn/docs/hmily/admin.html',
+                            }
+                        ],
+                    },
+                    {
+                        title: '社区贡献',
+                        opened: true,
+                        children: [
+                            {
+                                title: '贡献者指南',
+                                link: '/zh-cn/docs/hmily/contributor.html',
+                            },
+                            {
+                                title: '提交者指南',
+                                link: '/zh-cn/docs/hmily/committer.html',
+                            },
+                            {
+                                title: '编码规范',
+                                link: '/zh-cn/docs/hmily/code-conduct.html',
                             }
                         ],
                     }

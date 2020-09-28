@@ -20,6 +20,6 @@ description: Metrics
 
 
 
-### 如果获取
+### 如何展示
 
 * 用户可以使用 `Grafana` 从应用里面的`metrics`配置拉取的metrics信息
