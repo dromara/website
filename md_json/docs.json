@@ -63,6 +63,15 @@
       }
     },
     {
+      "filename": "config-consul.md",
+      "link": "\\zh-cn\\docs\\hmily\\config-consul.html",
+      "meta": {
+        "title": "Hmily-Config-Consul",
+        "keywords": "hmily-config",
+        "description": "Consul配置中心模式"
+      }
+    },
+    {
       "filename": "config-etcd.md",
       "link": "\\zh-cn\\docs\\hmily\\config-etcd.html",
       "meta": {

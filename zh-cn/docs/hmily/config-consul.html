@@ -18,37 +18,41 @@
 <p>文件名为 : <code>hmily.yml</code>。</p>
 </li>
 <li>
-<p>路径： 默认路径为项目的 <code>resource</code>目录下，也可以使用 <code>-Dhmily.conf</code> 指定，也可以把配置放在 <code>user.dir</code> 目录下。
-优先级别 <code>-Dhmily.conf</code> &gt; <code>user.dir</code> &gt; <code>resource</code></p>
+<p>路径： 默认路径为项目的 resource目录下，也可以使用 <code>-Dhmily.conf</code> 指定，也可以把配置放在 <code>user.dir</code> 目录下。 优先级别 <code>-Dhmily.conf &gt; user.dir &gt; resource</code></p>
 </li>
 <li>
-<p>具体的全内容如下 : 注意设置 <code>hmily.server.configMode = apollo</code></p>
+<p>具体的全内容如下 : 注意设置 <code>hmily.server.configMode = consul</code></p>
 </li>
 <li>
-<p>框架的或首先根据你的 <code>apollo</code> 配置，然后从 <code>apollo</code> 获取配置</p>
+<p>框架的或首先根据你的 <code>consul</code> 配置，然后从 <code>consul</code> 获取配置</p>
 </li>
 </ul>
-<pre><code class="language-yaml"><span class="hljs-attr">hmily:</span>
+<pre><code class="language-yml"><span class="hljs-attr">hmily:</span>
   <span class="hljs-attr">server:</span>
-    <span class="hljs-attr">configMode:</span> <span class="hljs-string">apollo</span>
-    <span class="hljs-attr">appName:</span> 
-  <span class="hljs-comment">#  如果server.configMode eq local 的时候才会读取到这里的配置信息.</span>
+    <span class="hljs-attr">configMode:</span> <span class="hljs-string">consul</span>
+    <span class="hljs-attr">appName:</span> <span class="hljs-string">xxxxx</span>
 
 <span class="hljs-attr">remote:</span>
-  <span class="hljs-attr">apollo:</span>
-    <span class="hljs-attr">configService:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8080</span> <span class="hljs-comment"># apollo服务地址</span>
-    <span class="hljs-attr">namespace:</span> <span class="hljs-string">test</span>  <span class="hljs-comment"># namespace</span>
-    <span class="hljs-attr">appId:</span> <span class="hljs-string">test</span> <span class="hljs-comment"># group</span>
-    <span class="hljs-attr">secret:</span> <span class="hljs-string">xxxx</span> <span class="hljs-comment">#秘钥</span>
-    <span class="hljs-attr">env:</span> <span class="hljs-string">dev</span> <span class="hljs-comment">#环境</span>
-    <span class="hljs-attr">fileExtension:</span> <span class="hljs-string">yml</span>  <span class="hljs-comment">#apollo上配置文件的格式（properties或者yml）二选一</span>
+  <span class="hljs-attr">consul:</span>
+    <span class="hljs-attr">hostAndPort:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8500</span> <span class="hljs-comment"># consul服务地址</span>
+    <span class="hljs-attr">hostAndPorts:</span> 
+    <span class="hljs-attr">key:</span> <span class="hljs-string">test</span> <span class="hljs-comment"># consul 上的key</span>
+    <span class="hljs-attr">blacklistTimeInMillis:</span> <span class="hljs-number">6000</span>
+    <span class="hljs-attr">fileExtension:</span> <span class="hljs-string">yml</span> <span class="hljs-comment"># consul上配置文件的格式（properties或者yml）二选一</span>
+    <span class="hljs-attr">passive:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 开启自动更新</span>
+
 </code></pre>
 <ul>
-<li>然后，你可以在<code>apollo</code>上添加配置，配置格式如果下（yml）：</li>
+<li>
+<p>注意consul服务地址配置，如果是集群，那么请配置hostAndPorts节点，单击配置hostAndPort，两者必须有一个不为空。两者都不为空，采用的是集群配置</p>
+</li>
+<li>
+<p>然后，你需要在上述配置的key上写入hmily的配置，配置文件如下：</p>
+</li>
 </ul>
-<pre><code class="language-yaml"><span class="hljs-attr">hmily:</span>
+<pre><code class="language-yml"><span class="hljs-attr">hmily:</span>
   <span class="hljs-attr">config:</span>
-    <span class="hljs-attr">appName:</span> <span class="hljs-string">xiaoyu</span>
+    <span class="hljs-attr">appName:</span> 
     <span class="hljs-attr">serializer:</span> <span class="hljs-string">kryo</span>
     <span class="hljs-attr">contextTransmittalMode:</span> <span class="hljs-string">threadLocal</span>
     <span class="hljs-attr">scheduledThreadMax:</span> <span class="hljs-number">16</span>
@@ -125,10 +129,10 @@
 </code></pre>
 <ul>
 <li>
-<p>注意 <code>repository</code>的配置是SPI的扩展方式，几种方式由你去选择一种，并不需要全部配置。</p>
+<p>注意 repository的配置是SPI的扩展方式，几种方式由你去选择一种，并不需要全部配置。</p>
 </li>
 <li>
-<p><code>metrics</code> 配置可有可无，如果不配置，则代表不开启<code>metrics</code></p>
+<p>metrics 配置可有可无，如果不配置，则代表不开启metrics</p>
 </li>
 </ul>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>

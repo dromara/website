@@ -224,20 +224,24 @@ export default {
                                 link: '/zh-cn/docs/hmily/config-local.html',
                             },
                             {
-                                title: 'zookeeper配置中心',
+                                title: 'Zookeeper配置中心',
                                 link: '/zh-cn/docs/hmily/config-zookeeper.html',
                             },
                             {
-                                title: 'nacos配置中心',
+                                title: 'Nacos配置中心',
                                 link: '/zh-cn/docs/hmily/config-nacos.html',
                             },
                             {
-                                title: 'apollo配置中心',
+                                title: 'Apollo配置中心',
                                 link: '/zh-cn/docs/hmily/config-apollo.html',
                             },
                             {
                                 title: 'Etcd配置中心',
                                 link: '/zh-cn/docs/hmily/config-etcd.html',
+                            },
+                            {
+                                title: 'Consul配置中心',
+                                link: '/zh-cn/docs/hmily/config-consul.html',
                             }
                         ],
                     },
