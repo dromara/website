@@ -284,6 +284,14 @@ export default {
                             {
                                 title: 'sofa-rpc用户',
                                 link: '/zh-cn/docs/hmily/user-sofa-rpc.html',
+                            },
+                            {
+                                title: 'tars用户',
+                                link: '/zh-cn/docs/hmily/user-tars.html',
+                            },
+                            {
+                                title: 'Grpc用户',
+                                link: '/zh-cn/docs/hmily/user-grpc.html',
                             }
                         ],
                     },
@@ -292,20 +300,28 @@ export default {
                         opened: true,
                         children: [
                             {
-                                title: 'quick-start-dubbo',
+                                title: 'dubbo快速体验',
                                 link: '/zh-cn/docs/hmily/quick-start-dubbo.html',
                             },
                             {
-                                title: 'quick-start-springcloud',
+                                title: 'springcloud快速体验',
                                 link: '/zh-cn/docs/hmily/quick-start-springcloud.html',
                             },
                             {
-                                title: 'quick-start-motan',
+                                title: 'motan快速体验',
                                 link: '/zh-cn/docs/hmily/quick-start-motan.html',
                             },
                             {
-                                title: 'quick-start-sofa-rpc',
+                                title: 'sofa-rpc快速体验',
                                 link: '/zh-cn/docs/hmily/quick-start-sofa-rpc.html',
+                            },
+                            {
+                                title: 'tars快速体验',
+                                link: '/zh-cn/docs/hmily/quick-start-tars.html',
+                            },
+                            {
+                                title: 'grpc快速体验',
+                                link: '/zh-cn/docs/hmily/quick-start-grpc.html',
                             }
                         ],
                     },

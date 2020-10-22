@@ -167,6 +167,15 @@
       }
     },
     {
+      "filename": "quick-start-grpc.md",
+      "link": "\\zh-cn\\docs\\hmily\\quick-start-grpc.html",
+      "meta": {
+        "title": "Grpc快速体验",
+        "keywords": "Grpc",
+        "description": "Grpc快速体验"
+      }
+    },
+    {
       "filename": "quick-start-motan.md",
       "link": "\\zh-cn\\docs\\hmily\\quick-start-motan.html",
       "meta": {
@@ -191,6 +200,15 @@
         "title": "SpringCloud快速体验",
         "keywords": "SpringCloud",
         "description": "Hmily-SpringCloud分布式事务体验"
+      }
+    },
+    {
+      "filename": "quick-start-tars.md",
+      "link": "\\zh-cn\\docs\\hmily\\quick-start-tars.html",
+      "meta": {
+        "title": "tars快速体验",
+        "keywords": "tars",
+        "description": "tars快速体验"
       }
     },
     {
@@ -239,6 +257,15 @@
       }
     },
     {
+      "filename": "user-grpc.md",
+      "link": "\\zh-cn\\docs\\hmily\\user-grpc.html",
+      "meta": {
+        "title": "Grpc用户指南",
+        "keywords": "Grpc",
+        "description": "Grpc用户指南"
+      }
+    },
+    {
       "filename": "user-motan.md",
       "link": "\\zh-cn\\docs\\hmily\\user-motan.html",
       "meta": {
@@ -263,6 +290,15 @@
         "title": "SpringCloud用户指南",
         "keywords": "SpringCloud",
         "description": "Hmily-SpringCloud分布式事务用户指南"
+      }
+    },
+    {
+      "filename": "user-tars.md",
+      "link": "\\zh-cn\\docs\\hmily\\user-tars.html",
+      "meta": {
+        "title": "tars用户指南",
+        "keywords": "tars",
+        "description": "tars用户指南"
       }
     },
     {

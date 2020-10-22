@@ -23,6 +23,9 @@
 <li>
 <h4>Git</h4>
 </li>
+<li>
+<h4>Zookeeper</h4>
+</li>
 </ul>
 <h1>代码拉取</h1>
 <pre><code>  &gt; git clone https://github.com/dromara/hmily.git
@@ -33,9 +36,8 @@
 </code></pre>
 <h1>执行demo 模块的sql语句。</h1>
 <p>[sql语句] (<a href="https://github.com/dromara/hmily/blob/master/hmily-demo/sql/hmily-demo.sql">https://github.com/dromara/hmily/blob/master/hmily-demo/sql/hmily-demo.sql</a>)</p>
-<h1>使用你的工具 idea 打开项目，找到hmily-demo-springcloud项目, 进行maven构建。</h1>
-<h2>启动 hmily-demo-springcloud-eureka项目中的 EurekaServerApplication.java。</h2>
-<h2>修改项目配置（hmily-demo-springcloud-account为列子）</h2>
+<h1>使用你的工具 idea 打开项目，找到hmily-demo-grpc项目。</h1>
+<h2>修改项目配置（hmily-demo-grpc-account为列子）</h2>
 <ul>
 <li>修改业务数据库(account项目为列子)</li>
 </ul>
@@ -43,8 +45,8 @@
     <span class="hljs-attr">datasource:</span>
         <span class="hljs-attr">driver-class-name:</span>  <span class="hljs-string">com.mysql.jdbc.Driver</span>
         <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://改成你的ip+端口/hmily_account?useUnicode=true&amp;characterEncoding=utf8</span>
-        <span class="hljs-attr">username:</span> <span class="hljs-string">你的用户名</span>
-        <span class="hljs-attr">password:</span> <span class="hljs-string">你的密码</span>
+        <span class="hljs-attr">username:</span>  <span class="hljs-comment">#改成你的用户名</span>
+        <span class="hljs-attr">password:</span>  <span class="hljs-comment">#改成你的密码</span>
 </code></pre>
 <ul>
 <li>修改 <code>hmily.yml</code>,这里使用<code>mysql</code>来存储</li>
@@ -55,13 +57,14 @@
     <span class="hljs-attr">url :</span> <span class="hljs-string">jdbc:mysql://改成你的ip+端口/hmily?useUnicode=true&amp;characterEncoding=utf8</span>
     <span class="hljs-attr">username:</span> <span class="hljs-string">root</span> <span class="hljs-comment">#改成你的用户名</span>
     <span class="hljs-attr">password:</span> <span class="hljs-comment">#改成你的密码</span>
+
 </code></pre>
 <ul>
-<li>run SpringCloudHmilyAccountApplication.java</li>
+<li>run GrpcHmilyAccountApplication.java</li>
 </ul>
-<h3>启动hmily-demo-springcloud-inventory 参考上述。</h3>
-<h3>启动hmily-demo-springcloud-order 参考上述。</h3>
-<h3>访问：<a href="http://127.0.0.1:8884/swagger-ui.html%E3%80%82">http://127.0.0.1:8884/swagger-ui.html。</a></h3>
+<h2>启动hmily-demo-tars-springboot-inventory 参考上述。</h2>
+<h2>启动hmily-demo-tars-springboot-order 参考上述。</h2>
+<h2>访问：<a href="http://127.0.0.1:28087/swagger-ui.html%E3%80%82">http://127.0.0.1:28087/swagger-ui.html。</a></h2>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
