@@ -119,13 +119,13 @@ Soul Admin 会**自动**创建数据库，以及表结构，并初始化默认�
   <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-webflux</artifactId>
-        <version>2.2.2-RELEASE</version>
+        <version>2.2.2.RELEASE</version>
   </dependency>
 
   <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
-        <version>2.2.2-RELEASE</version>
+        <version>2.2.2.RELEASE</version>
   </dependency>
 
   <!--soul gateway start-->
