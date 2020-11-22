@@ -28,7 +28,7 @@ description: sign plugin
 
 * Selectors and rules, please refer to: [selector](selector_en.md)。
  
-  * Only those matched requests will be authenticated by signature.   
+  * Only those matched requests can be authenticated by signature.   
 
 
 ## Add AK/SK
