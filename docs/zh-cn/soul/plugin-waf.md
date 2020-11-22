@@ -43,6 +43,6 @@ description: waf插件
 
 * waf插件也是soul的前置插件，主要用来拦截非法请求，或者异常请求，并且给与相关的拒绝策略。
 
-* 当你发现有大的攻击的适合，你可以根据ip或者host来进行匹配，拦截掉非法的ip与host，设置reject策略。
+* 当面对重放攻击时，你可以根据ip或者host来进行匹配，拦截掉非法的ip与host，设置reject策略。
 
 * 关于如何确定 ip 与 host 值，请看[ip与host](dev-iphost.md)

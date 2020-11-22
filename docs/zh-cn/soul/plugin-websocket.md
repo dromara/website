@@ -32,7 +32,7 @@ description: websocket支持
 ```
 ## 请求路径
 
-* 使用soul代理websocket的时候，其请求路径为（列子）: `ws://localhost:9195/?module=ws&method=/websocket&rpcType=websocket`。
+* 使用soul代理websocket的时候，其请求路径为（例子）: `ws://localhost:9195/?module=ws&method=/websocket&rpcType=websocket`。
 
 ```yaml
 参数详解:
