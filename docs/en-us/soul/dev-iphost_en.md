@@ -20,7 +20,7 @@ description: Fetching correct IP address and host
 
 ## implement through a plugin
 
-* Create a new class named "A" and make it implements `org.dromara.soul.plugin.api.RemoteAddressResolver`.
+* Declare a new class named "A" and implements `org.dromara.soul.plugin.api.RemoteAddressResolver`.
 
 ```java
 public interface RemoteAddressResolver {
@@ -38,7 +38,7 @@ public interface RemoteAddressResolver {
 }
 ```
 
-* Register class "A" (you created before) as a Spring Bean.
+* Register defined class as a Spring Bean.
 
 ```java
    @Bean

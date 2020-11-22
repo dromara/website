@@ -28,7 +28,7 @@ description: plugins
   </dependency>
 ```
 
-* Create a new class named "A" and let it implements `org.dromara.soul.plugin.api.SoulPlugin`
+* Declare a new class named "A" and implements `org.dromara.soul.plugin.api.SoulPlugin`
 
 ```java
 public interface SoulPlugin {
@@ -53,7 +53,7 @@ public interface SoulPlugin {
     
     /**
      * acquire plugin name.
-     * this is plugin name define you must Provide the right name.
+     * this is plugin name define you must offer the right name.
      * if you impl AbstractSoulPlugin this attribute not use.
      *
      * @return plugin name.
@@ -185,11 +185,11 @@ public class CustomPlugin extends AbstractSoulPlugin {
 
    * Plugins will match the selector rule for customized plugins inherit from this abstract class. Following steps guide you to config your plugins.
 
-   * Firstly add a new plugin in `soul-admin`, please mind that your plugin name should match the named() method overridden in your class.
+   * Firstly define a new plugin in `soul-admin`, please mind that your plugin name should match the named() method overridden in your class.
 
    * Re-login  `soul-admin`, the plugin you added now showing on plugin-list page, you can choose selectors for matching.
 
-   * 在规则中，有个 `handler` 字段，是你自定义处理数据，在 `doExecute()` 方法中，通过 ` final String ruleHandle = rule.getHandle();` 获取，然后进行你的操作。
+   * There is a field named `handler` in rules, it is customized json string to be processed. You can process data after acquiring a ruleHandle (` final String ruleHandle = rule.getHandle();`) in `doExecute()` method. 
 
 * Register plugin in Spring as a Bean, or simply apply `@Component` in implementation class.
 
@@ -200,9 +200,9 @@ public class CustomPlugin extends AbstractSoulPlugin {
     }
 ```
 
-## 订阅你的插件数据，进行自定义的处理
+## Subscribe your plugin data and do customized jobs
 
-* 新增一个类A，实现 `org.dromara.soul.plugin.base.handler.PluginDataHandler`
+* Declare a new class named "A" and implements `org.dromara.soul.plugin.base.handler.PluginDataHandler`
 
 ```java
 public interface PluginDataHandler {
@@ -265,9 +265,9 @@ public interface PluginDataHandler {
 }
 ```
 
-* 注意 `pluginNamed()` 要和你自定义的插件名称相同。
+* Ensure `pluginNamed()` is same as the plugin name you defined.
 
-* 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
+* Register defined class as a Spring Bean, or simply apply `@Component` in implementation class.
 ```java
     @Bean
     public PluginDataHandler a() {

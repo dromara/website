@@ -1,19 +1,19 @@
 ---
-title: 自定义sign插件检验
+title: specify sign plugins for examination
 keywords: soul
-description: 自定义sign插件检验
+description: specify sign plugins for examination
 ---
 
 
-## 说明
+## description
 
-* 用户可以自定义签名认证算法来实现验证。
+* Users can customize the signature authentication algorithm to achieve verification.
 
-###  扩展
+###  extension
 
-*  默认的实现为 `org.dromara.soul.plugin.sign.service.DefaultSignService`。
+*  The default implementation is `org.dromara.soul.plugin.sign.service.DefaultSignService`。
 
-*  新增一个类 A 实现  `org.dromara.soul.plugin.api.SignService`。
+*  Declare a new class named "A" and implements  `org.dromara.soul.plugin.api.SignService`。
 
 ```java
  public interface SignService {
@@ -30,8 +30,9 @@ description: 自定义sign插件检验
 ```
 
 * Pair中返回true,表示验证通过，为false的时候，会把String中的信息输出到前端。
+* When returning ture in Pair, the sign verification passes. If there's false, the String in Pair will be return to the frontend to show.
 
-* 把你新增的实现类注册成为spring的bean,如下
+* Register defined class as a Spring Bean.
 
 ```java
    @Bean

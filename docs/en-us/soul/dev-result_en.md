@@ -1,21 +1,21 @@
 ---
-title: 自定义网关返回数据格式
+title: customising response structure
 keywords: soul
-description: 自定义网关返回数据格式
+description: customising response structure
 ---
 
-## 说明
+## description
 
-* 本文是说明,基于soul网关，返回自定义的数据个数。
+* This doc offers examples for customising response structure.
 
-* 网关需要统一的返回格式,而每个公司都有自己定义的一套，所以需要对次进行扩展。
+* The response body structure in gateways should be unified, it is recommended for specify yours. 
 
 
-### 默认实现
+### default implementation
 
-* 默认的实现为 `org.dromara.soul.plugin.api.result.DefaultSoulResult`
+* The default implementation class is `org.dromara.soul.plugin.api.result.DefaultSoulResult`
 
-* 返回的数据格式如下：
+* Following is the response structure:
 
 ```java
 public class SoulDefaultEntity implements Serializable {
@@ -31,18 +31,18 @@ public class SoulDefaultEntity implements Serializable {
 }
 ```
 
-* 返回的json 格式如下:
+* The returned json as follows:
 ```json
 {
-    "code": -100, //返回码,
-    "message": "您的参数错误,请检查相关文档!", //提示字段
-    "data": null  // 具体的数据
+    "code": -100, //response code,
+    "message": "您的参数错误,请检查相关文档!", //hint messages
+    "data": null  // business data
 }
 ```
 
-## 扩展
+## extensions
 
-*  新增一个类 A 实现 `org.dromara.soul.plugin.api.result.SoulResult`
+*  Declare a new class named "A" and implements `org.dromara.soul.plugin.api.result.SoulResult`
 
 ```java
  public interface SoulResult<T> {
@@ -70,10 +70,10 @@ public class SoulDefaultEntity implements Serializable {
 
 ```
 
-* 其他 泛型 T 为你自定义的数据格式，返回它就好
+* T is a generic parameter for your response data.
 
 
-* 把你新增的实现类注册成为spring的bean,如下
+* Register defined class as a Spring Bean.
 
 ```java
     @Bean
