@@ -10,7 +10,7 @@ description: springcloud plugin
 
 ## Introducing Plugin Support of SpringCould Gateway
 
-* Introducing the those dependencies in the pom.xml file of the gateway.
+* Introducing those dependencies in the pom.xml file of the gateway.
 
 ```xml
   <!--soul springCloud plugin start-->
