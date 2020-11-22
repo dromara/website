@@ -40,7 +40,7 @@ description: sign plugin
  
  * Adopt Ak/SK authentication technical scheme. 
  * Adopt authentication plug-in and Chain of Responsibility Pattern to realize. 
- * Take effect when the authentication plugin is enable and all interfaces are configured for authentication.
+ * Take effect when the authentication plugin is enabled and all interfaces are configured for authentication.
  
  
  ## Authentication Guide
