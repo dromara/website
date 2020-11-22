@@ -1,23 +1,23 @@
 ---
-title: soul性能优化
+title: performance optimization for soul
 keywords: soul
-description: soul性能优化
+description: performance optimization for soul
 ---
 
-## 说明
+## description
 
-* 本文主要介绍如果对soul进行优化
+* This doc shows how to do performance optimization for soul.
 
 
-## 本身消耗
+## time consumption
 
-* soul本身所有的操作，都是基于jvm内存来匹配，本身消耗时间大概在 1-3 ms左右。
+* Soul is JVM driven and processing time for a single request is nearly between 1 - 3 ms.
 
-## 底层netty调优
+## netty optimization
 
-* soul内置依赖 `spring-webflux` 而其底层是使用的netty
+* `spring-webflux` is one of dependencies of soul, and it uses Netty in lower layer.
 
-* 我们可以自定义netty的相关参数来对soul 进行优化,以下是示例：
+* The demo down below demonstrates tuning soul by customizing params in Netty.
 
 ```java
    @Bean
@@ -42,9 +42,9 @@ description: soul性能优化
     }
 ```
 
-* 这个类在 soul-bootstrap中已经内置，在压测的时候，可以根据自己的需求来进行优化设置。
+* Soul-bootstrap offers this class, you may modify it when benchmarking your app if necessary.
 
-* 业务线程模型可以看[线程模型](dev-thread.md)
+* You can get references of business thread model from [thread model](dev-thread_en.md)
 
 
 
