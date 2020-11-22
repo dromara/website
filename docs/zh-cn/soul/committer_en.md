@@ -1,7 +1,7 @@
 ---
 https://gitee.com/holddie/website.gittitle: soul-committer
 keywords: soul-committer
-description: soul-committer提交者指南
+description: Soul Committer's Guide
 ---
 
 ## Committer Promotion

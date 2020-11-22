@@ -1,7 +1,7 @@
 ---
 title: soul-code-conduct
 keywords: soul-code-conduct
-description: soul编码指南
+description: Soul Coding Guide
 ---
 
 ## Development Guidelines

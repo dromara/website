@@ -1,7 +1,7 @@
 ---
 title: soul-contributor
 keywords: soul-contributor
-description: soul-contributor贡献者指南
+description: Soul Contributor's Guide
 ---
 
 You can report a bug, submit a new function enhancement suggestion, or submit a pull request directly.
