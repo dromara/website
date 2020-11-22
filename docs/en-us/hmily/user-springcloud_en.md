@@ -9,7 +9,7 @@ description: Hmily-Spring Cloud Distributed Transaction User Guide
 
   * Step 2: Introduce the `Hmily` configuration
 
-  * Step 3: Add `@HmilyTCC` or `HmilyTAC` annotation on the concrete implementation method(Service provider).
+  * Step 3: Add `@HmilyTCC` or `@HmilyTAC` annotation on the concrete implementation method(Service provider).
   
   * Step 4: Add `@Hmily` annotation on the feignClient call method(Consumer side).
 

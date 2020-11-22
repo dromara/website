@@ -11,7 +11,7 @@ description: Tars User Guide
 
   * Step 3: Add `@Hmily` annotation on the auto-generated Servant interface method which required the Hmily Distributed Transaction.
 
-  * Step 4: Add `@HmilyTCC` or `HmilyTAC` annotation on the concrete implementation method(Service provider).
+  * Step 4: Add `@HmilyTCC` or `@HmilyTAC` annotation on the concrete implementation method(Service provider).
 
 ## Introduce The Maven dependency
 

@@ -12,7 +12,7 @@ description: Grpc User Guide
 
 * Introduce the `Hmily` configuration
 
-* Add `@HmilyTCC` or `HmilyTAC` annotation on the concrete implementation method(Service provider).
+* Add `@HmilyTCC` or `@HmilyTAC` annotation on the concrete implementation method(Service provider).
 
 ## Introduce The Maven dependency
 
