@@ -39,7 +39,7 @@ description: divide插件
 * http配置，是网关匹配到流量以后，真实调用的http配置，可以配置多个，设置负载均衡权重，具体的负载均衡策略，在规则中指定。
   * 配置详解 ：
 
-     * 第一个框：hostName，一般填写 `localhost`，该字段暂时没使用。
+     * 第一个框：hostName，一般填写 `localhost`,该字段暂时没使用。
   
      * 第二个框：http协议，一般填写 `http://` 或者 `https://` ,不填写默认为:`http://`
   

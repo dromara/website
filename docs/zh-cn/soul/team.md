@@ -12,5 +12,5 @@ description: 团队介绍
  |张永伦                |tuohai666 |  committer   | 京东     |
  |陈斌                |prFor |  committer   | 某创业公司     |
  |蒋晓峰                |SteNicholas |  committer   | 阿里云     |
- |黄晓峰                |huangxfchn |  committer   | shenin     | 
+ |黄晓峰                |huangxfchn |  committer   | shein     | 
  |梁自强                |241600489 |  committer   | 滴滴     | 
