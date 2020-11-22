@@ -41,7 +41,7 @@ description: springcloud plugin
 
 ## Plugin Setting
 
-* In `soul-admin` --> plugin management-> springCloud ,set to enable.
+* In `soul-admin` --> plugin management-> springCloud ,set to enable. 
 
 * This plugin needs to cooperate with `starter` dependency, please refer to:[user-spring](user-springcloud_en.md).
 
