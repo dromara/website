@@ -26,7 +26,7 @@ public interface HelloService {
 }
 ```
 
-# Dubbo实现项目
+# Motan实现项目
  
   * 步骤一 ： 引入依赖`hmily`的jar包
   
@@ -151,7 +151,7 @@ public BeanPostProcessor refererAnnotationBeanPostProcessor() {
   * 如果服务部署了几个节点， 负载均衡算法最好使用 `hmily`, 这样 `try`, `confirm`, `cancel` 调用会落在同一个节点
     充分利用了缓存，提搞了效率。
   
-  * 支持一下几种 `hmilyActiveWeight `, `hmilyConfigurableWeight `,  `hmilyConsistent `, `hmilyLocalFirst `, `hmilyRandom `, `hmilyRoundRobin ` 几种方式均是继承`Motan`原生的
+  * 支持一下几种 `hmilyActiveWeight`, `hmilyConfigurableWeight`,  `hmilyConsistent`, `hmilyLocalFirst`, `hmilyRandom`, `hmilyRoundRobin` 几种方式均是继承`Motan`原生的
     
 ```xml
    <motan:reference  interface="xxx"  id="xxx" loadbalance="hmilyActiveWeight"/>           
