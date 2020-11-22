@@ -26,7 +26,7 @@ description: 数据同步设计
 
 ##### 1.可能有人会问我，配置同步为什么不使用配置中心呢？
 
-答：首先，引入配置中心，会增加很多额外的成本，不管是运维，而且会让 `Soul` 变得很重；另外，使用配置中心，数据格式不可控，不便于 `soul-admin` 进行配置管理。
+答：首先，引入配置中心，会增加很多额外的成本，不光是运维，而且会让 `Soul` 变得很重；另外，使用配置中心，数据格式不可控，不便于 `soul-admin` 进行配置管理。
 
 ##### 2.可能还有人会问？动态配置更新？每次我查数据库，或者redis不就行了吗？拿到的就是最新的，哪里那么多事情呢？
 
@@ -93,7 +93,7 @@ public class WebsocketSyncCache extends WebsocketCacheHandler {
 
 ## http长轮询
 
-zookeeper、websocket 数据同步的机制比较简单，而 http 同步会相对复杂一些。Soul 借鉴了 `Apollo`、`Nacos` 的设计思想，取决精华，自己实现了 `http` 长轮询数据同步功能。注意，这里并非传统的 ajax 长轮询！
+zookeeper、websocket 数据同步的机制比较简单，而 http 同步会相对复杂一些。Soul 借鉴了 `Apollo`、`Nacos` 的设计思想，取其精华，自己实现了 `http` 长轮询数据同步功能。注意，这里并非传统的 ajax 长轮询！
 
 ![http长轮询](https://bestkobe.gitee.io/images/soul/http-long-polling.png?_t=201908032339)
 
@@ -125,7 +125,7 @@ class LongPollingClient implements Runnable {
     public void run() {
         // 加入定时任务，如果60s之内没有配置变更，则60s后执行，响应http请求
         this.asyncTimeoutFuture = scheduler.schedule(() -> {
-            // clients是阻塞队列，保存了来处soul-web的请求信息
+            // clients是阻塞队列，保存了来自soul-web的请求信息
             clients.remove(LongPollingClient.this);
             List<ConfigGroupEnum> changedGroups = HttpLongPollingDataChangedListener.compareMD5((HttpServletRequest) asyncContext.getRequest());
             sendResponse(changedGroups);
