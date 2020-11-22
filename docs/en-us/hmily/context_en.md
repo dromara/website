@@ -30,7 +30,7 @@ public class HmilyTransactionContext {
     private int action;
     
     /**
-     * 事务参与的角色.
+     * Transaction Participant Role.
      */
     private int role;
     
