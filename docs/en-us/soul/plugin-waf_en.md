@@ -10,7 +10,7 @@ description: waf plugin
 
 ## Plugin Setting
 
-* In `soul-admin` --> plugin management-> `waf` set to enable。
+* In `soul-admin` --> plugin management-> `waf` set to enable.
 
 * If the user don't use, please disable the plugin in the backgroud.
 
