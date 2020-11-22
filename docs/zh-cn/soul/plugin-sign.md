@@ -48,7 +48,7 @@ description: sign插件
  
  * 第一步：AK/SK由网关来进行分配. 比如分配给你的AK为: `1TEST123456781`  	SK为：`506EEB535CF740D7A755CB4B9F4A1536` 
  
- * 第一步：确定好你要访问的网关路径 比如 `/api/service/abc`
+ * 第二步：确定好你要访问的网关路径 比如 `/api/service/abc`
  
  * 第三步:构造参数（以下是通用参数）
  
