@@ -41,7 +41,7 @@ public class HmilyTransactionContext {
 }
 ```
 
-`HmilyTransactionContext` 是Hmily分布式事务框架进行RPC调用传递事务上下文的核心类,
+`HmilyTransactionContext` 是Hmily分布式事务框架进行RPC调用时用于传递事务上下文的核心类,
 默认会将其存储在`ThreadLocal`中，然后进行RPC的参数传递，也可以配置使用线程上下文切换的的场景，
 这个时候需要在配置中指定 `contextTransmittalMode = transmittable`,将会使用alibaba开源类库。
 
