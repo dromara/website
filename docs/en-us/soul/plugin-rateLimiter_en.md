@@ -23,7 +23,7 @@ description: rateLimiter plugin
 
 * In `soul-admin`--> plugin management--> `rate_limiter` set to enable.
  
-* configure redis in the plugin.
+* Configure redis in the plugin.
 
 * Currently, supporting redis patterns of single, sentinel, and cluster.
 
