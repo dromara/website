@@ -51,5 +51,5 @@ description: springcloud plugin
 
 * Application name: it is your specific application name that needs to be invoked after the conditions are matched.
 
-* soul will obtain the real IP of the corresponding service and initiate http proxy calls from registration center of springCloud.
+* Soul will obtain the real IP of the corresponding service and initiate http proxy calls from registration center of springCloud.
    
