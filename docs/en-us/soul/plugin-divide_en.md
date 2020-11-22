@@ -39,7 +39,7 @@ description: divide plugin
 * Http configuration is the real invoked configuration after the gateway matches the traffic; You can set multiple configurations and concrete load balancing weights in the rules.
   * Configuration Detail ：
      
-     * The first box: hostName, generally fill in localhost', which is temporarily unused.
+     * The first box: hostName, generally fill in `localhost`, which is temporarily unused.
        
      * The second box: http protocol, usually fill in ` http:// ` or ` https:// `, if not, the default is: ` http:// `.
        
