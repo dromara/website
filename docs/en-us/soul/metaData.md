@@ -34,11 +34,11 @@ CREATE TABLE  IF NOT EXISTS `meta_data` (
 
 * Metadata design as below,the most important is using it in dubbo's generalization call.
 
-* pay attention to the field `path`,we will match specific data according to your field path during requesting gateway,and then carry out the follow-up process.
+* Pay attention to the field `path`,we will match specific data according to your field path during requesting gateway,and then carry out the follow-up process.
 
-* pay attention to the field `rpc_ext`,if it is a dubbo service interface and service interface has group and version field,this field exists.
+* Pay attention to the field `rpc_ext`,if it is a dubbo service interface and service interface has group and version field,this field exists.
 
-  * dubbo field structure as below,then we store json format string..
+  * dubbo field structure as below,then we store json format string.
   
   ```
    public static class RpcExt {

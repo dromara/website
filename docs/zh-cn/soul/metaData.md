@@ -34,11 +34,11 @@ CREATE TABLE  IF NOT EXISTS `meta_data` (
 
 * 元数据设计，目前最主要的是对dubbo的泛化调用上进行使用。
 
-* 我重点讲一下 `path` 字段，在请求网关的时候，会根据你的path字段来匹配到一条数据，然后进行后续的流程
+* 我重点讲一下 `path` 字段，在请求网关的时候，会根据你的path字段来匹配到一条数据，然后进行后续的流程.
 
 * 重点讲一下 `rpc_ext`字段,如果是dubbo类型的服务接口，如果服务接口设置了 group,version字段的时候，会存在这个字段.
 
-  * dubbo 类型 字段结构是 如下，那么存储的就是json格式的字符串..
+  * dubbo 类型 字段结构是 如下，那么存储的就是json格式的字符串.
   
   ```
    public static class RpcExt {
