@@ -1,0 +1,10 @@
+{
+  "filename": "dev-client.md",
+  "__html": "<h2>description</h2>\n<ul>\n<li>\n<p>This doc gives a brief description for connecting to soul with http client in other programming languages.</p>\n</li>\n<li>\n<p>How to customize soul-http-client</p>\n</li>\n</ul>\n<h2>customize</h2>\n<ul>\n<li>\n<p>request method: <code>POST</code></p>\n</li>\n<li>\n<p>request endpoint</p>\n<ul>\n<li><code>http://soul-admin/soul-client/springmvc-register</code><br>\nsoul-admin replesents for ip + port for admin project</li>\n</ul>\n</li>\n<li>\n<p>request params</p>\n<ul>\n<li>send json serialized params in body to soul gateway</li>\n</ul>\n</li>\n</ul>\n<pre><code class=\"language-json\">{\n\t<span class=\"hljs-attr\">\"appName\"</span>: <span class=\"hljs-string\">\"xxx\"</span>, <span class=\"hljs-comment\">//application name, required</span>\n\t<span class=\"hljs-attr\">\"context\"</span>: <span class=\"hljs-string\">\"/xxx\"</span> <span class=\"hljs-comment\">//request root path, required</span>\n\t<span class=\"hljs-string\">\"path\"</span>: <span class=\"hljs-string\">\"xxx\"</span>, <span class=\"hljs-comment\">//request path, must be unique, required</span>\n\t<span class=\"hljs-attr\">\"rpcType\"</span>: <span class=\"hljs-string\">\"http\"</span>, <span class=\"hljs-comment\">//rpc type, required</span>\n\t<span class=\"hljs-attr\">\"host\"</span>: <span class=\"hljs-string\">\"xxx\"</span>, <span class=\"hljs-comment\">//server host, required</span>\n\t<span class=\"hljs-attr\">\"port\"</span>: xxx, <span class=\"hljs-comment\">//server port, required</span>\n\t<span class=\"hljs-attr\">\"ruleName\"</span>: <span class=\"hljs-string\">\"xxx\"</span>, <span class=\"hljs-comment\">//could be a duplicate of \"path\", required</span>\n\t<span class=\"hljs-attr\">\"enabled\"</span>: <span class=\"hljs-string\">\"true\"</span>\n}\n</code></pre>\n",
+  "link": "\\en-us\\docs\\soul\\dev-client.html",
+  "meta": {
+    "title": "multi-language http client",
+    "keywords": "soul",
+    "description": "multi-language http client"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "filename": "committer.md",
+  "__html": "<h2>Committer Promotion</h2>\n<p>After you have made a lot of contributions, the community will nominate. Become a committer you will have</p>\n<ul>\n<li>\n<p>Permissions written by Soul repository</p>\n</li>\n<li>\n<p>Idea is used legally</p>\n</li>\n</ul>\n<h2>Committer Responsibilities</h2>\n<ul>\n<li>Develop new features;</li>\n<li>Refactor codes;</li>\n<li>Review pull requests reliably and in time;</li>\n<li>Consider and accept feature requests;</li>\n<li>Answer questions;</li>\n<li>Update documentation and example;</li>\n<li>Improve processes and tools;</li>\n<li>Guide new contributors join community.</li>\n</ul>\n<h2>Committer Routine</h2>\n<ol>\n<li>\n<p>A committer needs to review every day the Pull Request and issue list to be processed by the community, and assign a suitable committer, that is, Assignee.</p>\n</li>\n<li>\n<p>After a committer is assigned with an issue, the following work is required:</p>\n</li>\n</ol>\n<ul>\n<li>Estimate whether it is a long-term issue. If it is, please label it as pending;</li>\n<li>Add issue labels, such as bug, enhancement, discussion, etc;</li>\n<li>Add milestone.</li>\n</ul>\n<p><strong>Notice</strong>:  Whether it is a community issue or not, there must be Assignee until the issue is completed.</p>\n",
+  "link": "\\en-us\\docs\\soul\\committer.html",
+  "meta": {
+    "https": "//gitee.com/holddie/website.gittitle: soul-committer",
+    "keywords": "soul-committer",
+    "description": "Soul Committer's Guide"
+  }
+}

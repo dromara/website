@@ -1,0 +1,10 @@
+{
+  "filename": "metrics.md",
+  "__html": "<h3>Hmily Metrics</h3>\n<p>At present,Prometheus is used to collect metrics in hmily's metrics module, and the pull mode is used to expose metrics information interface.</p>\n<p>The metrics collected fall into two fundamental categories:</p>\n<ul>\n<li>\n<p>JVM information to application: Memory, CPU, Thread Usage, etc.</p>\n</li>\n<li>\n<p>Transaction information: including the transactions total, the transaction latency, the transaction status, the transaction role.</p>\n</li>\n</ul>\n<h3>Hmily Metrics in detail</h3>\n<h3>How to show</h3>\n<ul>\n<li>You can pull the metrics information from the <code>metrics</code> configuration of application via <code>Grafana</code>.</li>\n</ul>\n",
+  "link": "\\en-us\\docs\\hmily\\metrics.html",
+  "meta": {
+    "title": "Hmily Metrics",
+    "keywords": "Metrics",
+    "description": "Hmily Metrics"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "filename": "committer_en.md",
+  "__html": "<h2>Committer Promotion</h2>\n<p>After you have made a lot of contributions, the community will invite you join Committers</p>\n<p>Become a committer you will have</p>\n<ul>\n<li>\n<p>Hmily repository write permissions</p>\n</li>\n<li>\n<p>Idea free license</p>\n</li>\n</ul>\n<h2>Committer Responsibilities</h2>\n<ul>\n<li>Develop new features;</li>\n<li>Refactor codes;</li>\n<li>Review pull requests reliably and in time;</li>\n<li>Consider and accept feature requests;</li>\n<li>Answer questions;</li>\n<li>Update documentation and example;</li>\n<li>Improve processes and tools;</li>\n<li>Guide new contributors join community.</li>\n</ul>\n<h2>Committer Routine</h2>\n<ol>\n<li>\n<p>Committer needs to check the list of pull requests and issues to be processed in the community on a daily basis and assign them to the appropriate committer, that is, assignee.</p>\n</li>\n<li>\n<p>After a committer is assigned with an issue, the following work is required:</p>\n</li>\n</ol>\n<ul>\n<li>Estimate whether it is a long-term issue. If it is, please label it as pending.</li>\n<li>Add issue labels, such as bug, enhancement, discussion, etc.</li>\n<li>Add milestone.</li>\n</ul>\n<p><strong>Notice</strong></p>\n<p>Regardless of whether it is a community issue, there must be an assignee until the issue is resolved.</p>\n",
+  "link": "\\zh-cn\\docs\\hmily\\committer_en.html",
+  "meta": {
+    "title": "Hmily-committer",
+    "keywords": "Hmily-committer",
+    "description": "Hmily committer guidelines"
+  }
+}

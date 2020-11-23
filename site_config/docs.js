@@ -2,28 +2,327 @@ export default {
     'en-us': {
         sidemenu: [
             {
-                title: 'header title',
+                title: 'Soul',
                 children: [
                     {
-                        title: 'demo1',
-                        link: '/en-us/docs/demo1.html',
+                        title: 'Home  ',
+                        link: '/en-us/docs/soul/soul.html',
                     },
                     {
-                        title: 'demo2',
-                        link: '/en-us/docs/demo2.html',
+                        title: 'Team',
+                        link: '/en-us/docs/soul/team.html',
                     },
                     {
-                        title: 'dir',
+                        title: 'Database Design',
+                        link: '/en-us/docs/soul/db.html',
+                    },
+                    {
+                        title: 'Config',
+                        link: '/en-us/docs/soul/config.html',
+                    },
+                    {
+                        title: 'DataSync',
+                        link: '/en-us/docs/soul/dataSync.html',
+                    },
+                    {
+                        title: 'MetaData',
+                        link: '/en-us/docs/soul/metaData.html',
+                    },
+                    {
+                        title: 'User Document',
                         opened: true,
                         children: [
                             {
-                                title: 'demo3',
-                                link: '/en-us/docs/dir/demo3.html',
+                                title: 'Set up',
+                                link: '/en-us/docs/soul/setup.html',
+                            },
+                            {
+                                title: 'Http proxy',
+                                link: '/en-us/docs/soul/user-http.html',
+                            },
+                            {
+                                title: 'Dubbo proxy',
+                                link: '/en-us/docs/soul/user-dubbo.html',
+                            },
+                            {
+                                title: 'Spring cloud proxy',
+                                link: '/en-us/docs/soul/user-springcloud.html',
+                            },
+                            {
+                                title: 'Selector and Rule',
+                                link: '/en-us/docs/soul/selector.html',
+                            },
+                            {
+                                title: 'Use data sync',
+                                link: '/en-us/docs/soul/user-dataSync.html',
+                            },
+                            {
+                                title: 'Divide Plugin',
+                                link: '/en-us/docs/soul/plugin-divide.html',
+                            },
+                            {
+                                title: 'Dubbo plugin',
+                                link: '/en-us/docs/soul/plugin-dubbo.html',
+                            },
+                            {
+                                title: 'Spring cloud plugin',
+                                link: '/en-us/docs/soul/plugin-springcloud.html',
+                            },
+                            {
+                                title: 'RateLimiter plugin',
+                                link: '/en-us/docs/soul/plugin-rateLimiter.html',
+                            },
+                            {
+                                title: 'Hystrix plugin',
+                                link: '/en-us/docs/soul/plugin-hystrix.html',
+                            },
+                            {
+                                title: 'Monitor plugin',
+                                link: '/en-us/docs/soul/plugin-monitor.html',
+                            },
+                            {
+                                title: 'Waf plugin',
+                                link: '/en-us/docs/soul/plugin-waf.html',
+                            },
+                            {
+                                title: 'Sign plugin',
+                                link: '/en-us/docs/soul/plugin-sign.html',
+                            },
+                            {
+                                title: 'Rewrite plugin',
+                                link: '/en-us/docs/soul/plugin-rewrite.html',
+                            },
+                            {
+                                title: 'Websocket plugin',
+                                link: '/en-us/docs/soul/plugin-websocket.html',
+                            }
+                        ],
+                    },
+                    {
+                        title: 'Developer Guide',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Custom filter ',
+                                link: '/en-us/docs/soul/dev-filter.html',
+                            },
+                            {
+                                title: 'Custom plugin',
+                                link: '/en-us/docs/soul/dev-plugin.html',
+                            },
+                            {
+                                title: 'File and Image',
+                                link: '/en-us/docs/soul/dev-file.html',
+                            },
+                            {
+                                title: 'Custom parsing IP and Host',
+                                link: '/en-us/docs/soul/dev-iphost.html',
+                            },
+                            {
+                                title: 'Custom result',
+                                link: '/en-us/docs/soul/dev-result.html',
+                            },
+                            {
+                                title: 'Custom sign algorithm',
+                                link: '/en-us/docs/soul/dev-sign.html',
+                            },
+                            {
+                                title: 'Developer soul client',
+                                link: '/en-us/docs/soul/dev-client.html',
+                            },
+                            {
+                                title: 'Thread',
+                                link: '/en-us/docs/soul/dev-thread.html',
+                            },
+                            {
+                                title: 'Soul optimize',
+                                link: '/en-us/docs/soul/dev-netty.html',
                             },
                         ],
                     },
+                    {
+                        title: 'Community',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Contributor',
+                                link: '/en-us/docs/soul/contributor.html',
+                            },
+                            {
+                                title: 'Committer',
+                                link: '/en-us/docs/soul/committer.html',
+                            },
+                            {
+                                title: 'Code conduct',
+                                link: '/en-us/docs/soul/code-conduct.html',
+                            }
+                        ],
+                    }
                 ],
             },
+            {
+                title: 'Hmily',
+                children: [
+                    {
+                        title: 'Home',
+                        link: '/en-us/docs/hmily/index.html',
+                    },
+                    {
+                        title: 'Term',
+                        link: '/en-us/docs/hmily/term.html',
+                    },
+                    {
+                        title: 'Team',
+                        link: '/en-us/docs/hmily/team.html',
+                    },
+                    {
+                        title: 'FAQ',
+                        link: '/en-us/docs/hmily/faq.html',
+                    },
+                    {
+                        title: 'Config',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Break down',
+                                link: '/en-us/docs/hmily/config.html',
+                            },
+                            {
+                                title: 'Local',
+                                link: '/en-us/docs/hmily/config-local.html',
+                            },
+                            {
+                                title: 'Zookeeper',
+                                link: '/en-us/docs/hmily/config-zookeeper.html',
+                            },
+                            {
+                                title: 'Nacos',
+                                link: '/en-us/docs/hmily/config-nacos.html',
+                            },
+                            {
+                                title: 'Apollo',
+                                link: '/en-us/docs/hmily/config-apollo.html',
+                            },
+                            {
+                                title: 'ETCD',
+                                link: '/en-us/docs/hmily/config-etcd.html',
+                            },
+                            {
+                                title: 'Consul',
+                                link: '/en-us/docs/hmily/config-consul.html',
+                            }
+                        ],
+                    },
+                    {
+                        title: 'Annotation',
+                        link: '/en-us/docs/hmily/annotation.html',
+                    },
+                    {
+                        title: 'Context',
+                        link: '/en-us/docs/hmily/context.html',
+                    },
+                    {
+                        title: 'Metrics',
+                        link: '/en-us/docs/hmily/metrics.html',
+                    },
+                    {
+                        title: 'TCC',
+                        link: '/en-us/docs/hmily/tcc.html',
+                    },
+                    {
+                        title: 'TAC',
+                        link: '/en-us/docs/hmily/tac.html',
+                    },
+                    {
+                        title: 'Users',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Dubbo',
+                                link: '/en-us/docs/hmily/user-dubbo.html',
+                            },
+                            {
+                                title: 'Motan',
+                                link: '/en-us/docs/hmily/user-motan.html',
+                            },
+                            {
+                                title: 'Spring cloud',
+                                link: '/en-us/docs/hmily/user-springcloud.html',
+                            },
+                            {
+                                title: 'Sofa RPC',
+                                link: '/en-us/docs/hmily/user-sofa-rpc.html',
+                            },
+                            {
+                                title: 'TARS',
+                                link: '/en-us/docs/hmily/user-tars.html',
+                            },
+                            {
+                                title: 'GRPC',
+                                link: '/en-us/docs/hmily/user-grpc.html',
+                            }
+                        ],
+                    },
+                    {
+                        title: 'Start up',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Dubbo',
+                                link: '/en-us/docs/hmily/quick-start-dubbo.html',
+                            },
+                            {
+                                title: 'Spring cloud',
+                                link: '/en-us/docs/hmily/quick-start-springcloud.html',
+                            },
+                            {
+                                title: 'Motan',
+                                link: '/en-us/docs/hmily/quick-start-motan.html',
+                            },
+                            {
+                                title: 'Sofa RPC',
+                                link: '/en-us/docs/hmily/quick-start-sofa-rpc.html',
+                            },
+                            {
+                                title: 'Tars',
+                                link: '/en-us/docs/hmily/quick-start-tars.html',
+                            },
+                            {
+                                title: 'GRPC',
+                                link: '/en-us/docs/hmily/quick-start-grpc.html',
+                            }
+                        ],
+                    },
+                    {
+                        title: 'Operations',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Start up soul admin',
+                                link: '/en-us/docs/hmily/admin.html',
+                            }
+                        ],
+                    },
+                    {
+                        title: 'Community',
+                        opened: true,
+                        children: [
+                            {
+                                title: 'Contributor',
+                                link: '/en-us/docs/hmily/contributor.html',
+                            },
+                            {
+                                title: 'Committer',
+                                link: '/en-us/docs/hmily/committer.html',
+                            },
+                            {
+                                title: 'Code conduct',
+                                link: '/en-us/docs/hmily/code-conduct.html',
+                            }
+                        ],
+                    }
+                ],
+            }
         ],
         barText: 'Documentation',
     },

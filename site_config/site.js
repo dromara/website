@@ -8,57 +8,57 @@ export default {
   'en-us': {
     pageMenu: [
       {
-        key: 'dromara',
-        text: '首页',
-        link: '/zh-cn/index.html',
+        key: 'Home',
+        text: 'Home',
+        link: '/en-us/index.html',
       },
       {
         key: 'docs',
-        text: '文档',
-        link: '/zh-cn/docs/soul/soul.html',
+        text: 'Document',
+        link: '/en-us/docs/soul/soul.html',
       },
       {
-        key: 'blog',
-        text: '博客',
-        link: '/zh-cn/blog/index.html',
+        key: 'Blog',
+        text: 'Blog',
+        link: '/en-us/blog/index.html',
       },
       {
-        key: 'community',
-        text: '社区',
-        link: '/zh-cn/community/index.html',
+        key: 'Community',
+        text: 'Community',
+        link: '/en-us/community/index.html',
       },
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: '任何单位或个人转载本网站的所有相关信息，请注明来源。',
+      content: 'Any unit or individual reprint all relevant information of this website, please indicate the source.',
     },
     documentation: {
-      title: '文档',
+      title: 'Document',
       list: [
         {
-          text: '概览',
-          link: '/zh-cn/docs/soul/soul.html',
+          text: 'Overview ',
+          link: '/en-us/docs/soul/soul.html',
         },
         {
-          text: '快速开始',
-          link: '/zh-cn/docs/soul/soul.html',
+          text: 'Stat up',
+          link: '/en-us/docs/soul/soul.html',
         },
         {
-          text: '开发者指南',
-          link: '/zh-cn/docs/soul/soul.html',
+          text: 'Developer Guide',
+          link: '/en-us/docs/soul/soul.html',
         },
       ],
     },
     resources: {
-      title: '资源',
+      title: 'Resource',
       list: [
         {
-          text: '博客',
-          link: '/zh-cn/blog/index.html',
+          text: 'Blog',
+          link: '/en-us/blog/index.html',
         },
         {
-          text: '社区',
-          link: '/zh-cn/community/index.html',
+          text: 'Community',
+          link: '/en-us/community/index.html',
         },
       ],
     },

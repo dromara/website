@@ -1,0 +1,10 @@
+{
+  "filename": "dev-file.md",
+  "__html": "<h2>description</h2>\n<ul>\n<li>This doc gives a brief description for uploading and downloading files using soul.</li>\n</ul>\n<h3>file uploading</h3>\n<ul>\n<li>\n<p>The default file size limit is 10M.</p>\n</li>\n<li>\n<p>For custom limitation, use<code>--file.size</code> with an integer variable. e.g.<code>--file.size = 30</code></p>\n</li>\n<li>\n<p>Upload your files just as way you did before</p>\n</li>\n</ul>\n<h3>file downloading</h3>\n<ul>\n<li>Soul supports downloading files in streams. There is no need to change anything.</li>\n</ul>\n",
+  "link": "\\en-us\\docs\\soul\\dev-file.html",
+  "meta": {
+    "title": "file uploading and downloading",
+    "keywords": "soul",
+    "description": "file uploading and downloading"
+  }
+}

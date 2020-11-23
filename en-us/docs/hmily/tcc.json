@@ -1,0 +1,10 @@
+{
+  "filename": "tcc.md",
+  "__html": "<h3>TCC</h3>\n<p>The <code>TCC</code> Mode is a classic flexible transaction solution that needs the users to provided <code>try</code>, <code>confirm</code>, <code>cancel</code> methods.\nThe <code>try</code>, <code>confirm</code> methods will be invoked under normal circumstances,and the <code>try</code>, <code>cancel</code> methods will be invoked as an exception occurs. the <code>confirm</code> method is not required,it entirely depends on the users how to implement the <code>try</code> method. the both <code>confirm</code> and <code>cancel</code> method also need the users to guarantee the idempotency, but it will bring addtional workload to the users. Because after the <code>try</code> method finished, the data had been committed. But with this,the performances will be even better. A good system design is very applicable to the <code>TCC</code> Mode. This is the flow diagram of <code>TCC</code> in <code>Hmily</code> framework as below:\n<img src=\"https://yu199195.github.io/images/hmily/hmily-tcc.png\" alt=\"\"></p>\n<ul>\n<li>\n<p>In extreme cases, such as sudden service crash, timeout exceptions, and much more, the transaction recovery of the log depends on its own calling task.</p>\n</li>\n<li>\n<p>At the both <code>confirm</code> and <code>cancel</code> stage,if there are any exception occur, the corresponding stage will continue to be executed. If the maximum number of retries is exceeded, the transaction has not succeeded,\nIt will not retry any more, then manual intervention is required at this time.</p>\n</li>\n<li>\n<p>In the case of a service cluster, the users need to do the best to ensure the idempotence of these two methods <code>confirm</code>, <code>cancel</code>.</p>\n</li>\n</ul>\n",
+  "link": "\\en-us\\docs\\hmily\\tcc.html",
+  "meta": {
+    "title": "Hmily-tcc",
+    "keywords": "tcc",
+    "description": "tcc"
+  }
+}

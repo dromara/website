@@ -281,8 +281,6 @@ export default {
               link: '',
               bgColor: '#00D0D9',
             }
-    
-           
           ],
         },
       ],

@@ -1,0 +1,10 @@
+{
+  "filename": "admin_en.md",
+  "__html": "<h3>Hmily-Admin startup tutorial (not completed）:</h3>\n<ul>\n<li>\n<p><code>Admin</code> is the background management system for viewing transaction logs in Hmily. It has many features, Such as viewing abnormal logs, modifying the number of retries and so on.</p>\n</li>\n<li>\n<p>First, make sure that your project is using Hmily and is running properly.</p>\n</li>\n<li>\n<p>Second, the JDK used by the user must be 1.8+. Git and Maven are installed locally, then execute the following command</p>\n</li>\n</ul>\n<h3>Step 2：Modify <code>index.html</code> under the <code>static</code> folder of your project</h3>\n<pre><code class=\"language-html\"><span class=\"hljs-comment\">&lt;!--href use your ip and port--&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">\"serverIpAddress\"</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"display: none\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"http://192.168.1.132:8888/admin\"</span>&gt;</span>\n</code></pre>\n<h3>Step 3: Run the <code>main</code> method in <code>AdminApplication</code></h3>\n<h3>Step 4: Visit <code>http://ip:port/tcc-admin/index.html</code> in the browser, then enter the user name and password to login.</h3>\n<h3>If you have any questions, please join the QQ group: 162614487 for discussion</h3>\n",
+  "link": "\\zh-cn\\docs\\hmily\\admin_en.html",
+  "meta": {
+    "title": "Hmily-Admin",
+    "keywords": "admin",
+    "description": "Hmily-Admin"
+  }
+}
