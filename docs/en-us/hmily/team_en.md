@@ -8,10 +8,10 @@ description: Hmily Team
 
  |Name                      | github  |  Role   | Company |
  |:------------------------ |:----- |:-------: |:-------:|
- |Xiao Yu                   |yu199195    |  VP          | JD     |
- |Zhang Yong Lun            |tuohai666   |  committer   | JD     |
- |Zhao Jun                  |cherrylzhao |  committer   | China Unicom        |
+ |Xiao Yu                   |yu199195    |  VP          | [JD](https://jd.com)     |
+ |Zhang Yong Lun            |tuohai666   |  committer   | [JD](https://jd.com)     |
+ |Zhao Jun                  |cherrylzhao |  committer   | [China Unicom](http://chinaunicom.com.cn/) |
  |Chen Bin                  |prFor       |  committer   | A startup company   |
- |Jiang Xiao Feng           |SteNicholas |  committer   | Ali Cloud |
- |Li Lang                   |cysy-lli    |  committer   | Ctrip     |
- |Tang Yi Dong              |tydhot      |  committer   | perfma    |
+ |Jiang Xiao Feng           |SteNicholas |  committer   | [Alibaba Cloud](https://cn.aliyun.com/) |
+ |Li Lang                   |cysy-lli    |  committer   | [Ctrip](https://www.ctrip.com/)     |
+ |Tang Yi Dong              |tydhot      |  committer   | [perfma](https://perfma.com/)       |
