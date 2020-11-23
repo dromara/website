@@ -1,31 +1,31 @@
 ---
-title: 线程模型
+title: thread model
 keywords: soul
-description: 线程模型
+description: thread model
 ---
 
-## 说明
+## description
 
-* 本文主要介绍soul的线程模型,以及各种场景的使用。
+* This article gives an introduction to thread models in soul and usage in various scenarios.
 
-## io与work线程
+## io and work thread
 
-* soul内置依赖 `spring-webflux` 而其底层是使用的netty。这一块只要是使用的netty线程模型。
+* `spring-webflux` is one of dependencies of soul, and it uses Netty thread model in lower layer. 
 
-## 业务线程
+## business thread
 
-*  默认使用调度线程来执行。
+*  Use scheduling thread to execute by default.
 
-*  默认使用固定的线程池来执行，其线程数为 cpu * 2 + 1。
+*  A fixed thread pool manages business threads, the number of threads is count in this formula: cpu * 2 + 1.
 
 
-## 切换类型
+## type switching
 
-* `reactor.core.scheduler.Schedulers`。
+* `reactor.core.scheduler.Schedulers`.
 
-* 可以使用 `-Dsoul.scheduler.type=fixed` 这个是默认。 设置其他的值 就会使用弹性线程池来执行,`Schedulers.elastic()`。
+* `-Dsoul.scheduler.type=fixed` is a default config. If set to other value, a flexible thread pool will take place it.`Schedulers.elastic()`.
 
-* 可以使用 `-Dsoul.work.threads = xx` 来指定线程数量，默认为 `cpu * 2 + 1` ,最小为16个线程。
+* `-Dsoul.work.threads = xx` is for configuring number of threads, the default value calculates in following formula `cpu * 2 + 1` with a minimum of 16 threads.
 
 
 
