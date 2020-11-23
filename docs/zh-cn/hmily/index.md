@@ -15,7 +15,7 @@ Hmily是一款高性能，零侵入，金融级分布式事务解决方案，目
    
    *  可观测性 ：Metrics多项指标性能监控，以及admin管理后台UI展示。
    
-   *  多种RPC ： 支持 `Dubbo`, `SpringCloud`,`Montan`, `brpc`, `tars` 等知名RPC框架。
+   *  多种RPC ： 支持 `Dubbo`, `SpringCloud`,`Motan`, `brpc`, `tars` 等知名RPC框架。
    
    *  日志存储 ： 支持 `mysql`, `oracle`, `mongodb`, `redis`, `zookeeper` 等方式。
    
@@ -26,7 +26,7 @@ Hmily是一款高性能，零侵入，金融级分布式事务解决方案，目
 
   * 必须使用 `JDK8+` 
   
-  * TCC模式下，用户必须要使用一款 `RPC` 框架, 比如 : `Dubbo`, `SpringCloud`,`Montan`
+  * TCC模式下，用户必须要使用一款 `RPC` 框架, 比如 : `Dubbo`, `SpringCloud`,`Motan`
   
   * TAC模式下，用户必须使用关系型数据库, 比如：`mysql`, `oracle`, `sqlsever`
 
