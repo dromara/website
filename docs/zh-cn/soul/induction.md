@@ -444,13 +444,13 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/get")
-    @SoulSpringMvcClien(path = "/user/get", desc = "获得用户详细")
+    @SoulSpringMvcClient(path = "/user/get", desc = "获得用户详细")
     public String getUser(@RequestParam("id") Integer id) {
         return "DEMO:" + id;
     }
 
     @PostMapping("/create")
-    @SoulSpringMvcClien(path = "/user/create", desc = "创建用户")
+    @SoulSpringMvcClient(path = "/user/create", desc = "创建用户")
     public Integer createUser(@RequestBody UserCreateDTO createDTO) {
         logger.info("[createUser][username({}) password({})]", createDTO.getNickname(), createDTO.getGender());
         return 1;
