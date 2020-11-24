@@ -103,7 +103,7 @@ class Documentation extends Language {
         <section className="content-section">
           <Sidemenu dataSource={dataSource.sidemenu} />
           <div
-            className="doc-content markdown-body"
+            className="doc-content markdown-body" id="doc-body"
             ref={(node) => { this.markdownContainer = node; }}
             dangerouslySetInnerHTML={{ __html }}
           />
