@@ -36,7 +36,7 @@ description: Integrate Http with soul gateway
 
 * pls make sure divide plugin has enabled in `soul-admin` background.
 
-##### add Soul-Client methods。 （available for SpringMvc,SpringBoot user）
+##### add Soul-Client methods（available for SpringMVC,SpringBoot user）
 
 * SpringBoot user
   
@@ -137,7 +137,7 @@ description: Integrate Http with soul gateway
   }
    ```
 
-* Kick off your project with your interface integrated with soul gateway.
+* Kick off your project with your interface, which is  integrated with soul gateway.
 
 ## Configure soul gateway as an Http proxy（other framework）
 
@@ -157,7 +157,7 @@ description: Integrate Http with soul gateway
  
 ```yaml
 
-# for example, if you have a order service and it has a interface, the request url: http://localhost:8080/test/save
+# for example, if you have an order service and it has a interface, the request url: http://localhost:8080/test/save
 
 # Now need to change to:  http://localhost:9195/order/test/save
 

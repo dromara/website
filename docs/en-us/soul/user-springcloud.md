@@ -104,9 +104,9 @@ soul:
     admin-url: http://localhost:9095
     context-path: /springcloud
     appName: http
-# adminUrl: 'ip + port' that running on your soul-admin project, pls note that 'http://' is necessary.
-# contextPath: the route prefix in soul gateway of your project, such as /order ，/product etc，gateway will route with this.
-# appName：your application name, default value is the application name in dubbo config.
+# adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
+# contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
+# appName：your project name,the default value is`spring.application.name`.
 ```
 
 
@@ -179,7 +179,7 @@ soul:
 
 ```yaml
 
-# for example, your have a order service and it has a interface, the request url: http://localhost:8080/test/save
+# for example, your have an order service and it has a interface, the request url: http://localhost:8080/test/save
 
 # now need to change to：http://localhost:9195/order/test/save
 

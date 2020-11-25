@@ -127,9 +127,9 @@ description: Integrate dubbo with soul gateway
           adminUrl: http://localhost:9095
           contextPath: /dubbo
           appName: dubbo    
-         # adminUrl: 'ip + port' that running on your soul-admin project, pls note that 'http://' is necessary.
-         # contextPath: the route prefix in soul gateway of your project, such as /order ，/product etc，gateway will route with this.
-         # appName：your application name, default value is the application name in dubbo config.
+         # adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
+         # contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
+         # appName：your project name,default value is the application name in dubbo config.
   ```    
     
 * spring
@@ -180,12 +180,12 @@ description: Integrate dubbo with soul gateway
      
          # adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
          # contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
-         # appName：your project name,the default value is`spring.application.name`.
+         # appName：your project name,default value is the application name in dubbo config.
   ```
    
    * spring
       
-     * add these dependencies ：
+     * Add these dependencies ：
        
      ```xml
        <dependency>
@@ -234,7 +234,7 @@ description: Integrate dubbo with soul gateway
 * soul gateway need a route prefix which configured when accessing the project.
  
 ```yaml
-# for example: you have a order service and it has a interface, his registry address: /order/test/save
+# for example: you have an order service and it has a interface, his registry address: /order/test/save
 
 # now we can communicate with gateway through POST request http://localhost:9195/order/test/save
 
@@ -246,9 +246,10 @@ description: Integrate dubbo with soul gateway
    
    * communicate with gateway through body or json of http post request.
    
-   * more parameter types, pls refer to the interface definition in  [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo) and parameter passing m     ethod.
+   * more parameter types, pls refer to the interface definition in  [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo) and parameter passing
+     method.
 
-* Single java bean parameter type （default）
+* Single java bean parameter type (defaulta).
 
 * Multi-parameter type support, add this config value in gateway's yaml file:
 
@@ -283,7 +284,7 @@ soul :
   
   *  in Pair，left is parmeter type，right is parameter value, it's the standard of dubbo generalization calls.
   
-  *  Inject your class into Spring bean, cover the default implement.
+  *  Inject your class into Spring bean, cover the default implementation.
   
  ```java
   @Bean
