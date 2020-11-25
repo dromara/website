@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import Item from './item.jsx';
 import './index.scss';
-import { getScrollTop, getWindowHeight} from '../../../utils';
+import { getScrollTop } from '../../../utils';
 
 @autobind
 class SideMenu extends React.Component {
@@ -11,11 +11,17 @@ class SideMenu extends React.Component {
     super(props);
     this.state = {
       menuBodyVisible: false,
-      isFixed : false
+      isFixed : false,
+      dir : 'soul'
     };
   }
 
   componentDidMount() {
+    let language = this.language;
+    const splitPart = window.location.pathname.replace(`${window.rootPath}/${language}`, '').split('/').slice(-2, -1);
+    const dir = splitPart.join('').toLowerCase();
+    this.setState({dir : dir});
+
     let menu = document.getElementById("menu");
     let pos = parseInt(menu.offsetTop);
 
@@ -58,17 +64,22 @@ class SideMenu extends React.Component {
           <ul>
           {
             dataSource.map((data, i) => {
-              return (
-                <li className={itemCls} key={i}>
-                  <span>
-                  {data.title}
-                  </span>
-                  <ul>
-                    {data.children.map((item, j) => <Item item={item} key={j} toggleMenuBody={this.toggleMenuBody} />)}
-                  </ul>
-                </li>
-              );
-            })
+              let title = data.title.toLowerCase();
+              let dir = this.state.dir;
+
+              if (title == dir) {
+                return (
+                  <li className={itemCls} key={i}>
+                    <span>
+                    {data.title}
+                    </span>
+                    <ul>
+                      {data.children.map((item, j) => <Item item={item} key={j} toggleMenuBody={this.toggleMenuBody} />)}
+                    </ul>
+                  </li>
+                );
+              }
+              })
           }
           </ul>
         </div>);
