@@ -109,10 +109,10 @@
 }
 
 .fixed {
-  position: fixed;
+  position: sticky;
   top: 66px;
   margin-top: 0 !important;
-  height:calc(100% - 66px);
+  height: 100vh;
   overflow: overlay;
 }
 

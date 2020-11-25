@@ -17,27 +17,17 @@ class SideMenu extends React.Component {
 
   componentDidMount() {
     let menu = document.getElementById("menu");
-    let pos = parseInt(menu.offsetTop + 200);
-    let docBody = document.getElementById("doc-body");
-    let a = document.documentElement.scrollHeight;
-    let high = getWindowHeight();
+    let pos = parseInt(menu.offsetTop);
 
     window.addEventListener("scroll", () => {
+
       let scrollY = getScrollTop();
       if (scrollY >= pos) {
         this.setState({
             isFixed: true,
         });
-        docBody.setAttribute("style", "margin-left:295px");
       } else if (scrollY < pos) {
         this.setState({isFixed: false});
-        docBody.setAttribute("style", "");
-      }
-
-      if (scrollY  + high >= a) {
-        menu.setAttribute("style", "position:absolute;bottom:337px");
-      } else {
-        menu.setAttribute("style", "");
       }
     })
   }
