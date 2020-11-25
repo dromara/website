@@ -110,6 +110,7 @@
 
 .fixed {
   position: sticky;
+  position: -webkit-sticky;
   top: 66px;
   margin-top: 0 !important;
   height: 100vh;

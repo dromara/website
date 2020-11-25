@@ -50,6 +50,7 @@ class Header extends React.Component {
       search: siteConfig.defaultSearch,
       searchValue: '',
       inputVisible: false,
+      pullDownVisible: false
     };
   }
 
@@ -113,9 +114,15 @@ class Header extends React.Component {
     }
   }
 
+  togglePullDown() {
+    this.setState({
+      pullDownVisible : !this.state.pullDownVisible,
+    });
+  }
+
   render() {
     const { type, logo, onLanguageChange, currentKey } = this.props;
-    const { menuBodyVisible, language, search, searchVisible } = this.state;
+    const { menuBodyVisible, language, search, searchVisible, pullDownVisible } = this.state;
     return (
       <header
         className={
@@ -187,7 +194,22 @@ class Header extends React.Component {
                   })}
                   key={item.key}
                 >
-                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                  {
+                    item.key === 'docs' ?
+                    (<a href="javascript:void(0)" onClick={this.togglePullDown} >{item.text}</a>
+                      )
+                      : (<a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>)
+                  }
+                  <div className={(item.key === 'docs' && pullDownVisible) ? 'sub-menu show' : 'sub-menu'}>
+                      <ul>
+                          {
+                            item.hasOwnProperty("subMenus") ? item.subMenus.map(el => (
+                                <li><a href={getLink(el.link)} target={item.target || '_self'}>{el.text}</a></li>
+                            )) : null
+                          }
+
+                      </ul>
+                  </div>
                 </li>))}
             </ul>
           </div>
