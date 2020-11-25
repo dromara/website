@@ -8,13 +8,13 @@ description: springCloud with soul gateway
 
 * this article is a guide about how to integrate Spring Cloud with soul gateway quickly.
 
-* pls enable `springCloud` plug-in under soul-admin background.
+* pls enable `springCloud` plug-in in soul-admin background.
 
-* Pls start `soul-admin` correctly beofore integrating , and [Environement Setup](setup.md) is Ok。
+* Pls start `soul-admin` successfully beofore integrating , and [Environement Setup](setup.md) is Ok.
 
-## add gateway's plugin that supports Spring Cloud
+## Configure soul gateway as Spring Cloud proxy
 
-* include these dependencies in gateway's plm.xml.
+* add these dependencies in gateway's pom.xml:
 
 ```xml
   <!--soul springCloud plugin start-->
@@ -39,7 +39,7 @@ description: springCloud with soul gateway
 
 * If you use `eureka` as SpringCloud registry center.
 
-  * add these dependencies:：
+  * add these dependencies:
   
  ```xml
    <dependency>
@@ -62,7 +62,7 @@ description: springCloud with soul gateway
 
 * if you use `nacos` as Spring Cloud registry center.
 
-  * add these dependencies:：
+  * add these dependencies:
   
  ```xml
   <dependency>
@@ -84,9 +84,9 @@ description: springCloud with soul gateway
 
 * restart your gateway service.
 
-## SpringCloud service integrate with gateway.。
+## SpringCloud integration with gateway.
 
-* add these dependencies in the project which you provide the service.：
+* add these dependencies in your project：
 
 ```xml
  <dependency>
@@ -96,7 +96,7 @@ description: springCloud with soul gateway
  </dependency>
 ```
 
-* add these config values in your yaml file::
+* add these config values in your yaml file:
 
 ```yaml
 soul:
@@ -104,15 +104,15 @@ soul:
     admin-url: http://localhost:9095
     context-path: /springcloud
     appName: http
-# adminUrl: 'ip + port' that running on your soul-admin project, pls note that 'http://' is necessary.
-# contextPath: the route prefix in soul gateway of your project, such as /order ，/product etc，gateway will route with this.
-# appName：your application name, default value is `spring.application.name`
+# adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
+# contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
+# appName：your project name,the default value is`spring.application.name`.
 ```
 
 
 * add the annotation `@SoulSpringCloudClient` in your `controller` interface.
 
- * you can apply the annotation to class-level in a controller.the property of 'path' is prefix and '/**' will apply proxy service for entire interfaces.
+ * you can apply the annotation to class-level in a controller.the name of the path variable is prefix and '/**' will apply proxy for entire interfaces.
   
    * example （1）：both `/test/payment` and `/test/findByUserId` will be handled by gateway.
    
@@ -163,29 +163,29 @@ soul:
 ```
 
   
-* start your service, if output this log info `http client register success`, then your interface has registered to gateway.  
+* start your service, get the log `dubbo client register success `，then your interface has been added with soul gateway successfully.
   
 ## plugin setting
 
-* enable Spring Cloud plugin in `soul-admin` plugin management.
+* enable Spring Cloud plugin in `soul-admin`.
 
-## user request
+## User request
 
-* literally it doesn't change much, only two points need to notice.
+* Send the request as before, only two points need to notice.
 
-* firstly，the domain name you requested before is your service, now relpace with the gateway's domain name.
+* firstly，the domain name that requested before in your service, now need to replace with gateway's domain name.
 
-* secondly，soul gateway needs a route prefix which comes from `contextPath`, it configured during integartion with gateway, you can change it freely in divide plugin of `soul-admin`, if your familiar with it.
- 
+* secondly，soul gateway needs a route prefix which comes from `contextPath`, it configured during the integration with gateway, you can change it freely in divide plugin of `soul-admin`, if your familiar with it. 
+
 ```yaml
 
-# for example, your have a order service and it has a interface, the request url: http://localhost:8080/test/save
+# for example, your have an order service and it has a interface, the request url: http://localhost:8080/test/save
 
 # now need to change to：http://localhost:9195/order/test/save
 
 # we can see localhost:9195 is the gateway's ip port, default port number is 9195 ，/order is the contextPath in your config yaml file. 
 
-# the request of other parameters don't change.。
+# the request of other parameters don't change.
 
 # Any questions, pls join the group and we can talk about it.
 

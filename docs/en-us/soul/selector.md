@@ -13,13 +13,13 @@ description: detailed explanation of selector and rule
 
 ## overview
 
-* one plugin has many selector and a seletor has many rules, selector is the first filter of requests, and the rule is the final filter.
+* one plugin has many selector and a selector has many rules, selector is the first filter of request, and the rule is the final filter.
 
-* pls consider this, it would be perfect that the plugin executes the requests until it reached the config value.
+* pls consider this, it would be perfect when the plugin executes the request until it reached the config value.
 
-* selector and rule are designed to execute only when the requests meet the specific condition.
+* selector and rule are designed to execute only when the request meet the specific condition.
 
-* pls refer to the previous data structure [database design](db.md)
+* pls refer to the previous data structure [database design](db.md).
 
 
 ## selector
@@ -28,7 +28,7 @@ description: detailed explanation of selector and rule
 
  * selector detailed explanation：
  
-     * name：create your selector with a distinguish name
+     * name：create your selector with a distinguish name.
      * type：custom flow is customized request, full flow is full request. customized request will be handled by the conditions as below, while  full request won't. 
      * match method: you can combine these conditions with 'and' , 'or' operators.
      * condition：
@@ -37,15 +37,15 @@ description: detailed explanation of selector and rule
         * query: filter request with query string.
         * ip: filter request with your real ip.
         * host: filter request with your real host.
-        * post: not recommend to use.。
+        * post: not recommend to use.
         * condition match:
-           * match : fuzzy string matching，recommend to combine with uri，support restful matching.（/test/**）
+           * match : fuzzy string matching，recommend to combine with uri，support restful matching.（/test/**).
            * = : if the values are the same, then they match.
-           * regEx : regex matching，match characters in regex expression。
-           * like : string fuzzy matching 
-     * open option：only work with enabled
+           * regEx : regex matching，match characters in regex expression.
+           * like : string fuzzy matching.
+     * open option：only work with enabled.
      * print log：it will print the matching log with the open option enabled.
-     * execution order：the smaller will have high priorty to execute amongmulti-selectors.
+     * execution order：the smaller will have high priorty to execute among multi-selectors.
   
  * the above picture means: when the prefix of the request uri is `/test` and the value of `module` in`header` is`test`, it will redirect to this service `1.1.1.1:8080`.   
 
@@ -59,7 +59,7 @@ description: detailed explanation of selector and rule
  * rule is the final confirmation about how to execute request logically.
  
  * rule detailed explanation：
-     * name：create your selector with a distinguish name
+     * name：create your selector with a distinguish name.
      * match method: you can combine these conditions with 'and' , 'or' operators.
      * condition：
         * uri: filter request with uri method and support fuzzy matching (/**).
@@ -67,18 +67,18 @@ description: detailed explanation of selector and rule
         * query: filter request with query string.
         * ip: filter request with your real ip.
         * host: filter request with your real host.
-        * post: not recommend to use.。
+        * post: not recommend to use.
         * condition match:
            * match : fuzzy string matching，recommend to combine with uri，support restful matching.（/test/**）
            * = : if the values are the same, then they match.
-           * regEx : regex matching，match characters in regex expression。
-           * like : string fuzzy matching
-     * open option：only work with enabled
+           * regEx : regex matching，match characters in regex expression.
+           * like : string fuzzy matching.
+     * open option：only work with enabled.
      * print log：it will print the matching log with the open option enabled.
      * execution order：the smaller will have high priorty to execute amongmulti-selectors.
      * handle: different plugin has different execution method, pls refer to the specific one.
 
-* above picture means: when the request `uri` equals to `/http/order/save`, it will execute based on this rule，load strategy is `random`
+* above picture means: when the request `uri` equals to `/http/order/save`, it will execute based on this rule，load strategy is `random`.
 
 * combine selector means ：when the request `uri ` is `/http/order/save`, it will be redicted to `1.1.1.1:8080` by `random` method.
 
@@ -88,7 +88,7 @@ description: detailed explanation of selector and rule
 
 * uri matching （recommend）
 
-  * uri matching is based on your request uri, the frontend wont' change anything before accessing the gateway.
+  * uri matching is based on your request uri, the frontend won't change anything before accessing the gateway.
   
   * the `match` filter method is the same with`springmvc` fuzzy matching.
   
@@ -124,6 +124,6 @@ description: detailed explanation of selector and rule
     
 *  post matching
 
-    * no recommend to use.
+    * not recommend to use.
 
           

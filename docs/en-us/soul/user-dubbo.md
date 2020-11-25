@@ -1,7 +1,7 @@
 ---
-title: integrate dubbo with soul gateway
+title: Integrate dubbo with soul gateway
 keywords: soul
-description:integrate dubbo with soul gateway
+description: Integrate dubbo with soul gateway
 ---
 
 
@@ -9,17 +9,17 @@ description:integrate dubbo with soul gateway
 
 * This chapter is a guide about integrating dubbo service with soul gateway.
 
-* Support alibaba dubbo（< 2.7.x）and apache dubbo (>=2.7.x)。
+* Support alibaba dubbo（< 2.7.x）and apache dubbo (>=2.7.x).
 
-* Pls start `soul-admin` correctly beofore integrating , and [Environement Setup](setup.md) is Ok。
-
-
-## add gateway's plugin that suppots dubbo
+* Pls start `soul-admin` successfully beofore integrating , and [Environement Setup](setup.md) is Ok.
 
 
-* include these dependensies in gateway's `pom.xml`：
+## Configure soul gateway as dubbo proxy
 
-  * alibaba dubbo customer, replace the dubbo's version with yours as below，either with jar file of registration center.
+
+* Add these dependencies in gateway's `pom.xml`：
+
+  * alibaba dubbo user, configure the dubbo version and registry center with yours.
   
  ```xml
   
@@ -53,7 +53,7 @@ description:integrate dubbo with soul gateway
        
   ```
   
-  * apache dubbo cutomer，replace the dubbo's version with yours as below, either with the registry center which dependency based on.
+  * apache dubbo user, configure the dubbo version and registry center with yours.
   
   ```xml
   
@@ -104,13 +104,13 @@ description:integrate dubbo with soul gateway
 
 * restart gateway service.
 
-## dubbo's integration with gateway,pls refer to : [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo)
+## dubbo integration with gateway,pls refer to : [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo)
 
- * alibaba dubbo customer
+ * alibaba dubbo user
    
     * springboot
       
-       * add these dependencies
+       * Add these dependencies:
  ```xml
         <dependency>
              <groupId>org.dromara</groupId>
@@ -119,7 +119,7 @@ description:integrate dubbo with soul gateway
         </dependency>
  ```
       
-  * also add these config values in your yaml file ：
+  * Add these config values in your yaml file ：
   
    ```yaml
       soul:
@@ -127,9 +127,9 @@ description:integrate dubbo with soul gateway
           adminUrl: http://localhost:9095
           contextPath: /dubbo
           appName: dubbo    
-         # adminUrl: 'ip + port' that running on your soul-admin project, pls note that 'http://' is necessary.
-         # contextPath: the route prefix in soul gateway of your project, such as /order ，/product etc，gateway will route with this.
-         # appName：your application name, default value is the application name in dubbo config.
+         # adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
+         # contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
+         # appName：your project name,default value is the application name in dubbo config.
   ```    
     
 * spring
@@ -155,7 +155,7 @@ description:integrate dubbo with soul gateway
           </bean>
    ``` 
    
-* apache dubbo customer
+* apache dubbo user
    
   * springboot
       
@@ -178,14 +178,14 @@ description:integrate dubbo with soul gateway
           contextPath: /dubbo
           appName: dubbo
      
-         # adminUrl: ip + port of your soul-admin project, pls note that 'http://' is necessary.
-         # contextPath: the route prefix in soul gateway of your project, such as /order ，/product etc，gateway will route with this.
-         # appName：your application name, default value is the application name in dubbo config. 
+         # adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
+         # contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
+         # appName：your project name,default value is the application name in dubbo config.
   ```
    
    * spring
       
-     * add these dependencies ：
+     * Add these dependencies ：
        
      ```xml
        <dependency>
@@ -209,46 +209,47 @@ description:integrate dubbo with soul gateway
           </bean>
    ``` 
 
-## Define dubbo configuration
+## dubbo configuration
 
-* firstly enable `dubbo` option in `soul-admin` plugin management.
+* firstly enable `dubbo` option in `soul-admin`.
 
-* then configure your registry address in `dubbo ` plugin management.
+* then configure your registry address in `dubbo `.
 
 ```yaml
 {"register":"zookeeper://localhost:2181"}   or {"register":"nacos://localhost:8848"}
 
 ```
 
-## Register the interface to gateway
+## configure the interface with gateway
 
-* you can apply the annotation `@SoulDubboClient` to your Dubbo service implementation class, so that this interface method will register to gateway.
+* you can add the annotation `@SoulDubboClient` to your dubbo service implementation class, so that the interface method will be configured with gateway.
 
-* start your provider and output the log `dubbo client register success `，your dubbo interface has been published to soul gateway. Any questions,pls refer to `soul-test-dubbo`
+* start your provider and get the log `dubbo client register success `，then your dubbo interface has been added with soul gateway successfully.Pls refer to `soul-test-dubbo`
   project.
 
-## dubbo user requirement and parameter explanation.
+## dubbo user request and parameter explanation.
 
 * communicate with dubbo service through Http transport protocol.
 
 * soul gateway need a route prefix which configured when accessing the project.
  
 ```yaml
-# for example: you have a order service and it has a interface, his registry address: /order/test/save
+# for example: you have an order service and it has a interface, his registry address: /order/test/save
 
 # now we can communicate with gateway through POST request http://localhost:9195/order/test/save
 
-# localhost:9195 is gateway's ip port，default port is 9195 ，/order is the contextPath when your dubbo integarte with gateway.
+# localhost:9195 is gateway's ip port，default port is 9195 ，/order is the contextPath you set through gateway.
 
 ```
 
 * parameter deliver：
    
-   * communicate with gateway through body or json in http post request.
+   * communicate with gateway through body or json of http post request.
    
-   * more parameter types, pls refer to the interface defination in  [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo) and parameter passing m     ethod.
+   * more parameter types, pls refer to the interface definition in  [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo) and parameter passing
+     method.
 
-* Single java bean parameter type （default）
+* Single java bean parameter type (defaulta).
 
 * Multi-parameter type support, add this config value in gateway's yaml file:
 
@@ -258,9 +259,9 @@ soul :
       parameter: multi
 ```
 
-* Support for customize multi-parameter type
+* Support for customized multi-parameter type
 
-  * create a new class A in yur gateway project, implement `org.dromara.soul.web.dubbo.DubboParamResolveService`.
+  * create a new implementation class A in your gateway project of `org.dromara.soul.web.dubbo.DubboParamResolveService`.
   
  ```java
    public interface DubboParamResolveService {
@@ -277,13 +278,13 @@ soul :
    }
   ```
   
-  * `body` is the json string in http request body..
+  * `body` is the json string in http request.
   
-  *  `parameterTypes`: the list of method parameter types that are matched，split with `,`.
+  * `parameterTypes`: the list of method parameter types that are matched，split with `,`.
   
   *  in Pair，left is parmeter type，right is parameter value, it's the standard of dubbo generalization calls.
   
-  *  inject your class into Spring bean, cover the default implement.
+  *  Inject your class into Spring bean, cover the default implementation.
   
  ```java
   @Bean
@@ -294,39 +295,39 @@ soul :
   
 ## Let's break down this process: http --> gateway --> dubbo provider
 
-* it basically switches from HTTP request to Dubbo protocol，then invoke Dubbo service and return to the result.
+* It basically switches from HTTP request to Dubbo protocol，then invoke Dubbo service and return to the result.
 
-* there are two things after intgerating your dubbo service with gateway, one is the added annoation `@SoulDubboClient`, another is a path used to speicify the request path.
+* Two things need to notice after intgeration with gateway, one is the added annoation `@SoulDubboClient`, another is a path used to speicify the request path.
 
-* also, you added a config value in `contextPath`?
+* And you added a config value of `contextPath`.
 
-* if you still remember, then we can start.。
+* If you still remember, then we can start.
 
-* as if you have a function like this, the config value in contextPath is `/dubbo`
+* If you have a function like this, the config value in contextPath is `/dubbo`
 
 ```java
     @Override
-    @@SoulDubboClient(path = "/insert", desc = "插入一条数据")
+    @@SoulDubboClient(path = "/insert", desc = "insert data")
     public DubboTest insert(final DubboTest dubboTest) {
         return dubboTest;
     }
 
 ```
 
-* so our request path is: http://localhost:9195/dubbo/insert , btw localhost:9195 is the gateway's domain name,if you changed before, now so does same thing here.
+* so our request path is: http://localhost:9195/dubbo/insert ,localhost:9195 is the gateway's domain name,if you changed before,so does with yours here..
 
-* how about the request parameter？ `DubboTest` is a javabean object，has 2 parameters，id and name ，so we can transfer the value's json type through request body.
+* how about the request parameter？`DubboTest` is a java bean object，has 2 parameters，id and name ，so we can transfer the value's json type through request body.
 
 ```
 {"id":"1234","name":"XIAO5y"}
 
 ```
 
-* if your interface has no parameter, then the value in body is:
+* if your interface has no parameter, then the value is:
 
 ```
 {}
 
 ```
 
-* if your interface has multi-parameter, you can find the introduction above.
+* if your interface has multi-parameter, pls refer to the guide above.
