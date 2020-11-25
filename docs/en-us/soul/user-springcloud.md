@@ -39,7 +39,7 @@ description: springCloud with soul gateway
 
 * If you use `eureka` as SpringCloud registry center.
 
-  * add these dependencies:：
+  * add these dependencies:
   
  ```xml
    <dependency>
@@ -62,7 +62,7 @@ description: springCloud with soul gateway
 
 * if you use `nacos` as Spring Cloud registry center.
 
-  * add these dependencies:：
+  * add these dependencies:
   
  ```xml
   <dependency>
