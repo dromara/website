@@ -6,17 +6,17 @@ description: use different data-sync strategy.
 
 ## Features
 
-* Data synchronization means to sync the config value of 'soul-admin' data into the JVM memory in the 'soul' cluster, which is the key to the gateway's high performance.
+* Data synchronization is the key of gateway high performance, which is to sync 'soul-admin' config data into the JVM memory of soul cluster.
 
-* implement principle, pls refer to： [dataSync](dataSync.md)。
+* Implementation principles, pls refer to：[dataSync](dataSync.md)。
 
-* the gateway in this article is your setup gateway. please see ：[Environment Setup](setup.md)。
+* In the article, the gateway is the environment you setup. please refer to：[Environment Setup](setup.md).
 
-## websocket sync（default method，recommend）
+## Websocket sync（default method，recommend）
 
 * gateway setting（note:restart）
   
-    * first of all, add these dependencies in `pom.xml`：
+    * Add these dependencies in `pom.xml`：
  ```xml
     <!--soul data sync start use websocket-->
     <dependency>
@@ -34,18 +34,23 @@ description: use different data-sync strategy.
   #urls: address of soul-admin，multi-address will be splitted with (,).
    ```
 
-* soul-admin configure, default it's enabled, websocket sync，if you want to disable, pls specify `soul.sync.websocket.enabled=false`
+* soul-admin config, enable this parameter `--soul.sync.websocket='' ` in soul admin, then restart service.
+```yaml
+soul:
+  sync:
+     websocket:
+```
 
-* When the connection is established, the data will be obtained in full, then adding and upating data subsequently. it's a good performance.
+* When the connection is established, getting the full data once,then adding and upating data subsequently, which is a good performance.
 
-* Support disconnection and reconnection (default 30 sec).。
+* Support disconnection and reconnection (default 30 sec).
 
 
 ## zookeeper sync
 
 * gateway setting（note: restart）
   
-    * add these dependencies in `pom.xml`: 
+    * Add these dependencies in `pom.xml`: 
 
  ```xml
     <!--soul data sync start use zookeeper-->
@@ -56,7 +61,7 @@ description: use different data-sync strategy.
       </dependency>
  ```
   
-   * add these dependencies in  springboot yaml file:
+   * Add these dependencies in  springboot yaml file:
  ```yaml
   soul :
       sync:
@@ -79,11 +84,11 @@ soul:
 * It is  good to use ZooKeeper synchronization mechanism with high timeliness, but we also have to deal with the unstable environment of ZK, cluster brain splitting and other
   problems.
 
-## http long-polling sync
+## Http long-polling sync
 
 * gateway setting（note:restart）
   
-    * first of all add these dependencies in `pom.xml`：
+    * Add these dependencies in `pom.xml`：
 
  ```xml
     <!--soul data sync start use zookeeper-->
@@ -100,26 +105,26 @@ soul:
       sync:
           http:
                url: http://localhost:9095
-  #url: config with your soul-admin's ip and port url, pls use (,) to split multi cluster environment.
+  #url: config with your soul-admin's ip and port url, pls use (,) to split multi-admin cluster environment.
    ```
-* soul-admin config, default config with http sync enabled, if you want to disable, pls specify `soul.sync.http.enabled=false`
+* soul-admin config, configure the soul-admin's starting parameter with `--soul.sync.http='' `, then restart service.
 ```yaml
 soul:
   sync:
      http:
-       refresh-interval: 5m # default to refresh the local cache once per 5min
-       enabled: true # default to enable http sync
 ```
 
-* HTTP long-polling makes the gateway lightweight and less time-sensitive. 
+* HTTP long-polling makes the gateway lightweight, but less time-sensitive. 
 
-* It pulls according to the group key. If the data is too large or too much, it will have some influence, that is a small change under a group will pull the entire group.
+* It pulls according to the group key, if the data is too large, it will have some influences, a small change under a group will pull the entire group.
+
+* it may hit bug in soul-admin cluster.
 
 ## nacos sync
 
 * gateway setting（note:restart）
   
-    * first of all add these dependencies in your `pom.xml`：
+    * Add these dependencies in your `pom.xml`：
  ```xml
     <!--soul data sync start use zookeeper-->
       <dependency>
@@ -142,8 +147,8 @@ soul:
                 namespace: 
                 accessKey: 
                 secretKey: 
-  #url: config with your nacos address, pls use (,) to split your cluster environment.
-  # other configure，pls refer to the naocs website。
+  # url: config with your nacos address, pls use (,) to split your cluster environment.
+  # other configure，pls refer to the naocs website.
  ```
 * soul-admin config: passing values one by one with '--' operator in the soul-Admin startup parameter.
 ```yaml
