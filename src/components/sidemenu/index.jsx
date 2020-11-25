@@ -21,8 +21,6 @@ class SideMenu extends React.Component {
     let docBody = document.getElementById("doc-body");
     let a = document.documentElement.scrollHeight;
     let high = getWindowHeight();
-    console.log(high + a);
-    console.log(a);
 
     window.addEventListener("scroll", () => {
       let scrollY = getScrollTop();
@@ -31,11 +29,9 @@ class SideMenu extends React.Component {
             isFixed: true,
         });
         docBody.setAttribute("style", "margin-left:295px");
-        console.log('start')
       } else if (scrollY < pos) {
         this.setState({isFixed: false});
         docBody.setAttribute("style", "");
-        console.log('stop')
       }
 
       if (scrollY  + high >= a) {
