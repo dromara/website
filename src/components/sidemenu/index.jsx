@@ -37,11 +37,11 @@ class SideMenu extends React.Component {
         console.log('stop')
       }
 
-      // if (scrollY  + high >= a) {
-      //   menu.setAttribute("style", "position:absolute;bottom:337px");
-      // } else {
-      //   menu.setAttribute("style", "");
-      // }
+      if (scrollY  + high >= a) {
+        menu.setAttribute("style", "position:absolute;bottom:337px");
+      } else {
+        menu.setAttribute("style", "");
+      }
     })
   }
 
