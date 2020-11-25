@@ -429,7 +429,7 @@ export default {
       {
         name: 'Raincat',
         brand: {
-          briefIntroduction: 'Astrongly consistent distributed transaction framework',
+          briefIntroduction: 'Consistent distributed transaction framework',
           buttons: [
             {
               text: 'Start up',
@@ -498,7 +498,7 @@ export default {
       {
         name: 'Myth',
         brand: {
-          briefIntroduction: 'Reliable messages are ultimately consistent with a distributed transaction framework',
+          briefIntroduction: 'Reliable messages distributed transaction framework',
           buttons: [
             {
               text: 'Start up',

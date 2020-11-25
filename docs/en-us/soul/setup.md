@@ -32,13 +32,13 @@ description: Environment Setup
   <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-webflux</artifactId>
-        <version>2.2.2-RELEASE</version>
+        <version>2.2.2.RELEASE</version>
   </dependency>
 
   <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
-        <version>2.2.2-RELEASE</version>
+        <version>2.2.2.RELEASE</version>
   </dependency>
 
   <!--soul gateway start-->

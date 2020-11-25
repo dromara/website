@@ -6,12 +6,102 @@
       "meta": {}
     },
     {
+      "filename": "admin.md",
+      "link": "\\en-us\\docs\\hmily\\admin.html",
+      "meta": {
+        "title": "Hmily-Admin",
+        "keywords": "admin",
+        "description": "Hmily-Admin"
+      }
+    },
+    {
       "filename": "annotation.md",
       "link": "\\en-us\\docs\\hmily\\annotation.html",
       "meta": {
         "title": "Hmily Annotation",
         "keywords": "annotation",
         "description": "Hmily Annotation"
+      }
+    },
+    {
+      "filename": "code-conduct.md",
+      "link": "\\en-us\\docs\\hmily\\code-conduct.html",
+      "meta": {
+        "title": "Hmily-code-conduct",
+        "keywords": "Hmily-code-conduct",
+        "description": "hmily development guidelines"
+      }
+    },
+    {
+      "filename": "committer.md",
+      "link": "\\en-us\\docs\\hmily\\committer.html",
+      "meta": {
+        "title": "Hmily-committer",
+        "keywords": "Hmily-committer",
+        "description": "Hmily committer guidelines"
+      }
+    },
+    {
+      "filename": "config-apollo.md",
+      "link": "\\en-us\\docs\\hmily\\config-apollo.html",
+      "meta": {
+        "title": "Hmily-Config-Apollo",
+        "keywords": "config",
+        "description": "apollo configuration centre mode"
+      }
+    },
+    {
+      "filename": "config-consul.md",
+      "link": "\\en-us\\docs\\hmily\\config-consul.html",
+      "meta": {
+        "title": "Hmily-Config-Consul",
+        "keywords": "hmily-config",
+        "description": "Consul configuration centre mode"
+      }
+    },
+    {
+      "filename": "config-etcd.md",
+      "link": "\\en-us\\docs\\hmily\\config-etcd.html",
+      "meta": {
+        "title": "Hmily-Config-Etcd",
+        "keywords": "hmily-config",
+        "description": "etcd configuration centre mode"
+      }
+    },
+    {
+      "filename": "config-local.md",
+      "link": "\\en-us\\docs\\hmily\\config-local.html",
+      "meta": {
+        "title": "Hmily-Config-Local",
+        "keywords": "config",
+        "description": "Local configuration mode"
+      }
+    },
+    {
+      "filename": "config-nacos.md",
+      "link": "\\en-us\\docs\\hmily\\config-nacos.html",
+      "meta": {
+        "title": "Hmily-Config-Nacos",
+        "keywords": "config",
+        "description": "nacos configuration centre mode"
+      }
+    },
+    {
+      "filename": "config-zookeeper.md",
+      "link": "\\en-us\\docs\\hmily\\config-zookeeper.html",
+      "meta": {
+        "title": "Hmily-Config-Zookeeper",
+        "keywords": "config",
+        "description": "zookeeper configuration centre mode"
+      }
+    },
+    {
+      "filename": "config.md",
+      "link": "\\en-us\\docs\\hmily\\config.html",
+      "meta": {
+        "title": "Hmily-Config",
+        "keywords": "configuration",
+        "description": "Hmily Configuration Detail"
       }
     },
     {
@@ -22,6 +112,29 @@
         "keywords": "Hmily-Context",
         "description": "Hmily Transaction Context"
       }
+    },
+    {
+      "filename": "contributor.md",
+      "link": "\\en-us\\docs\\hmily\\contributor.html",
+      "meta": {
+        "title": "Hmily-contributor",
+        "keywords": "Hmily-contributor",
+        "description": "Hmily-contributor-guide"
+      }
+    },
+    {
+      "filename": "faq.md",
+      "link": "\\en-us\\docs\\hmily\\faq.html",
+      "meta": {
+        "title": "Questions",
+        "keywords": "FAQ",
+        "description": "Frequently asked questions"
+      }
+    },
+    {
+      "filename": "index.md",
+      "link": "\\en-us\\docs\\hmily\\index.html",
+      "meta": {}
     },
     {
       "filename": "metrics.md",
@@ -102,6 +215,24 @@
         "title": "Hmily-tcc",
         "keywords": "tcc",
         "description": "tcc"
+      }
+    },
+    {
+      "filename": "team.md",
+      "link": "\\en-us\\docs\\hmily\\team.html",
+      "meta": {
+        "title": "Hmily Team",
+        "keywords": "hmily-team",
+        "description": "Hmily Team"
+      }
+    },
+    {
+      "filename": "term.md",
+      "link": "\\en-us\\docs\\hmily\\term.html",
+      "meta": {
+        "title": "Hmily Term",
+        "keywords": "Term",
+        "description": "Hmily Term"
       }
     },
     {
@@ -288,9 +419,9 @@
       "filename": "dev-thread.md",
       "link": "\\en-us\\docs\\soul\\dev-thread.html",
       "meta": {
-        "title": "线程模型",
+        "title": "thread model",
         "keywords": "soul",
-        "description": "线程模型"
+        "description": "thread model"
       }
     },
     {
@@ -476,15 +607,6 @@
       }
     },
     {
-      "filename": "admin_en.md",
-      "link": "\\zh-cn\\docs\\hmily\\admin_en.html",
-      "meta": {
-        "title": "Hmily-Admin",
-        "keywords": "admin",
-        "description": "Hmily-Admin"
-      }
-    },
-    {
       "filename": "annotation.md",
       "link": "\\zh-cn\\docs\\hmily\\annotation.html",
       "meta": {
@@ -503,30 +625,12 @@
       }
     },
     {
-      "filename": "code-conduct_en.md",
-      "link": "\\zh-cn\\docs\\hmily\\code-conduct_en.html",
-      "meta": {
-        "title": "Hmily-code-conduct",
-        "keywords": "Hmily-code-conduct",
-        "description": "hmily development guidelines"
-      }
-    },
-    {
       "filename": "committer.md",
       "link": "\\zh-cn\\docs\\hmily\\committer.html",
       "meta": {
         "title": "Hmily-committer",
         "keywords": "Hmily-committer",
         "description": "Hmily-committer提交者指南"
-      }
-    },
-    {
-      "filename": "committer_en.md",
-      "link": "\\zh-cn\\docs\\hmily\\committer_en.html",
-      "meta": {
-        "title": "Hmily-committer",
-        "keywords": "Hmily-committer",
-        "description": "Hmily committer guidelines"
       }
     },
     {
@@ -608,15 +712,6 @@
         "title": "Hmily-contributor",
         "keywords": "Hmily-contributor",
         "description": "Hmily-contributor贡献者指南"
-      }
-    },
-    {
-      "filename": "contributor_en.md",
-      "link": "\\zh-cn\\docs\\hmily\\contributor_en.html",
-      "meta": {
-        "title": "Hmily-contributor",
-        "keywords": "Hmily-contributor",
-        "description": "Hmily-contributor-guide"
       }
     },
     {

@@ -1,0 +1,10 @@
+{
+  "filename": "term.md",
+  "__html": "<h3>Term</h3>\n<ul>\n<li>\n<p>Initiator: The initiator of a global transaction, the first place where transactions need to be performed on distributed resources in a request link resource method.\nIn the Hmily framework, it can be expressed as: a request first encounters <code>@HmilyTCC</code> or <code>@HmilyTAC</code> annotated method, the method which application belongs to is called the\ninitiator.</p>\n</li>\n<li>\n<p>Participants: Distributed services or resources that need to participate in a distributed transaction scenario together with other services. In the Hmily framework, it's\nshowed as an interface that appears as an RPC framework is annotated with <code>@Hmily</code>.</p>\n</li>\n<li>\n<p>Coordinator: The role used to coordinate distributed transactions is commit or rollback. It can be remote, local, centralized, or decentralized. The coordinator in the Hmily framework is a local decentralized role.</p>\n</li>\n<li>\n<p>TCC ：Abbreviation for the three stages of <code>Try</code>, <code>Confirm</code>, and <code>Cancel</code>.</p>\n</li>\n<li>\n<p>TAC ：Short for Try Auto Cancel. Hmily framework will automatically generate the reverse operation resource behavior after the resources are reserved in the <code>Try</code> stage.</p>\n</li>\n</ul>\n",
+  "link": "\\en-us\\docs\\hmily\\term.html",
+  "meta": {
+    "title": "Hmily Term",
+    "keywords": "Term",
+    "description": "Hmily Term"
+  }
+}
