@@ -379,6 +379,13 @@
     height: 36px;
     line-height: 36px; }
 
+.fixed {
+  position: sticky;
+  top: 66px;
+  margin-top: 0 !important;
+  height: 100vh;
+  overflow: overlay; }
+
 @media screen and (max-width: 640px) {
   .sidemenu {
     width: 0; }

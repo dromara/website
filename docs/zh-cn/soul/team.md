@@ -14,3 +14,5 @@ description: 团队介绍
  |蒋晓峰                |SteNicholas |  committer   | 阿里云     |
  |黄晓峰                |huangxfchn |  committer   | shein     | 
  |梁自强                |241600489 |  committer   | 滴滴     | 
+ |汤昱东              |tydhot      |  committer   | [perfma](https://perfma.com/)       |
+ |邓力铭                |dengliming |  committer   | 某创业公司     | 
