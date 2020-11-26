@@ -82,7 +82,15 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/soul/soul.html',
+        subMenus: [
+          {
+            text: 'Soul',
+            link: '/zh-cn/docs/soul/soul.html'
+          },{
+            text: 'Hmily',
+            link: '/zh-cn/docs/hmily/index.html'
+          }
+        ]
       },
       {
         key: 'blog',
