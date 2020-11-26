@@ -196,7 +196,7 @@ class Header extends React.Component {
                 >
                   {
                     item.key === 'docs' ?
-                    (<a href="javascript:void(0)" onClick={this.togglePullDown} >{item.text}</a>
+                    (<a href="#" onClick={this.togglePullDown} >{item.text}</a>
                       )
                       : (<a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>)
                   }
