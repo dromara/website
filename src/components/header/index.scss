@@ -198,7 +198,6 @@
 
   .sub-menu ul {
     position: absolute;
-    right: 0;
     z-index: 100;
     background: #fff;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
@@ -210,6 +209,7 @@
     color: #333!important;
     border-radius: 4px;
     padding: 0%;
+    margin-left: 14px;
   }
 
 
