@@ -144,11 +144,11 @@ description: Integrate dubbo with soul gateway
    ```
    * Inject these properties into your Sping beans XML file：      
   ```xml
-          <bean id ="alibabaDubboServiceBeanPostProcessor" ,class ="org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor">
+          <bean id ="alibabaDubboServiceBeanPostProcessor" class ="org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor">
                <constructor-arg  ref="dubboConfig"/>
           </bean>
           
-          <bean id="dubboConfig", class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
+          <bean id="dubboConfig" class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
                <property name="adminUrl" value="http://localhost:9095"/>     
                <property name="contextPath" value="/你的contextPath"/>
                <property name="appName" value="你的名字"/>
@@ -198,11 +198,11 @@ description: Integrate dubbo with soul gateway
 * Injecct these properties into your Spring beans XML file ：
        
  ```xml
-          <bean id ="apacheDubboServiceBeanPostProcessor" ,class ="org.dromara.soul.client.apache.dubbo.ApacheDubboServiceBeanPostProcessor">
+          <bean id ="apacheDubboServiceBeanPostProcessor" class ="org.dromara.soul.client.apache.dubbo.ApacheDubboServiceBeanPostProcessor">
                <constructor-arg  ref="dubboConfig"/>
           </bean>
           
-          <bean id="dubboConfig", class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
+          <bean id="dubboConfig" class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
                <property name="adminUrl" value="http://localhost:9095"/>     
                <property name="contextPath" value="/your contextPath"/>
                <property name="appName" value="your application name"/>

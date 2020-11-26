@@ -74,11 +74,11 @@ description: Integrate Http with soul gateway
  ```     
   * Inject these properties into your Spring beans XML file:   
  ```xml
-    <bean id ="springMvcClientBeanPostProcessor" ,class ="org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor">
+    <bean id ="springMvcClientBeanPostProcessor" class ="org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor">
          <constructor-arg  ref="soulSpringMvcConfig"/>
     </bean>
     
-    <bean id="soulSpringMvcConfig", class="org.dromara.soul.client.springmvc.config.SoulSpringMvcConfig">
+    <bean id="soulSpringMvcConfig" class="org.dromara.soul.client.springmvc.config.SoulSpringMvcConfig">
          <property name="adminUrl" value="http://localhost:9095"/>
          <property name="port" value="your port"/>
          <property name="contextPath" value="/your contextPath"/>
