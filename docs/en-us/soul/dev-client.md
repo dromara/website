@@ -18,7 +18,7 @@ description: multi-language http client
 * request endpoint
 
     * `http://soul-admin/soul-client/springmvc-register`  
-	soul-admin replesents for ip + port for admin project
+	soul-admin represents for ip + port for admin project
 
 * request params
 
@@ -26,7 +26,7 @@ description: multi-language http client
 ```json
 {
 	"appName": "xxx", //application name, required
-	"context": "/xxx" //request root path, required
+	"context": "/xxx", //request root path, required
 	"path": "xxx", //request path, must be unique, required
 	"rpcType": "http", //rpc type, required
 	"host": "xxx", //server host, required
