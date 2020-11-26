@@ -140,7 +140,6 @@
     position: relative; }
   .header-container .sub-menu ul {
     position: absolute;
-    right: 0;
     z-index: 100;
     background: #fff;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
@@ -149,7 +148,8 @@
   .header-container .sub-menu ul li a {
     color: #333 !important;
     border-radius: 4px;
-    padding: 0%; }
+    padding: 0%;
+    margin-left: 14px; }
 
 @media screen and (max-width: 640px) {
   .header-container .header-body .logo {

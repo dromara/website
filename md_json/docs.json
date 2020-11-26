@@ -572,18 +572,18 @@
       "filename": "user-dubbo.md",
       "link": "\\en-us\\docs\\soul\\user-dubbo.html",
       "meta": {
-        "title": "integrate dubbo with soul gateway",
+        "title": "Integrate dubbo with soul gateway",
         "keywords": "soul",
-        "description": "integrate dubbo with soul gateway"
+        "description": "Integrate dubbo with soul gateway"
       }
     },
     {
       "filename": "user-http.md",
       "link": "\\en-us\\docs\\soul\\user-http.html",
       "meta": {
-        "title": "Http Customer",
+        "title": "Integrate Http with soul gateway",
         "keywords": "soul",
-        "description": "Http Customer"
+        "description": "Integrate Http with soul gateway"
       }
     },
     {
