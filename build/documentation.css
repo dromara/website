@@ -133,6 +133,23 @@
           width: 160px;
           height: 24px;
           vertical-align: middle; }
+  .header-container .show {
+    display: block !important; }
+  .header-container .sub-menu {
+    display: none;
+    position: relative; }
+  .header-container .sub-menu ul {
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    line-height: 40px; }
+  .header-container .sub-menu ul li a {
+    color: #333 !important;
+    border-radius: 4px;
+    padding: 0%;
+    margin-left: 14px; }
 
 @media screen and (max-width: 640px) {
   .header-container .header-body .logo {
@@ -378,6 +395,14 @@
     padding-left: 60px;
     height: 36px;
     line-height: 36px; }
+
+.fixed {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 66px;
+  margin-top: 0 !important;
+  height: 100vh;
+  overflow: overlay; }
 
 @media screen and (max-width: 640px) {
   .sidemenu {
@@ -3215,9 +3240,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   max-width: 1280px;
   margin: 0 auto;
   box-sizing: border-box;
-  padding: 40px 40px 60px;
+  padding: 0px 40px 60px;
   position: relative;
-  min-height: 1100px; }
+  min-height: 1100px;
+  margin-top: 66px; }
   .documentation-page .content-section .doc-content {
     display: inline-block;
     vertical-align: top;

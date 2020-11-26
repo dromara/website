@@ -1,18 +1,18 @@
 ---
-title: Http Customer
+title: Integrate Http with soul gateway
 keywords: soul
-description: Http Customer
+description: Integrate Http with soul gateway
 ---
 
 ## Features
 
-* In this chapter, the aim is to help Http Customer
+* This chapter is a guide about integrating Http service with soul gateway.
 
-* soul gateway uses divide plugin handling http request that invokded under soul-admin backgroud.
+* soul gateway uses divide plugin handling http request, pls enable it in soul-admin backgroud.
 
-* Before we start, we should be aware of running the `soul-admin`, and [Environment Setup](setup.md) is OK。
+* Pls start `soul-admin` successfully beofore integrating , and [Environement Setup](setup.md) is Ok.
 
-## Setting up gateway proxy plugin for Http.
+## Configure soul gateway as Http proxy.
 
 * Add these dependencies in gateway's `pom.xml`：
 ```xml
@@ -30,17 +30,17 @@ description: Http Customer
    </dependency>
 ```
 
-* Of course, we need to restart the gateway.
+* pls restart the gateway.
 
-## integrate gateway with http request（springMVC user）
+## Http request via soul gateway（springMVC user）
 
-* pls make sure divide plugin has opned under `soul-admin` background.
+* pls make sure divide plugin has enabled in `soul-admin` background.
 
-##### Soul-Client register methods。 （apply for SpringMvc,SpringBoot user）
+##### add Soul-Client methods（available for SpringMVC,SpringBoot user）
 
 * SpringBoot user
   
-   * add these dependencies in your local maven repository `pom.xml`: 
+   * Add these dependencies in your local maven repository `pom.xml`: 
 ```xml
      <dependency>
          <groupId>org.dromara</groupId>
@@ -48,7 +48,7 @@ description: Http Customer
          <version>2.2.0</version>
      </dependency>
  ```
-   * Add these config value in your yaml file ：  
+   * Add these config values in your yaml file ：  
 ```yaml
    soul:
      http:
@@ -57,14 +57,14 @@ description: Http Customer
        contextPath: /http
        appName: http
        full: false  
-   # adminUrl: 'ip + port' that running on your soul-admin project, pls note that 'http://' is necessary.
+   # adminUrl: 'ip + port' of your soul-admin project, pls note 'http://' is necessary.
    # port: your project port number
-   # contextPath: the route prefix in soul gateway of your MVC project, such as /order ，/product etc，gateway will route with this.
-   # appName：your application name，default value is`spring.application.name`.
-   # full: set true means providing proxy service for your entire service, or only a few controller.
+   # contextPath: your project's route prefix through soul gateway, such as /order ，/product etc，gateway will route based on it.
+   # appName：your project name,the default value is`spring.application.name`.
+   # full: set true means providing proxy for your entire service, or only a few controller.
    ``` 
- * SpringMvc user
-   * add these dependensies in your local mavne repository `pom.xml`.: 
+ * SpringMVC user
+   * Add these dependencies in your local maven repository `pom.xml`: 
 ```xml
        <dependency>
            <groupId>org.dromara</groupId>
@@ -88,9 +88,9 @@ description: Http Customer
    ``` 
 * Add this annotation `@SoulSpringMvcClient` in your `controller` interface.
   
-   * you can apply the annotation to class-level in a controller.the property of 'path' is prefix and '/**' will apply proxy service for entire interfaces. 
+   * you can apply the annotation to class-level in a controller.the name of the path variable is prefix and '/**' will apply proxy for entire interfaces. 
   
-   * example: （1）： `/test/payment`, `/test/findByUserId` will be handled by proxy service.
+   * example: （1）：both `/test/payment` and `/test/findByUserId` will be handled by proxy service.
    
  ```java
   @RestController
@@ -112,7 +112,7 @@ description: Http Customer
       }      
    }
    ```
-   * example （2）：  `/order/save` will be handled by proxy service, but `/order/findById` won't。
+   * example （2）：`/order/save` will be handled by proxy service, but `/order/findById` won't.
    
  ```java
   @RestController
@@ -137,13 +137,13 @@ description: Http Customer
   }
    ```
 
-* Kick off your project, your interface integrate with gateway.
+* Kick off your project with your interface, which is  integrated with soul gateway.
 
-## integration gateway with http request（（other language，not springMvc）
+## Configure soul gateway as an Http proxy（other framework）
 
-* first of all, find the divide plugin in `soul-admin`, then add selctor and regulator which will compare and screen the flux.
+* first of all, enable the divide plugin in `soul-admin`, then add selector and rule which will filter the request.
 
-* if you don't know how to config, pls refer to [selector regulation introduction](selector.md)。
+* if you don't know how to configure, pls refer to [selector guide](selector.md).
 
 * you can also develop your cutomized http-client，refer to [multi-language Http client development](dev-client.md)。
 
@@ -151,21 +151,21 @@ description: Http Customer
 
 * Send the request as before, only two points need to notice.
 
-* firstly，the domain name that requested before is your service, now need to replace with gateway's domain name.
+* firstly，the domain name that requested before in your service, now need to replace with gateway's domain name.
 
 * secondly，soul gateway needs a route prefix which comes from `contextPath`, it configured during the integration with gateway, you can change it freely in divide plugin of `soul-admin`, if your familiar with it.
  
 ```yaml
 
-# for example, if you have a order service and it has a interface, the request url: http://localhost:8080/test/save
+# for example, if you have an order service and it has a interface, the request url: http://localhost:8080/test/save
 
 # Now need to change to:  http://localhost:9195/order/test/save
 
 # We can see localhost:9195 is your gateway's ip port，default port number is 9195 ，/order is your contextPath which you configured with gateway.
 
-# other parameters, the request method doesn't change.
+# other parameters doesn't change in request method.
 
 # Any questions, pls join the group and we can talk about it.
 
 ```
-* then you can visit, very easy and simple。
+* then you can visit, very easy and simple.

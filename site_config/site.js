@@ -8,22 +8,30 @@ export default {
   'en-us': {
     pageMenu: [
       {
-        key: 'Home',
+        key: 'droamra',
         text: 'Home',
         link: '/en-us/index.html',
       },
       {
         key: 'docs',
         text: 'Document',
-        link: '/en-us/docs/soul/soul.html',
+        subMenus: [
+          {
+            text: 'Soul',
+            link: '/en-us/docs/soul/soul.html'
+          },{
+            text: 'Hmily',
+            link: '/en-us/docs/hmily/index.html'
+          }
+        ],
       },
       {
-        key: 'Blog',
+        key: 'blog',
         text: 'Blog',
         link: '/en-us/blog/index.html',
       },
       {
-        key: 'Community',
+        key: 'community',
         text: 'Community',
         link: '/en-us/community/index.html',
       },
@@ -67,14 +75,22 @@ export default {
   'zh-cn': {
     pageMenu: [
       {
-        key: 'droamra.org',
+        key: 'droamra',
         text: '首页',
         link: '/zh-cn/index.html',
       },
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/soul/soul.html',
+        subMenus: [
+          {
+            text: 'Soul',
+            link: '/zh-cn/docs/soul/soul.html'
+          },{
+            text: 'Hmily',
+            link: '/zh-cn/docs/hmily/index.html'
+          }
+        ]
       },
       {
         key: 'blog',

@@ -10,7 +10,7 @@ description: Hmily-Spring Cloud Distributed Transaction User Guide
   * Step 2: Introduce the `Hmily` configuration
 
   * Step 3: Add `@HmilyTCC` or `@HmilyTAC` annotation on the concrete implementation method(Service provider).
-  
+
   * Step 4: Add `@Hmily` annotation on the feignClient call method(Consumer side).
 
 
@@ -18,7 +18,7 @@ description: Hmily-Spring Cloud Distributed Transaction User Guide
 
 #### Spring-Namespace
 
-* Introduce the `hmily-springcloud` dependency 
+* Introduce the `hmily-springcloud` dependency
 
 ```xml
         <dependency>
@@ -28,7 +28,7 @@ description: Hmily-Spring Cloud Distributed Transaction User Guide
         </dependency>
 ```
 
-* make the configuration in the XML configuration file as below: 
+* make the configuration in the XML configuration file as below:
 
 ```xml
     <!--Configure the base packages that the Hmily framework need to scan -->
@@ -37,11 +37,11 @@ description: Hmily-Spring Cloud Distributed Transaction User Guide
     <aop:aspectj-autoproxy expose-proxy="true"/>
     <!-- Configure the bean parameters for Hmily startup -->
     <bean id="hmilyApplicationContextAware" class="org.dromara.hmily.spring.HmilyApplicationContextAware"/>
-``` 
+```
 
 #### Spring-Boot-Starter
 
-* Introduce the `hmily-spring-boot-starter-springcloud` dependency  
+* Introduce the `hmily-spring-boot-starter-springcloud` dependency
 
 ```xml
         <dependency>
@@ -66,7 +66,7 @@ description: Hmily-Spring Cloud Distributed Transaction User Guide
  * `confirmMethod` : the method name for confirm，The method parameter list and return type should be consistent with the identification method.
 
  * `cancelMethod` :  the method for cancel，The method parameter list and return type should be consistent with the identification method.
- 
+
  * The `TCC` mode should ensure the idempotence of the `confirm` and `cancel` methods,Users need to develop these two methods by themselves,The confirmation and rollback behavior of all transactions are completely up tp users.The Hmily framework is just responsible for making calls.
 
 ```java
@@ -77,7 +77,7 @@ public class HelloServiceImpl implements HelloService  {
     public void say(String hello) {
          System.out.println("hello world");
     }
-    
+
     public void sayConfrim(String hello) {
          System.out.println(" confirm hello world");
     }
@@ -86,10 +86,10 @@ public class HelloServiceImpl implements HelloService  {
          System.out.println(" cancel hello world");
     }
 }
-``` 
+```
 ### TAC Mode(Under development, not released)
 
-  * Add `@HmilyTAC` annotation to the concrete implementation of the interface method identified by '@Hmily'.  
+  * Add `@HmilyTAC` annotation to the concrete implementation of the interface method identified by '@Hmily'.
 
 ## Service Consumer(FeignClient)
   * Add the `@Hmily` annotation on the service caller's interface methods.
@@ -109,23 +109,21 @@ public interface HelloService {
 
   Before invoking any RPC calls, when you need to aggregate RPC calls to be a distributed transaction, you need to add an annotation to the method of aggregate RPC calls which means to enable a global transaction.
 
-#### 负载均衡
-
 #### Load balance
   * If the service is deployed with several nodes, the load balance algorithm is better to use `hmily`, so that the calls of `try`, `confirm`, and `cancel` will fall on the same node to make full use of the cache and improve efficiency. make the configuration in your yml file as below:
- 
+
 ```yaml
 
 hmily.ribbon.rule.enabled = true
 
-```  
+```
 
 #### Enable the Hystrix
 * If the user have configured `feign.hystrix.enabled = true`, the thread pool pattern is used by default, and then the `HmilyHystrixConcurrencyStrategy` Strategy will be enabled.When the Hystrix uses the thread pool pattern, it can still pass parameters through 'threadLoacl' in RPC call.
-  
+
 
 #### Set up to never try
-    
+
   * The callers of SpringCloud microservices that require distributed transactions need to be set up to never retry, there is a reference example as shown below:
 
 ```yaml
@@ -135,6 +133,6 @@ ribbon:
 ```
 
 #### Exception
-  
+
   * Do not catch any exceptions of the `try`, `confirm`, `cancel` method by yourself. Any exceptions should be thrown to the Hmily framework to handle.
-  
+

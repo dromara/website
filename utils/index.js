@@ -20,6 +20,16 @@ export const getScrollTop = () => {
   return scrollTop;
 };
 
+export const getWindowHeight = () => {
+  　　var windowHeight = 0;
+  　　if(document.compatMode == "CSS1Compat"){
+  　　　　windowHeight = document.documentElement.clientHeight;
+  　　}else{
+  　　　　windowHeight = document.body.clientHeight;
+  　　}
+  　　return windowHeight;
+  }
+
 export const getLink = link => {
   if (`${link}`.length > 1 && /^\/[^/]/.test(`${link}`)) {
     return `${window.rootPath}${link}`;

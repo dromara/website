@@ -6,12 +6,12 @@ description: Environment Setup
 
 ## Features
 
-* Soul is an open source lightweight plugin framework of flexibility and extensibility since 2.2.0 version
-  With Soul you can easily create application with your own gateway.
+* soul is an open source plugin framework, which is flexibility and extensibility since 2.2.0 version.
+  With soul you can easily create application with your own gateway.
 
-* System Requirment: JDK 1.8+ , Mysql 5.0 + 。
+* System Requirment: JDK 1.8+, Mysql 5.0 +.
 
-## Invoking `Soul-Admin`
+## Invoke `Soul-Admin`
 
 * Download `soul-admin.jar`, then run it with arguments.
 ```yaml
@@ -21,24 +21,24 @@ description: Environment Setup
   --spring.datasource.username='you username'  --spring.datasource.password='you password'
  
 ```
-* Visit `http://localhost:9095/index.html ` default username：admin  password: 123456。
+* Visit `http://localhost:9095/index.html ` default username：admin  password: 123456.
 
 ## Build your own gateway（recommend）
 
-* first of all, create a new Spring Boot project, pls refer to soul-bootstrap. or visti Spring Initializr:[https://spring.io/quickstart]
+* First of all, create a new Spring Boot project, pls refer to soul-bootstrap, or visit Spring Initializr:[https://spring.io/quickstart]
 
 * Add these JAR into your local Maven repository:
 ```xml
   <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-webflux</artifactId>
-        <version>2.2.2-RELEASE</version>
+        <version>2.2.2.RELEASE</version>
   </dependency>
 
   <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
-        <version>2.2.2-RELEASE</version>
+        <version>2.2.2.RELEASE</version>
   </dependency>
 
   <!--soul gateway start-->
@@ -56,7 +56,7 @@ description: Environment Setup
    </dependency>
 ```
 
-* Add these config values in your `application.yaml`：
+* Add these config values into your `application.yaml`：
 ```yaml
 spring:
    main:
@@ -73,7 +73,7 @@ soul :
 swagger:
   enable: true
 ```
-* Environment Setup has finished, kick off your project.。
+* Environment Setup has finished, kick off your project.
 
 
 
