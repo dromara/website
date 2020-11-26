@@ -144,11 +144,11 @@ description: dubbo接入soul网关
    ```
    * 在你的 bean定义的xml文件中新增如下 ：      
   ```xml
-          <bean id ="alibabaDubboServiceBeanPostProcessor" ,class ="org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor">
+          <bean id ="alibabaDubboServiceBeanPostProcessor" class ="org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor">
                <constructor-arg  ref="dubboConfig"/>
           </bean>
           
-          <bean id="dubboConfig", class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
+          <bean id="dubboConfig" class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
                <property name="adminUrl" value="http://localhost:9095"/>     
                <property name="contextPath" value="/你的contextPath"/>
                <property name="appName" value="你的名字"/>
