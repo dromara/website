@@ -31,7 +31,7 @@ description: springcloud插件
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-commons</artifactId>
         <version>2.2.0.RELEASE</version>
-   </dependency> 
+   </dependency>
    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
@@ -52,4 +52,4 @@ description: springcloud插件
 * 应用名称：就是你根据条件匹配以后，需要调用的你的具体的应用名称。
 
 * soul会从springCloud的注册中心上面，根据应用名称获取对应的服务真实ip地址，发起http代理调用。
-   
+

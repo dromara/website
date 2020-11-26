@@ -20,9 +20,9 @@ description: dubbo接入soul网关
 * 在网关的 `pom.xml` 文件中增加如下依赖：
 
   * alibaba dubbo 用户, dubbo版本换成你的，注册中心的jar包换成你的，一下是参考。
-  
+
  ```xml
-  
+
           <!--soul alibaba dubbo plugin start-->
           <dependency>
               <groupId>org.dromara</groupId>
@@ -50,13 +50,13 @@ description: dubbo接入soul网关
               <artifactId>curator-recipes</artifactId>
               <version>4.0.1</version>
           </dependency>
-       
+
   ```
-  
+
   * apache dubbo 用户，dubbo版本换成你的，使用什么注册中心换成你的,以下是参考,使用什么注册中心，就引入啥。
-  
+
   ```xml
-  
+
            <!--soul apache dubbo plugin start-->
            <dependency>
                <groupId>org.dromara</groupId>
@@ -64,7 +64,7 @@ description: dubbo接入soul网关
                <version>${last.version}</version>
            </dependency>
            <!--soul apache dubbo plugin end-->
-  
+
            <dependency>
                <groupId>org.apache.dubbo</groupId>
                <artifactId>dubbo</artifactId>
@@ -82,7 +82,7 @@ description: dubbo接入soul网关
                <version>1.1.4</version>
            </dependency>
            <!-- Dubbo Nacos registry dependency  end-->
-  
+
            <!-- Dubbo zookeeper registry dependency start-->
            <dependency>
                <groupId>org.apache.curator</groupId>
@@ -107,9 +107,9 @@ description: dubbo接入soul网关
 ## dubbo服务接入网关,可以参考 : [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo)
 
  * alibaba dubbo 用户
-   
+
     * springboot
-      
+
        * 引入以下依赖
  ```xml
         <dependency>
@@ -118,22 +118,22 @@ description: dubbo接入soul网关
              <version>${last.version}</version>
         </dependency>
  ```
-      
+
   * 在你的yml文件中新增如下配置 ：
-  
+
    ```yaml
       soul:
         dubbo:
           adminUrl: http://localhost:9095
           contextPath: /dubbo
-          appName: dubbo    
+          appName: dubbo
          # adminUrl: 为你启动的soul-admin 项目的ip + 端口，注意要加 http://
          # contextPath: 为你的这个项目在soul网关的路由前缀，这个你应该懂意思把？ 比如/order ，/product 等等，网关会根据你的这个前缀来进行路由.
          # appName：你的应用名称，不配置的话，会默认取 dubbo配置中application 中的名称
-  ```    
-    
+  ```
+
 * spring
-     
+
    * 引入以下依赖 ：
  ```xml
        <dependency>
@@ -142,25 +142,25 @@ description: dubbo接入soul网关
            <version>${last.version}</version>
         </dependency>
    ```
-   * 在你的 bean定义的xml文件中新增如下 ：      
+   * 在你的 bean定义的xml文件中新增如下 ：
   ```xml
           <bean id ="alibabaDubboServiceBeanPostProcessor" class ="org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor">
                <constructor-arg  ref="dubboConfig"/>
           </bean>
-          
+
           <bean id="dubboConfig" class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
-               <property name="adminUrl" value="http://localhost:9095"/>     
+               <property name="adminUrl" value="http://localhost:9095"/>
                <property name="contextPath" value="/你的contextPath"/>
                <property name="appName" value="你的名字"/>
           </bean>
-   ``` 
-   
+   ```
+
 * apache dubbo 用户
-   
+
   * springboot
-      
+
      * 引入以下依赖
-       
+
  ```xml
         <dependency>
              <groupId>org.dromara</groupId>
@@ -168,25 +168,25 @@ description: dubbo接入soul网关
              <version>${last.version}</version>
         </dependency>
    ```
-      
+
  * 在你的yml文件中新增如下配置 ：
-     
+
   ```yaml
       soul:
         dubbo:
           adminUrl: http://localhost:9095
           contextPath: /dubbo
           appName: dubbo
-      
+
          # adminUrl: 为你启动的soul-admin 项目的ip + 端口，注意要加 http://
          # contextPath: 为你的这个项目在soul网关的路由前缀，这个你应该懂意思把？ 比如/order ，/product 等等，网关会根据你的这个前缀来进行路由.
          # appName：你的应用名称，不配置的话，会默认取 dubbo配置中application 中的名称
   ```
-   
+
    * spring
-      
+
      * 引入以下依赖 ：
-       
+
  ```xml
        <dependency>
            <groupId>org.dromara</groupId>
@@ -196,18 +196,18 @@ description: dubbo接入soul网关
  ```
 
 * 在你的 bean定义的xml文件中新增如下 ：
-       
+
  ```xml
-          <bean id ="apacheDubboServiceBeanPostProcessor" ,class ="org.dromara.soul.client.apache.dubbo.ApacheDubboServiceBeanPostProcessor">
+          <bean id ="apacheDubboServiceBeanPostProcessor" class ="org.dromara.soul.client.apache.dubbo.ApacheDubboServiceBeanPostProcessor">
                <constructor-arg  ref="dubboConfig"/>
           </bean>
-          
-          <bean id="dubboConfig", class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
-               <property name="adminUrl" value="http://localhost:9095"/>     
+
+          <bean id="dubboConfig" class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
+               <property name="adminUrl" value="http://localhost:9095"/>
                <property name="contextPath" value="/你的contextPath"/>
                <property name="appName" value="你的名字"/>
           </bean>
-   ``` 
+   ```
 
 ## dubbo 插件设置
 
@@ -231,7 +231,7 @@ description: dubbo接入soul网关
 * 说白了，就是通过http的方式来请求你的dubbo服务
 
 * soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 `contextPath`
- 
+
 ```yaml
 # 比如你有一个 order服务 它有一个接口，它的注册路径 /order/test/save
 
@@ -242,9 +242,9 @@ description: dubbo接入soul网关
 ```
 
 * 参数传递：
-   
+
    * 通过 http post 方式访问网关，通过body，json类型传递。
-   
+
    * 更多参数类型传递，可以参考 [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo) 中的接口定义，以及参数传递方式。
 
 * 单个java bean参数类型 （默认）
@@ -260,10 +260,10 @@ soul :
 * 自定义实现多参数支持:
 
   * 在你搭建的网关项目中，新增一个类 A，实现 `org.dromara.soul.web.dubbo.DubboParamResolveService`。
-  
+
  ```java
    public interface DubboParamResolveService {
-   
+
        /**
         * Build parameter pair.
         * this is Resolve http body to get dubbo param.
@@ -275,22 +275,22 @@ soul :
        Pair<String[], Object[]> buildParameter(String body, String parameterTypes);
    }
   ```
-  
+
   * `body`为http中body传的json字符串.
-  
+
   *  `parameterTypes`: 匹配到的方法参数类型列表，如果有多个,则使用`,`分割。
-  
+
   *  Pair中，left为参数类型，right为参数值，这是dubbo泛化调用的标准
-  
+
   * 把你的类注册成Spring的bean，覆盖默认的实现。
-  
+
  ```java
   @Bean
   public DubboParamResolveService A() {
           return new A();
   }
   ```
-  
+
 ## 大白话讲解如果通过http --> 网关--> dubbo provider
 
 * 说白了，就是把http请求，转成dubbo协议，内部使用dubbo泛化来进行调用。
@@ -305,14 +305,14 @@ soul :
 
 ```java
     @Override
-    @@SoulDubboClient(path = "/insert", desc = "插入一条数据")
+    @SoulDubboClient(path = "/insert", desc = "插入一条数据")
     public DubboTest insert(final DubboTest dubboTest) {
         return dubboTest;
     }
 
 ```
 
-* 那么我们请求的路径为: http://localhost:9195/dubbo/insert ,再说一下，localhost:9195是网关的域名，如果你更改了，这里也要改。
+* 那么我们请求的路径为: http://localhost:9195/dubbo/insert ,再说一下，`localhost:9195`是网关的域名，如果你更改了，这里也要改。
 
 * 那么请求参数呢？ `DubboTest` 是一个javabean对象，有2个字段，id与name ，那么我们通过body中传递这个对象的json数据就好。
 

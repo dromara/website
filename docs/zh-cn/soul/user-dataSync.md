@@ -15,16 +15,16 @@ description: 使用不同的数据同步策略
 ## websocket同步（默认方式，推荐）
 
 * 网关配置（记得重启）
-  
+
     * 首先在 `pom.xml` 文件中 引入以下依赖：
  ```xml
     <!--soul data sync start use websocket-->
     <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-sync-data-websocket</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
     </dependency>
-   ``` 
+   ```
    * 在 springboot的 yml 文件中进行如下配置:
   ```yaml
   soul :
@@ -49,7 +49,7 @@ soul:
 ## zookeeper同步
 
 * 网关配置（记得重启）
-  
+
     * 首先在 `pom.xml` 文件中 引入以下依赖：
 
  ```xml
@@ -57,10 +57,10 @@ soul:
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-zookeeper</artifactId>
-            <version>2.2.0</version>
+            <version>${last.version}</version>
       </dependency>
  ```
-  
+
    * 在 springboot的 yml 文件中进行如下配置:
  ```yaml
   soul :
@@ -86,7 +86,7 @@ soul:
 ## http长轮询同步
 
 * 网关配置（记得重启）
-  
+
     * 首先在 `pom.xml` 文件中 引入以下依赖：
 
  ```xml
@@ -94,10 +94,10 @@ soul:
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-http</artifactId>
-            <version>2.2.0</version>
+            <version>${last.version}</version>
       </dependency>
    ```
-  
+
    * 在 springboot的 yml 文件中进行如下配置:
    ```yaml
   soul :
@@ -113,7 +113,7 @@ soul:
      http:
 ```
 
-* http长轮询使得网关很轻量，时效性略低。 
+* http长轮询使得网关很轻量，时效性略低。
 
 * 其根据分组key来拉取，如果数据量过大，过多，会有一定的影响。 什么意思呢？就是一个组下面的一个小地方更改，会拉取整个的组数据。
 
@@ -122,17 +122,17 @@ soul:
 ## nacos同步
 
 * 网关配置（记得重启）
-  
+
     * 首先在 `pom.xml` 文件中 引入以下依赖：
  ```xml
     <!--soul data sync start use zookeeper-->
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-nacos</artifactId>
-            <version>2.2.0</version>
+            <version>${last.version}</version>
       </dependency>
    ```
-  
+
   * 在 springboot的 yml 文件中进行如下配置:
  ```yaml
   soul :
@@ -143,9 +143,9 @@ soul:
               acm:
                 enabled: false
                 endpoint: acm.aliyun.com
-                namespace: 
-                accessKey: 
-                secretKey: 
+                namespace:
+                accessKey:
+                secretKey:
   #url: 配置成你的nacos地址，集群环境请使用（,）分隔。
   # 其他参数配置，请参考naocs官网。
  ```
@@ -159,7 +159,7 @@ soul :
               acm:
                 enabled: false
                 endpoint: acm.aliyun.com
-                namespace: 
-                accessKey: 
-                secretKey: 
+                namespace:
+                accessKey:
+                secretKey:
 ```
