@@ -13,7 +13,7 @@ description: 元数据概念设计
 * 在数据库中，新增了一张表，然后通过数据同步的方案，会把这张表的数据同步到网关JVM内存。
 
 * 表结构如下:
-```
+```sql
 CREATE TABLE  IF NOT EXISTS `meta_data` (
   `id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'id',
   `app_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '应用名称',
@@ -39,20 +39,20 @@ CREATE TABLE  IF NOT EXISTS `meta_data` (
 * 重点讲一下 `rpc_ext`字段,如果是dubbo类型的服务接口，如果服务接口设置了 group,version字段的时候，会存在这个字段.
 
   * dubbo 类型 字段结构是 如下，那么存储的就是json格式的字符串.
-  
-  ```
+
+  ```java
    public static class RpcExt {
-          
+
           private String group;
-          
+
           private String version;
-          
+
           private String loadbalance;
-          
+
           private Integer retries;
-          
+
           private Integer timeout;
-  
+
       }
   ```
 

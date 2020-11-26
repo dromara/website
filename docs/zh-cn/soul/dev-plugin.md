@@ -9,9 +9,9 @@ description: 插件扩展
 * 插件是 soul 网关的核心执行者，每个插件在开启的情况下，都会对匹配的流量，进行自己的处理。
 
 * 在soul 网关里面，插件其实分为2 类：
-  
+
    * 一类是单一职责的调用链，不能对流量进行自定义的筛选。
-   
+
    * 另一类，能对匹配的流量，执行自己的职责调用链。
 
 * 用户可以参考 soul-plugin 模块，新增自己的插件处理，如果有好的公用插件，请把代码提交上来。
@@ -24,7 +24,7 @@ description: 插件扩展
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-plugin-api</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
 ```
 
@@ -32,7 +32,7 @@ description: 插件扩展
 
 ```java
 public interface SoulPlugin {
-    
+
     /**
      * Process the Web request and (optionally) delegate to the next
      * {@code WebFilter} through the given {@link SoulPluginChain}.
@@ -42,7 +42,7 @@ public interface SoulPlugin {
      * @return {@code Mono<Void>} to indicate when request processing is complete
      */
     Mono<Void> execute(ServerWebExchange exchange, SoulPluginChain chain);
-    
+
     /**
      * return plugin order .
      * This attribute To determine the plugin execution order in the same type plugin.
@@ -50,7 +50,7 @@ public interface SoulPlugin {
      * @return int order
      */
     int getOrder();
-    
+
     /**
      * acquire plugin name.
      * this is plugin name define you must Provide the right name.
@@ -61,7 +61,7 @@ public interface SoulPlugin {
     default String named() {
         return "";
     }
-    
+
     /**
      * plugin is execute.
      * if return true this plugin can not execute.
@@ -76,15 +76,15 @@ public interface SoulPlugin {
 
 ```
 * 接口方法详细说明
-       
+
    * `execute()` 方法为核心的执行方法，用户可以在里面自由的实现自己想要的功能。
-   
+
    * `getOrder()` 指定插件的排序。
-   
+
    * `named()` 指定插件的名称。
-   
+
    * `skip()` 在特定的条件下，该插件是否被跳过。
-   
+
 
 * 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
 
@@ -94,7 +94,7 @@ public interface SoulPlugin {
         return new A();
     }
 ```
- 
+
 
 ## 匹配流量处理插件
 
@@ -103,7 +103,7 @@ public interface SoulPlugin {
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-plugin-base</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
 ```
 *  新增一个类A，继承 `org.dromara.soul.plugin.base.AbstractSoulPlugin`
@@ -119,7 +119,7 @@ public interface SoulPlugin {
  * @author xiaoyu(Myth)
  */
 public class CustomPlugin extends AbstractSoulPlugin {
-    
+
     /**
      * return plugin order .
      * The same plugin he executes in the same order.
@@ -185,7 +185,7 @@ public class CustomPlugin extends AbstractSoulPlugin {
 
    * 继承该类的插件，插件会进行选择器规则匹配，那如何来设置呢？
 
-   * 首先在 `soul-admin` 后台 -->插件管理中，新增一个插件，注意 名称与 你自定义插件的 `named（）` 方法要一致。
+   * 首先在 `soul-admin` 后台 -->插件管理中，新增一个插件，注意 名称与 你自定义插件的 `named()` 方法要一致。
 
    * 重新登陆  `soul-admin` 后台 ，你会发现在插件列表就多了一个你刚新增的插件，你就可以进行选择器规则匹配
 
@@ -206,7 +206,7 @@ public class CustomPlugin extends AbstractSoulPlugin {
 
 ```java
 public interface PluginDataHandler {
-    
+
     /**
      * Handler plugin.
      *
@@ -214,7 +214,7 @@ public interface PluginDataHandler {
      */
     default void handlerPlugin(PluginData pluginData) {
     }
-    
+
     /**
      * Remove plugin.
      *
@@ -222,7 +222,7 @@ public interface PluginDataHandler {
      */
     default void removePlugin(PluginData pluginData) {
     }
-    
+
     /**
      * Handler selector.
      *
@@ -230,7 +230,7 @@ public interface PluginDataHandler {
      */
     default void handlerSelector(SelectorData selectorData) {
     }
-    
+
     /**
      * Remove selector.
      *
@@ -238,7 +238,7 @@ public interface PluginDataHandler {
      */
     default void removeSelector(SelectorData selectorData) {
     }
-    
+
     /**
      * Handler rule.
      *
@@ -246,7 +246,7 @@ public interface PluginDataHandler {
      */
     default void handlerRule(RuleData ruleData) {
     }
-    
+
     /**
      * Remove rule.
      *
@@ -254,14 +254,14 @@ public interface PluginDataHandler {
      */
     default void removeRule(RuleData ruleData) {
     }
-    
+
     /**
      * Plugin named string.
      *
      * @return the string
      */
     String pluginNamed();
-    
+
 }
 ```
 

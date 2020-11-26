@@ -35,7 +35,7 @@ description: springCloud接入soul网关
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-commons</artifactId>
         <version>2.2.0.RELEASE</version>
-   </dependency> 
+   </dependency>
    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
@@ -46,7 +46,7 @@ description: springCloud接入soul网关
 * 如果你使用 `eureka` 作为 springCloud的注册中心
 
   * 新增如下依赖：
-  
+
  ```xml
    <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -54,9 +54,9 @@ description: springCloud接入soul网关
         <version>2.2.0.RELEASE</version>
    </dependency>
    ```
-  
+
    * 在网关的yml文件中 新增如下配置:
-   
+
  ```yaml
     eureka:
       client:
@@ -69,7 +69,7 @@ description: springCloud接入soul网关
 * 如果你使用 `nacos` 作为 springCloud的注册中心
 
   * 新增如下依赖：
-  
+
  ```xml
   <dependency>
         <groupId>com.alibaba.cloud</groupId>
@@ -77,9 +77,9 @@ description: springCloud接入soul网关
         <version>2.1.0.RELEASE</version>
   </dependency>
    ```
-  
+
    * 在网关的yml文件中 新增如下配置:
-   
+
  ```yaml
    spring:
       cloud:
@@ -98,7 +98,7 @@ description: springCloud接入soul网关
  <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-client-springcloud</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
  </dependency>
 ```
 
@@ -119,45 +119,45 @@ soul:
 * 在你的 `controller`的接口上加上 `@SoulSpringCloudClient` 注解
 
  * 你可以把注解加到 `Controller` 类上面, 里面的path属性则为前缀，如果含有 `/**` 代表你的整个接口需要被网关代理
-  
+
    * 举列子 （1）： 代表 `/test/payment`, `/test/findByUserId` 都会被网关代理。
-   
+
  ```java
   @RestController
   @RequestMapping("/test")
   @SoulSpringCloudClient(path = "/test/**")
   public class HttpTestController {
-      
+
       @PostMapping("/payment")
       public UserDTO post(@RequestBody final UserDTO userDTO) {
           return userDTO;
       }
-      
+
       @GetMapping("/findByUserId")
       public UserDTO findByUserId(@RequestParam("userId") final String userId) {
           UserDTO userDTO = new UserDTO();
           userDTO.setUserId(userId);
           userDTO.setUserName("hello world");
           return userDTO;
-      }    
+      }
    }
 ```
-  
+
    * 举列子 （2）： 代表 `/order/save`,会被网关代理,而`/order/findById` 则不会。
-  
+
  ```java
   @RestController
   @RequestMapping("/order")
   @SoulSpringCloudClient(path = "/order")
   public class OrderController {
-  
+
       @PostMapping("/save")
       @SoulSpringMvcClient(path = "/save")
       public OrderDTO save(@RequestBody final OrderDTO orderDTO) {
           orderDTO.setName("hello world save order");
           return orderDTO;
       }
- 
+
       @GetMapping("/findById")
       public OrderDTO findById(@RequestParam("id") final String id) {
           OrderDTO orderDTO = new OrderDTO();
@@ -168,9 +168,9 @@ soul:
   }
 ```
 
-  
-* 启动你的服务，如果输出以下日志: `http client register success`, 证明你的接口已经被注册到soul网关。  
-  
+
+* 启动你的服务，如果输出以下日志: `http client register success`, 证明你的接口已经被注册到soul网关。
+
 ## 插件设置
 
 * 在 `soul-admin` 插件管理中，把 springCloud插件设置为开启。
@@ -182,7 +182,7 @@ soul:
 * 第一点，你之前请求的域名是你自己的服务，现在要换成网关的域名 （这个你听的懂？）
 
 * 第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 `contextPath` ,如果熟的话，可以自由在 `soul-admin` 中的 springCloud插件进行自由更改.
- 
+
 ```yaml
 
 # 比如你有一个 order服务 它有一个接口，请求路径 http://localhost:8080/test/save

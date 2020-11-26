@@ -36,15 +36,15 @@ description:  soul极简入门
     > Soul 是极其少支持 Dubbo 的 API 网关，通过 [Dubbo 泛化调用](http://www.iocoder.cn/Dubbo/good-collection/?self) 实现。
 
 * 支持各种语言(http协议)，支持 dubbo，springcloud协议。
-   
+
 * 插件化设计思想，插件热插拔,易扩展。
-   
+
 * 灵活的流量筛选，能满足各种流量控制。
-   
+
 * 内置丰富的插件支持，鉴权，限流，熔断，防火墙等等。
-   
+
 * 流量配置动态化，性能极高，网关消耗在 1~2ms。
-   
+
 * 支持集群部署，支持 A/B Test, 蓝绿发布。
 
 整体架构如下图所示：
@@ -132,14 +132,14 @@ Soul Admin 会**自动**创建数据库，以及表结构，并初始化默认�
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-spring-boot-starter-gateway</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
  </dependency>
-  
+
    <!--soul data sync start use websocket-->
   <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-spring-boot-starter-sync-data-websocket</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
 ```
 
@@ -199,14 +199,14 @@ soul :
 
 ## 3.2 在网关的pom.xml引入对 dubbo插件的依赖
 ```xml
-  
+
 <!--soul apache dubbo plugin start-->
 <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-plugin-apache-dubbo</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
  </dependency>
- <!--soul apache dubbo plugin end--> 
+ <!--soul apache dubbo plugin end-->
 
 <dependency>
       <groupId>org.apache.dubbo</groupId>
@@ -225,7 +225,7 @@ soul :
      <version>1.1.4</version>
 </dependency>
 <!-- Dubbo Nacos registry dependency  end-->
-     
+
   ```
 ## 3.3 搭建 Dubbo 示例项目
 
@@ -249,7 +249,7 @@ soul :
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-spring-boot-starter-client-apache-dubbo</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
 </dependency>
 ```
 
@@ -259,7 +259,7 @@ soul :
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-spring-boot-starter-client-alibaba-dubbo</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
 </dependency>
 ```
 
@@ -366,13 +366,13 @@ public class UserServiceImpl implements UserService {
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-divide</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
    </dependency>
 
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-httpclient</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
    </dependency>
 ```
 
@@ -410,7 +410,7 @@ public class UserServiceImpl implements UserService {
      <dependency>
          <groupId>org.dromara</groupId>
          <artifactId>soul-spring-boot-starter-client-springmvc</artifactId>
-         <version>2.2.0</version>
+         <version>${last.version}</version>
      </dependency>
  ```
 
@@ -538,7 +538,7 @@ public class UserController {
   <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-springcloud</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
   </dependency>
    <!--soul springCloud plugin end-->
   <dependency>
@@ -550,16 +550,16 @@ public class UserController {
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-commons</artifactId>
         <version>2.2.0.RELEASE</version>
-   </dependency> 
+   </dependency>
    <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         <version>2.2.0.RELEASE</version>
    </dependency>
 ```
-  
+
 * 在网关的yml文件中 新增如下配置:
-   
+
  ```yaml
    spring:
       cloud:
@@ -589,7 +589,7 @@ public class UserController {
  <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-client-springcloud</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
  </dependency>
 ```
 

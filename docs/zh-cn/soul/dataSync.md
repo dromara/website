@@ -60,7 +60,7 @@ description: 数据同步设计
 
 使用websocket同步的时候，特别要注意断线重连，也叫保持心跳。`soul`使用`java-websocket` 这个第三方库来进行`websocket`连接。
 
-```
+```java
 public class WebsocketSyncCache extends WebsocketCacheHandler {
     /**
      * The Client.
@@ -78,7 +78,7 @@ public class WebsocketSyncCache extends WebsocketCacheHandler {
                 @Override
                 public void onMessage(final String result) {
                   //....
-                }    
+                }
             };
         //进行连接
         client.connectBlocking();
@@ -101,7 +101,7 @@ http 长轮询机制如上所示，soul-web 网关请求 admin 的配置服务�
 
 http 请求到达 sou-admin 之后，并非立马响应数据，而是利用 Servlet3.0 的异步机制，异步响应数据。首先，将长轮询请求任务 `LongPollingClient` 扔到 `BlocingQueue` 中，并且开启调度任务，60s 后执行，这样做的目的是 60s 后将该长轮询请求移除队列，即便是这段时间内没有发生配置数据变更。因为即便是没有配置变更，也得让网关知道，总不能让其干等吧，而且网关请求配置服务时，也有 90s 的超时时间。
 
-```
+```java
 public void doLongPolling(final HttpServletRequest request, final HttpServletResponse response) {
     // 因为soul-web可能未收到某个配置变更的通知，因此MD5值可能不一致，则立即响应
     List<ConfigGroupEnum> changedGroup = compareMD5(request);
@@ -116,7 +116,7 @@ public void doLongPolling(final HttpServletRequest request, final HttpServletRes
     asyncContext.setTimeout(0L);
     scheduler.execute(new LongPollingClient(asyncContext, clientIp, 60));
 }
-    
+
 class LongPollingClient implements Runnable {
     LongPollingClient(final AsyncContext ac, final String ip, final long timeoutTime) {
         // 省略......
@@ -130,7 +130,7 @@ class LongPollingClient implements Runnable {
             List<ConfigGroupEnum> changedGroups = HttpLongPollingDataChangedListener.compareMD5((HttpServletRequest) asyncContext.getRequest());
             sendResponse(changedGroups);
         }, timeoutTime, TimeUnit.MILLISECONDS);
-        // 
+        //
         clients.add(this);
     }
 }
@@ -138,7 +138,7 @@ class LongPollingClient implements Runnable {
 
 如果这段时间内，管理员变更了配置数据，此时，会挨个移除队列中的长轮询请求，并响应数据，告知是哪个 Group 的数据发生了变更（我们将插件、规则、流量配置、用户配置数据分成不同的组）。网关收到响应信息之后，只知道是哪个 Group 发生了配置变更，还需要再次请求该 Group 的配置数据。有人会问，为什么不是直接将变更的数据写出？我们在开发的时候，也深入讨论过该问题，因为 http 长轮询机制只能保证准实时，如果在网关层处理不及时，或者管理员频繁更新配置，很有可能便错过了某个配置变更的推送，安全起见，我们只告知某个 Group 信息发生了变更。
 
-```
+```java
 // soul-admin发生了配置变更，挨个将队列中的请求移除，并予以响应
 class DataChangeTask implements Runnable {
     DataChangeTask(final ConfigGroupEnum groupKey) {
