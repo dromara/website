@@ -45,14 +45,14 @@ description: Environment Setup
   <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-spring-boot-starter-gateway</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
   
    <!--soul data sync start use websocket-->
    <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-spring-boot-starter-sync-data-websocket</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
    </dependency>
 ```
 
