@@ -298,7 +298,7 @@ export default {
                         opened: true,
                         children: [
                             {
-                                title: 'Start up soul admin',
+                                title: 'Start up hmily admin',
                                 link: '/en-us/docs/hmily/admin.html',
                             }
                         ],
