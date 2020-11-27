@@ -24,7 +24,7 @@ description: plugins
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-plugin-api</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
 ```
 
@@ -103,7 +103,7 @@ public interface SoulPlugin {
  <dependency>
         <groupId>org.dromara</groupId>
         <artifactId>soul-plugin-base</artifactId>
-        <version>2.2.0</version>
+        <version>${last.version}</version>
   </dependency>
 ```
 *  Add a new class A, inherit from `org.dromara.soul.plugin.base.AbstractSoulPlugin`

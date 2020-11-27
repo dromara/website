@@ -21,7 +21,7 @@ description: springCloud with soul gateway
   <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-springcloud</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
   </dependency>
    <!--soul springCloud plugin end-->
 
@@ -92,7 +92,7 @@ description: springCloud with soul gateway
  <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-client-springcloud</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
  </dependency>
 ```
 

@@ -22,7 +22,7 @@ description: use different data-sync strategy.
     <dependency>
       <groupId>org.dromara</groupId>
       <artifactId>soul-spring-boot-starter-sync-data-websocket</artifactId>
-      <version>2.2.0</version>
+      <version>${last.version}</version>
     </dependency>
    ``` 
    * add these config values in springboot yaml file:
@@ -57,7 +57,7 @@ soul:
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-zookeeper</artifactId>
-            <version>2.2.0</version>
+            <version>${last.version}</version>
       </dependency>
  ```
   
@@ -95,7 +95,7 @@ soul:
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-http</artifactId>
-            <version>2.2.0</version>
+            <version>${last.version}</version>
       </dependency>
    ```
   
@@ -130,7 +130,7 @@ soul:
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-nacos</artifactId>
-            <version>2.2.0</version>
+            <version>${last.version}</version>
       </dependency>
    ```
   

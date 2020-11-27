@@ -27,7 +27,7 @@ description: Integrate dubbo with soul gateway
           <dependency>
               <groupId>org.dromara</groupId>
               <artifactId>soul-spring-boot-starter-plugin-alibaba-dubbo</artifactId>
-              <version>2.2.0</version>
+              <version>${last.version}</version>
           </dependency>
            <!-- soul  alibaba dubbo plugin end-->
           <dependency>
@@ -61,7 +61,7 @@ description: Integrate dubbo with soul gateway
            <dependency>
                <groupId>org.dromara</groupId>
                <artifactId>soul-spring-boot-starter-plugin-apache-dubbo</artifactId>
-               <version>2.2.0</version>
+               <version>${last.version}</version>
            </dependency>
            <!--soul apache dubbo plugin end-->
   
@@ -115,7 +115,7 @@ description: Integrate dubbo with soul gateway
         <dependency>
              <groupId>org.dromara</groupId>
              <artifactId>soul-spring-boot-starter-client-alibaba-dubbo</artifactId>
-             <version>2.2.0</version>
+             <version>${last.version}</version>
         </dependency>
  ```
       
@@ -139,7 +139,7 @@ description: Integrate dubbo with soul gateway
        <dependency>
            <groupId>org.dromara</groupId>
            <artifactId>soul-client-alibaba-dubbo</artifactId>
-           <version>2.2.0</version>
+           <version>${last.version}</version>
         </dependency>
    ```
    * Inject these properties into your Sping beans XML file：      
@@ -150,8 +150,8 @@ description: Integrate dubbo with soul gateway
           
           <bean id="dubboConfig" class="org.dromara.soul.client.dubbo.common.config.DubboConfig">
                <property name="adminUrl" value="http://localhost:9095"/>     
-               <property name="contextPath" value="/你的contextPath"/>
-               <property name="appName" value="你的名字"/>
+               <property name="contextPath" value="/your contextPath"/>
+               <property name="appName" value="your application name"/>
           </bean>
    ``` 
    
@@ -165,7 +165,7 @@ description: Integrate dubbo with soul gateway
         <dependency>
              <groupId>org.dromara</groupId>
              <artifactId>soul-spring-boot-starter-client-apache-dubbo</artifactId>
-             <version>2.2.0</version>
+             <version>${last.version}</version>
         </dependency>
    ```
       
@@ -191,7 +191,7 @@ description: Integrate dubbo with soul gateway
        <dependency>
            <groupId>org.dromara</groupId>
            <artifactId>soul-client-apache-dubbo</artifactId>
-           <version>2.2.0</version>
+           <version>${last.version}</version>
         </dependency>
        ```
 

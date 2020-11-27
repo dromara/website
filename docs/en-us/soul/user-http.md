@@ -20,13 +20,13 @@ description: Integrate Http with soul gateway
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-divide</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
    </dependency>
 
    <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-httpclient</artifactId>
-       <version>2.2.0</version>
+       <version>${last.version}</version>
    </dependency>
 ```
 
@@ -45,7 +45,7 @@ description: Integrate Http with soul gateway
      <dependency>
          <groupId>org.dromara</groupId>
          <artifactId>soul-spring-boot-starter-client-springmvc</artifactId>
-         <version>2.2.0</version>
+         <version>${last.version}</version>
      </dependency>
  ```
    * Add these config values in your yaml file ：  
@@ -69,7 +69,7 @@ description: Integrate Http with soul gateway
        <dependency>
            <groupId>org.dromara</groupId>
            <artifactId>soul-client-springmvc</artifactId>
-           <version>2.2.0</version>
+           <version>${last.version}</version>
        </dependency>
  ```     
   * Inject these properties into your Spring beans XML file:   
@@ -82,7 +82,7 @@ description: Integrate Http with soul gateway
          <property name="adminUrl" value="http://localhost:9095"/>
          <property name="port" value="your port"/>
          <property name="contextPath" value="/your contextPath"/>
-         <property name="appName" value="your name"/>
+         <property name="appName" value="your application name"/>
          <property name="full" value="false"/>
     </bean>
    ``` 

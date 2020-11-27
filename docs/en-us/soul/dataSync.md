@@ -60,7 +60,7 @@ The mechanism of `websocket` and `zookeeper` is similar,when the gateway and the
 
 When we use websocket synchronization,pay attention to reconnect after disconnection,which also called keep heartbeat.`soul` uses `java-websocket` ,a third-party library,to connect to `websocket`.
 
-```
+```java
 public class WebsocketSyncCache extends WebsocketCacheHandler {
     /**
      * The Client.
@@ -101,7 +101,7 @@ http long polling mechanism as above,soul-web gateway requests admin configurati
 
 After the http request reaches soul-admin, it does not respond immediately,but uses the asynchronous mechanism of Servlet3.0 to asynchronously respond to the data.First of all,put long polling request task `LongPollingClient` into `BlocingQueue`,and then start scheduling task,execute after 60 seconds,this aims to remove the long polling request from the queue after 60 seconds,even there is no configured data change.Because even if there is no configuration change,gateway also need to know,otherwise it will wait,and there is a 90 seconds timeout when the gateway requests configuration services.
 
-```
+```java
 public void doLongPolling(final HttpServletRequest request, final HttpServletResponse response) {
     // since soul-web may not receive notification of a configuration change, MD5 value may be different,so respond immediately
     List<ConfigGroupEnum> changedGroup = compareMD5(request);
@@ -138,7 +138,7 @@ class LongPollingClient implements Runnable {
 
 If the administrator changes the configuration data during this period,the long polling requests in the queue will be removed one by one, and respond which group’s data has changed(we distribute plugins, rules, flow configuration , user configuration data into different groups).After gateway receives response,it only knows which Group has changed its configuration,it need to request again to get group configuration data.Someone may ask,why don't you write out the changed data directly?We also discussed this issue deeply during development, because the http long polling mechanism can only guarantee quasi real-time,if gateway layer does not handle it in time,or administrator updates configuration frequently,we probably missed some configuration change push.For security, we only inform that a certain Group information has changed.
 
-```
+```java
 // soul-admin configuration changed,remove the requests from the queue one by one and respond to them
 class DataChangeTask implements Runnable {
     DataChangeTask(final ConfigGroupEnum groupKey) {
