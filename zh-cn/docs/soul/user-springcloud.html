@@ -46,7 +46,7 @@
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-commons<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span> 
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-ribbon<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -110,7 +110,7 @@
 <pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-springcloud<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -140,19 +140,19 @@
  <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/test"</span>)
  <span class="hljs-meta">@SoulSpringCloudClient</span>(path = <span class="hljs-string">"/test/**"</span>)
  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpTestController</span> </span>{
-     
+
      <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/payment"</span>)
      <span class="hljs-function"><span class="hljs-keyword">public</span> UserDTO <span class="hljs-title">post</span><span class="hljs-params">(@RequestBody <span class="hljs-keyword">final</span> UserDTO userDTO)</span> </span>{
          <span class="hljs-keyword">return</span> userDTO;
      }
-     
+
      <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/findByUserId"</span>)
      <span class="hljs-function"><span class="hljs-keyword">public</span> UserDTO <span class="hljs-title">findByUserId</span><span class="hljs-params">(@RequestParam(<span class="hljs-string">"userId"</span>)</span> <span class="hljs-keyword">final</span> String userId) </span>{
          UserDTO userDTO = <span class="hljs-keyword">new</span> UserDTO();
          userDTO.setUserId(userId);
          userDTO.setUserName(<span class="hljs-string">"hello world"</span>);
          <span class="hljs-keyword">return</span> userDTO;
-     }    
+     }
   }
 </code></pre>
 <ul>
@@ -162,7 +162,7 @@
  <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/order"</span>)
  <span class="hljs-meta">@SoulSpringCloudClient</span>(path = <span class="hljs-string">"/order"</span>)
  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OrderController</span> </span>{
- 
+
      <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/save"</span>)
      <span class="hljs-meta">@SoulSpringMvcClient</span>(path = <span class="hljs-string">"/save"</span>)
      <span class="hljs-function"><span class="hljs-keyword">public</span> OrderDTO <span class="hljs-title">save</span><span class="hljs-params">(@RequestBody <span class="hljs-keyword">final</span> OrderDTO orderDTO)</span> </span>{

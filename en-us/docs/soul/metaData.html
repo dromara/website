@@ -25,23 +25,23 @@
 <p>Table Structure:</p>
 </li>
 </ul>
-<pre><code>CREATE TABLE  IF NOT EXISTS `meta_data` (
-  `id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'id',
-  `app_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'application name',
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'path,not repeatable',
-  `path_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'path description',
-  `rpc_type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'rpc type
-  `service_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'service name',
-  `method_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'method name',
-  `parameter_types` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'multiple parameter types, split by comma',
-  `rpc_ext` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'rpc extension information,json format',
-  `date_created` datetime(0) NOT NULL COMMENT 'create date',
-  `date_updated` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'update date',
-  `enabled` tinyint(4) NOT NULL DEFAULT 0 COMMENT 'enable status',
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span>  <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`meta_data`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'id'</span>,
+  <span class="hljs-string">`app_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'application name'</span>,
+  <span class="hljs-string">`path`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'path,not repeatable'</span>,
+  <span class="hljs-string">`path_desc`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'path description'</span>,
+  <span class="hljs-string">`rpc_type`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">64</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'rpc type
+  `service_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '</span>service <span class="hljs-keyword">name</span><span class="hljs-string">',
+  `method_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '</span>method <span class="hljs-keyword">name</span><span class="hljs-string">',
+  `parameter_types` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '</span>multiple parameter types, <span class="hljs-keyword">split</span> <span class="hljs-keyword">by</span> comma<span class="hljs-string">',
+  `rpc_ext` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '</span>rpc extension information,<span class="hljs-keyword">json</span> <span class="hljs-keyword">format</span><span class="hljs-string">',
+  `date_created` datetime(0) NOT NULL COMMENT '</span><span class="hljs-keyword">create</span> <span class="hljs-built_in">date</span><span class="hljs-string">',
+  `date_updated` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '</span><span class="hljs-keyword">update</span> <span class="hljs-built_in">date</span><span class="hljs-string">',
+  `enabled` tinyint(4) NOT NULL DEFAULT 0 COMMENT '</span><span class="hljs-keyword">enable</span> <span class="hljs-keyword">status</span><span class="hljs-string">',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
-</code></pre>
+</span></code></pre>
 <ul>
 <li>
 <p>Metadata design as below,the most important is using it in dubbo's generalization call.</p>
@@ -54,17 +54,17 @@
 <ul>
 <li>dubbo field structure as below,then we store json format string.</li>
 </ul>
-<pre><code> public static class RpcExt {
+<pre><code class="language-java"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RpcExt</span> </span>{
         
-        private String group;
+        <span class="hljs-keyword">private</span> String group;
         
-        private String version;
+        <span class="hljs-keyword">private</span> String version;
         
-        private String loadbalance;
+        <span class="hljs-keyword">private</span> String loadbalance;
         
-        private Integer retries;
+        <span class="hljs-keyword">private</span> Integer retries;
         
-        private Integer timeout;
+        <span class="hljs-keyword">private</span> Integer timeout;
 
     }
 </code></pre>

@@ -32,13 +32,13 @@
    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-divide<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 
    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-httpclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -60,7 +60,7 @@
 <pre><code class="language-xml">     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -89,21 +89,21 @@
 <pre><code class="language-xml">       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-client-springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
 <li>Inject these properties into your Spring beans XML file:</li>
 </ul>
-<pre><code class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"springMvcClientBeanPostProcessor"</span> ,<span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor"</span>&gt;</span>
+<pre><code class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"springMvcClientBeanPostProcessor"</span> <span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span>  <span class="hljs-attr">ref</span>=<span class="hljs-string">"soulSpringMvcConfig"</span>/&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
    
-   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"soulSpringMvcConfig"</span>, <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.springmvc.config.SoulSpringMvcConfig"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"soulSpringMvcConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.springmvc.config.SoulSpringMvcConfig"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"adminUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"http://localhost:9095"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"port"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"your port"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"contextPath"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/your contextPath"</span>/&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"appName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"your name"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"appName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"your application name"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"full"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>/&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 </code></pre>

@@ -133,14 +133,14 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-gateway<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
-  
+
    <span class="hljs-comment">&lt;!--soul data sync start use websocket--&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-sync-data-websocket<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -191,14 +191,14 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
 </blockquote>
 <p>③ 因为 Soul Bootstrap 和 Soul Admin 暂时不支持插件修改的<strong>自动加载</strong>，所以我们此时需要<strong>手动重启</strong>下。</p>
 <h2>3.2 在网关的pom.xml引入对 dubbo插件的依赖</h2>
-<pre><code class="language-xml">  
+<pre><code class="language-xml">
 <span class="hljs-comment">&lt;!--soul apache dubbo plugin start--&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-apache-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
- <span class="hljs-comment">&lt;!--soul apache dubbo plugin end--&gt;</span> 
+ <span class="hljs-comment">&lt;!--soul apache dubbo plugin end--&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -217,7 +217,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.1.4<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 <span class="hljs-comment">&lt;!-- Dubbo Nacos registry dependency  end--&gt;</span>
-     
+
 </code></pre>
 <h2>3.3 搭建 Dubbo 示例项目</h2>
 <p>先快速搭建一个 Dubbo 示例项目，暂未接入 Soul 网关。如下图所示：</p>
@@ -236,7 +236,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-apache-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <blockquote>
@@ -246,7 +246,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-alibaba-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <h3>3.2.2 配置文件</h3>
@@ -329,13 +329,13 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-divide<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 
    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-httpclient<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <blockquote>
@@ -360,7 +360,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
 <pre><code class="language-xml">     <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
          <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
          <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <h3>4.3.2 配置文件</h3>
@@ -455,7 +455,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-springcloud<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
    <span class="hljs-comment">&lt;!--soul springCloud plugin end--&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
@@ -467,7 +467,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-commons<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span> 
+   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.cloud<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-ribbon<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
@@ -501,7 +501,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
 <pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-springcloud<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <h3>5.4.2 配置文件</h3>

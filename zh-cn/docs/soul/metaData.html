@@ -25,21 +25,21 @@
 <p>表结构如下:</p>
 </li>
 </ul>
-<pre><code>CREATE TABLE  IF NOT EXISTS `meta_data` (
-  `id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'id',
-  `app_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '应用名称',
-  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '路径,不能重复',
-  `path_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '路径描述',
-  `rpc_type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'rpc类型',
-  `service_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '服务名称',
-  `method_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '方法名称',
-  `parameter_types` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '参数类型 多个参数类型 逗号隔开',
-  `rpc_ext` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT 'rpc的扩展信息，json格式',
-  `date_created` datetime(0) NOT NULL COMMENT '创建时间',
-  `date_updated` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
-  `enabled` tinyint(4) NOT NULL DEFAULT 0 COMMENT '启用状态',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+<pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span>  <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`meta_data`</span> (
+  <span class="hljs-string">`id`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'id'</span>,
+  <span class="hljs-string">`app_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'应用名称'</span>,
+  <span class="hljs-string">`path`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'路径,不能重复'</span>,
+  <span class="hljs-string">`path_desc`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'路径描述'</span>,
+  <span class="hljs-string">`rpc_type`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">64</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'rpc类型'</span>,
+  <span class="hljs-string">`service_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'服务名称'</span>,
+  <span class="hljs-string">`method_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'方法名称'</span>,
+  <span class="hljs-string">`parameter_types`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'参数类型 多个参数类型 逗号隔开'</span>,
+  <span class="hljs-string">`rpc_ext`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">1024</span>) <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8mb4 <span class="hljs-keyword">COLLATE</span> utf8mb4_unicode_ci <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'rpc的扩展信息，json格式'</span>,
+  <span class="hljs-string">`date_created`</span> datetime(<span class="hljs-number">0</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'创建时间'</span>,
+  <span class="hljs-string">`date_updated`</span> datetime(<span class="hljs-number">0</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">CURRENT_TIMESTAMP</span>(<span class="hljs-number">0</span>) <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'更新时间'</span>,
+  <span class="hljs-string">`enabled`</span> <span class="hljs-built_in">tinyint</span>(<span class="hljs-number">4</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'启用状态'</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`id`</span>) <span class="hljs-keyword">USING</span> BTREE
+) <span class="hljs-keyword">ENGINE</span> = <span class="hljs-keyword">InnoDB</span> <span class="hljs-built_in">CHARACTER</span> <span class="hljs-keyword">SET</span> = utf8mb4 <span class="hljs-keyword">COLLATE</span> = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 </code></pre>
 <ul>
@@ -54,17 +54,17 @@
 <ul>
 <li>dubbo 类型 字段结构是 如下，那么存储的就是json格式的字符串.</li>
 </ul>
-<pre><code> public static class RpcExt {
-        
-        private String group;
-        
-        private String version;
-        
-        private String loadbalance;
-        
-        private Integer retries;
-        
-        private Integer timeout;
+<pre><code class="language-java"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RpcExt</span> </span>{
+
+        <span class="hljs-keyword">private</span> String group;
+
+        <span class="hljs-keyword">private</span> String version;
+
+        <span class="hljs-keyword">private</span> String loadbalance;
+
+        <span class="hljs-keyword">private</span> Integer retries;
+
+        <span class="hljs-keyword">private</span> Integer timeout;
 
     }
 </code></pre>

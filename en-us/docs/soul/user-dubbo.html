@@ -38,7 +38,7 @@
          <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
              <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
              <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-alibaba-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
           <span class="hljs-comment">&lt;!-- soul  alibaba dubbo plugin end--&gt;</span>
          <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
@@ -71,7 +71,7 @@
          <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
              <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
              <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-plugin-apache-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
          <span class="hljs-comment">&lt;!--soul apache dubbo plugin end--&gt;</span>
 
@@ -131,7 +131,7 @@
 <pre><code class="language-xml">       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-alibaba-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -157,20 +157,20 @@
 <pre><code class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-client-alibaba-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
 <li>Inject these properties into your Sping beans XML file：</li>
 </ul>
-<pre><code class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"alibabaDubboServiceBeanPostProcessor"</span> ,<span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor"</span>&gt;</span>
+<pre><code class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"alibabaDubboServiceBeanPostProcessor"</span> <span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.alibaba.dubbo.AlibabaDubboServiceBeanPostProcessor"</span>&gt;</span>
              <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span>  <span class="hljs-attr">ref</span>=<span class="hljs-string">"dubboConfig"</span>/&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
         
-        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dubboConfig"</span>, <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.dubbo.common.config.DubboConfig"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dubboConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.dubbo.common.config.DubboConfig"</span>&gt;</span>
              <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"adminUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"http://localhost:9095"</span>/&gt;</span>     
-             <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"contextPath"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/你的contextPath"</span>/&gt;</span>
-             <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"appName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"你的名字"</span>/&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"contextPath"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/your contextPath"</span>/&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"appName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"your application name"</span>/&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
 </code></pre>
 <ul>
@@ -189,7 +189,7 @@
 <pre><code class="language-xml">       <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-apache-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -214,7 +214,7 @@
 <pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-client-apache-dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 </li>
@@ -222,11 +222,11 @@
 <p>Injecct these properties into your Spring beans XML file ：</p>
 </li>
 </ul>
-<pre><code class="language-xml">         <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"apacheDubboServiceBeanPostProcessor"</span> ,<span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.apache.dubbo.ApacheDubboServiceBeanPostProcessor"</span>&gt;</span>
+<pre><code class="language-xml">         <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"apacheDubboServiceBeanPostProcessor"</span> <span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.apache.dubbo.ApacheDubboServiceBeanPostProcessor"</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span>  <span class="hljs-attr">ref</span>=<span class="hljs-string">"dubboConfig"</span>/&gt;</span>
          <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
          
-         <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dubboConfig"</span>, <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.dubbo.common.config.DubboConfig"</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dubboConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.dubbo.common.config.DubboConfig"</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"adminUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"http://localhost:9095"</span>/&gt;</span>     
               <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"contextPath"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/your contextPath"</span>/&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"appName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"your application name"</span>/&gt;</span>

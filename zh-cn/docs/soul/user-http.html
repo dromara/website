@@ -95,11 +95,11 @@
 <ul>
 <li>在你的 bean定义的xml文件中新增如下 ：</li>
 </ul>
-<pre><code class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"springMvcClientBeanPostProcessor"</span> ,<span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor"</span>&gt;</span>
+<pre><code class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"springMvcClientBeanPostProcessor"</span> <span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span>  <span class="hljs-attr">ref</span>=<span class="hljs-string">"soulSpringMvcConfig"</span>/&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
    
-   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"soulSpringMvcConfig"</span>, <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.springmvc.config.SoulSpringMvcConfig"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"soulSpringMvcConfig"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.dromara.soul.client.springmvc.config.SoulSpringMvcConfig"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"adminUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"http://localhost:9095"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"port"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"你的端口"</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"contextPath"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"/你的contextPath"</span>/&gt;</span>

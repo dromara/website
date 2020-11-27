@@ -39,14 +39,14 @@
 <pre><code> &lt;dependency&gt;
         &lt;groupId&gt;org.dromara&lt;/groupId&gt;
         &lt;artifactId&gt;soul-plugin-api&lt;/artifactId&gt;
-        &lt;version&gt;2.2.0&lt;/version&gt;
+        &lt;version&gt;${last.version}&lt;/version&gt;
   &lt;/dependency&gt;
 </code></pre>
 <ul>
 <li>用户新增一个类 A,直接实现 <code>org.dromara.soul.plugin.api.SoulPlugin</code></li>
 </ul>
 <pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">SoulPlugin</span> </span>{
-    
+
     <span class="hljs-comment">/**
      * Process the Web request and (optionally) delegate to the next
      * {<span class="hljs-doctag">@code</span> WebFilter} through the given {<span class="hljs-doctag">@link</span> SoulPluginChain}.
@@ -56,7 +56,7 @@
      * <span class="hljs-doctag">@return</span> {<span class="hljs-doctag">@code</span> Mono&lt;Void&gt;} to indicate when request processing is complete
      */</span>
     <span class="hljs-function">Mono&lt;Void&gt; <span class="hljs-title">execute</span><span class="hljs-params">(ServerWebExchange exchange, SoulPluginChain chain)</span></span>;
-    
+
     <span class="hljs-comment">/**
      * return plugin order .
      * This attribute To determine the plugin execution order in the same type plugin.
@@ -64,7 +64,7 @@
      * <span class="hljs-doctag">@return</span> int order
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getOrder</span><span class="hljs-params">()</span></span>;
-    
+
     <span class="hljs-comment">/**
      * acquire plugin name.
      * this is plugin name define you must Provide the right name.
@@ -75,7 +75,7 @@
     <span class="hljs-function"><span class="hljs-keyword">default</span> String <span class="hljs-title">named</span><span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;
     }
-    
+
     <span class="hljs-comment">/**
      * plugin is execute.
      * if return true this plugin can not execute.
@@ -123,7 +123,7 @@
 <pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-plugin-base<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${last.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
@@ -142,7 +142,7 @@
  * <span class="hljs-doctag">@author</span> xiaoyu(Myth)
  */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractSoulPlugin</span> </span>{
-    
+
     <span class="hljs-comment">/**
      * return plugin order .
      * The same plugin he executes in the same order.
@@ -211,7 +211,7 @@
 <p>继承该类的插件，插件会进行选择器规则匹配，那如何来设置呢？</p>
 </li>
 <li>
-<p>首先在 <code>soul-admin</code> 后台 --&gt;插件管理中，新增一个插件，注意 名称与 你自定义插件的 <code>named（）</code> 方法要一致。</p>
+<p>首先在 <code>soul-admin</code> 后台 --&gt;插件管理中，新增一个插件，注意 名称与 你自定义插件的 <code>named()</code> 方法要一致。</p>
 </li>
 <li>
 <p>重新登陆  <code>soul-admin</code> 后台 ，你会发现在插件列表就多了一个你刚新增的插件，你就可以进行选择器规则匹配</p>
@@ -235,7 +235,7 @@
 <li>新增一个类A，实现 <code>org.dromara.soul.plugin.base.handler.PluginDataHandler</code></li>
 </ul>
 <pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PluginDataHandler</span> </span>{
-    
+
     <span class="hljs-comment">/**
      * Handler plugin.
      *
@@ -243,7 +243,7 @@
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handlerPlugin</span><span class="hljs-params">(PluginData pluginData)</span> </span>{
     }
-    
+
     <span class="hljs-comment">/**
      * Remove plugin.
      *
@@ -251,7 +251,7 @@
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removePlugin</span><span class="hljs-params">(PluginData pluginData)</span> </span>{
     }
-    
+
     <span class="hljs-comment">/**
      * Handler selector.
      *
@@ -259,7 +259,7 @@
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handlerSelector</span><span class="hljs-params">(SelectorData selectorData)</span> </span>{
     }
-    
+
     <span class="hljs-comment">/**
      * Remove selector.
      *
@@ -267,7 +267,7 @@
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeSelector</span><span class="hljs-params">(SelectorData selectorData)</span> </span>{
     }
-    
+
     <span class="hljs-comment">/**
      * Handler rule.
      *
@@ -275,7 +275,7 @@
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handlerRule</span><span class="hljs-params">(RuleData ruleData)</span> </span>{
     }
-    
+
     <span class="hljs-comment">/**
      * Remove rule.
      *
@@ -283,14 +283,14 @@
      */</span>
     <span class="hljs-function"><span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeRule</span><span class="hljs-params">(RuleData ruleData)</span> </span>{
     }
-    
+
     <span class="hljs-comment">/**
      * Plugin named string.
      *
      * <span class="hljs-doctag">@return</span> the string
      */</span>
     <span class="hljs-function">String <span class="hljs-title">pluginNamed</span><span class="hljs-params">()</span></span>;
-    
+
 }
 </code></pre>
 <ul>

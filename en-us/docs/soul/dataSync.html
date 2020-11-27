@@ -50,33 +50,33 @@
 <h2>websocket synchronization</h2>
 <p>The mechanism of <code>websocket</code> and <code>zookeeper</code> is similar,when the gateway and the <code>admin</code> establish a <code>websocket</code> connection,<code>admin</code> will push all data at once,it will automatically push incremental data to <code>soul-web</code> through <code>websocket</code> when configured data changes</p>
 <p>When we use websocket synchronization,pay attention to reconnect after disconnection,which also called keep heartbeat.<code>soul</code> uses <code>java-websocket</code> ,a third-party library,to connect to <code>websocket</code>.</p>
-<pre><code>public class WebsocketSyncCache extends WebsocketCacheHandler {
-    /**
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WebsocketSyncCache</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebsocketCacheHandler</span> </span>{
+    <span class="hljs-comment">/**
      * The Client.
-     */
-    private WebSocketClient client;
+     */</span>
+    <span class="hljs-keyword">private</span> WebSocketClient client;
 
-    public WebsocketSyncCache(final SoulConfig.WebsocketConfig websocketConfig) {
-        ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1,
-                SoulThreadFactory.create(&quot;websocket-connect&quot;, true));
-         client = new WebSocketClient(new URI(websocketConfig.getUrl())) {
-                @Override
-                public void onOpen(final ServerHandshake serverHandshake) {
-                  //....
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WebsocketSyncCache</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SoulConfig.WebsocketConfig websocketConfig)</span> </span>{
+        ScheduledThreadPoolExecutor executor = <span class="hljs-keyword">new</span> ScheduledThreadPoolExecutor(<span class="hljs-number">1</span>,
+                SoulThreadFactory.create(<span class="hljs-string">"websocket-connect"</span>, <span class="hljs-keyword">true</span>));
+         client = <span class="hljs-keyword">new</span> WebSocketClient(<span class="hljs-keyword">new</span> URI(websocketConfig.getUrl())) {
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onOpen</span><span class="hljs-params">(<span class="hljs-keyword">final</span> ServerHandshake serverHandshake)</span> </span>{
+                  <span class="hljs-comment">//....</span>
                 }
-                @Override
-                public void onMessage(final String result) {
-                  //....
+                <span class="hljs-meta">@Override</span>
+                <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessage</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String result)</span> </span>{
+                  <span class="hljs-comment">//....</span>
                 }    
             };
-        //connect
+        <span class="hljs-comment">//connect</span>
         client.connectBlocking();
-        //reconnect after disconnection,using scheduling thread pool,execute every 30 seconds
+        <span class="hljs-comment">//reconnect after disconnection,using scheduling thread pool,execute every 30 seconds</span>
         executor.scheduleAtFixedRate(() -&gt; {
-            if (client != null &amp;&amp; client.isClosed()) {
+            <span class="hljs-keyword">if</span> (client != <span class="hljs-keyword">null</span> &amp;&amp; client.isClosed()) {
                     client.reconnectBlocking();
             }
-        }, 10, 30, TimeUnit.SECONDS);
+        }, <span class="hljs-number">10</span>, <span class="hljs-number">30</span>, TimeUnit.SECONDS);
     }
 </code></pre>
 <h2>http long polling</h2>
@@ -84,55 +84,55 @@
 <p><img src="https://bestkobe.gitee.io/images/soul/http-long-polling.png?_t=201908032339" alt="http long polling"></p>
 <p>http long polling mechanism as above,soul-web gateway requests admin configuration services,timeout is 90 seconds,it means gateway layer request configuration service will wait at most 90 seconds,this is convenient for admin configuration service to respond modified data in time,and therefore we realize near real-time push.</p>
 <p>After the http request reaches soul-admin, it does not respond immediately,but uses the asynchronous mechanism of Servlet3.0 to asynchronously respond to the data.First of all,put long polling request task <code>LongPollingClient</code> into <code>BlocingQueue</code>,and then start scheduling task,execute after 60 seconds,this aims to remove the long polling request from the queue after 60 seconds,even there is no configured data change.Because even if there is no configuration change,gateway also need to know,otherwise it will wait,and there is a 90 seconds timeout when the gateway requests configuration services.</p>
-<pre><code>public void doLongPolling(final HttpServletRequest request, final HttpServletResponse response) {
-    // since soul-web may not receive notification of a configuration change, MD5 value may be different,so respond immediately
+<pre><code class="language-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doLongPolling</span><span class="hljs-params">(<span class="hljs-keyword">final</span> HttpServletRequest request, <span class="hljs-keyword">final</span> HttpServletResponse response)</span> </span>{
+    <span class="hljs-comment">// since soul-web may not receive notification of a configuration change, MD5 value may be different,so respond immediately</span>
     List&lt;ConfigGroupEnum&gt; changedGroup = compareMD5(request);
     String clientIp = getRemoteIp(request);
-    if (CollectionUtils.isNotEmpty(changedGroup)) {
-        this.generateResponse(response, changedGroup);
-        return;
+    <span class="hljs-keyword">if</span> (CollectionUtils.isNotEmpty(changedGroup)) {
+        <span class="hljs-keyword">this</span>.generateResponse(response, changedGroup);
+        <span class="hljs-keyword">return</span>;
     }
 
-    // Servlet3.0 asynchronously responds to http request
-    final AsyncContext asyncContext = request.startAsync();
-    asyncContext.setTimeout(0L);
-    scheduler.execute(new LongPollingClient(asyncContext, clientIp, 60));
+    <span class="hljs-comment">// Servlet3.0 asynchronously responds to http request</span>
+    <span class="hljs-keyword">final</span> AsyncContext asyncContext = request.startAsync();
+    asyncContext.setTimeout(<span class="hljs-number">0L</span>);
+    scheduler.execute(<span class="hljs-keyword">new</span> LongPollingClient(asyncContext, clientIp, <span class="hljs-number">60</span>));
 }
     
-class LongPollingClient implements Runnable {
-    LongPollingClient(final AsyncContext ac, final String ip, final long timeoutTime) {
-        // omit......
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LongPollingClient</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+    LongPollingClient(<span class="hljs-keyword">final</span> AsyncContext ac, <span class="hljs-keyword">final</span> String ip, <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> timeoutTime) {
+        <span class="hljs-comment">// omit......</span>
     }
-    @Override
-    public void run() {
-        // join a scheduled task, if there is no configuration change within 60 seconds, it will be executed after 60 seconds and respond to http requests
-        this.asyncTimeoutFuture = scheduler.schedule(() -&gt; {
-            // clients are blocked queue,saved the request from soul-web
-            clients.remove(LongPollingClient.this);
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// join a scheduled task, if there is no configuration change within 60 seconds, it will be executed after 60 seconds and respond to http requests</span>
+        <span class="hljs-keyword">this</span>.asyncTimeoutFuture = scheduler.schedule(() -&gt; {
+            <span class="hljs-comment">// clients are blocked queue,saved the request from soul-web</span>
+            clients.remove(LongPollingClient.<span class="hljs-keyword">this</span>);
             List&lt;ConfigGroupEnum&gt; changedGroups = HttpLongPollingDataChangedListener.compareMD5((HttpServletRequest) asyncContext.getRequest());
             sendResponse(changedGroups);
         }, timeoutTime, TimeUnit.MILLISECONDS);
-        // 
-        clients.add(this);
+        <span class="hljs-comment">// </span>
+        clients.add(<span class="hljs-keyword">this</span>);
     }
 }
 </code></pre>
 <p>If the administrator changes the configuration data during this period,the long polling requests in the queue will be removed one by one, and respond which group’s data has changed(we distribute plugins, rules, flow configuration , user configuration data into different groups).After gateway receives response,it only knows which Group has changed its configuration,it need to request again to get group configuration data.Someone may ask,why don't you write out the changed data directly?We also discussed this issue deeply during development, because the http long polling mechanism can only guarantee quasi real-time,if gateway layer does not handle it in time,or administrator updates configuration frequently,we probably missed some configuration change push.For security, we only inform that a certain Group information has changed.</p>
-<pre><code>// soul-admin configuration changed,remove the requests from the queue one by one and respond to them
-class DataChangeTask implements Runnable {
-    DataChangeTask(final ConfigGroupEnum groupKey) {
-        this.groupKey = groupKey;
+<pre><code class="language-java"><span class="hljs-comment">// soul-admin configuration changed,remove the requests from the queue one by one and respond to them</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataChangeTask</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
+    DataChangeTask(<span class="hljs-keyword">final</span> ConfigGroupEnum groupKey) {
+        <span class="hljs-keyword">this</span>.groupKey = groupKey;
     }
-    @Override
-    public void run() {
-        try {
-            for (Iterator&lt;LongPollingClient&gt; iter = clients.iterator(); iter.hasNext(); ) {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">for</span> (Iterator&lt;LongPollingClient&gt; iter = clients.iterator(); iter.hasNext(); ) {
                 LongPollingClient client = iter.next();
                 iter.remove();
                 client.sendResponse(Collections.singletonList(groupKey));
             }
-        } catch (Throwable e) {
-            LOGGER.error(&quot;data change error.&quot;, e);
+        } <span class="hljs-keyword">catch</span> (Throwable e) {
+            LOGGER.error(<span class="hljs-string">"data change error."</span>, e);
         }
     }
 }
