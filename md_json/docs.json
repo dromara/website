@@ -1189,6 +1189,15 @@
       }
     },
     {
+      "filename": "plugin-sofa.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-sofa.html",
+      "meta": {
+        "title": "sofa插件",
+        "keywords": "sofa",
+        "description": "sofa插件"
+      }
+    },
+    {
       "filename": "plugin-springcloud.md",
       "link": "\\zh-cn\\docs\\soul\\plugin-springcloud.html",
       "meta": {
@@ -1276,6 +1285,15 @@
         "title": "http用户",
         "keywords": "soul",
         "description": "http用户"
+      }
+    },
+    {
+      "filename": "user-sofa.md",
+      "link": "\\zh-cn\\docs\\soul\\user-sofa.html",
+      "meta": {
+        "title": "sofa接入soul网关",
+        "keywords": "sofa",
+        "description": "sofa接入soul网关"
       }
     },
     {

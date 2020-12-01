@@ -380,6 +380,10 @@ export default {
                                 link: '/zh-cn/docs/soul/user-springcloud.html',
                             },
                             {
+                                title: 'sofa用户',
+                                link: '/zh-cn/docs/soul/user-sofa.html',
+                            },
+                            {
                                 title: '选择器规则详解',
                                 link: '/zh-cn/docs/soul/selector.html',
                             },
@@ -398,6 +402,10 @@ export default {
                             {
                                 title: 'springcloud插件',
                                 link: '/zh-cn/docs/soul/plugin-springcloud.html',
+                            },
+                            {
+                                title: 'sofa插件',
+                                link: '/zh-cn/docs/soul/plugin-sofa.html',
                             },
                             {
                                 title: 'rateLimiter插件',

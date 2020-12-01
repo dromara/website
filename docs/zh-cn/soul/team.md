@@ -16,3 +16,4 @@ description: 团队介绍
  |梁自强                |241600489 |  committer   | 滴滴     | 
  |汤昱东              |tydhot      |  committer   | [perfma](https://perfma.com/)       |
  |邓力铭                |dengliming |  committer   | 某创业公司     | 
+ |张磊                |SaberSola |  committer   | 哈罗     | 

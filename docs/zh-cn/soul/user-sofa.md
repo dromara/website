@@ -4,20 +4,17 @@ keywords: sofa
 description: sofa接入soul网关
 ---
 
-
 ## 说明
 
 * 此篇文章是sofa用户使用sofa插件支持，以及自己的sofa服务接入soul网关的教程。
 
 * 接入前，请正确的启动 `soul-admin` , 以及[搭建环境](setup.md) Ok。
 
-
 ## 引入网关对sofa支持的插件
-
 
 * 在网关的 `pom.xml` 文件中增加如下依赖：
 
-  * sofa版本换成你的，注册中心的jar包换成你的，一下是参考。
+  * sofa版本换成你的，注册中心的jar包换成你的，以下是参考。
 
  ```xml
 
@@ -44,11 +41,10 @@ description: sofa接入soul网关
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-plugin-sofa</artifactId>
-            <version>2.2.1</version>
+            <version>${last.version}</version>
         </dependency>
 
   ```
-
 
 * 重启网关服务。
 

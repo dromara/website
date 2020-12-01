@@ -14,7 +14,7 @@ description: sofa插件
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-plugin-sofa</artifactId>
-            <version>2.2.1</version>
+            <version>${last.version}</version>
         </dependency>
 ```
 
