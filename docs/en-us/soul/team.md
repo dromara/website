@@ -8,8 +8,8 @@ description: Team Introduction
 
  |Name                      | Github  |  Role   | Company  |
  |:------------------------ |:----- |:-------: |:-------:|
- |Xiao Yu                |yu199195 |  VP   | [d.com](https://jd.com)     |
- |Zhang Yonglun                |tuohai666 |  committer   | [d.com](https://jd.com)     |
+ |Xiao Yu                |yu199195 |  VP   | [jd.com](https://jd.com)     |
+ |Zhang Yonglun                |tuohai666 |  committer   | [jd.com](https://jd.com)     |
  |Chen Bing                |prFor |  committer   | a start-up company     |
  |Jiang Xiaofeng                |SteNicholas |  committer   | [aliyun](https://www.aliyun.com)   |
  |Huang Xiaofeng                |huangxfchn |  committer   | [shein](https://www.shein.com.hk)     | 
