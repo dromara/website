@@ -109,10 +109,10 @@ soul:
   springcloud:
     admin-url: http://localhost:9095
     context-path: /springcloud
-    appName: http
+    full: true
 # adminUrl: 为你启动的soul-admin 项目的ip + 端口，注意要加http://
 # contextPath: 为你的这个mvc项目在soul网关的路由前缀，这个你应该懂意思把？ 比如/order ，/product 等等，网关会根据你的这个前缀来进行路由.
-# appName：你的应用名称，不配置的话，会默认取 `spring.application.name` 的值
+# full: 设置true 代表代理你的整个服务，false表示代理你其中某几个controller
 ```
 
 
@@ -149,6 +149,40 @@ soul:
   @RestController
   @RequestMapping("/order")
   @SoulSpringCloudClient(path = "/order")
+  public class OrderController {
+
+      @PostMapping("/save")
+      @SoulSpringMvcClient(path = "/save")
+      public OrderDTO save(@RequestBody final OrderDTO orderDTO) {
+          orderDTO.setName("hello world save order");
+          return orderDTO;
+      }
+
+      @GetMapping("/findById")
+      public OrderDTO findById(@RequestParam("id") final String id) {
+          OrderDTO orderDTO = new OrderDTO();
+          orderDTO.setId(id);
+          orderDTO.setName("hello world findById");
+          return orderDTO;
+      }
+  }
+```
+
+
+   * 举列子 （3）： full: true  代表 `/sb-demo7-api/**`,整个服务会被网关代理 
+```yaml
+soul:
+  springcloud:
+    admin-url: http://localhost:9095
+    context-path: /sb-demo7-api
+    full: true
+# adminUrl: 为你启动的soul-admin 项目的ip + 端口，注意要加http://
+# contextPath: 为你的这个mvc项目在soul网关的路由前缀，这个你应该懂意思把？ 比如/order ，/product 等等，网关会根据你的这个前缀来进行路由.
+# full: 设置true 代表代理你的整个服务，false表示代理你其中某几个controller
+```
+ ```java
+  @RestController
+  @RequestMapping("/order")
   public class OrderController {
 
       @PostMapping("/save")
