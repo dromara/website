@@ -36,7 +36,7 @@ description: sofa插件
 
 * 路径：就是你http请求的路径。 
 
-* rpc扩展参数,对应为sofa接口的一些配置，调整的化，请在这里修改，支持json格式,以下字段：
+* rpc扩展参数,对应为sofa接口的一些配置，调整的话，请在这里修改，支持json格式,以下字段：
 
 ```yaml
 {"loadbalance":"hash","retries":3,"timeout":-1}
