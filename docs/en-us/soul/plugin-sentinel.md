@@ -6,9 +6,9 @@ description: sentinel plugin
 
 ## Explanation
 
-* Sentinel is one of the options that fuses and limit traffic.
+* Sentinel is one of the options that supports flow control and circuit breaking.
 
-* Sentinel supports fuse and current-limit functions for soul gateway.
+* Sentinel supports flow control and circuit breaking functions for gateway.
 
 
 ## Plugin Setting
@@ -33,21 +33,21 @@ description: sentinel plugin
 
 * Selectors and rules, please refer to: [selector](selector.md)
 
-* Sentinel Handle Details:
+* Sentinel Processing Details
     
-    * Whether open traffic control(1 or 0): whether enable sentinel traffic control function.
+    * Whether open flow control(1 or 0): whether enable sentinel flow control function.
     
-    * Traffic control effect: effect(reject/ wait in line/ slow start mode), it do not support current-limit by call relationship. 
+    * Traffic shaping control behavior: effect(reject directly/ queue/ slow start up), it do not support flow control by invocation relation. 
     
-    * Type of current limit threshold: type of current limit threshold(QPS or thread quantity mode)。
+    * Type of threshold of flow control: type of current limit threshold(QPS or Thread Count)。
         
-    * Whether open fuse function(1 or 0): whether enable fuse function of `sentinel`.
+    * Whether open circuit breaking(1 or 0): whether enable circuit breaking function of `sentinel`.
         
-    * Type of fuse: fuse strategy, support RT of seconds level/ exception proportion of seconds level/ exception quantity of minutes level strategy.
+    * Type of circuit breaker: circuit breaker strategy, support RT of seconds level/ Error Ratio of seconds level/ Error Count of minutes level strategy.
         
-    * Fuse threshold: threshold.
+    * Circuit breaking threshold: threshold.
       
-    * Size of fuse window: time of demoting(unit: second).
+    * Size of circuit breaking window: time of degrading(unit: second).
         
-    * URI of fuse: demoted uri after fuse.
+    * URI of circuit breaking: degraded uri after circuit breaking.
 
