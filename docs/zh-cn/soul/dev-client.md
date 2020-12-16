@@ -27,11 +27,13 @@ description: 多语言http客户端
 	"appName": "xxx", //应用名称 必填
 	"context": "/xxx", //请求前缀 必填
 	"path": "xxx", //路径需要唯一 必填
+	"pathDesc": "xxx", //路径描述
 	"rpcType": "http", //rpc类型  必填
 	"host": "xxx", //服务host 必填
 	"port": xxx, //服务端口 必填
 	"ruleName": "xxx", //可以同path一样  必填
-	"enabled": "true"
+	"enabled": "true", //是否开启
+	"registerMetaData": "true" //是否需要注册元数据
 }
 ```
 

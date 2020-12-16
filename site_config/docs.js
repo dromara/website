@@ -37,6 +37,14 @@ export default {
                                 link: '/en-us/docs/soul/setup.html',
                             },
                             {
+                                title: 'Dictionary management',
+                                link: '/en-us/docs/soul/soul-dict.html',
+                            },
+                            {
+                                title: 'Plugin handle explanation',
+                                link: '/en-us/docs/soul/plugin-handle.html',
+                            },
+                            {
                                 title: 'Http proxy',
                                 link: '/en-us/docs/soul/user-http.html',
                             },
@@ -47,6 +55,10 @@ export default {
                             {
                                 title: 'Spring cloud proxy',
                                 link: '/en-us/docs/soul/user-springcloud.html',
+                            },
+                            {
+                                title: 'Sofa rpc proxy',
+                                link: '/en-us/docs/soul/user-sofa.html',
                             },
                             {
                                 title: 'Selector and Rule',
@@ -69,12 +81,20 @@ export default {
                                 link: '/en-us/docs/soul/plugin-springcloud.html',
                             },
                             {
+                                title: 'Sofa plugin',
+                                link: '/en-us/docs/soul/plugin-sofa.html',
+                            },
+                            {
                                 title: 'RateLimiter plugin',
                                 link: '/en-us/docs/soul/plugin-rateLimiter.html',
                             },
                             {
                                 title: 'Hystrix plugin',
                                 link: '/en-us/docs/soul/plugin-hystrix.html',
+                            },
+                            {
+                                title: 'Sentinel plugin',
+                                link: '/en-us/docs/soul/plugin-sentinel.html',
                             },
                             {
                                 title: 'Monitor plugin',
@@ -368,6 +388,14 @@ export default {
                                 link: '/zh-cn/docs/soul/setup.html',
                             },
                             {
+                                title: '字典配置',
+                                link: '/zh-cn/docs/soul/soul-dict.html',
+                            },
+                            {
+                                title: '插件配置模板',
+                                link: '/zh-cn/docs/soul/plugin-handle.html',
+                            },
+                            {
                                 title: 'http用户',
                                 link: '/zh-cn/docs/soul/user-http.html',
                             },
@@ -400,7 +428,7 @@ export default {
                                 link: '/zh-cn/docs/soul/plugin-dubbo.html',
                             },
                             {
-                                title: 'springcloud插件',
+                                title: 'spring cloud插件',
                                 link: '/zh-cn/docs/soul/plugin-springcloud.html',
                             },
                             {
@@ -414,6 +442,10 @@ export default {
                             {
                                 title: 'hystrix插件',
                                 link: '/zh-cn/docs/soul/plugin-hystrix.html',
+                            },
+                            {
+                                title: 'sentinel插件',
+                                link: '/zh-cn/docs/soul/plugin-sentinel.html',
                             },
                             {
                                 title: 'monitor插件',

@@ -60,7 +60,7 @@ step3. Finally, you can enter path, TIMEOUT and commit to the handle field when 
 
 ![](https://yu199195.github.io/images/soul/springcloud-rule-handle.png)
 
-_Note: If data_type is configured to be `3` `selection box`, the input field drop-down selection on the new rule page is displayed by going to the [字典表（soul_dict）](soul-dict.md) table to find all the options available_
+_Note: If data_type is configured to be `3` `selection box`, the input field drop-down selection on the new rule page is displayed by going to the [soul_dict）](soul-dict.md) table to find all the options available_
 
 * The Sentinel plug-in, for example, is shown below:
 

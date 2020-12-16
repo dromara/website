@@ -452,6 +452,15 @@
       }
     },
     {
+      "filename": "plugin-handle.md",
+      "link": "\\en-us\\docs\\soul\\plugin-handle.html",
+      "meta": {
+        "title": "plugin handle explanation",
+        "keywords": "plugin",
+        "description": "plugin handle explanation"
+      }
+    },
+    {
       "filename": "plugin-hystrix.md",
       "link": "\\en-us\\docs\\soul\\plugin-hystrix.html",
       "meta": {
@@ -488,12 +497,30 @@
       }
     },
     {
+      "filename": "plugin-sentinel.md",
+      "link": "\\en-us\\docs\\soul\\plugin-sentinel.html",
+      "meta": {
+        "title": "plugin-sentinel",
+        "keywords": "soul",
+        "description": "sentinel plugin"
+      }
+    },
+    {
       "filename": "plugin-sign.md",
       "link": "\\en-us\\docs\\soul\\plugin-sign.html",
       "meta": {
         "title": "plugin-sign",
         "keywords": "sign",
         "description": "sign plugin"
+      }
+    },
+    {
+      "filename": "plugin-sofa.md",
+      "link": "\\en-us\\docs\\soul\\plugin-sofa.html",
+      "meta": {
+        "title": "sofa access soul gateway",
+        "keywords": "sofa",
+        "description": "sofa access soul gateway"
       }
     },
     {
@@ -542,6 +569,15 @@
       }
     },
     {
+      "filename": "soul-dict.md",
+      "link": "\\en-us\\docs\\soul\\soul-dict.html",
+      "meta": {
+        "title": "dict management",
+        "keywords": "dict",
+        "description": "dict management explanation"
+      }
+    },
+    {
       "filename": "soul.md",
       "link": "\\en-us\\docs\\soul\\soul.html",
       "meta": {
@@ -584,6 +620,15 @@
         "title": "Integrate Http with soul gateway",
         "keywords": "soul",
         "description": "Integrate Http with soul gateway"
+      }
+    },
+    {
+      "filename": "user-sofa.md",
+      "link": "\\en-us\\docs\\soul\\user-sofa.html",
+      "meta": {
+        "title": "sofa access soul gateway",
+        "keywords": "sofa",
+        "description": "sofa access soul gateway"
       }
     },
     {
@@ -1144,6 +1189,15 @@
       }
     },
     {
+      "filename": "plugin-handle.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-handle.html",
+      "meta": {
+        "title": "插件处理详解",
+        "keywords": "plugin",
+        "description": "插件处理详解"
+      }
+    },
+    {
       "filename": "plugin-hystrix.md",
       "link": "\\zh-cn\\docs\\soul\\plugin-hystrix.html",
       "meta": {
@@ -1177,6 +1231,15 @@
         "title": "rewrite插件",
         "keywords": "rewrite",
         "description": "rewrite插件"
+      }
+    },
+    {
+      "filename": "plugin-sentinel.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-sentinel.html",
+      "meta": {
+        "title": "sentinel插件",
+        "keywords": "soul",
+        "description": "sentinel插件"
       }
     },
     {
@@ -1240,6 +1303,15 @@
         "title": "环境搭建",
         "keywords": "soul",
         "description": "环境搭建"
+      }
+    },
+    {
+      "filename": "soul-dict.md",
+      "link": "\\zh-cn\\docs\\soul\\soul-dict.html",
+      "meta": {
+        "title": "字典管理",
+        "keywords": "dict",
+        "description": "字典管理详解"
       }
     },
     {
