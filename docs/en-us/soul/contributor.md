@@ -75,3 +75,14 @@ git push origin --delete issueNo
 git config --global user.name "username"
 git config --global user.email "username@mail.com"
 ```
+
+**FAQ**
+
+ - After each Pull Request (PR), you need to execute the following operations, otherwise, the previous PR commit records will be mixed with this PR commit records. The specific operation process is as follows:
+
+```shell
+git checkout master
+git fetch upstream
+git reset --hard upstream/master
+git push -f
+```
