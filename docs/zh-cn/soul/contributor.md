@@ -78,3 +78,14 @@ git push origin --delete issueNo
 git config --global user.name "username"
 git config --global user.email "username@mail.com"
 ```
+
+### 常见问题
+
+ - 每次Pull Request(PR)后,你需要执行以下操作,否则,之前PR的提交记录会和这次的提交记录混在一起,具体操作流程如下:
+
+```shell
+git checkout master
+git fetch upstream
+git reset --hard upstream/master
+git push -f
+```
