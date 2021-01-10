@@ -69,6 +69,10 @@ export default {
                                 link: '/en-us/docs/soul/user-dataSync.html',
                             },
                             {
+                                title: 'Context-path plugin',
+                                link: '/en-us/docs/soul/plugin-contextpath.html',
+                            },
+                            {
                                 title: 'Divide Plugin',
                                 link: '/en-us/docs/soul/plugin-divide.html',
                             },
@@ -95,6 +99,10 @@ export default {
                             {
                                 title: 'Sentinel plugin',
                                 link: '/en-us/docs/soul/plugin-sentinel.html',
+                            },
+                            {
+                                title: 'Resilience4j plugin',
+                                link: '/en-us/docs/soul/plugin-resilience4j.html',
                             },
                             {
                                 title: 'Monitor plugin',
@@ -420,51 +428,59 @@ export default {
                                 link: '/zh-cn/docs/soul/user-dataSync.html',
                             },
                             {
-                                title: 'divide插件',
+                                title: 'Context-path 插件',
+                                link: '/zh-cn/docs/soul/plugin-contextpath.html',
+                            },
+                            {
+                                title: 'Divide插件',
                                 link: '/zh-cn/docs/soul/plugin-divide.html',
                             },
                             {
-                                title: 'dubbo插件',
+                                title: 'Dubbo插件',
                                 link: '/zh-cn/docs/soul/plugin-dubbo.html',
                             },
                             {
-                                title: 'spring cloud插件',
+                                title: 'Spring Cloud插件',
                                 link: '/zh-cn/docs/soul/plugin-springcloud.html',
                             },
                             {
-                                title: 'sofa插件',
+                                title: 'Sofa插件',
                                 link: '/zh-cn/docs/soul/plugin-sofa.html',
                             },
                             {
-                                title: 'rateLimiter插件',
+                                title: 'RateLimiter插件',
                                 link: '/zh-cn/docs/soul/plugin-rateLimiter.html',
                             },
                             {
-                                title: 'hystrix插件',
+                                title: 'Hystrix插件',
                                 link: '/zh-cn/docs/soul/plugin-hystrix.html',
                             },
                             {
-                                title: 'sentinel插件',
+                                title: 'Sentinel插件',
                                 link: '/zh-cn/docs/soul/plugin-sentinel.html',
                             },
                             {
-                                title: 'monitor插件',
+                                title: 'Resilience4j 插件',
+                                link: '/zh-cn/docs/soul/plugin-resilience4j.html',
+                            },
+                            {
+                                title: 'Monitor插件',
                                 link: '/zh-cn/docs/soul/plugin-monitor.html',
                             },
                             {
-                                title: 'waf插件',
+                                title: 'Waf插件',
                                 link: '/zh-cn/docs/soul/plugin-waf.html',
                             },
                             {
-                                title: 'sign插件',
+                                title: 'Sign插件',
                                 link: '/zh-cn/docs/soul/plugin-sign.html',
                             },
                             {
-                                title: 'rewrite插件',
+                                title: 'Rewrite插件',
                                 link: '/zh-cn/docs/soul/plugin-rewrite.html',
                             },
                             {
-                                title: 'websocket支持',
+                                title: 'Websocket支持',
                                 link: '/zh-cn/docs/soul/plugin-websocket.html',
                             }
                         ],

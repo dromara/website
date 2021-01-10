@@ -434,6 +434,15 @@
       }
     },
     {
+      "filename": "plugin-contextpath.md",
+      "link": "\\en-us\\docs\\soul\\plugin-contextpath.html",
+      "meta": {
+        "title": "plugin-context-path-mapping",
+        "keywords": "context_path",
+        "description": "context_path plugin"
+      }
+    },
+    {
       "filename": "plugin-divide.md",
       "link": "\\en-us\\docs\\soul\\plugin-divide.html",
       "meta": {
@@ -485,6 +494,15 @@
         "title": "plugin-rateLimiter",
         "keywords": "rateLimiter",
         "description": "rateLimiter plugin"
+      }
+    },
+    {
+      "filename": "plugin-resilience4j.md",
+      "link": "\\en-us\\docs\\soul\\plugin-resilience4j.html",
+      "meta": {
+        "title": "plugin-resilience4j",
+        "keywords": "soul",
+        "description": "resilience4j plugin"
       }
     },
     {
@@ -1171,6 +1189,15 @@
       }
     },
     {
+      "filename": "plugin-contextpath.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-contextpath.html",
+      "meta": {
+        "title": "context-path-mapping插件",
+        "keywords": "context_path",
+        "description": "context_path插件"
+      }
+    },
+    {
       "filename": "plugin-divide.md",
       "link": "\\zh-cn\\docs\\soul\\plugin-divide.html",
       "meta": {
@@ -1222,6 +1249,15 @@
         "title": "rateLimiter插件",
         "keywords": "rateLimiter",
         "description": "rateLimiter插件"
+      }
+    },
+    {
+      "filename": "plugin-resilience4j.md",
+      "link": "\\zh-cn\\docs\\soul\\plugin-resilience4j.html",
+      "meta": {
+        "title": "resilience4j插件",
+        "keywords": "soul",
+        "description": "resilience4j插件"
       }
     },
     {
