@@ -81,7 +81,7 @@ class Home extends Language {
       return { name, brand };
     });
     const headerLogo = headerType === 'primary' ? '/img/dromara.png' : '/img/dromara.png';
-    const imagePath = ['/website/img/soul.png', '/website/img/hmily.png', '/website/img/raincat.png', '/website/img/myth.png'];
+    const imagePath = ['/img/soul.png', '/img/hmily.png', '/img/raincat.png', '/img/myth.png'];
     return (
       <div className="home-page">
         <div className="particles-wrap">
