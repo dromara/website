@@ -80,8 +80,8 @@ class Home extends Language {
       const { name, brand } = item;
       return { name, brand };
     });
-    const headerLogo = headerType === 'primary' ? '/img/dromara.png' : '/img/dromara.png';
-    const imagePath = ['/img/soul.png', '/img/hmily.png', '/img/raincat.png', '/img/myth.png'];
+    const headerLogo = headerType === 'primary' ? '/website/img/dromara.png' : '/website/img/dromara.png';
+    const imagePath = ['/website/img/soul.png', '/website/img/hmily.png', '/website/img/raincat.png', '/website/img/myth.png'];
     return (
       <div className="home-page">
         <div className="particles-wrap">
@@ -160,7 +160,7 @@ class Home extends Language {
           }
           </div>
         </section>
-        <Footer logo="/img/dromara.png" language={language} />
+        <Footer logo="/website/img/dromara.png" language={language} />
       </div>
     );
   }
