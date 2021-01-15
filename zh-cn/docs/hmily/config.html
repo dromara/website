@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="dromara.org" />
+	<meta name="description" content="dromara.org" />
+	<!-- 网页标签标题 -->
+	<title>dromara(Open source organization)</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="#">文档</a><div class="sub-menu"><ul><li><a href="/zh-cn/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/zh-cn/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal"><a href="/zh-cn/blog/index.html" target="_self">博客</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="content-section"><div class="sidemenu" id="menu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>Soul</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/soul.html" target="_self">soul介绍</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/team.html" target="_self">团队介绍</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/induction.html" target="_self">soul极简入门</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/db.html" target="_self">数据库设计</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/config.html" target="_self">数据配置流程</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/dataSync.html" target="_self">数据同步原理</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/soul/metaData.html" target="_self">元数据概念介绍</a></li><li style="height:864px;overflow:hidden" class="menu-item menu-item-level-2"><span>用户使用文档<img style="transform:rotate(0deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/setup.html" target="_self">搭建soul网关环境</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/soul-dict.html" target="_self">字典配置</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-handle.html" target="_self">插件配置模板</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/user-http.html" target="_self">http用户</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/user-dubbo.html" target="_self">dubbo用户</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/user-springcloud.html" target="_self">springCloud用户</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/user-sofa.html" target="_self">sofa用户</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/selector.html" target="_self">选择器规则详解</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/user-dataSync.html" target="_self">数据同步策略</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-contextpath.html" target="_self">Context-path 插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-divide.html" target="_self">Divide插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-dubbo.html" target="_self">Dubbo插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-springcloud.html" target="_self">Spring Cloud插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-sofa.html" target="_self">Sofa插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-rateLimiter.html" target="_self">RateLimiter插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-hystrix.html" target="_self">Hystrix插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-sentinel.html" target="_self">Sentinel插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-resilience4j.html" target="_self">Resilience4j 插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-monitor.html" target="_self">Monitor插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-waf.html" target="_self">Waf插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-sign.html" target="_self">Sign插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-rewrite.html" target="_self">Rewrite插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/plugin-websocket.html" target="_self">Websocket支持</a></li></ul></li><li style="height:360px;overflow:hidden" class="menu-item menu-item-level-2"><span>开发者文档<img style="transform:rotate(0deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-filter.html" target="_self">自定义filter</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-plugin.html" target="_self">自定义插件</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-file.html" target="_self">文件上传下载</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-iphost.html" target="_self">自定义解析IP与host</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-result.html" target="_self">自定义返回结果</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-sign.html" target="_self">自定义签名插件算法与验证</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-client.html" target="_self">多语言http客户端接入</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-thread.html" target="_self">线程模型</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/dev-netty.html" target="_self">soul调优</a></li></ul></li><li style="height:144px;overflow:hidden" class="menu-item menu-item-level-2"><span>社区贡献<img style="transform:rotate(0deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/contributor.html" target="_self">贡献者指南</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/committer.html" target="_self">提交者指南</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/soul/code-conduct.html" target="_self">编码规范</a></li></ul></li></ul></li></ul></div><div class="doc-content markdown-body" id="doc-body"><h3>配置详解：</h3>
+<ul>
+<li>
+<p>文件名为 : <code>hmily.yml</code>。</p>
+</li>
+<li>
+<p>路径： 默认路径为项目的 <code>resource</code>目录下，也可以使用 <code>-Dhmily.conf</code> 指定，也可以把配置放在 <code>user.dir</code> 目录下。
+优先级别 <code>-Dhmily.conf</code> &gt; <code>user.dir</code> &gt; <code>resource</code></p>
+</li>
+</ul>
+<pre><code class="language-yaml"><span class="hljs-attr">hmily:</span>
+  <span class="hljs-attr">server:</span>
+    <span class="hljs-attr">configMode:</span> <span class="hljs-string">local</span>
+    <span class="hljs-attr">appName:</span> <span class="hljs-string">xiaoyu</span>
+  <span class="hljs-comment">#  如果server.configMode eq local 的时候才会读取到这里的配置信息.</span>
+  <span class="hljs-attr">config:</span>
+    <span class="hljs-attr">appName:</span> <span class="hljs-string">xiaoyu</span>
+    <span class="hljs-attr">serializer:</span> <span class="hljs-string">kryo</span>
+    <span class="hljs-attr">contextTransmittalMode:</span> <span class="hljs-string">threadLocal</span>
+    <span class="hljs-attr">scheduledThreadMax:</span> <span class="hljs-number">16</span>
+    <span class="hljs-attr">scheduledRecoveryDelay:</span> <span class="hljs-number">60</span>
+    <span class="hljs-attr">scheduledCleanDelay:</span> <span class="hljs-number">60</span>
+    <span class="hljs-attr">scheduledPhyDeletedDelay:</span> <span class="hljs-number">600</span>
+    <span class="hljs-attr">scheduledInitDelay:</span> <span class="hljs-number">30</span>
+    <span class="hljs-attr">recoverDelayTime:</span> <span class="hljs-number">60</span>
+    <span class="hljs-attr">cleanDelayTime:</span> <span class="hljs-number">180</span>
+    <span class="hljs-attr">limit:</span> <span class="hljs-number">200</span>
+    <span class="hljs-attr">retryMax:</span> <span class="hljs-number">10</span>
+    <span class="hljs-attr">bufferSize:</span> <span class="hljs-number">8192</span>
+    <span class="hljs-attr">consumerThreads:</span> <span class="hljs-number">16</span>
+    <span class="hljs-attr">asyncRepository:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">autoSql:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">phyDeleted:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">storeDays:</span> <span class="hljs-number">3</span>
+    <span class="hljs-attr">repository:</span> <span class="hljs-string">mysql</span>
+
+<span class="hljs-attr">repository:</span>
+  <span class="hljs-attr">database:</span>
+    <span class="hljs-attr">driverClassName:</span> <span class="hljs-string">com.mysql.jdbc.Driver</span>
+    <span class="hljs-attr">url :</span>
+    <span class="hljs-attr">username:</span>
+    <span class="hljs-attr">password:</span>
+    <span class="hljs-attr">maxActive:</span> <span class="hljs-number">20</span>
+    <span class="hljs-attr">minIdle:</span> <span class="hljs-number">10</span>
+    <span class="hljs-attr">connectionTimeout:</span> <span class="hljs-number">30000</span>
+    <span class="hljs-attr">idleTimeout:</span> <span class="hljs-number">600000</span>
+    <span class="hljs-attr">maxLifetime:</span> <span class="hljs-number">1800000</span>
+  <span class="hljs-attr">file:</span>
+    <span class="hljs-attr">path:</span>
+    <span class="hljs-attr">prefix:</span> <span class="hljs-string">/hmily</span>
+  <span class="hljs-attr">mongo:</span>
+    <span class="hljs-attr">databaseName:</span>
+    <span class="hljs-attr">url:</span>
+    <span class="hljs-attr">userName:</span>
+    <span class="hljs-attr">password:</span>
+  <span class="hljs-attr">zookeeper:</span>
+    <span class="hljs-attr">host:</span> <span class="hljs-string">localhost:2181</span>
+    <span class="hljs-attr">sessionTimeOut:</span> <span class="hljs-number">1000</span>
+    <span class="hljs-attr">rootPath:</span> <span class="hljs-string">/hmily</span>
+  <span class="hljs-attr">redis:</span>
+    <span class="hljs-attr">cluster:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">sentinel:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">clusterUrl:</span>
+    <span class="hljs-attr">sentinelUrl:</span>
+    <span class="hljs-attr">masterName:</span>
+    <span class="hljs-attr">hostName:</span>
+    <span class="hljs-attr">port:</span>
+    <span class="hljs-attr">password:</span>
+    <span class="hljs-attr">maxTotal:</span> <span class="hljs-number">8</span>
+    <span class="hljs-attr">maxIdle:</span> <span class="hljs-number">8</span>
+    <span class="hljs-attr">minIdle:</span> <span class="hljs-number">2</span>
+    <span class="hljs-attr">maxWaitMillis:</span> <span class="hljs-number">-1</span>
+    <span class="hljs-attr">minEvictableIdleTimeMillis:</span> <span class="hljs-number">1800000</span>
+    <span class="hljs-attr">softMinEvictableIdleTimeMillis:</span> <span class="hljs-number">1800000</span>
+    <span class="hljs-attr">numTestsPerEvictionRun:</span> <span class="hljs-number">3</span>
+    <span class="hljs-attr">testOnCreate:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">testOnBorrow:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">testOnReturn:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">testWhileIdle:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">timeBetweenEvictionRunsMillis:</span> <span class="hljs-number">-1</span>
+    <span class="hljs-attr">blockWhenExhausted:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">timeOut:</span> <span class="hljs-number">1000</span>
+
+<span class="hljs-attr">metrics:</span>
+  <span class="hljs-attr">metricsName:</span> <span class="hljs-string">prometheus</span>
+  <span class="hljs-attr">host:</span>
+  <span class="hljs-attr">port:</span> <span class="hljs-number">9091</span>
+  <span class="hljs-attr">async:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">threadCount :</span> <span class="hljs-number">16</span>
+  <span class="hljs-attr">jmxConfig:</span>
+</code></pre>
+<h3>hmily.server配置</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">configMode</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">local</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">配置模式，现在支持local,zookeeper,nacos,apollo,配置为local，则会读取yml文件里的配置，其他模式，则会读取配置中心的</td>
+</tr>
+<tr>
+<td style="text-align:left">appName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">应用的名称，如果hmilyConfig中也配置了appName则会覆盖此配置</td>
+</tr>
+</tbody>
+</table>
+<h3>hmily.config配置</h3>
+<ul>
+<li>这是整个框架的核心配置</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">appName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">一般填你微服务的应用名称，请不要重复</td>
+</tr>
+<tr>
+<td style="text-align:left">serializer</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">kryo</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">这是指定事务日志的序列化方式，目前支持填写 <code>kryo</code>, <code>hessian</code>, <code>jdk</code>, <code>jdk</code>, <code>protostuff</code></td>
+</tr>
+<tr>
+<td style="text-align:left">contextTransmittalMode</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">threadLocal</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">这是事务上下文传递的模式，目前支持填写 <code>threadLocal</code>, <code>transmittable</code> (跨线程模式)</td>
+</tr>
+<tr>
+<td style="text-align:left">scheduledThreadMax</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">CPU * 2</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">调度线程数最大线程数量</td>
+</tr>
+<tr>
+<td style="text-align:left">scheduledRecoveryDelay</td>
+<td style="text-align:left">int(单位:秒)</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">事务日志自动恢复调度周期</td>
+</tr>
+<tr>
+<td style="text-align:left">scheduledCleanDelay</td>
+<td style="text-align:left">int(单位:秒)</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">事务日志清理调度周期</td>
+</tr>
+<tr>
+<td style="text-align:left">scheduledPhyDeletedDelay</td>
+<td style="text-align:left">int(单位:秒)</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">事务日志物理删除调度周期</td>
+</tr>
+<tr>
+<td style="text-align:left">scheduledInitDelay</td>
+<td style="text-align:left">int(单位:秒)</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">调度任务启动延迟时间</td>
+</tr>
+<tr>
+<td style="text-align:left">recoverDelayTime</td>
+<td style="text-align:left">int(单位:秒)</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">事务日志恢复迟延时间</td>
+</tr>
+<tr>
+<td style="text-align:left">cleanDelayTime</td>
+<td style="text-align:left">int(单位:秒)</td>
+<td style="text-align:center">60</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">事务日志清理迟延时间</td>
+</tr>
+<tr>
+<td style="text-align:left">limit</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">获取事务日志行数大小</td>
+</tr>
+<tr>
+<td style="text-align:left">retryMax</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">最大重试次数</td>
+</tr>
+<tr>
+<td style="text-align:left">bufferSize</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">4096 * 2 * 2</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">disruptor的bufferSize大小</td>
+</tr>
+<tr>
+<td style="text-align:left">consumerThreads</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">CPU * 2</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">disruptor消费者线程数量</td>
+</tr>
+<tr>
+<td style="text-align:left">asyncRepository</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">是否异步存储事务日志，设置为false则为同步</td>
+</tr>
+<tr>
+<td style="text-align:left">autoSql</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">是否自动执行框架自动建库建表SQL语句（如果已经创建可以设置为false）</td>
+</tr>
+<tr>
+<td style="text-align:left">phyDeleted</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">在运行过程中，是否物理删除日志。设置为false，则只会更改日志状态</td>
+</tr>
+<tr>
+<td style="text-align:left">storeDays</td>
+<td style="text-align:left">int(单位:天)</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">如果 phyDeleted 设置为false的时候，日志存储天数</td>
+</tr>
+<tr>
+<td style="text-align:left">repository</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">mysql</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">这是指定事务日志的存储方式，目前支持填写 <code>mysql</code>, <code>oracle</code>, <code>postgresql</code>, <code>sqlserver</code>, <code>mongo</code>, <code>redis</code>, <code>file</code></td>
+</tr>
+</tbody>
+</table>
+<h3>repository配置</h3>
+<p>repository是Hmily用来存储事务日志的配置，目前支持:database(mysql, oracle, postgresql, sqlserver), file(本地模式，测试，开发环境用), mongodb, zookeeper, redis。</p>
+<ul>
+<li>database配置(默认使用hikari连接池):</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">driverClassName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">com.mysql.jdbc.Driver</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">数据库的驱动类名称</td>
+</tr>
+<tr>
+<td style="text-align:left">url</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">数据库的url连接</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">数据库的用户名密码</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">数据库的密码</td>
+</tr>
+<tr>
+<td style="text-align:left">maxActive</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">连接池连接最大活跃数</td>
+</tr>
+<tr>
+<td style="text-align:left">minIdle</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">连接池最小空闲数</td>
+</tr>
+<tr>
+<td style="text-align:left">connectionTimeout</td>
+<td style="text-align:left">long</td>
+<td style="text-align:center">30000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">数据库的连接超时时间</td>
+</tr>
+<tr>
+<td style="text-align:left">idleTimeout</td>
+<td style="text-align:left">long</td>
+<td style="text-align:center">60000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟</td>
+</tr>
+<tr>
+<td style="text-align:left">maxLifetime</td>
+<td style="text-align:left">long</td>
+<td style="text-align:center">1800000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL wait_timeout参数（show variables like '%timeout%';</td>
+</tr>
+<tr>
+<td style="text-align:left">idleTimeout</td>
+<td style="text-align:left">long</td>
+<td style="text-align:center">60000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟</td>
+</tr>
+<tr>
+<td style="text-align:left">dataSourcePropertyMap</td>
+<td style="text-align:left">Map&lt;String,Object&gt;</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">hikari连接池的其他属性配置</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>mongo配置:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">databaseName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">mongo数据库名称</td>
+</tr>
+<tr>
+<td style="text-align:left">url</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">mongo数据库的url连接</td>
+</tr>
+<tr>
+<td style="text-align:left">userName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">mongo数据库的用户名密码</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">mongo数据库的密码</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>file配置:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">path</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">文件存储路径</td>
+</tr>
+<tr>
+<td style="text-align:left">prefix</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">文件存储前缀</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>zookeeper配置:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">host</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">localhost:2181</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">zk服务ip与端口</td>
+</tr>
+<tr>
+<td style="text-align:left">sessionTimeOut</td>
+<td style="text-align:left">int(ms)</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">session超时时间</td>
+</tr>
+<tr>
+<td style="text-align:left">rootPath</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">/hmily</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">存储根路径</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>redis配置:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">cluster</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">是否是集群</td>
+</tr>
+<tr>
+<td style="text-align:left">sentinel</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">是否是哨兵模式</td>
+</tr>
+<tr>
+<td style="text-align:left">clusterUrl</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">集群url，多个节点使用 <code>;</code> 分隔</td>
+</tr>
+<tr>
+<td style="text-align:left">sentinelUrl</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">哨兵url，多个节点使用 <code>;</code> 分隔</td>
+</tr>
+<tr>
+<td style="text-align:left">masterName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">主节点名称，没有设置可以不填</td>
+</tr>
+<tr>
+<td style="text-align:left">hostName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">redis单机模式下的host</td>
+</tr>
+<tr>
+<td style="text-align:left">port</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">redis单机模式下的端口</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">redis服务密码</td>
+</tr>
+<tr>
+<td style="text-align:left">maxTotal</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">最大连接数</td>
+</tr>
+<tr>
+<td style="text-align:left">maxIdle</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">最大空闲的连接数</td>
+</tr>
+<tr>
+<td style="text-align:left">minIdle</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">最少空闲的连接数</td>
+</tr>
+<tr>
+<td style="text-align:left">maxWaitMillis</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">当资源池连接用尽后，调用者的最大等待时间(单位为毫秒)-1：表示永不超时 不建议使用默认值</td>
+</tr>
+<tr>
+<td style="text-align:left">minEvictableIdleTimeMillis</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">1800000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">资源池中资源最小空闲时间(单位为毫秒)，达到此值后空闲资源将被移除, 默认值1000*60 *30 = 30分钟</td>
+</tr>
+<tr>
+<td style="text-align:left">softMinEvictableIdleTimeMillis</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">1800000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">对象空闲多久后逐出, 当空闲时间&gt;该值 且 空闲连接&gt;最大空闲数 时直接逐出,不再根据MinEvictableIdleTimeMillis判断  (默认逐出策略)</td>
+</tr>
+<tr>
+<td style="text-align:left">numTestsPerEvictionRun</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">每次逐出检查时 逐出的最大数目 如果为负数就是 : 1/abs(n), 默认3</td>
+</tr>
+<tr>
+<td style="text-align:left">timeBetweenEvictionRunsMillis</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">逐出扫描的时间间隔(毫秒) 如果为负数,则不运行逐出线程, 默认-1</td>
+</tr>
+<tr>
+<td style="text-align:left">timeOut</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">1000</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">超时时间</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnCreate</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">在获取连接时,是否验证有效性</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnBorrow</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">在borrow一个jedis实例时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的</td>
+</tr>
+<tr>
+<td style="text-align:left">testOnReturn</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">在return给pool时，是否提前进行validate操作</td>
+</tr>
+<tr>
+<td style="text-align:left">testWhileIdle</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">如果为true，表示有一个idle object evitor线程对idle object进行扫描，如果validate失败，此object会被从pool中drop掉；这一项只有在timeBetweenEvictionRunsMillis大于0时才有意义</td>
+</tr>
+<tr>
+<td style="text-align:left">blockWhenExhausted</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">连接耗尽时是否阻塞, false报异常,true阻塞直到超时, 默认true</td>
+</tr>
+</tbody>
+</table>
+<h3>metrics配置</h3>
+<p>metrics是指在hmily框架运行中，会记录调用量，耗时，事务提交与失败等等信息，目前只支持 <code>prometheus</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:center">默认值</th>
+<th style="text-align:center">是否必填</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">metricsName</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">prometheus</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">支持的类型，目前只支持prometheus</td>
+</tr>
+<tr>
+<td style="text-align:left">host</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">localhost</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">暴露的http服务的host，不填则会取localhost</td>
+</tr>
+<tr>
+<td style="text-align:left">port</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">9091</td>
+<td style="text-align:center">必填</td>
+<td style="text-align:left">暴露的http服务的端口</td>
+</tr>
+<tr>
+<td style="text-align:left">async</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:center">true</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">是否异步模式记录</td>
+</tr>
+<tr>
+<td style="text-align:left">threadCount</td>
+<td style="text-align:left">int</td>
+<td style="text-align:center">2 * cpu</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">异步模式下线程数大小</td>
+</tr>
+<tr>
+<td style="text-align:left">jmxConfig</td>
+<td style="text-align:left">String</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">非必填</td>
+<td style="text-align:left">jmxConfig配置，是一个json格式，具体可以参考prometheus官网</td>
+</tr>
+</tbody>
+</table>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>

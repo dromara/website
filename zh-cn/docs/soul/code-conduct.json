@@ -1,0 +1,10 @@
+{
+  "filename": "code-conduct.md",
+  "__html": "<h2>开发理念</h2>\n<ul>\n<li><strong>用心</strong> 保持责任心和敬畏心，以工匠精神持续雕琢。</li>\n<li><strong>可读</strong> 代码无歧义，通过阅读而非调试手段浮现代码意图。</li>\n<li><strong>整洁</strong> 认同《重构》和《代码整洁之道》的理念，追求整洁优雅代码。</li>\n<li><strong>一致</strong> 代码风格、命名以及使用方式保持完全一致。</li>\n<li><strong>精简</strong> 极简代码，以最少的代码表达最正确的意思。高度复用，无重复代码和配置。及时删除无用代码。</li>\n<li><strong>抽象</strong> 层次划分清晰，概念提炼合理。保持方法、类、包以及模块处于同一抽象层级。</li>\n</ul>\n<h2>代码提交行为规范</h2>\n<ul>\n<li>确保通过全部测试用例，确保执行<code>./mvnw clean install</code>可以编译和测试通过。</li>\n<li>确保覆盖率不低于master分支。</li>\n<li>确保使用Checkstyle检查代码，违反验证规则的需要有特殊理由。模板位置在<code>https://github.com/dromara/soul/blob/master/script/soul_checkstyle.xml</code>，请使用checkstyle 8.8运行规则。</li>\n<li>应尽量将设计精细化拆分；做到小幅度修改，多次数提交，但应保证提交的完整性。</li>\n<li>确保遵守编码规范。</li>\n</ul>\n<h2>编码规范</h2>\n<ul>\n<li>使用linux换行符。</li>\n<li>缩进（包含空行）和上一行保持一致。</li>\n<li>类声明后与下面的变量或方法之间需要空一行。</li>\n<li>不应有无意义的空行。请提炼私有方法，代替方法体过长或代码段逻辑闭环而采用的空行间隔。</li>\n<li>类、方法和变量的命名要做到顾名思义，避免使用缩写。</li>\n<li>返回值变量使用<code>result</code>命名；循环中使用<code>each</code>命名循环变量；map中使用<code>entry</code>代替<code>each</code>。</li>\n<li>配置文件使用<code>Spinal Case</code>命名（一种使用<code>-</code>分割单词的特殊<code>Snake Case</code>）。</li>\n<li>需要注释解释的代码尽量提成小方法，用方法名称解释。</li>\n<li><code>equals</code>和<code>==</code>条件表达式中，常量在左，变量在右；大于小于等条件表达式中，变量在左，常量在右。</li>\n<li>除了构造器入参与全局变量名称相同的赋值语句外，避免使用<code>this</code>修饰符。</li>\n<li>除了用于继承的抽象类之外，尽量将类设计为<code>final</code>。</li>\n<li>嵌套循环尽量提成方法。</li>\n<li>成员变量定义顺序以及参数传递顺序在各个类和方法中保持一致。</li>\n<li>优先使用卫语句。</li>\n<li>类和方法的访问权限控制为最小。</li>\n<li>方法所用到的私有方法应紧跟该方法，如果有多个私有方法，书写私有方法应与私有方法在原方法的出现顺序相同。</li>\n<li>方法入参和返回值不允许为<code>null</code>。</li>\n<li>优先使用三目运算符代替if else的返回和赋值语句。</li>\n<li>优先考虑使用<code>LinkedList</code>，只有在需要通过下标获取集合中元素值时再使用<code>ArrayList</code>。</li>\n<li><code>ArrayList</code>，<code>HashMap</code>等可能产生扩容的集合类型必须指定集合初始大小，避免扩容。</li>\n<li>日志与注释一律使用英文。</li>\n<li>注释只能包含javadoc，todo和fixme。</li>\n<li>公开的类和方法必须有javadoc，其他类和方法以及覆盖自父类的方法无需javadoc。</li>\n</ul>\n",
+  "link": "/zh-cn/docs/soul/code-conduct.html",
+  "meta": {
+    "title": "soul-code-conduct",
+    "keywords": "soul-code-conduct",
+    "description": "soul编码指南"
+  }
+}

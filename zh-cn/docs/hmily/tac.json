@@ -1,0 +1,10 @@
+{
+  "filename": "tac.md",
+  "__html": "<h3>TAC</h3>\n<p><code>TAC</code>模式其实是<code>TCC</code>模式的变种,顾名思义 <code>TAC</code> 模式被称为自动回滚,相比于 <code>TCC</code>模式，用户完全不用关心\n回滚方法如何去写，减少了用户的开发量，对用户完全透明。</p>\n<ul>\n<li>\n<p><code>TAC</code> 模式只适合于关系型数据库。</p>\n</li>\n<li>\n<p><code>TAC</code> 模式会拦截用户的SQL语句生成反向回滚SQL，SQL的兼容度也会是一大考验。</p>\n</li>\n</ul>\n",
+  "link": "/zh-cn/docs/hmily/tac.html",
+  "meta": {
+    "title": "Hmily-tac",
+    "keywords": "tac",
+    "description": "tac"
+  }
+}

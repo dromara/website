@@ -1,0 +1,10 @@
+{
+  "filename": "admin.md",
+  "__html": "<h3>Hmily-Admin 启动教程（未完成）:</h3>\n<ul>\n<li>\n<p>admin 是Hmily中查看事务日志的后台管理系统。 可以查看异常的日志，修改重试次数等功能.</p>\n</li>\n<li>\n<p>首先确保你的项目使用了Hmily并且正常运行.</p>\n</li>\n<li>\n<p>首先用户使用的JDK必须是1.8+  本地安装了git ,maven ，执行以下命令</p>\n</li>\n</ul>\n<h3>步骤二：修改本项目static 文件夹下的 index.html</h3>\n<pre><code class=\"language-html\"><span class=\"hljs-comment\">&lt;!--href 修改成你的ip 端口--&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">id</span>=<span class=\"hljs-string\">\"serverIpAddress\"</span> <span class=\"hljs-attr\">style</span>=<span class=\"hljs-string\">\"display: none\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"http://192.168.1.132:8888/admin\"</span>&gt;</span>\n</code></pre>\n<h3>步骤三: 运行 AdminApplication 中的main方法。</h3>\n<h3>步骤四:在浏览器访问  <a href=\"http://ip\">http://ip</a>:port/tcc-admin/index.html  ,输入用户名，密码登录。</h3>\n<h3>如有任何问题欢迎加入QQ群：162614487 进行讨论</h3>\n",
+  "link": "/zh-cn/docs/hmily/admin.html",
+  "meta": {
+    "title": "Hmily-Admin",
+    "keywords": "admin",
+    "description": "Hmily-Admin"
+  }
+}

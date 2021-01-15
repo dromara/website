@@ -1,0 +1,10 @@
+{
+  "filename": "committer.md",
+  "__html": "<h2>提交者提名</h2>\n<p>当你做了很多贡献以后，社区会进行提名。\n成为committer你会拥有</p>\n<ul>\n<li>\n<p>hmily仓库写的权限</p>\n</li>\n<li>\n<p>idea 正版使用</p>\n</li>\n</ul>\n<h2>提交者责任</h2>\n<ul>\n<li>开发新功能；</li>\n<li>代码重构；</li>\n<li>及时和可靠的评审Pull Request；</li>\n<li>思考和接纳新特性请求；</li>\n<li>解答问题；</li>\n<li>维护文档和代码示例；</li>\n<li>改进流程和工具；</li>\n<li>引导新的参与者融入社区。</li>\n</ul>\n<h2>日常工作</h2>\n<ol>\n<li>\n<p>committer需要每天查看社区待处理的Pull Request和issue列表，指定给合适的committer，即assignee。</p>\n</li>\n<li>\n<p>assignee在被分配issue后，需要进行如下判断：</p>\n</li>\n</ol>\n<ul>\n<li>判断是否是长期issue，如是，则标记为pending。</li>\n<li>判断issue类型，如：bug，enhancement，discussion等。</li>\n<li>判断Milestone，并标记。</li>\n</ul>\n<p><strong>注意</strong></p>\n<p>无论是否是社区issue，都必须有assignee，直到issue完成。</p>\n",
+  "link": "/zh-cn/docs/hmily/committer.html",
+  "meta": {
+    "title": "Hmily-committer",
+    "keywords": "Hmily-committer",
+    "description": "Hmily-committer提交者指南"
+  }
+}

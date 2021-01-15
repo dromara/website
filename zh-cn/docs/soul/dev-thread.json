@@ -1,0 +1,10 @@
+{
+  "filename": "dev-thread.md",
+  "__html": "<h2>说明</h2>\n<ul>\n<li>本文主要介绍soul的线程模型,以及各种场景的使用。</li>\n</ul>\n<h2>io与work线程</h2>\n<ul>\n<li>soul内置依赖 <code>spring-webflux</code> 而其底层是使用的netty。这一块只要是使用的netty线程模型。</li>\n</ul>\n<h2>业务线程</h2>\n<ul>\n<li>\n<p>默认使用调度线程来执行。</p>\n</li>\n<li>\n<p>默认使用固定的线程池来执行，其线程数为 cpu * 2 + 1。</p>\n</li>\n</ul>\n<h2>切换类型</h2>\n<ul>\n<li>\n<p><code>reactor.core.scheduler.Schedulers</code>。</p>\n</li>\n<li>\n<p>可以使用 <code>-Dsoul.scheduler.type=fixed</code> 这个是默认。 设置其他的值 就会使用弹性线程池来执行,<code>Schedulers.elastic()</code>。</p>\n</li>\n<li>\n<p>可以使用 <code>-Dsoul.work.threads = xx</code> 来指定线程数量，默认为 <code>cpu * 2 + 1</code> ,最小为16个线程。</p>\n</li>\n</ul>\n",
+  "link": "/zh-cn/docs/soul/dev-thread.html",
+  "meta": {
+    "title": "线程模型",
+    "keywords": "soul",
+    "description": "线程模型"
+  }
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="dromara.org" />
+	<meta name="description" content="dromara.org" />
+	<!-- 网页标签标题 -->
+	<title>dromara(Open source organization)</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">文档</a><div class="sub-menu"><ul><li><a href="/zh-cn/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/zh-cn/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/blog/index.html" target="_self">博客</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h3>Hmily高并发事务处理</h3>
+<p>开始先打个小小的广告
+Hmily在参开源中国年度受欢迎投票 <a href="https://www.oschina.net/project/top_cn_2018?origin=zhzd">https://www.oschina.net/project/top_cn_2018?origin=zhzd</a> 点击链接，搜索Hmily帮忙投下票,在第11横排第二个，感谢大家！
+也欢迎大家关注，或者提交pr，让Hmily变的更好，更完美。
+gitHub: [<a href="https://github.com/yu199195/hmily">https://github.com/yu199195/hmily</a>]
+gitee:  [<a href="https://gitee.com/shuaiqiyu/hmily">https://gitee.com/shuaiqiyu/hmily</a>]</p>
+<p>接下来回答一下 社区的一些问题，和大家一些疑惑的地方！</p>
+<h3>1. Hmily的性能问题？</h3>
+<p>答：Hmily是采用AOP切面的方式与你的RPC方法绑定，无非就是在你RPC调用的时候，保存了日志（通过异步disruptor），传递了一些参数。现在confrim，cancel也都为异步的调用，因此其性能与你的rpc性能一样。记住Hmily不生产事务，Hmily只是分布式事务的搬运工。之前Hmily在AOP切面加了一把锁，导致了性能下降，也就是Spring cloud 中国社区做的那篇文章。现在已经全部修复，并且全部异步化。其实那么测试时不合理的，因为是压测的demo，都是默认的配置。下文我会讲解，怎么样才能提高Hmiy性能。</p>
+<h3>2. 关于RPC调用超时Hmily是怎么处理的？</h3>
+<p>答： 我们支持在分布式环境中调用一个RPC方法，如果超时了。比如dubbo设置的超时时间是100ms,可能你的方法用了140ms,但是你的方法是执行成功了的。但是对调用方来说，你是失败的。这个时候需要回滚。所以Hmily的做法是。调用者认为你是失败的，不会将加入的回滚调用链条中。因此超时的rpc接口方，进行自身的回滚。会有一个定时任务来进行回滚，因为日志状态是try阶段，会调用cancel方法进行回滚，从而到达最终一致性！</p>
+<h3>3.Hmily支持集群部署的问题？以及集群环境中，定时任务日志恢复的问题？</h3>
+<p>答：Hmily是和你的应用AOP切面绑定在一起的，天然支持集群。集群环境中定时恢复问题，其实几乎没有，除非你的集群同时一下挂掉，才会有这个问题。当你集群同时挂掉，在恢复的时候，日志会有一个version字段，更新成功的，才会去进行恢复。</p>
+<h3>4.Hmily是异步保存日志的，那么很极端情况下（代码刚好执行到这一行,然后jvm退出，断电啦什么的），日志还没保存那怎么处理呢？</h3>
+<p>答:这种想法的，肯定是没看源码，或者是看了没怎么看懂。在AOP切面中，会先进行日志的异步保存，注意状态是PRE_TRY。在try执行完成后，更新为try。就算存在可能你说的什么断电，什么你在打断电调试，然后kill服务之类的。（Mysql我都可以让他事务失效，你信不信？）我只能说，不要花大力气去解决那些偶然的事情，最好的解决办法是不解决它。
+Hmily针对高并发时候的参数配置调优。
+可能这部门内容针对熟悉Hmily的人来说，不熟悉的也没关系。直接上github上看相关文档就好。
+hmily支持Spring bean xml 方式的配置，同时也支持spring boot start yml方式的配置。</p>
+<pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"hmilyTransactionBootstrap"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.core.bootstrap.HmilyTransactionBootstrap"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"serializer"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"kryo"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"recoverDelayTime"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"120"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"retryMax"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"3"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"loadFactor"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"2"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"scheduledDelay"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"120"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"scheduledThreadMax"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"4"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"bufferSize"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"4096"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"consumerThreads"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"32"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"started"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"asyncThreads"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"32"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"repositorySupport"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"db"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tccDbConfig"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.common.config.TccDbConfig"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"url"</span>
+                          <span class="hljs-attr">value</span>=<span class="hljs-string">"jdbc:mysql://192.168.1.98:3306/tcc?useUnicode=true<span class="hljs-symbol">&amp;amp;</span>characterEncoding=utf8"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"driverClassName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"com.mysql.jdbc.Driver"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"root"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"123456"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+</code></pre>
+<ul>
+<li>
+<p>serializer :这里我推荐使用是kroy。当然hmily也支持hessian,protostuff,jdk。在我们测试中表现为:
+kroy&gt;hessian&gt;protostuff&gt;jdk</p>
+</li>
+<li>
+<p>recoverDelayTime :定时任务延迟时间（单位是秒，默认120。这个参数只是要大于你的rpc调用的超时时间设置。</p>
+</li>
+<li>
+<p>retryMax : 最大重复次数，默认3次。当你的服务down机，定时任务会执行retryMax次数去执行你的cancel还是confrim。</p>
+</li>
+<li>
+<p>bufferSize: disruptor的bufferSize,当高并发的时候，可以调大。注意是 2n次方</p>
+</li>
+<li>
+<p>consumerThreads distuptor消费线程数量,高并发的时候，可以调大。</p>
+</li>
+<li>
+<p>started: 注意在是发起方的时候，把此属性设置为true。参与方为false。</p>
+</li>
+<li>
+<p>asyncThreads 异步执行confirm和cancel线程池线程的大小，高并发的时候请调大</p>
+</li>
+<li>
+<p>接下来是最重要的事务日志的存储 在我们的压测中，推荐使用mongo。表现为 mongodb&gt;redis集群&gt;mysql&gt;zookeeper</p>
+</li>
+<li>
+<p>如果你采用mongodb存储日志,配置如下(url可以配置成mongdb集群的url)</p>
+</li>
+</ul>
+<pre><code class="language-xml">       <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"repositorySupport"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"mongodb"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tccMongoConfig"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.common.config.TccMongoConfig"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mongoDbUrl"</span>  <span class="hljs-attr">value</span>=<span class="hljs-string">"192.168.1.68:27017"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mongoDbName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"happylife"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mongoUserName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"xiaoyu"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"mongoUserPwd"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"123456"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+</code></pre>
+<ul>
+<li>
+<p>如果你采用redis存储日志,配置如下：</p>
+<ul>
+<li>redis单节点</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"repositorySupport"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"redis"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tccRedisConfig"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.common.config.TccRedisConfig"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"hostName"</span>
+                      <span class="hljs-attr">value</span>=<span class="hljs-string">"192.168.1.68"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"port"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"6379"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">""</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+</code></pre>
+<ul>
+<li>
+<p>redis哨兵模式集群:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"repositorySupport"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"redis"</span>/&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tccRedisConfig"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.common.config.TccRedisConfig"</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"masterName"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"aaa"</span>/&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sentinel"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sentinelUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"192.168.1.91:26379;192.168.1.92:26379;192.168.1.93:26379"</span>/&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"123456"</span>/&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+</code></pre>
+</li>
+<li>
+<p>redis集群:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"repositorySupport"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"redis"</span>/&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"tccRedisConfig"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.hmily.tcc.common.config.TccRedisConfig"</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"cluster"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>/&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"clusterUrl"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"192.168.1.91:26379;192.168.1.92:26379;192.168.1.93:26379"</span>/&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"123456"</span>/&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+</code></pre>
+</li>
+<li>
+<p>如果你采用zookeeper存储日志,配置如下：
+<code>xml &lt;property name=&quot;repositorySupport&quot; value=&quot;zookeeper&quot;/&gt; &lt;property name=&quot;tccZookeeperConfig&quot;&gt; &lt;bean class=&quot;om.hmily.tcc.common.config.TccZookeeperConfig&quot;&gt; &lt;property name=&quot;host&quot; value=&quot;192.168.1.73:2181&quot;/&gt; &lt;property name=&quot;sessionTimeOut&quot; value=&quot;100000&quot;/&gt; &lt;property name=&quot;rootPath&quot; value=&quot;/tcc&quot;/&gt; &lt;/bean&gt; &lt;/property&gt;</code></p>
+</li>
+<li>
+<p>数据库的配置在上面已经有了，使用file方式的存储我就不介绍了.</p>
+</li>
+<li>
+<p>以上就是今天分享的内容，一个注解，几行配置轻轻松松搞定高并发分布式事务！</p>
+</li>
+</ul>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>

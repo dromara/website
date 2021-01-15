@@ -1,0 +1,10 @@
+{
+  "filename": "soul.md",
+  "__html": "<h1>What is the Soul？</h1>\n<p>This is an asynchronous, high-performance, cross-language, responsive API gateway.I hope that something can protect your micro service like a soul.After referring to excellent gateways such as Kong, Spring-Cloud-Gateway, soul was born standing on the shoulders of giants!</p>\n<h1>Features</h1>\n<ul>\n<li>\n<p>Support various languages (http protocol), support dubbo, spring cloud protocol.</p>\n</li>\n<li>\n<p>Plugin design idea, plugin hot swap, easy to expand.</p>\n</li>\n<li>\n<p>Flexible flow filtering to meet various flow control.</p>\n</li>\n<li>\n<p>Built-in rich plugin support, authentication, limiting, fuse, firewall, etc.</p>\n</li>\n<li>\n<p>Dynamic flow configuration, high performance, gateway consumption is 1~2ms.</p>\n</li>\n<li>\n<p>Support cluster deployment, A/B Test, blue-green release.</p>\n</li>\n</ul>\n<h1>Architecture diagram</h1>\n<p><img src=\"https://yu199195.github.io/images/soul/soul-framework.png\" alt=\"\"></p>\n<h1>Prerequisite</h1>\n<ul>\n<li>\n<h4>JDK 1.8+</h4>\n</li>\n<li>\n<h4>Maven 3.2.x</h4>\n</li>\n<li>\n<h4>Git</h4>\n</li>\n<li>\n<h4>mysql</h4>\n</li>\n</ul>\n",
+  "link": "/en-us/docs/soul/soul.html",
+  "meta": {
+    "title": "Soul Introduction",
+    "keywords": "soul",
+    "description": "Soul Introduction"
+  }
+}
