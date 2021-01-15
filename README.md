@@ -1,22 +1,16 @@
-readme
+# Dromara Official Website
 
-### 构建
+![Website Deploy](https://github.com/dromara/website/workflows/Website%20Deploy/badge.svg)
 
- 官网采用 doc site 构建。 地址 : https://docsite.js.org/
- 
- * 第一步 : 请安装 Node.js
- 
- * 第二步 ： 安装doc site 
- 
- > https://docsite.js.org/zh-cn/docs/installation.html
+This project keeps all sources used for building up Dromara official website which's served at http://dromara.org.
 
+### Requirement
 
+* node8+
 
-* 修改doc文件夹下的 md文件
+### Run local server
 
-
-* docsite build   docsite start 启动
-
-* 提交代码
- 
- 
+```shell
+npm install
+npm run build
+```
