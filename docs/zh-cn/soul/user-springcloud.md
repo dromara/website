@@ -10,7 +10,7 @@ description: springCloud接入soul网关
 
 * 请在 soul-admin 后台将 `springCloud` 插件设置为开启。
 
-* 接入前，请正确的启动 `soul-admin` , 以及[搭建环境](setup.md) Ok。
+* 接入前，请正确的启动 `soul-admin`以及[搭建环境](setup.md) Ok。
 
 ## 引入网关 springCloud的插件支持
 
@@ -55,7 +55,7 @@ description: springCloud接入soul网关
    </dependency>
    ```
 
-   * 在网关的yml文件中 新增如下配置:
+   * 在网关的yml文件中 新增如下配置：
 
  ```yaml
     eureka:
@@ -78,7 +78,7 @@ description: springCloud接入soul网关
   </dependency>
    ```
 
-   * 在网关的yml文件中 新增如下配置:
+   * 在网关的yml文件中 新增如下配置：
 
  ```yaml
    spring:
@@ -92,7 +92,7 @@ description: springCloud接入soul网关
 
 ## SpringCloud服务接入网关。
 
-* 在你提供服务的项目中,引入如下依赖：
+* 在你提供服务的项目中，引入如下依赖：
 
 ```xml
  <dependency>
@@ -102,7 +102,7 @@ description: springCloud接入soul网关
  </dependency>
 ```
 
-* 在你的yml文件中新增如下配置:
+* 在你的yml文件中新增如下配置：
 
 ```yaml
 soul:
@@ -169,7 +169,7 @@ soul:
 ```
 
 
-   * 举列子 （3）： full: true  代表 `/sb-demo7-api/**`,整个服务会被网关代理 
+   * 举列子 （3）： full：`true`  代表 `/sb-demo7-api/**`，整个服务会被网关代理 
 ```yaml
 soul:
   springcloud:
@@ -203,7 +203,7 @@ soul:
 ```
 
 
-* 启动你的服务，如果输出以下日志: `http client register success`, 证明你的接口已经被注册到soul网关。
+* 启动你的服务，如果输出以下日志：`http client register success`，证明你的接口已经被注册到soul网关。
 
 ## 插件设置
 
@@ -215,7 +215,7 @@ soul:
 
 * 第一点，你之前请求的域名是你自己的服务，现在要换成网关的域名 （这个你听的懂？）
 
-* 第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 `contextPath` ,如果熟的话，可以自由在 `soul-admin` 中的 springCloud插件进行自由更改.
+* 第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 `contextPath`，如果熟的话，可以自由在 `soul-admin` 中的 springCloud插件进行自由更改。
 
 ```yaml
 

@@ -6,7 +6,7 @@ description: monitor插件
 
 ## 说明
 
-* monitor插件是网关用来监控自身运行状态（JVM相关），请求的响应迟延，QPS,TPS等相关metrics。
+* monitor插件是网关用来监控自身运行状态（JVM相关），请求的响应迟延，QPS、TPS等相关metrics。
 
 ## 技术方案
 
@@ -15,7 +15,7 @@ description: monitor插件
 
 * 异步或者同步的方式，在soul网关里面进行 `metrics` 埋点。
 
-* `prometheus` 服务端通过 http 请求 来 拉取  `metrics`, 再使用 `Grafana ` 展示。
+* `prometheus` 服务端通过 http 请求 来 拉取  `metrics`，再使用 `Grafana ` 展示。
 
 ## 插件设置
 
@@ -30,7 +30,7 @@ description: monitor插件
 # async :"true" 为异步埋点， false 为同步埋点
 ```
 
-* 如果用户不使用，则在 `soul-admin` 后台把此插件停用.
+* 如果用户不使用，则在 `soul-admin` 后台把此插件停用。
 
 ## 插件使用
 
@@ -50,7 +50,7 @@ description: monitor插件
 
 ## metrics信息
 
-* 所有的JVM，线程，内存，等相关信息都会埋点，可以在 `Granfana ` 面板中，新增一个 JVM 模块，则会完全展示 具体请看 ： https://github.com/prometheus/jmx_exporter
+* 所有的JVM，线程，内存，等相关信息都会埋点，可以在 `Granfana ` 面板中，新增一个 JVM 模块，则会完全展示 具体请看：https://github.com/prometheus/jmx_exporter
 
 * 另外还有如下自定义的 `metrics` 
 
@@ -61,7 +61,7 @@ description: monitor插件
  
 ## 收集 metrics
 
- * 用户自己搭建`Prometheus` 服务，在 prometheus.yml 文件中新增如下配置:
+ * 用户自己搭建`Prometheus` 服务，在 prometheus.yml 文件中新增如下配置：
  
  ```yaml
  scrape_configs:

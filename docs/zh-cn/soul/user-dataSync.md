@@ -8,7 +8,7 @@ description: 使用不同的数据同步策略
 
 * 数据同步是指将 `soul-admin` 配置的数据，同步到 `soul` 集群中的JVM内存里面，是网关高性能的关键。
 
-* 实现原理，请看： [数据同步](dataSync.md)。
+* 实现原理，请看：[数据同步](dataSync.md)。
 
 * 文中所说的网关，是指你搭建的网关环境，请看：[搭建环境](setup.md)。
 
@@ -34,7 +34,7 @@ description: 使用不同的数据同步策略
   #urls:是指 soul-admin的地址，如果有多个，请使用（,）分割.
    ```
 
-* soul-admin 配置, 或在 soul-admin 启动参数中设置 `--soul.sync.websocket='' `,然后重启服务。
+* soul-admin 配置，或在 soul-admin 启动参数中设置 `--soul.sync.websocket='' `，然后重启服务。
 ```yaml
 soul:
   sync:

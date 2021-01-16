@@ -104,7 +104,7 @@ description: dubbo接入soul网关
 
 * 重启网关服务。
 
-## dubbo服务接入网关,可以参考 : [soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo)
+## dubbo服务接入网关，可以参考：[soul-test-dubbo](https://github.com/Dromara/soul/tree/master/soul-test/soul-test-dubbo)
 
  * alibaba dubbo 用户
 
@@ -119,7 +119,7 @@ description: dubbo接入soul网关
         </dependency>
  ```
 
-  * 在你的yml文件中新增如下配置 ：
+  * 在你的yml文件中新增如下配置：
 
    ```yaml
       soul:
@@ -213,7 +213,7 @@ description: dubbo接入soul网关
 
 * 首先在 `soul-admin` 插件管理中，把`dubbo` 插件设置为开启。
 
-* 其次在 `dubbo ` 插件中配置你的注册地址,或者其他注册中心的地址.
+* 其次在 `dubbo ` 插件中配置你的注册地址，或者其他注册中心的地址。
 
 ```yaml
 {"register":"zookeeper://localhost:2181"}   or {"register":"nacos://localhost:8848"}
@@ -224,7 +224,7 @@ description: dubbo接入soul网关
 
 * 你dubbo服务实现类的，方法上加上 `@SoulDubboClient` 注解，表示该接口方法注册到网关。
 
-* 启动你的提供者,输出日志 `dubbo client register success ` 大功告成，你的dubbo接口已经发布到 soul网关.如果还有不懂的，可以参考 `soul-test-dubbo`项目.
+* 启动你的提供者，输出日志 `dubbo client register success ` 大功告成，你的dubbo接口已经发布到 soul网关.如果还有不懂的，可以参考 `soul-test-dubbo`项目。
 
 ## dubbo用户请求以及参数说明
 
@@ -249,7 +249,7 @@ description: dubbo接入soul网关
 
 * 单个java bean参数类型 （默认）
 
-* 多参数类型支持 ,在网关的yaml 配置中新增如下配置：
+* 多参数类型支持，在网关的yaml 配置中新增如下配置：
 
 ```yaml
 soul :
@@ -276,9 +276,9 @@ soul :
    }
   ```
 
-  * `body`为http中body传的json字符串.
+  * `body`为http中body传的json字符串。
 
-  *  `parameterTypes`: 匹配到的方法参数类型列表，如果有多个,则使用`,`分割。
+  *  `parameterTypes`: 匹配到的方法参数类型列表，如果有多个，则使用`,`分割。
 
   *  Pair中，left为参数类型，right为参数值，这是dubbo泛化调用的标准
 
@@ -312,7 +312,7 @@ soul :
 
 ```
 
-* 那么我们请求的路径为: http://localhost:9195/dubbo/insert ,再说一下，`localhost:9195`是网关的域名，如果你更改了，这里也要改。
+* 那么我们请求的路径为：`http://localhost:9195/dubbo/insert`，再说一下，`localhost:9195`是网关的域名，如果你更改了，这里也要改。
 
 * 那么请求参数呢？ `DubboTest` 是一个javabean对象，有2个字段，id与name ，那么我们通过body中传递这个对象的json数据就好。
 
@@ -321,11 +321,11 @@ soul :
 
 ```
 
-* 如果你的接口中,没有参数，那么body传值为:
+* 如果你的接口中，没有参数，那么body传值为：
 
 ```
 {}
 
 ```
 
-* 如果你的接口有很多个参数? 往上看一点，有介绍。
+* 如果你的接口有很多个参数？往上看一点，有介绍。

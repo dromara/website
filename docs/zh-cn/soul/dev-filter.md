@@ -7,7 +7,7 @@ description: filter扩展
 
 ## 说明
 
-* 本文是说明,如何进行 `org.springframework.web.server.WebFliter` 的扩展。
+* 本文是说明如何进行 `org.springframework.web.server.WebFliter` 的扩展。
 
 
 ##  跨域支持
@@ -49,7 +49,7 @@ description: filter扩展
      }
  }
 ```
-* 将 CrossFilter 注册成为 spring的bean,完事.
+* 将 CrossFilter 注册成为 spring的bean，完事。
 
 
 ## 网关过滤 springboot健康检查
@@ -104,7 +104,7 @@ public final class HealthFilter implements WebFilter {
      */
     protected abstract Mono<Void> doDenyResponse(ServerWebExchange exchange);
 ```
-* `doFilter` 方法返回 Mono<true> 表示通过,反之则不通过，不通过的时候，会调用 `doDenyResponse`,输出相关信息到前端。
+* `doFilter` 方法返回 Mono<true> 表示通过，反之则不通过，不通过的时候，会调用 `doDenyResponse`输出相关信息到前端。
 
 
 

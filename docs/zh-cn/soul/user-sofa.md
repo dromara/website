@@ -8,7 +8,7 @@ description: sofa接入soul网关
 
 * 此篇文章是sofa用户使用sofa插件支持，以及自己的sofa服务接入soul网关的教程。
 
-* 接入前，请正确的启动 `soul-admin` , 以及[搭建环境](setup.md) Ok。
+* 接入前，请正确的启动 `soul-admin`以及[搭建环境](setup.md) Ok。
 
 ## 引入网关对sofa支持的插件
 
@@ -101,7 +101,7 @@ description: sofa接入soul网关
 
 * 首先在 `soul-admin` 插件管理中，把`sofa` 插件设置为开启。
 
-* 其次在 `sofa ` 插件中配置你的注册地址,或者其他注册中心的地址.
+* 其次在 `sofa ` 插件中配置你的注册地址或者其他注册中心的地址.
 
 ```yaml
 {"protocol":"zookeeper","register":"127.0.0.1:2181"}
@@ -112,7 +112,7 @@ description: sofa接入soul网关
 
 * 你sofa服务实现类的，方法上加上 @SoulSofaClient 注解，表示该接口方法注册到网关。
 
-* 启动你的提供者,输出日志 `sofa client register success ` 大功告成，你的sofa接口已经发布到 soul网关.如果还有不懂的，可以参考 `soul-test-sofa`项目.
+* 启动你的提供者，输出日志 `sofa client register success ` 大功告成，你的sofa接口已经发布到 soul网关.如果还有不懂的，可以参考 `soul-test-sofa`项目。
 
 ## sofa用户请求以及参数说明
 
@@ -137,9 +137,9 @@ description: sofa接入soul网关
 
 * 单个java bean参数类型 （默认）
 
-* 自定义实现多参数支持:
+* 自定义实现多参数支持：
 
-  * 在你搭建的网关项目中，新增一个类 A，实现 org.dromara.soul.plugin.api.sofa.SofaParamResolveService。
+  * 在你搭建的网关项目中，新增一个类 A，实现 `org.dromara.soul.plugin.api.sofa.SofaParamResolveService`。
 
  ```java
     public interface SofaParamResolveService {
@@ -156,11 +156,11 @@ description: sofa接入soul网关
     }
   ```
 
-  * `body`为http中body传的json字符串.
+  * `body`为http中body传的json字符串。
 
-  *  `parameterTypes`: 匹配到的方法参数类型列表，如果有多个,则使用`,`分割。
+  *  `parameterTypes`: 匹配到的方法参数类型列表，如果有多个，则使用`,`分割。
 
-  *  Pair中，left为参数类型，right为参数值，这是sofa泛化调用的标准
+  *  Pair中，left为参数类型，right为参数值，这是sofa泛化调用的标准。
 
   * 把你的类注册成Spring的bean，覆盖默认的实现。
 

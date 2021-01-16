@@ -27,7 +27,7 @@ description: sign插件
   <!-- soul sign plugin end-->
 ``` 
 
-* 选择器和规则，请详细看 : [选择器规则](selector.md)。
+* 选择器和规则，请详细看：[选择器规则](selector.md)。
 
   * 只有匹配的请求，才会进行签名认证。
 
@@ -46,11 +46,11 @@ description: sign插件
  
  ## 鉴权使用指南
  
- * 第一步：AK/SK由网关来进行分配. 比如分配给你的AK为: `1TEST123456781`  	SK为：`506EEB535CF740D7A755CB4B9F4A1536` 
+ * 第一步：AK/SK由网关来进行分配，比如分配给你的AK为: `1TEST123456781`  	SK为：`506EEB535CF740D7A755CB4B9F4A1536` 
  
  * 第二步：确定好你要访问的网关路径 比如 `/api/service/abc`
  
- * 第三步:构造参数（以下是通用参数）
+ * 第三步：构造参数（以下是通用参数）
  
 | 字段        | 值    |  描述  |
 | --------   | -----:  | :----: |
@@ -58,10 +58,10 @@ description: sign插件
 | path       | /api/service/abc  | 就是你需要访问的接口路径(根据你访问网关接口自己变更) |
 | version       | 1.0.0  | 目前定位1.0.0 写死，String类型 |
 
- 对上述2个字段进行key的自然排序，然后进行字段与字段值拼接最后再拼接上SK,代码示例。
+ 对上述2个字段进行key的自然排序，然后进行字段与字段值拼接最后再拼接上SK，代码示例。
  
 
-第一步:首先构造一个Map。
+第一步：首先构造一个Map。
 ```java
 
    Map<String, String> map = Maps.newHashMapWithExpectedSize(2);
@@ -71,7 +71,7 @@ description: sign插件
    map.put("version", "1.0.0");
 ```
 
-第二步:进行Key的自然排序，然后Key，Value值拼接最后再拼接分配给你的Sk。
+第二步：进行Key的自然排序，然后Key，Value值拼接最后再拼接分配给你的Sk。
 ```java
 List<String> storedKeys = Arrays.stream(map.keySet()
                 .toArray(new String[]{}))
@@ -82,20 +82,20 @@ final String sign = storedKeys.stream()
                 .collect(Collectors.joining()).trim()
                 .concat("506EEB535CF740D7A755CB4B9F4A1536");
 ```
-* 你得到的sign值应该为:path/api/service/abctimestamp1571711067186version1.0.0506EEB535CF740D7A755CB4B9F4A1536
+* 你得到的sign值应该为：`path/api/service/abctimestamp1571711067186version1.0.0506EEB535CF740D7A755CB4B9F4A1536`
 
-第三步:进行Md5加密后转成大写。
+第三步：进行Md5加密后转成大写。
 ```java
 DigestUtils.md5DigestAsHex(sign.getBytes()).toUpperCase()
 ```
 
-* 最后得到的值为:A021BF82BE342668B78CD9ADE593D683
+* 最后得到的值为：`A021BF82BE342668B78CD9ADE593D683`
  
 ## 请求网关
 
-* 假如你访问的路径为 :/api/service/abc。
+* 假如你访问的路径为：`/api/service/abc`。
 
-* 访问地址 ：http:网关的域名/api/service/abc。
+* 访问地址 ：http：网关的域名`/api/service/abc`。
 
 * 设置`header`头，`header`头参数为：
 

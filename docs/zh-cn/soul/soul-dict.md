@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS `soul_dict` (
 
 假如sentinel插件处理字段中的degradeRuleGrade
 
-那么新增规则时，编辑degradeRuleGrade字段时会自动从字典表查出type=degradeRuleGrade的所有字典作为下拉选项
+那么新增规则时，编辑degradeRuleGrade字段时会自动从字典表查出type=degradeRuleGrade的所有字典作为下拉选项。
 
 

@@ -13,7 +13,7 @@ description: hystrix插件
 
 ## 插件设置
 
-* 在 `soul-admin` -->  插件管理 --> `hystrix` ,设置为开启。
+* 在 `soul-admin` -->  插件管理 --> `hystrix`，设置为开启。
 
 * 如果用户不使用，则在 `soul-admin` 后台把此插件停用。
 
@@ -31,7 +31,7 @@ description: hystrix插件
   <!-- soul hystrix plugin end-->
 ``` 
 
-* 选择器和规则，请详细看 : [选择器规则](selector.md)
+* 选择器和规则，请详细看：[选择器规则](selector.md)
 
 * Hystrix处理详解：
 
