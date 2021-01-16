@@ -18,7 +18,7 @@
 <p>此篇文章是sofa用户使用sofa插件支持，以及自己的sofa服务接入soul网关的教程。</p>
 </li>
 <li>
-<p>接入前，请正确的启动 <code>soul-admin</code> , 以及<a href="setup.md">搭建环境</a> Ok。</p>
+<p>接入前，请正确的启动 <code>soul-admin</code>以及<a href="setup.md">搭建环境</a> Ok。</p>
 </li>
 </ul>
 <h2>引入网关对sofa支持的插件</h2>
@@ -121,7 +121,7 @@
 <p>首先在 <code>soul-admin</code> 插件管理中，把<code>sofa</code> 插件设置为开启。</p>
 </li>
 <li>
-<p>其次在 <code>sofa</code> 插件中配置你的注册地址,或者其他注册中心的地址.</p>
+<p>其次在 <code>sofa</code> 插件中配置你的注册地址或者其他注册中心的地址.</p>
 </li>
 </ul>
 <pre><code class="language-yaml"><span class="hljs-string">{"protocol":"zookeeper","register":"127.0.0.1:2181"}</span>
@@ -133,7 +133,7 @@
 <p>你sofa服务实现类的，方法上加上 @SoulSofaClient 注解，表示该接口方法注册到网关。</p>
 </li>
 <li>
-<p>启动你的提供者,输出日志 <code>sofa client register success</code> 大功告成，你的sofa接口已经发布到 soul网关.如果还有不懂的，可以参考 <code>soul-test-sofa</code>项目.</p>
+<p>启动你的提供者，输出日志 <code>sofa client register success</code> 大功告成，你的sofa接口已经发布到 soul网关.如果还有不懂的，可以参考 <code>soul-test-sofa</code>项目。</p>
 </li>
 </ul>
 <h2>sofa用户请求以及参数说明</h2>
@@ -168,9 +168,9 @@
 <p>单个java bean参数类型 （默认）</p>
 </li>
 <li>
-<p>自定义实现多参数支持:</p>
+<p>自定义实现多参数支持：</p>
 <ul>
-<li>在你搭建的网关项目中，新增一个类 A，实现 org.dromara.soul.plugin.api.sofa.SofaParamResolveService。</li>
+<li>在你搭建的网关项目中，新增一个类 A，实现 <code>org.dromara.soul.plugin.api.sofa.SofaParamResolveService</code>。</li>
 </ul>
 </li>
 </ul>
@@ -189,13 +189,13 @@
 </code></pre>
 <ul>
 <li>
-<p><code>body</code>为http中body传的json字符串.</p>
+<p><code>body</code>为http中body传的json字符串。</p>
 </li>
 <li>
-<p><code>parameterTypes</code>: 匹配到的方法参数类型列表，如果有多个,则使用<code>,</code>分割。</p>
+<p><code>parameterTypes</code>: 匹配到的方法参数类型列表，如果有多个，则使用<code>,</code>分割。</p>
 </li>
 <li>
-<p>Pair中，left为参数类型，right为参数值，这是sofa泛化调用的标准</p>
+<p>Pair中，left为参数类型，right为参数值，这是sofa泛化调用的标准。</p>
 </li>
 <li>
 <p>把你的类注册成Spring的bean，覆盖默认的实现。</p>

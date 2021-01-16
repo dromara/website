@@ -21,7 +21,7 @@
 <p>请在 soul-admin 后台将 <code>springCloud</code> 插件设置为开启。</p>
 </li>
 <li>
-<p>接入前，请正确的启动 <code>soul-admin</code> , 以及<a href="setup.md">搭建环境</a> Ok。</p>
+<p>接入前，请正确的启动 <code>soul-admin</code>以及<a href="setup.md">搭建环境</a> Ok。</p>
 </li>
 </ul>
 <h2>引入网关 springCloud的插件支持</h2>
@@ -68,7 +68,7 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在网关的yml文件中 新增如下配置:</li>
+<li>在网关的yml文件中 新增如下配置：</li>
 </ul>
 <pre><code class="language-yaml">   <span class="hljs-attr">eureka:</span>
      <span class="hljs-attr">client:</span>
@@ -92,7 +92,7 @@
  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在网关的yml文件中 新增如下配置:</li>
+<li>在网关的yml文件中 新增如下配置：</li>
 </ul>
 <pre><code class="language-yaml">  <span class="hljs-attr">spring:</span>
      <span class="hljs-attr">cloud:</span>
@@ -105,7 +105,7 @@
 </ul>
 <h2>SpringCloud服务接入网关。</h2>
 <ul>
-<li>在你提供服务的项目中,引入如下依赖：</li>
+<li>在你提供服务的项目中，引入如下依赖：</li>
 </ul>
 <pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -114,7 +114,7 @@
  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在你的yml文件中新增如下配置:</li>
+<li>在你的yml文件中新增如下配置：</li>
 </ul>
 <pre><code class="language-yaml"><span class="hljs-attr">soul:</span>
   <span class="hljs-attr">springcloud:</span>
@@ -180,7 +180,7 @@
  }
 </code></pre>
 <ul>
-<li>举列子 （3）： full: true  代表 <code>/sb-demo7-api/**</code>,整个服务会被网关代理</li>
+<li>举列子 （3）： full：<code>true</code>  代表 <code>/sb-demo7-api/**</code>，整个服务会被网关代理</li>
 </ul>
 <pre><code class="language-yaml"><span class="hljs-attr">soul:</span>
   <span class="hljs-attr">springcloud:</span>
@@ -212,7 +212,7 @@
  }
 </code></pre>
 <ul>
-<li>启动你的服务，如果输出以下日志: <code>http client register success</code>, 证明你的接口已经被注册到soul网关。</li>
+<li>启动你的服务，如果输出以下日志：<code>http client register success</code>，证明你的接口已经被注册到soul网关。</li>
 </ul>
 <h2>插件设置</h2>
 <ul>
@@ -227,7 +227,7 @@
 <p>第一点，你之前请求的域名是你自己的服务，现在要换成网关的域名 （这个你听的懂？）</p>
 </li>
 <li>
-<p>第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 <code>contextPath</code> ,如果熟的话，可以自由在 <code>soul-admin</code> 中的 springCloud插件进行自由更改.</p>
+<p>第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 <code>contextPath</code>，如果熟的话，可以自由在 <code>soul-admin</code> 中的 springCloud插件进行自由更改。</p>
 </li>
 </ul>
 <pre><code class="language-yaml">

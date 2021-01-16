@@ -47,18 +47,18 @@
 <li>匹配方式：and 或者or 是指下面多个条件是按照and 还是or的方式来组合。</li>
 <li>条件：
 <ul>
-<li>uri:是指你根据uri的方式来筛选流量，match的方式支持模糊匹配（/**）</li>
-<li>header:是指根据请求头里面的字段来筛选流量。</li>
-<li>query: 是指根据uri的查询条件来进行筛选流量。</li>
-<li>ip:是指根据你请求的真实ip，来筛选流量。</li>
-<li>host:是指根据你请求的真实host，来筛选流量。</li>
-<li>post:建议不要使用。</li>
-<li>条件匹配:
+<li>uri：是指你根据uri的方式来筛选流量，match的方式支持模糊匹配（/**）</li>
+<li>header：是指根据请求头里面的字段来筛选流量。</li>
+<li>query：是指根据uri的查询条件来进行筛选流量。</li>
+<li>ip：是指根据你请求的真实ip，来筛选流量。</li>
+<li>host：是指根据你请求的真实host，来筛选流量。</li>
+<li>post：建议不要使用。</li>
+<li>条件匹配：
 <ul>
-<li>match : 模糊匹配，建议和uri条件搭配，支持 restful风格的匹配。（/test/**）</li>
-<li>= : 前后值相等，才能匹配。</li>
-<li>regEx : 正则匹配，表示前面一个值去匹配后面的正则表达式。</li>
-<li>like ：字符串模糊匹配。</li>
+<li>match：模糊匹配，建议和uri条件搭配，支持 restful风格的匹配。（/test/**）</li>
+<li>=：前后值相等，才能匹配。</li>
+<li>regEx：正则匹配，表示前面一个值去匹配后面的正则表达式。</li>
+<li>like：字符串模糊匹配。</li>
 </ul>
 </li>
 </ul>
@@ -72,7 +72,7 @@
 <p>上述图片中表示:当请求的<code>uri</code>前缀是 <code>/test</code>，并且<code>header</code> 头上 <code>module</code> 字段值为<code>test</code> 的时候，会转发到 <code>1.1.1.1:8080</code> 这个服务。</p>
 </li>
 <li>
-<p>选择器建议 : 可以<code>uri</code> 条件， <code>match</code> 前缀 （/contextPath），进行第一道流量筛选。</p>
+<p>选择器建议：可以<code>uri</code> 条件， <code>match</code> 前缀 （/contextPath），进行第一道流量筛选。</p>
 </li>
 </ul>
 <h2>规则</h2>
@@ -91,12 +91,12 @@
 <li>匹配方式：and 或者or 是指下面多个条件是按照and 还是or。</li>
 <li>条件：
 <ul>
-<li>uri:是指你根据uri的方式来筛选流量，match的方式支持模糊匹配（/**）</li>
-<li>header:是指根据请求头里面的字段来筛选流量。</li>
-<li>query: 是指根据uri的查询条件来进行筛选流量。</li>
-<li>ip:是指根据你请求的真实ip，来筛选流量。</li>
-<li>host:是指根据你请求的真实host，来筛选流量。</li>
-<li>post:建议不要使用。</li>
+<li>uri：是指你根据uri的方式来筛选流量，match的方式支持模糊匹配（/**）</li>
+<li>header：是指根据请求头里面的字段来筛选流量。</li>
+<li>query：是指根据uri的查询条件来进行筛选流量。</li>
+<li>ip：是指根据你请求的真实ip，来筛选流量。</li>
+<li>host：是指根据你请求的真实host，来筛选流量。</li>
+<li>post：建议不要使用。</li>
 <li>条件匹配:
 <ul>
 <li>match : 模糊匹配，建议和uri条件搭配，支持 restful风格的匹配。（/test/**）</li>
@@ -114,13 +114,13 @@
 </ul>
 </li>
 <li>
-<p>上图表示:当 <code>uri</code> 等于  <code>/http/order/save</code> 的时候该规则被匹配,就会执行该规则中，负载策略是 <code>random</code></p>
+<p>上图表示：当 <code>uri</code> 等于  <code>/http/order/save</code> 的时候该规则被匹配，就会执行该规则中，负载策略是 <code>random</code>。</p>
 </li>
 <li>
-<p>联合选择器,我们来表述一下 ：当一个 请求的 <code>uri</code> 为 <code>/http/order/save</code>, 会通过 <code>random</code> 的方式，转发到 <code>1.1.1.1:8080</code>。</p>
+<p>联合选择器，我们来表述一下：当一个 请求的 <code>uri</code> 为 <code>/http/order/save</code>，会通过 <code>random</code> 的方式，转发到 <code>1.1.1.1:8080</code>。</p>
 </li>
 <li>
-<p>规则建议: 可以<code>uri</code> 条件， <code>match</code> 最真实的<code>uri路径</code>，进行流量的最终筛选 。</p>
+<p>规则建议：可以<code>uri</code> 条件， <code>match</code> 最真实的<code>uri路径</code>，进行流量的最终筛选 。</p>
 </li>
 </ul>
 <h2>条件详解</h2>

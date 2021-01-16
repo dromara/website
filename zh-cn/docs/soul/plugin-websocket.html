@@ -24,7 +24,7 @@
 <h2>插件设置</h2>
 <ul>
 <li>
-<p>在 <code>soul-admin</code> --&gt; 插件管理 --&gt; <code>divide</code>,设置为开启。</p>
+<p>在 <code>soul-admin</code> --&gt; 插件管理 --&gt; <code>divide</code>，设置为开启。</p>
 </li>
 <li>
 <p>在网关的 pom.xml 文件中新增依赖</p>
@@ -45,16 +45,16 @@
 </code></pre>
 <h2>请求路径</h2>
 <ul>
-<li>使用soul代理websocket的时候，其请求路径为（例子）: <code>ws://localhost:9195/?module=ws&amp;method=/websocket&amp;rpcType=websocket</code>。</li>
+<li>使用soul代理websocket的时候，其请求路径为（例子）：<code>ws://localhost:9195/?module=ws&amp;method=/websocket&amp;rpcType=websocket</code>。</li>
 </ul>
 <pre><code class="language-yaml"><span class="hljs-string">参数详解:</span>
 <span class="hljs-number">1.</span><span class="hljs-string">localhost:8080</span> <span class="hljs-string">是soul启动的ip和端口。</span>
-<span class="hljs-number">2.</span><span class="hljs-string">module（必填）:值是你用来匹配selector的关键</span>
+<span class="hljs-number">2.</span><span class="hljs-string">module（必填）：值是你用来匹配selector的关键</span>
 <span class="hljs-number">3.</span><span class="hljs-string">method</span> <span class="hljs-string">（参数）:</span> <span class="hljs-string">你的</span> <span class="hljs-string">websocket路径，同时也用做匹配rule</span>
 <span class="hljs-number">4.</span><span class="hljs-string">rpcType</span> <span class="hljs-string">：websocket</span> <span class="hljs-string">必填，且必须为websocket</span>
 </code></pre>
 <ul>
-<li>在 <code>divide</code>插件中选择器新增一条配置 ，如下</li>
+<li>在 <code>divide</code>插件中选择器新增一条配置，如下</li>
 </ul>
 <p><img src="https://yu199195.github.io/images/soul/websocket-selector.png" alt=""></p>
 <ul>
@@ -63,9 +63,9 @@
 <p><img src="https://yu199195.github.io/images/soul/websocket-rule.png" alt=""></p>
 <ul>
 <li>
-<p>总结 ，这个时候注意看你的路径 <code>ws://localhost:9195/?module=ws&amp;method=/websocket&amp;rpcType=websocket</code>。</p>
-<p>它就会被你新增的选择器规则匹配，然后 代理的的真实websocket地址为 : <code>127.0.0.1:8080/websocket</code>,这样soul就进行的websocket的代理。</p>
-<p>你就可以进行和websocket服务进行通信了,就是这么简单。</p>
+<p>总结，这个时候注意看你的路径 <code>ws://localhost:9195/?module=ws&amp;method=/websocket&amp;rpcType=websocket</code>。</p>
+<p>它就会被你新增的选择器规则匹配，然后代理的的真实websocket地址为：<code>127.0.0.1:8080/websocket</code>，这样soul就进行的websocket的代理。</p>
+<p>你就可以进行和websocket服务进行通信了，就是这么简单。</p>
 </li>
 <li>
 <p>最后再说一句，module，method 命名和值，你完全可以自己来决定，我的只是列子，只要选择器 和规则能够匹配就行。</p>

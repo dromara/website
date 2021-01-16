@@ -13,15 +13,15 @@ description: 多语言http客户端
 
 ## 自定义开发
 
-* 请求方式: `POST`
+* 请求方式：`POST`
 
 * 请求路径
 
-    * `http://soul-admin/soul-client/springmvc-register`  soul-admin, 表示为 admin的 ip + port
+    * `http://soul-admin/soul-client/springmvc-register`  soul-admin，表示为 admin的 ip + port
 
 * 请求参数
 
-* soul网关默认的需要参数,通过body里面传，json类型。
+* soul网关默认的需要参数，通过body里面传，json类型。
 ```json
 {
 	"appName": "xxx", //应用名称 必填

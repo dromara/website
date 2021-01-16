@@ -49,7 +49,7 @@
 <p>支持各种语言(http协议)，支持 dubbo，springcloud协议。</p>
 </li>
 <li>
-<p>插件化设计思想，插件热插拔,易扩展。</p>
+<p>插件化设计思想，插件热插拔，易扩展。</p>
 </li>
 <li>
 <p>灵活的流量筛选，能满足各种流量控制。</p>
@@ -61,7 +61,7 @@
 <p>流量配置动态化，性能极高，网关消耗在 1~2ms。</p>
 </li>
 <li>
-<p>支持集群部署，支持 A/B Test, 蓝绿发布。</p>
+<p>支持集群部署，支持 A/B Test，蓝绿发布。</p>
 </li>
 </ul>
 <p>整体架构如下图所示：</p>
@@ -105,13 +105,13 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
 </blockquote>
 <p>③ 启动完成后，我们可以通过日志看到 Soul Admin 启动在 <strong>9095</strong> 端口。使用浏览器，访问 <a href="http://127.0.0.1:9095/">http://127.0.0.1:9095/</a> 地址，进入登录页。</p>
 <p><img src="http://www.iocoder.cn/images/Soul/12.png" alt="Soul Admin - 登录页"></p>
-<p>默认内置管理员账号「<strong>admin/123456</strong>」。输入账号密码，进入首页。</p>
+<p>默认内置管理员账号「<strong>admin/123456</strong>」，输入账号密码，进入首页。</p>
 <p><img src="http://www.iocoder.cn/images/Soul/13.png" alt="Soul Admin - 首页"></p>
 <p>胖友可以自己随便点点，简单了解下有哪些功能。</p>
 <h2>搭建自己的网关（推荐）</h2>
 <ul>
 <li>
-<p>首先你新建一个空的springboot项目，可以参考 soul-bootstrap. 也可以在spring官网:[<a href="https://spring.io/quickstart">https://spring.io/quickstart</a>]</p>
+<p>首先你新建一个空的springboot项目，可以参考 soul-bootstrap，也可以在spring官网[<a href="https://spring.io/quickstart">https://spring.io/quickstart</a>]</p>
 </li>
 <li>
 <p>引入如下jar包：</p>
@@ -160,7 +160,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
              <span class="hljs-attr">urls:</span> <span class="hljs-string">ws://localhost:9095/websocket</span>  <span class="hljs-string">//设置成你的soul-admin地址</span>
 </code></pre>
 <ul>
-<li>你的项目环境搭建完成,启动你的项目。</li>
+<li>你的项目环境搭建完成，启动你的项目。</li>
 </ul>
 <h2>2.4 下一步</h2>
 <p>至此，我们已经完成了 Soul 服务的单机部署，是不是挺简单的。下面，胖友可以根据自己的需要，阅读如下小节：</p>
@@ -240,7 +240,7 @@ $ wget  https://yu199195.github.io/jar/soul-admin.jar
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <blockquote>
-<p>友情提示：如果胖友使用 Alibaba Dubbo <strong>2.6.X</strong> 的话,依赖如下：</p>
+<p>友情提示：如果胖友使用 Alibaba Dubbo <strong>2.6.X</strong> 的话，依赖如下：</p>
 </blockquote>
 <pre><code class="language-XML"><span class="hljs-comment">&lt;!-- 引入 Soul 针对 Dubbo 的集成的依赖 --&gt;</span>
  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>

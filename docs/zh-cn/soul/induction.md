@@ -37,7 +37,7 @@ description:  soul极简入门
 
 * 支持各种语言(http协议)，支持 dubbo，springcloud协议。
 
-* 插件化设计思想，插件热插拔,易扩展。
+* 插件化设计思想，插件热插拔，易扩展。
 
 * 灵活的流量筛选，能满足各种流量控制。
 
@@ -45,7 +45,7 @@ description:  soul极简入门
 
 * 流量配置动态化，性能极高，网关消耗在 1~2ms。
 
-* 支持集群部署，支持 A/B Test, 蓝绿发布。
+* 支持集群部署，支持 A/B Test，蓝绿发布。
 
 整体架构如下图所示：
 
@@ -104,7 +104,7 @@ Soul Admin 会**自动**创建数据库，以及表结构，并初始化默认�
 
 ![Soul Admin - 登录页](http://www.iocoder.cn/images/Soul/12.png)
 
-默认内置管理员账号「**admin/123456**」。输入账号密码，进入首页。
+默认内置管理员账号「**admin/123456**」，输入账号密码，进入首页。
 
 ![Soul Admin - 首页](http://www.iocoder.cn/images/Soul/13.png)
 
@@ -112,7 +112,7 @@ Soul Admin 会**自动**创建数据库，以及表结构，并初始化默认�
 
 ## 搭建自己的网关（推荐）
 
-* 首先你新建一个空的springboot项目，可以参考 soul-bootstrap. 也可以在spring官网:[https://spring.io/quickstart]
+* 首先你新建一个空的springboot项目，可以参考 soul-bootstrap，也可以在spring官网[https://spring.io/quickstart]
 
 * 引入如下jar包：
 ```xml
@@ -158,7 +158,7 @@ soul :
         websocket :
              urls: ws://localhost:9095/websocket  //设置成你的soul-admin地址
 ```
-* 你的项目环境搭建完成,启动你的项目。
+* 你的项目环境搭建完成，启动你的项目。
 
 ## 2.4 下一步
 
@@ -253,7 +253,7 @@ soul :
 </dependency>
 ```
 
-> 友情提示：如果胖友使用 Alibaba Dubbo **2.6.X** 的话,依赖如下：
+> 友情提示：如果胖友使用 Alibaba Dubbo **2.6.X** 的话，依赖如下：
 ```XML
 <!-- 引入 Soul 针对 Dubbo 的集成的依赖 -->
  <dependency>

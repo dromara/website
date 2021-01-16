@@ -29,9 +29,9 @@ description: 自定义sign插件检验
 
 ```
 
-* Pair中返回true,表示验证通过，为false的时候，会把String中的信息输出到前端。
+* Pair中返回true，表示验证通过，为false的时候，会把String中的信息输出到前端。
 
-* 把你新增的实现类注册成为spring的bean,如下
+* 把你新增的实现类注册成为spring的bean，如下
 
 ```java
    @Bean

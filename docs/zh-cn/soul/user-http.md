@@ -10,7 +10,7 @@ description: http用户
 
 * soul网关使用 divide 插件来处理http请求。请求在soul-admin后台开启它。
 
-* 接入前，请正确的启动 `soul-admin` , 以及 [搭建环境](setup.md) OK。
+* 接入前，请正确的启动 `soul-admin`，以及 [搭建环境](setup.md) OK。
 
 ## 引入网关对http的代理插件
 
@@ -48,7 +48,7 @@ description: http用户
          <version>${last.version}</version>
      </dependency>
  ```
-   * 在yml中新增如下配置 ：  
+   * 在yml中新增如下配置：
 ```yaml
    soul:
      http:
@@ -64,7 +64,7 @@ description: http用户
    # full: 设置true 代表代理你的整个服务，false表示代理你其中某几个controller
    ``` 
  * SpringMvc用户 
-   * 在你的真实服务的 `pom.xml` 新增如下依赖: 
+   * 在你的真实服务的 `pom.xml` 新增如下依赖：
 ```xml
        <dependency>
            <groupId>org.dromara</groupId>
@@ -72,7 +72,7 @@ description: http用户
            <version>${last.version}</version>
        </dependency>
  ```     
-  * 在你的 bean定义的xml文件中新增如下 ：   
+  * 在你的 bean定义的xml文件中新增如下：  
  ```xml
     <bean id ="springMvcClientBeanPostProcessor" class ="org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor">
          <constructor-arg  ref="soulSpringMvcConfig"/>
@@ -88,9 +88,9 @@ description: http用户
    ``` 
 * 在你的 `controller` 的接口上加上 `@SoulSpringMvcClient` 注解。
   
-   * 你可以把注解加到 `Controller` 类上面, 里面的path属性则为前缀，如果含有 `/**` 代表你的整个接口需要被网关代理。
+   * 你可以把注解加到 `Controller` 类上面，里面的path属性则为前缀，如果含有 `/**` 代表你的整个接口需要被网关代理。
   
-   * 举列子 （1）： 代表 `/test/payment`, `/test/findByUserId` 都会被网关代理。
+   * 举列子 （1）： 代表 `/test/payment`，`/test/findByUserId` 都会被网关代理。
    
  ```java
   @RestController
@@ -112,7 +112,7 @@ description: http用户
       }      
    }
    ```
-   * 举列子 （2）： 代表 `/order/save`,会被网关代理,而`/order/findById` 则不会。
+   * 举列子 （2）：代表 `/order/save`，会被网关代理，而`/order/findById` 则不会。
    
  ```java
   @RestController
@@ -153,7 +153,7 @@ description: http用户
 
 * 第一点，你之前请求的域名是你自己的服务，现在要换成网关的域名 （这个你听的懂？）
 
-* 第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 `contextPath` ,如果熟的话，可以自由在 `soul-admin` 中的divide插件进行自由更改.
+* 第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 `contextPath`，如果熟的话，可以自由在 `soul-admin` 中的divide插件进行自由更改。
  
 ```yaml
 

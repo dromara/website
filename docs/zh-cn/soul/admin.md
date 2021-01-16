@@ -7,11 +7,11 @@ description: 启动admin
 
 ### 说明
 
- * soul-admin 使用了mysql数据库,启动前请确保你正确安装了mysql.
+ * soul-admin 使用了mysql数据库，启动前请确保你正确安装了mysql。
 
- * soul-admin 是一个springboot的jar包,启动方式,可以直接 `java -jar soul-admin.jar` ,当然如果您也可以根据脚本来指定相关的jvm参数.
+ * soul-admin 是一个springboot的jar包，启动方式，可以直接 `java -jar soul-admin.jar`，当然如果您也可以根据脚本来指定相关的jvm参数。
  
- * soul-admin 会自动创建数据库，以及表结构，并初始化默认数据.
+ * soul-admin 会自动创建数据库，以及表结构，并初始化默认数据。
 
 ### 服务端启动
 
@@ -23,20 +23,19 @@ description: 启动admin
   --spring.datasource.username='you username'  --spring.datasource.password='you password'
  
 ```
-* 数据库无访问密码,将 **--spring.datasource.password='you password'** 去掉即可
+* 数据库无访问密码，将 **--spring.datasource.password='you password'** 去掉即可
 ```
 > java -jar soul-admin.jar --spring.datasource.url="jdbc:mysql://你的url:3306/soul?useUnicode=true&characterEncoding=utf-8&zerodatetimebehavior=CONVERT_TO_NULL&failOverReadOnly=false&autoReconnect=true&useSSL=false"  
   --spring.datasource.username='you username' 
 ```
-* 遇到如下错误,将 **zerodatetimebehavior=CONVERT_TO_NULL** 去掉即可
+* 遇到如下错误，将 **zerodatetimebehavior=CONVERT_TO_NULL** 去掉即可
 ```java
     java.sql.SQLException: The connection property 'zeroDateTimeBehavior' only accepts values of the form: 'exception', 'round' or 'convertToNull'. The value 'CONVERT_TO_NULL' is not in this set.
 ```
-* 访问 `http://localhost:9095/index.html ` 默认的用户名： admin  密码:123456
+* 访问 `http://localhost:9095/index.html ` 默认的用户名：admin  密码：123456
 
-* 如果已经使用 soul, 并且未修改默认秘钥,明文密码 123456 对应的 密文是 `jHcpKkiDbbQh7W7hh8yQSA==`
+* 如果已经使用soul，并且未修改默认秘钥，明文密码是`123456` 对应的密文是 `jHcpKkiDbbQh7W7hh8yQSA==`
 ### 本地启动
- 
 
 *  拉取代码
    ```
@@ -47,7 +46,7 @@ description: 启动admin
    > mvn -DskipTests clean install -U
    ```
    
- * 使用你的idea 打开项目.
+ * 使用你的idea 打开项目
  * 修改yml文件，修改你的数据库注意环境,默认使用 `application-local.yml`.
 ```yml
 
@@ -75,9 +74,9 @@ mybatis:
 
 ```
 
-* 启动 `org.dromara.soul.admin.SoulAdminApplication`.
+* 启动 `org.dromara.soul.admin.SoulAdminApplication`
 
-* 访问  http://localhost:9095/index.html  默认的用户名和密码为 admin 123456
+* 访问 http://localhost:9095/index.html  默认的用户名和密码为`admin/123456`
 
 
  

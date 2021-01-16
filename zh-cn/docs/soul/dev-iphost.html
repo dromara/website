@@ -24,10 +24,10 @@
 <h2>默认实现</h2>
 <ul>
 <li>
-<p>在soul网关自带实现为:<code>org.dromara.soul.web.forwarde.ForwardedRemoteAddressResolver</code>。</p>
+<p>在soul网关自带实现为：<code>org.dromara.soul.web.forwarde.ForwardedRemoteAddressResolver</code>。</p>
 </li>
 <li>
-<p>它需要你在 <code>nginx</code> 设置 <code>X-Forwarded-For</code>,以便来或者正确的 ip 与 host。</p>
+<p>它需要你在 <code>nginx</code> 设置 <code>X-Forwarded-For</code>，以便来或者正确的 ip 与 host。</p>
 </li>
 </ul>
 <h2>扩展实现</h2>
@@ -49,7 +49,7 @@
 }
 </code></pre>
 <ul>
-<li>把你新增的实现类注册成为spring的bean,如下</li>
+<li>把你新增的实现类注册成为spring的bean，如下</li>
 </ul>
 <pre><code class="language-java">   <span class="hljs-meta">@Bean</span>
    <span class="hljs-function"><span class="hljs-keyword">public</span> SignService <span class="hljs-title">a</span><span class="hljs-params">()</span> </span>{

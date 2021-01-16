@@ -34,7 +34,7 @@
 </ul>
 <h2>单一职责插件</h2>
 <ul>
-<li>引入如下依赖 :</li>
+<li>引入如下依赖：</li>
 </ul>
 <pre><code> &lt;dependency&gt;
         &lt;groupId&gt;org.dromara&lt;/groupId&gt;
@@ -43,7 +43,7 @@
   &lt;/dependency&gt;
 </code></pre>
 <ul>
-<li>用户新增一个类 A,直接实现 <code>org.dromara.soul.plugin.api.SoulPlugin</code></li>
+<li>用户新增一个类 A，直接实现 <code>org.dromara.soul.plugin.api.SoulPlugin</code></li>
 </ul>
 <pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">SoulPlugin</span> </span>{
 
@@ -108,7 +108,7 @@
 </ul>
 </li>
 <li>
-<p>注册成Spring的bean，参考如下,或者直接在实现类上加 <code>@Component</code> 注解。</p>
+<p>注册成Spring的bean，参考如下，或者直接在实现类上加 <code>@Component</code> 注解。</p>
 </li>
 </ul>
 <pre><code class="language-java">    <span class="hljs-meta">@Bean</span>
@@ -118,7 +118,7 @@
 </code></pre>
 <h2>匹配流量处理插件</h2>
 <ul>
-<li>引入如下依赖 :</li>
+<li>引入如下依赖：</li>
 </ul>
 <pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
@@ -131,7 +131,7 @@
 <p>新增一个类A，继承 <code>org.dromara.soul.plugin.base.AbstractSoulPlugin</code></p>
 </li>
 <li>
-<p>以下是参考 ：</p>
+<p>以下是参考：</p>
 </li>
 </ul>
 <pre><code class="language-java"><span class="hljs-comment">/**
@@ -205,7 +205,7 @@
 </code></pre>
 <ul>
 <li>
-<p>详细讲解 ：</p>
+<p>详细讲解：</p>
 <ul>
 <li>
 <p>继承该类的插件，插件会进行选择器规则匹配，那如何来设置呢？</p>
@@ -222,7 +222,7 @@
 </ul>
 </li>
 <li>
-<p>注册成Spring的bean，参考如下,或者直接在实现类上加 <code>@Component</code> 注解。</p>
+<p>注册成Spring的bean，参考如下或者直接在实现类上加 <code>@Component</code> 注解。</p>
 </li>
 </ul>
 <pre><code class="language-java">    <span class="hljs-meta">@Bean</span>
@@ -298,7 +298,7 @@
 <p>注意 <code>pluginNamed()</code> 要和你自定义的插件名称相同。</p>
 </li>
 <li>
-<p>注册成Spring的bean，参考如下,或者直接在实现类上加 <code>@Component</code> 注解。</p>
+<p>注册成Spring的bean，参考如下或者直接在实现类上加 <code>@Component</code> 注解。</p>
 </li>
 </ul>
 <pre><code class="language-java">    <span class="hljs-meta">@Bean</span>

@@ -11,7 +11,7 @@ description: rewrite插件
 
 ## 插件设置
 
-* 在 `soul-admin` --> 插件管理 --> `rewrite` ,设置为开启。
+* 在 `soul-admin` --> 插件管理 --> `rewrite`，设置为开启。
 
 * 在网关的 pom.xml 文件中添加 `rewrite` 的支持。
 
@@ -27,7 +27,7 @@ description: rewrite插件
   <!-- soul rewrite plugin end-->
 ``` 
 
-* 选择器和规则，请详细看 : [选择器规则](selector.md)。
+* 选择器和规则，请详细看：[选择器规则](selector.md)。
 
   * 只有匹配的请求，才会进行重写。
 

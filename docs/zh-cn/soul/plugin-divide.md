@@ -10,7 +10,7 @@ description: divide插件
 
 ## 插件设置
 
-* 开启插件, `soul-admin` --> 插件管理--> `divide` 设置为启用。
+* 开启插件，`soul-admin` --> 插件管理--> `divide` 设置为启用。
 
 * divide插件，配合如下 starter一起才能生效，具体请看：[http用户](user-http.md)。
 
@@ -34,14 +34,14 @@ description: divide插件
 
 * divide插件是进行http正向代理的插件，所有http类型的请求，都是由该插件进行负载均衡的调用。
 
-* 选择器和规则，请详细看 : [选择器规则](selector.md)。
+* 选择器和规则，请详细看：[选择器规则](selector.md)。
 
 * http配置，是网关匹配到流量以后，真实调用的http配置，可以配置多个，设置负载均衡权重，具体的负载均衡策略，在规则中指定。
-  * 配置详解 ：
+  * 配置详解：
 
-     * 第一个框：hostName，一般填写 `localhost`,该字段暂时没使用。
+     * 第一个框：hostName，一般填写 `localhost`，该字段暂时没使用。
   
-     * 第二个框：http协议，一般填写 `http://` 或者 `https://` ,不填写默认为:`http://`
+     * 第二个框：http协议，一般填写 `http://` 或者 `https://` ，不填写默认为:`http://`
   
      * 第三个框：ip与端口，这里填写你真实服务的 ip + 端口。
   
@@ -58,4 +58,3 @@ description: divide插件
       soul.upstream.scheduledTime:10  定时检测时间间隔，默认10秒
  ```  
   
- 

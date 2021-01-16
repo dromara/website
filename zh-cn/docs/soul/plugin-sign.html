@@ -34,7 +34,7 @@
 </code></pre>
 <ul>
 <li>
-<p>选择器和规则，请详细看 : <a href="selector.md">选择器规则</a>。</p>
+<p>选择器和规则，请详细看：<a href="selector.md">选择器规则</a>。</p>
 <ul>
 <li>只有匹配的请求，才会进行签名认证。</li>
 </ul>
@@ -53,13 +53,13 @@
 <h2>鉴权使用指南</h2>
 <ul>
 <li>
-<p>第一步：AK/SK由网关来进行分配. 比如分配给你的AK为: <code>1TEST123456781</code>  	SK为：<code>506EEB535CF740D7A755CB4B9F4A1536</code></p>
+<p>第一步：AK/SK由网关来进行分配，比如分配给你的AK为: <code>1TEST123456781</code>  	SK为：<code>506EEB535CF740D7A755CB4B9F4A1536</code></p>
 </li>
 <li>
 <p>第二步：确定好你要访问的网关路径 比如 <code>/api/service/abc</code></p>
 </li>
 <li>
-<p>第三步:构造参数（以下是通用参数）</p>
+<p>第三步：构造参数（以下是通用参数）</p>
 </li>
 </ul>
 <table>
@@ -88,8 +88,8 @@
 </tr>
 </tbody>
 </table>
-<p>对上述2个字段进行key的自然排序，然后进行字段与字段值拼接最后再拼接上SK,代码示例。</p>
-<p>第一步:首先构造一个Map。</p>
+<p>对上述2个字段进行key的自然排序，然后进行字段与字段值拼接最后再拼接上SK，代码示例。</p>
+<p>第一步：首先构造一个Map。</p>
 <pre><code class="language-java">
    Map&lt;String, String&gt; map = Maps.newHashMapWithExpectedSize(<span class="hljs-number">2</span>);
    <span class="hljs-comment">//timestamp为毫秒数的字符串形式 String.valueOf(LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli()) </span>
@@ -97,7 +97,7 @@
    map.put(<span class="hljs-string">"path"</span>, <span class="hljs-string">"/api/service/abc"</span>);
    map.put(<span class="hljs-string">"version"</span>, <span class="hljs-string">"1.0.0"</span>);
 </code></pre>
-<p>第二步:进行Key的自然排序，然后Key，Value值拼接最后再拼接分配给你的Sk。</p>
+<p>第二步：进行Key的自然排序，然后Key，Value值拼接最后再拼接分配给你的Sk。</p>
 <pre><code class="language-java">List&lt;String&gt; storedKeys = Arrays.stream(map.keySet()
                 .toArray(<span class="hljs-keyword">new</span> String[]{}))
                 .sorted(Comparator.naturalOrder())
@@ -108,21 +108,21 @@
                 .concat(<span class="hljs-string">"506EEB535CF740D7A755CB4B9F4A1536"</span>);
 </code></pre>
 <ul>
-<li>你得到的sign值应该为:path/api/service/abctimestamp1571711067186version1.0.0506EEB535CF740D7A755CB4B9F4A1536</li>
+<li>你得到的sign值应该为：<code>path/api/service/abctimestamp1571711067186version1.0.0506EEB535CF740D7A755CB4B9F4A1536</code></li>
 </ul>
-<p>第三步:进行Md5加密后转成大写。</p>
+<p>第三步：进行Md5加密后转成大写。</p>
 <pre><code class="language-java">DigestUtils.md5DigestAsHex(sign.getBytes()).toUpperCase()
 </code></pre>
 <ul>
-<li>最后得到的值为:A021BF82BE342668B78CD9ADE593D683</li>
+<li>最后得到的值为：<code>A021BF82BE342668B78CD9ADE593D683</code></li>
 </ul>
 <h2>请求网关</h2>
 <ul>
 <li>
-<p>假如你访问的路径为 :/api/service/abc。</p>
+<p>假如你访问的路径为：<code>/api/service/abc</code>。</p>
 </li>
 <li>
-<p>访问地址 ：http:网关的域名/api/service/abc。</p>
+<p>访问地址 ：http：网关的域名<code>/api/service/abc</code>。</p>
 </li>
 <li>
 <p>设置<code>header</code>头，<code>header</code>头参数为：</p>

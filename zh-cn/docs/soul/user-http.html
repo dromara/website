@@ -21,7 +21,7 @@
 <p>soul网关使用 divide 插件来处理http请求。请求在soul-admin后台开启它。</p>
 </li>
 <li>
-<p>接入前，请正确的启动 <code>soul-admin</code> , 以及 <a href="setup.md">搭建环境</a> OK。</p>
+<p>接入前，请正确的启动 <code>soul-admin</code>，以及 <a href="setup.md">搭建环境</a> OK。</p>
 </li>
 </ul>
 <h2>引入网关对http的代理插件</h2>
@@ -64,7 +64,7 @@
      <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在yml中新增如下配置 ：</li>
+<li>在yml中新增如下配置：</li>
 </ul>
 <pre><code class="language-yaml">   <span class="hljs-attr">soul:</span>
      <span class="hljs-attr">http:</span>
@@ -82,7 +82,7 @@
 <ul>
 <li>SpringMvc用户
 <ul>
-<li>在你的真实服务的 <code>pom.xml</code> 新增如下依赖:</li>
+<li>在你的真实服务的 <code>pom.xml</code> 新增如下依赖：</li>
 </ul>
 </li>
 </ul>
@@ -93,7 +93,7 @@
        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
 <ul>
-<li>在你的 bean定义的xml文件中新增如下 ：</li>
+<li>在你的 bean定义的xml文件中新增如下：</li>
 </ul>
 <pre><code class="language-xml">   <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span> =<span class="hljs-string">"springMvcClientBeanPostProcessor"</span> <span class="hljs-attr">class</span> =<span class="hljs-string">"org.dromara.soul.client.springmvc.init.SpringMvcClientBeanPostProcessor"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">constructor-arg</span>  <span class="hljs-attr">ref</span>=<span class="hljs-string">"soulSpringMvcConfig"</span>/&gt;</span>
@@ -112,10 +112,10 @@
 <p>在你的 <code>controller</code> 的接口上加上 <code>@SoulSpringMvcClient</code> 注解。</p>
 <ul>
 <li>
-<p>你可以把注解加到 <code>Controller</code> 类上面, 里面的path属性则为前缀，如果含有 <code>/**</code> 代表你的整个接口需要被网关代理。</p>
+<p>你可以把注解加到 <code>Controller</code> 类上面，里面的path属性则为前缀，如果含有 <code>/**</code> 代表你的整个接口需要被网关代理。</p>
 </li>
 <li>
-<p>举列子 （1）： 代表 <code>/test/payment</code>, <code>/test/findByUserId</code> 都会被网关代理。</p>
+<p>举列子 （1）： 代表 <code>/test/payment</code>，<code>/test/findByUserId</code> 都会被网关代理。</p>
 </li>
 </ul>
 </li>
@@ -140,7 +140,7 @@
   }
 </code></pre>
 <ul>
-<li>举列子 （2）： 代表 <code>/order/save</code>,会被网关代理,而<code>/order/findById</code> 则不会。</li>
+<li>举列子 （2）：代表 <code>/order/save</code>，会被网关代理，而<code>/order/findById</code> 则不会。</li>
 </ul>
 <pre><code class="language-java"> <span class="hljs-meta">@RestController</span>
  <span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/order"</span>)
@@ -187,7 +187,7 @@
 <p>第一点，你之前请求的域名是你自己的服务，现在要换成网关的域名 （这个你听的懂？）</p>
 </li>
 <li>
-<p>第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 <code>contextPath</code> ,如果熟的话，可以自由在 <code>soul-admin</code> 中的divide插件进行自由更改.</p>
+<p>第二点，soul网关需要有一个路由前缀，这个路由前缀就是你接入项目进行配置 <code>contextPath</code>，如果熟的话，可以自由在 <code>soul-admin</code> 中的divide插件进行自由更改。</p>
 </li>
 </ul>
 <pre><code class="language-yaml">

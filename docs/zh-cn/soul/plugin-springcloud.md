@@ -41,11 +41,11 @@ description: springcloud插件
 
 ## 插件设置
 
-* 在 `soul-admin` --> 插件管理-> springCloud ,设置为开启。
+* 在 `soul-admin` --> 插件管理-> springCloud，设置为开启。
 
-* 插件需要配合依赖 `starter` 进行使用  ,具体请看: [springCloud用户](user-springcloud.md)。
+* 插件需要配合依赖 `starter` 进行使用，具体请看：[springCloud用户](user-springcloud.md)。
 
-* 选择器和规则，请详细看 : [选择器规则](selector.md)。
+* 选择器和规则，请详细看：[选择器规则](selector.md)。
 
 ## 详解
 

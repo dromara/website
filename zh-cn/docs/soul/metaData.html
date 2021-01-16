@@ -22,7 +22,7 @@
 <p>在数据库中，新增了一张表，然后通过数据同步的方案，会把这张表的数据同步到网关JVM内存。</p>
 </li>
 <li>
-<p>表结构如下:</p>
+<p>表结构如下：</p>
 </li>
 </ul>
 <pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span>  <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`meta_data`</span> (
@@ -50,9 +50,9 @@
 <p>我重点讲一下 <code>path</code> 字段，在请求网关的时候，会根据你的path字段来匹配到一条数据，然后进行后续的流程.</p>
 </li>
 <li>
-<p>重点讲一下 <code>rpc_ext</code>字段,如果是dubbo类型的服务接口，如果服务接口设置了 group,version字段的时候，会存在这个字段.</p>
+<p>重点讲一下 <code>rpc_ext</code>字段，如果是dubbo类型的服务接口，如果服务接口设置了group和version字段的时候，会存在这个字段。</p>
 <ul>
-<li>dubbo 类型 字段结构是 如下，那么存储的就是json格式的字符串.</li>
+<li>dubbo 类型 字段结构是 如下，那么存储的就是json格式的字符串。</li>
 </ul>
 <pre><code class="language-java"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RpcExt</span> </span>{
 

@@ -11,7 +11,7 @@ description: context_path插件
 
 ## 插件设置
 
-* 在 `soul-admin` --> 插件管理 --> `context_path` ,设置为开启。
+* 在 `soul-admin` --> 插件管理 --> `context_path` 设置为开启。
 
 * 在网关的 pom.xml 文件中添加 `context_path` 的支持。
 
@@ -27,7 +27,7 @@ description: context_path插件
   <!-- soul context_path plugin end-->
 ``` 
 
-* 选择器和规则，请详细看 : [选择器规则](selector.md)。
+* 选择器和规则，请详细看：[选择器规则](selector.md)。
 
   * 只有匹配的请求，并且配置规则才会进行重写contextPath。
 
@@ -35,6 +35,6 @@ description: context_path插件
 
 * 顾名思义，context_path插件就是对uri的contextPath重新定义。
 
-* 当匹配到请求后，设置自定义的contextPath，那么就会根据请求的Url截取自定义的contextPath获取真正的Url,例如请求路径为/soul/http/order,
-  配置的contextPath为'/soul/http',那么真正请求的url为'/order'
+* 当匹配到请求后，设置自定义的contextPath，那么就会根据请求的Url截取自定义的contextPath获取真正的Url，例如请求路径为/soul/http/order，
+  配置的contextPath为'/soul/http'，那么真正请求的url为'/order'。
 

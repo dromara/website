@@ -18,7 +18,7 @@ description: 插件扩展
 
 ## 单一职责插件
 
-* 引入如下依赖 :
+* 引入如下依赖：
 
 ```
  <dependency>
@@ -28,7 +28,7 @@ description: 插件扩展
   </dependency>
 ```
 
-* 用户新增一个类 A,直接实现 `org.dromara.soul.plugin.api.SoulPlugin`
+* 用户新增一个类 A，直接实现 `org.dromara.soul.plugin.api.SoulPlugin`
 
 ```java
 public interface SoulPlugin {
@@ -86,7 +86,7 @@ public interface SoulPlugin {
    * `skip()` 在特定的条件下，该插件是否被跳过。
 
 
-* 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
+* 注册成Spring的bean，参考如下，或者直接在实现类上加 `@Component` 注解。
 
 ```java
     @Bean
@@ -98,7 +98,7 @@ public interface SoulPlugin {
 
 ## 匹配流量处理插件
 
-* 引入如下依赖 :
+* 引入如下依赖：
 ```xml
  <dependency>
         <groupId>org.dromara</groupId>
@@ -108,7 +108,7 @@ public interface SoulPlugin {
 ```
 *  新增一个类A，继承 `org.dromara.soul.plugin.base.AbstractSoulPlugin`
 
-* 以下是参考 ：
+* 以下是参考：
 
 ```java
 /**
@@ -181,7 +181,7 @@ public class CustomPlugin extends AbstractSoulPlugin {
 
 ```
 
-* 详细讲解 ：
+* 详细讲解：
 
    * 继承该类的插件，插件会进行选择器规则匹配，那如何来设置呢？
 
@@ -191,7 +191,7 @@ public class CustomPlugin extends AbstractSoulPlugin {
 
    * 在规则中，有个 `handler` 字段，是你自定义处理数据，在 `doExecute()` 方法中，通过 ` final String ruleHandle = rule.getHandle();` 获取，然后进行你的操作。
 
-* 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
+* 注册成Spring的bean，参考如下或者直接在实现类上加 `@Component` 注解。
 
 ```java
     @Bean
@@ -267,7 +267,7 @@ public interface PluginDataHandler {
 
 * 注意 `pluginNamed()` 要和你自定义的插件名称相同。
 
-* 注册成Spring的bean，参考如下,或者直接在实现类上加 `@Component` 注解。
+* 注册成Spring的bean，参考如下或者直接在实现类上加 `@Component` 注解。
 ```java
     @Bean
     public PluginDataHandler a() {
