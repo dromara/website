@@ -1,6 +1,0 @@
-{
-  "filename": "soul_1.0.4.md",
-  "__html": "<h3>Soul网关发布1.0.4-RELEASE版本</h3>\n<ul>\n<li>修复在1.0.3版本的后台管理中，出现的bug。</li>\n<li>配置信息序列化方式支持自定义扩展。默认的序列化方式由kroy 改为了java序列化方式。</li>\n<li>dubbo框架支持的更改。</li>\n</ul>\n<h3>对dubbo用户使用的更改。</h3>\n<ul>\n<li>\n<p>在以前的版本中（1.0.2 or 1.0.3），dubbo的参数是通过header头上传递，在1.0.4版本中是通过body传递</p>\n</li>\n<li>\n<p>更新了相关的文档信息。</p>\n</li>\n</ul>\n<h3>关于使用1.0.4版本的建议。</h3>\n<ul>\n<li>\n<p>1.0.4 版本支持用户自定义插件开发，支持正则表达式的匹配。</p>\n</li>\n<li>\n<p>dubbo参数传递的更改，我觉得这样会更加友好。</p>\n</li>\n</ul>\n<h3>如果您之前使用的1.0.2版本，想要更新到1.0.4版本。</h3>\n<ul>\n<li>\n<p>在插件表新增role字段。</p>\n</li>\n<li>\n<p>重新启动1.0.4版本的管理后台。</p>\n</li>\n<li>\n<p>执行同步所有插件（因为序列化方式的更改）</p>\n</li>\n<li>\n<p>启动1.0.4版本的soul-web服务。</p>\n</li>\n</ul>\n<h3>遇到问题？</h3>\n<ul>\n<li>\n<p>添加qq群（429951241）</p>\n</li>\n<li>\n<p>官网文档：<a href=\"https://dromara.org/website/zh-cn/docs/soul/soul.html\">https://dromara.org/website/zh-cn/docs/soul/soul.html</a></p>\n</li>\n<li>\n<p>github地址: <a href=\"https://github.com/Dromara/soul\">https://github.com/Dromara/soul</a></p>\n</li>\n<li>\n<p>gitee地址： <a href=\"https://gitee.com/shuaiqiyu/soul\">https://gitee.com/shuaiqiyu/soul</a></p>\n</li>\n</ul>\n",
-  "link": "\\zh-cn\\blog\\soul\\soul_1.0.4.html",
-  "meta": {}
-}
