@@ -15,7 +15,7 @@ npm install
 npm run build
 npm run start
 ```
-The http://127.0.0.1:8085/en-us/.
+Then you can access the url http://127.0.0.1:8085/en-us/.
 
 ### Contributing
 
