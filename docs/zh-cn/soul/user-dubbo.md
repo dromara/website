@@ -19,7 +19,7 @@ description: dubbo接入soul网关
 
 * 在网关的 `pom.xml` 文件中增加如下依赖：
 
-  * alibaba dubbo 用户, dubbo版本换成你的，注册中心的jar包换成你的，一下是参考。
+  * alibaba dubbo 用户, dubbo版本换成你的，注册中心的jar包换成你的，以下是参考。
 
  ```xml
 
