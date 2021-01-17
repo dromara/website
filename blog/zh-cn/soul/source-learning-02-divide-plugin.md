@@ -1,4 +1,6 @@
-# 一、启动项目
+# Divide 插件使用
+
+## 一、启动项目
 
 先启动soul-bootstrap（9195）、soul-admin（9095）两个模块，我们通过bootstrap配置文件可以看到，两者是通过WebSocket协议进行数据同步：
 
@@ -12,7 +14,7 @@
 
 我们启动两个项目之后就可以通过后台管理系统测试divide插件了。
 
-# 二、divide插件介绍
+## 二、divide插件介绍
 
 divide插件是网关处理http协议请求的核心处理插件，也是soul唯一默认开启的插件：
 
@@ -28,7 +30,7 @@ divide插件是网关处理http协议请求的核心处理插件，也是soul唯
 
 一个插件有多个选择器，一个选择器对应多种规则。选择器相当于是对流量的第一次筛选，规则就是最终的筛选。
 
-## 选择器
+### 选择器
 
 ![图片](https://uploader.shimo.im/f/KlNWtqo6shqyJYWZ.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH)
 
@@ -50,7 +52,7 @@ divide插件是网关处理http协议请求的核心处理插件，也是soul唯
     * **是否开启**：打开才会生效
     * **打印日志**：打开的时候，当匹配上的时候，会打印匹配日志。
     * **执行顺序**：当多个选择器的时候，执行顺序小的优先执行。
-## 选择器规则
+### 选择器规则
 
 ![图片](https://uploader.shimo.im/f/If4ekdjZ1T0j11fy.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH)
 
@@ -58,7 +60,7 @@ divide插件是网关处理http协议请求的核心处理插件，也是soul唯
 
 可以看到，规则的配置和选择器类似，可以理解为更细粒度的自定义配置。
 
-# 三、divide插件使用
+## 三、divide插件使用
 
 废话少说，我们直接运行soul提供的examples模块来演示divide插件。
 
@@ -76,7 +78,7 @@ divide插件是网关处理http协议请求的核心处理插件，也是soul唯
 
 ![图片](https://uploader.shimo.im/f/MzTmhBkyZSRIiPAp.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH)
 
-## 测试网关路由
+### 测试网关路由
 
 通过postman先测试不经过网关转发：
 
@@ -96,7 +98,7 @@ http://localhost:9195/my-http/order/findById?id=1
 
 ![图片](https://uploader.shimo.im/f/iE6V4aNqbaaUQz2K.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH)
 
-## 测试负载均衡
+### 测试负载均衡
 
 我们修改端口为8189，启动第二个进程。
 
