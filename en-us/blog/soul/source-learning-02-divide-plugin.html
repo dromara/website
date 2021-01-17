@@ -12,14 +12,15 @@
 	<link rel="stylesheet" href="/build/blogDetail.css" />
 </head>
 <body>
-	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">Home</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">Document</a><div class="sub-menu"><ul><li><a href="/en-us/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/en-us/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/blog/index.html" target="_self">Blog</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">Community</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h1>一、启动项目</h1>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">Home</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">Document</a><div class="sub-menu"><ul><li><a href="/en-us/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/en-us/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/blog/index.html" target="_self">Blog</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">Community</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Divide 插件使用</h1>
+<h2>一、启动项目</h2>
 <p>先启动soul-bootstrap（9195）、soul-admin（9095）两个模块，我们通过bootstrap配置文件可以看到，两者是通过WebSocket协议进行数据同步：</p>
 <p><img src="https://uploader.shimo.im/f/nGr4Gtt1RDaxFZhp.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>通过bootstrap日志也可以看到：</p>
 <p><img src="https://uploader.shimo.im/f/cvJNUI1WLaJEk0Pe.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>所谓的数据同步是指将soul-admin中配置的数据，同步到soul集群中的JVM内存里面，是网关高性能的关键。</p>
 <p>我们启动两个项目之后就可以通过后台管理系统测试divide插件了。</p>
-<h1>二、divide插件介绍</h1>
+<h2>二、divide插件介绍</h2>
 <p>divide插件是网关处理http协议请求的核心处理插件，也是soul唯一默认开启的插件：</p>
 <p><img src="https://uploader.shimo.im/f/0CIBpm0YatPSWUUu.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>我们可以想象一下网关到底是做什么的，去猜测一下处理http请求的divide插件可能具备哪些功能呢？</p>
@@ -27,7 +28,7 @@
 <p>我们打开管理界面上的插件列表，可以看到所有插件都是由两部分组成：<strong>选择器</strong>（selector）和<strong>选择器规则</strong>。</p>
 <p>插件化设计思想是soul网关最核心的设计思想，而选择器和规则这两个概念也是soul网关的灵魂所在，理论上来说，我们掌握好它，就能对任何接入网关的流量进行管理。</p>
 <p>一个插件有多个选择器，一个选择器对应多种规则。选择器相当于是对流量的第一次筛选，规则就是最终的筛选。</p>
-<h2>选择器</h2>
+<h3>选择器</h3>
 <p><img src="https://uploader.shimo.im/f/KlNWtqo6shqyJYWZ.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <pre><code>* **名称**：为你的选择器起一个容易分辨的名字
 * **类型**：custom flow 是自定义流量。full flow 是全流量。自定义流量就是请求会走你下面的匹配方式与条件。全流量则不走。
@@ -48,11 +49,11 @@
 * **打印日志**：打开的时候，当匹配上的时候，会打印匹配日志。
 * **执行顺序**：当多个选择器的时候，执行顺序小的优先执行。
 </code></pre>
-<h2>选择器规则</h2>
+<h3>选择器规则</h3>
 <p><img src="https://uploader.shimo.im/f/If4ekdjZ1T0j11fy.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p><img src="https://uploader.shimo.im/f/CTJJ5j55VhfIxVsS.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>可以看到，规则的配置和选择器类似，可以理解为更细粒度的自定义配置。</p>
-<h1>三、divide插件使用</h1>
+<h2>三、divide插件使用</h2>
 <p>废话少说，我们直接运行soul提供的examples模块来演示divide插件。</p>
 <p><img src="https://uploader.shimo.im/f/8i3YFAMvzXsKJg7o.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>注意，我们最终运行的是soul-examples-http模块。配置文件可以使用默认的，也可以自定义contextPath和appName，如上图。</p>
@@ -61,7 +62,7 @@
 <p><img src="https://uploader.shimo.im/f/ozvPWCqVaXEGwG2E.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>可以看到我启动的这个8188项目地址自动注册上去了：</p>
 <p><img src="https://uploader.shimo.im/f/MzTmhBkyZSRIiPAp.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
-<h2>测试网关路由</h2>
+<h3>测试网关路由</h3>
 <p>通过postman先测试不经过网关转发：</p>
 <pre><code class="language-plain">http://localhost:8188/order/findById?id=1
 </code></pre>
@@ -72,7 +73,7 @@
 <p><img src="https://uploader.shimo.im/f/8p4u4OKuWp3inEVh.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>看日志发现确实经过了网关转发到了8188接口地址：</p>
 <p><img src="https://uploader.shimo.im/f/iE6V4aNqbaaUQz2K.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
-<h2>测试负载均衡</h2>
+<h3>测试负载均衡</h3>
 <p>我们修改端口为8189，启动第二个进程。</p>
 <p><img src="https://uploader.shimo.im/f/arghWSgrccJ5262m.png!thumbnail?fileGuid=fGQAODvCNjs7kNIH" alt="图片"></p>
 <p>注意IDEA需要取消 Single instance only 的限制：</p>
