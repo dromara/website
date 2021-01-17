@@ -4,6 +4,13 @@ export default {
     postsTitle: 'All posts',
     list: [
       {
+        title: 'Soul learning (2) How does the Divide Plugin forward HTTP requests',
+        author: 'jipeng',
+        dateStr: '2021-1-17',
+        desc: 'How does the Divide Plugin forward HTTP requests',
+        link: '/en-us/blog/soul/source-learning-02-divide-plugin-source.html',
+      },
+      {
         title: 'Soul learning (2) Use divide plugin',
         author: 'yuanjie',
         dateStr: '2021-1-17',
@@ -51,6 +58,13 @@ export default {
     barText: '博客',
     postsTitle: '所有文章',
     list: [
+      {
+        title: 'Soul网关学习（2）Divide插件如何转发Http请求',
+        author: '季鹏',
+        dateStr: '2021-1-17',
+        desc: 'Divide插件如何转发Http请求',
+        link: '/zh-cn/blog/soul/source-learning-02-divide-plugin-source.html',
+      },
       {
         title: 'Soul网关学习（2）divide插件使用',
         author: '袁杰',
