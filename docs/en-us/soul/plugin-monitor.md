@@ -75,4 +75,4 @@ description: monitor plugin
  
  ## Panel Presentation
  
- It is recommended to use Granfana'. Users can customize the query to personalize the display panel, and we will provide the default configuration panel later.
+ It is recommended to use Grafana'. Users can customize the query to personalize the display panel, and we will provide the default configuration panel later.
