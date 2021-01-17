@@ -13,6 +13,7 @@ yarn-error.log
 
 /coverage
 .idea
+*.iml
 yarn.lock
 package-lock.json
 *bak
