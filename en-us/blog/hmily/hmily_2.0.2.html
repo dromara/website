@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="dromara.org" />
+	<meta name="description" content="dromara.org" />
+	<!-- 网页标签标题 -->
+	<title>dromara(Open source organization)</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">Home</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">Document</a><div class="sub-menu"><ul><li><a href="/en-us/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/en-us/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/blog/index.html" target="_self">Blog</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">Community</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h2>Hmily 发布2.0.2-RELEASE 版本</h2>
+<ul>
+<li>
+<p>解决SpringCloud 使用hystrix 配置线程池策略的问题。</p>
+</li>
+<li>
+<p>新增对springcloud 内嵌事务调用的问题。</p>
+</li>
+<li>
+<p>新增Hmily负载均衡策略。</p>
+</li>
+<li>
+<p>其他bug的修护，与代码的优化。</p>
+</li>
+<li>
+<p>去除不必须的第三方jar包。</p>
+</li>
+<li>
+<p>零侵入方式的引入。</p>
+</li>
+</ul>
+<h2>Hmily对现在流行RPC框架以及Spring的支持情况。</h2>
+<ul>
+<li>
+<p>dubbo 2.7.0以下所有版本。</p>
+</li>
+<li>
+<p>Springcloud Dalston以上版本，包括支持现在的Finchley 与 Greenwich</p>
+</li>
+<li>
+<p>Motan 所有版本。</p>
+</li>
+<li>
+<p>3.0以上所有Spring版本。</p>
+</li>
+</ul>
+<h2>Hmily 在2.0.2版本对使用者RPC集群时候负载均衡策略。</h2>
+<ul>
+<li>hmily提供了自己实现的负载均衡策略，只是针对加了@Hmily的接口</li>
+</ul>
+<p>dubbo 集群配置,配置负载方式为：loadbalance=&quot;hmily&quot;</p>
+<pre><code class="language-xml"> <span class="hljs-tag">&lt;<span class="hljs-name">dubbo:reference</span> <span class="hljs-attr">timeout</span>=<span class="hljs-string">"50000"</span> 
+       <span class="hljs-attr">interface</span>=<span class="hljs-string">"org.dromara.hmily.demo.dubbo.account.api.service.AccountService"</span>          
+             <span class="hljs-attr">id</span>=<span class="hljs-string">"accountService"</span>
+                 <span class="hljs-attr">retries</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">check</span>=<span class="hljs-string">"false"</span> <span class="hljs-attr">actives</span>=<span class="hljs-string">"20"</span> <span class="hljs-attr">loadbalance</span>=<span class="hljs-string">"hmily"</span>/&gt;</span>
+</code></pre>
+<p>Springcloud 在调用方的yml配置文件中新增：</p>
+<pre><code class="language-yml"><span class="hljs-string">hmily</span> <span class="hljs-string">：</span>
+   <span class="hljs-attr">ribbon:</span>
+      <span class="hljs-string">rule</span>
+        <span class="hljs-attr">enabled :</span> <span class="hljs-literal">true</span>
+</code></pre>
+<h2>Hmily的具体使用文档：</h2>
+<ul>
+<li>
+<p>官网文档 ：<a href="https://dromara.org/website/zh-cn/docs/hmily/index.html">https://dromara.org/website/zh-cn/docs/hmily/index.html</a></p>
+</li>
+<li>
+<p>github地址: <a href="https://github.com/yu199195/hmily">https://github.com/yu199195/hmily</a></p>
+</li>
+<li>
+<p>gitee地址： <a href="https://gitee.com/shuaiqiyu/hmily">https://gitee.com/shuaiqiyu/hmily</a></p>
+</li>
+<li>
+<p>欢迎大家star fork ，提供优秀的代码与建议。</p>
+</li>
+</ul>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Any unit or individual reprint all relevant information of this website, please indicate the source.</p></div><div class="col col-6"><dl><dt>Document</dt><dd><a href="/en-us/docs/soul/soul.html" target="_self">Overview </a></dd><dd><a href="/en-us/docs/soul/soul.html" target="_self">Stat up</a></dd><dd><a href="/en-us/docs/soul/soul.html" target="_self">Developer Guide</a></dd></dl></div><div class="col col-6"><dl><dt>Resource</dt><dd><a href="/en-us/blog/index.html" target="_self">Blog</a></dd><dd><a href="/en-us/community/index.html" target="_self">Community</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>
