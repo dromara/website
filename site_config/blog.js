@@ -59,6 +59,13 @@ export default {
     postsTitle: '所有文章',
     list: [
       {
+        title: 'Soul源码分析（1） 环境配置',
+        author: '陈曦',
+        dateStr: '2021-1-17',
+        desc: 'Soul源码分析（1） 环境配置',
+        link: '/zh-cn/blog/soul/source-analyze-01.html',
+      },
+      {
         title: 'soul网关发布1.0.4-RELEASE版本',
         author: 'xiaoyu',
         dateStr: '2019-4-9',
@@ -86,7 +93,6 @@ export default {
         desc: '高性能异步分布式事务TCC框架',
         link: '/zh-cn/blog/hmily/introduction.html',
       }
-     
     ],
   },
 };
