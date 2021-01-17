@@ -59,7 +59,7 @@ description: detailed explanation of selector and rule
  * rule is the final confirmation about how to execute request logically.
  
  * rule detailed explanation：
-     * name：create your selector with a distinguish name.
+     * name：create your rule with a distinguish name.
      * match method: you can combine these conditions with 'and' , 'or' operators.
      * condition：
         * uri: filter request with uri method and support fuzzy matching (/**).
@@ -75,7 +75,7 @@ description: detailed explanation of selector and rule
            * like : string fuzzy matching.
      * open option：only work with enabled.
      * print log：it will print the matching log with the open option enabled.
-     * execution order：the smaller will have high priorty to execute amongmulti-selectors.
+     * execution order：the smaller will have high priorty to execute among multi-rules.
      * handle: different plugin has different execution method, pls refer to the specific one.
 
 * above picture means: when the request `uri` equals to `/http/order/save`, it will execute based on this rule，load strategy is `random`.
