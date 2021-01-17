@@ -8,7 +8,7 @@ export default {
         author: 'yuanjie',
         dateStr: '2021-1-17',
         desc: 'Soul learning (2) Use divide plugin',
-        link: '/en-us/blog/soul/soul-learning-02-divide-plugin.html',
+        link: '/en-us/blog/soul/source-learning-02-divide-plugin.html',
       },
       {
         title: 'Soul learning (1) Environment configuration',
@@ -56,7 +56,7 @@ export default {
         author: '袁杰',
         dateStr: '2021-1-17',
         desc: 'Soul源码分析（2）divide插件使用',
-        link: '/zh-cn/blog/soul/soul-learning-02-divide-plugin.html',
+        link: '/zh-cn/blog/soul/source-learning-02-divide-plugin.html',
       },
       {
         title: 'Soul网关学习（1）环境配置',

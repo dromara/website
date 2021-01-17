@@ -26,8 +26,13 @@
       "meta": {}
     },
     {
-      "filename": "source-analyze-01.md",
-      "link": "\\en-us\\blog\\soul\\source-analyze-01.html",
+      "filename": "source-learning-01.md",
+      "link": "\\en-us\\blog\\soul\\source-learning-01.html",
+      "meta": {}
+    },
+    {
+      "filename": "source-learning-02-divide-plugin.md",
+      "link": "\\en-us\\blog\\soul\\source-learning-02-divide-plugin.html",
       "meta": {}
     }
   ],
@@ -58,8 +63,13 @@
       "meta": {}
     },
     {
-      "filename": "source-analyze-01.md",
-      "link": "\\zh-cn\\blog\\soul\\source-analyze-01.html",
+      "filename": "source-learning-01.md",
+      "link": "\\zh-cn\\blog\\soul\\source-learning-01.html",
+      "meta": {}
+    },
+    {
+      "filename": "source-learning-02-divide-plugin.md",
+      "link": "\\zh-cn\\blog\\soul\\source-learning-02-divide-plugin.html",
       "meta": {}
     }
   ]
