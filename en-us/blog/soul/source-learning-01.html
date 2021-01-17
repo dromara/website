@@ -12,43 +12,43 @@
 	<link rel="stylesheet" href="/build/blogDetail.css" />
 </head>
 <body>
-	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">Home</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">Document</a><div class="sub-menu"><ul><li><a href="/en-us/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/en-us/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/blog/index.html" target="_self">Blog</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">Community</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Soul源码分析（1） 环境配置</h1>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">Home</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">Document</a><div class="sub-menu"><ul><li><a href="/en-us/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/en-us/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/blog/index.html" target="_self">Blog</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">Community</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h1>Analysis of soul (1) Set up soul environment</h1>
 <blockquote>
 <p>soul is a High-Performance Java API Gateway</p>
 <p>GitHub：<a href="https://github.com/dromara/soul">https://github.com/dromara/soul</a></p>
-<p>官方文档：<a href="https://dromara.org/zh-cn/docs/soul/soul.html">https://dromara.org/zh-cn/docs/soul/soul.html</a></p>
+<p>document：<a href="https://dromara.org/zh-cn/docs/soul/soul.html">https://dromara.org/zh-cn/docs/soul/soul.html</a></p>
 </blockquote>
-<h2>1. 源代码准备</h2>
-<h3>1.1. fork <a href="https://github.com/dromara/soul.git">dromara/soul</a>源代码至自己的仓库<a href="https://github.com/cchenxi/soul.git">cchenxi/soul</a></h3>
-<h3>1.2. clone自己仓库中的soul源代码至本地</h3>
+<h2>1. Prepare source code</h2>
+<h3>1.1. Fork <a href="https://github.com/dromara/soul.git">dromara/soul</a> repository to my github <a href="https://github.com/cchenxi/soul.git">cchenxi/soul</a></h3>
+<h3>1.2. Clone the repository</h3>
 <pre><code class="language-shell">git clone https://github.com/cchenxi/soul.git
 </code></pre>
-<h3>1.3.使用idea打开soul源代码</h3>
-<h3>1.4.编译soul源代码</h3>
-<p>执行以下maven命令，等待编译完成</p>
-<p><img src="/img/soul/01/16106054898861.jpg" alt="-w1723"></p>
+<h3>1.3.Open the source code with idea</h3>
+<h3>1.4. Compile the soul source code</h3>
+<p>You can compile the project as follows.</p>
 <pre><code class="language-shell">mvn clean package install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Drat.skip=true -Dcheckstyle.skip=true
 </code></pre>
-<h2>2. 启动 <code>soul</code></h2>
-<h3>2.1. 启动<code>soul-admin</code>模块</h3>
+<p><img src="/img/soul/01/16106054898861.jpg" alt="-w1723"></p>
+<h2>2. Startup <code>soul</code></h2>
+<h3>2.1. Startup <code>soul-admin</code> module</h3>
 <blockquote>
-<p><code>soul-admin</code>是soul网关的后台管理系统</p>
+<p><code>soul-admin</code> is the management system for soul.</p>
 </blockquote>
-<p>选择使用MySQL数据库存储网关数据，修改数据源配置为自己的数据库配置。</p>
+<p>Choose to use <code>MySQL</code> to storage gateway data and modify the datasource config.</p>
 <p><img src="/img/soul/01/16106065488032.jpg" alt="-w1186"></p>
-<p>运行启动类 <code>org.dromara.soul.admin.SoulAdminBootstrap</code>。</p>
-<p>启动成功后，访问地址 <a href="http://localhost:9095/">http://localhost:9095/</a> ，跳转到登录页↓</p>
+<p>Run <code>org.dromara.soul.admin.SoulAdminBootstrap</code>.</p>
+<p>When success, please visit the website <code>http://localhost:9095/</code>, then jump to the login page, and input the corresponding user name and password to log in.</p>
+<p>The user name is <code>admin</code> and the password is <code>123456</code>.</p>
 <p><img src="/img/soul/01/16106069731233.jpg" alt="-w593"></p>
-<p>使用用户名<code>admin</code>，密码 <code>123456</code> 登录。</p>
 <p><img src="/img/soul/01/16106073045599.jpg" alt="-w1262"></p>
-<h3>2.2. 启动<code>soul-bootstrap</code>模块</h3>
+<h3>2.2. Startup <code>soul-bootstrap</code> module</h3>
 <blockquote>
-<p><code>soul-bootstrap</code>是网关系统的核心</p>
+<p><code>soul-bootstrap</code> is the core of soul.</p>
 </blockquote>
-<p>检查<code>soul-bootstrap</code>的配置</p>
+<p>Check the configuration of <code>soul-bootstrap</code>.</p>
 <p><img src="/img/soul/01/16106076385761.jpg" alt="-w917"></p>
-<p>这里需要配置成 <code>soul-admin</code>的ip和端口</p>
-<p>控制台输出如下内容表示 <code>soul-bootstrap</code>启动成功</p>
+<p>Please make sure the ip and the port has been configured for <code>soul-admin</code>.</p>
+<p>If the console output as follows, it means the startup is successful.</p>
 <pre><code class="language-plain">2021-01-14 15:01:15.832  INFO 17943 --- [           main] b.s.s.d.w.WebsocketSyncDataConfiguration : you use websocket sync soul data.......
 2021-01-14 15:01:15.924  INFO 17943 --- [           main] o.d.s.p.s.d.w.WebsocketSyncDataService   : websocket connection is successful.....
 2021-01-14 15:01:16.113  INFO 17943 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
@@ -58,20 +58,20 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 2021-01-14 15:01:17.150  INFO 17943 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 9195
 2021-01-14 15:01:17.154  INFO 17943 --- [           main] o.d.s.b.SoulBootstrapApplication         : Started SoulBootstrapApplication in 5.508 seconds (JVM running for 6.762)
 </code></pre>
-<h2>3. 测试http请求转发</h2>
+<h2>3. Test</h2>
 <blockquote>
-<p>为了方便测试，把<code>soul-examples</code>模块添加到soul的pom里</p>
+<p>Add the <code>soul-examples</code> module to soul's pom.xml for test.</p>
 </blockquote>
-<h3>3.1. 启动一个服务</h3>
-<p>启动<code>soul-examples-http</code>项目</p>
-<p><code>soul-examples-http</code>的pom中引入了依赖</p>
+<h3>3.1. Startup an HTTP backend service</h3>
+<p>Startup <code>soul-examples-http</code></p>
+<p>You can see the dependency in <code>soul-examples-http</code>'s pom.xml.</p>
 <pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.dromara<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>soul-spring-boot-starter-client-springmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>${soul.version}<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
 </code></pre>
-<p>在 <code>application.yml</code>中配置</p>
+<p>Configure the <code>application.yml</code></p>
 <pre><code class="language-yaml"><span class="hljs-attr">soul:</span>
   <span class="hljs-attr">http:</span>
     <span class="hljs-attr">adminUrl:</span> <span class="hljs-string">http://localhost:9095</span>
@@ -80,31 +80,32 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
     <span class="hljs-attr">appName:</span> <span class="hljs-string">http</span>
     <span class="hljs-attr">full:</span> <span class="hljs-literal">false</span>
 </code></pre>
-<p>如果soul.http.full=false，则需要在具体的http接口上配置 <code>@SoulSpringMvcClient</code> 注解</p>
-<h4>3.1.1. 测试http服务</h4>
-<p>执行http请求 <code>http://localhost:8188/test/findByUserId?userId=1</code> 结果如下图</p>
+<p>If <code>soul.http.full</code>=false, you need to add the <code>@SoulSpringMvcClient</code> annotation in controller or controller method.</p>
+<h4>3.1.1. Test the service</h4>
+<p>Visit <code>http://localhost:8188/test/findByUserId?userId=1</code> and the result as follows.</p>
 <p><img src="/img/soul/01/16106235724795.jpg" alt="-w684"></p>
-<h4>3.1.2. 测试网关转发</h4>
-<p>执行http请求 <code>http://localhost:9195/http/test/findByUserId?userId=1</code> 结果如下图</p>
-<p><img src="/img/soul/01/16106237733891.jpg" alt="-w665">
-在<code>soul-bootstrap</code>的控制台中输出如下信息</p>
+<h4>3.1.2. Test forward HTTP request</h4>
+<p>Visit <code>http://localhost:9195/http/test/findByUserId?userId=1</code> and the result as follows.</p>
+<p><img src="/img/soul/01/16106237733891.jpg" alt="-w665"></p>
+<p>You can see the following information in the console of <code>soul-bootstrap</code>. It means the forward HTTP request is successful.</p>
 <pre><code class="language-shell">2021-01-14 20:42:57.123  INFO 29812 --- [work-threads-11] o.d.soul.plugin.base.AbstractSoulPlugin  : divide selector success match , selector name :/http
 2021-01-14 20:42:57.125  INFO 29812 --- [work-threads-11] o.d.soul.plugin.base.AbstractSoulPlugin  : divide selector success match , selector name :/http/test/**
 2021-01-14 20:42:57.126  INFO 29812 --- [work-threads-11] o.d.s.plugin.httpclient.WebClientPlugin  : The request urlPath is http://172.27.121.155:8188/test/findByUserId?userId=1, retryTimes is 0
 </code></pre>
-<p>可以观察到网关可以将请求正常转发。</p>
-<h3>3.2. 启动两个服务模拟负载均衡</h3>
-<p>勾选 <code>Allow parallel run</code>，修改端口为<code>8189</code>，再次启动<code>soul-examples-http</code>项目</p>
+<h3>3.2. Startup two HTTP backend services to simulate load balance</h3>
+<p>Choose <code>Allow parallel run</code></p>
+<p>Change the port to <code>8189</code></p>
+<p>Startup <code>soul-examples-http</code> again</p>
 <p><img src="/img/soul/01/16106249542903.jpg" alt="-w1104"></p>
-<h4>3.2.1. 测试http服务</h4>
-<p>执行http请求 <code>http://localhost:8189/test/findByUserId?userId=1</code> 结果如下图</p>
+<h4>3.2.1. Test the service</h4>
+<p>Visit <code>http://localhost:8189/test/findByUserId?userId=1</code> and the result as follows.</p>
 <p><img src="/img/soul/01/16106250513285.jpg" alt="-w693"></p>
-<h4>3.2.2. 测试负载均衡</h4>
+<h4>3.2.2. Test load balance</h4>
 <p><img src="/img/soul/01/16106266610601.jpg" alt="-w1096"></p>
-<p>将8188和8189两个端口对应的服务配置到选择器中</p>
-<p>多次执行http请求 <code>http://localhost:9195/http/test/findByUserId?userId=1</code> 结果如下图</p>
+<p>Configure two HTTP service in selector</p>
+<p>Visit <code>http://localhost:9195/http/test/findByUserId?userId=1</code> more and more and result as follows.</p>
 <p><img src="/img/soul/01/16106267572581.jpg" alt="-w595">
-在<code>soul-bootstrap</code>的控制台中输出如下信息</p>
+You can see the following information in the console of <code>soul-bootstrap</code>. It means the load balance is successful.</p>
 <pre><code class="language-shell">2021-01-14 20:48:34.460  INFO 29812 --- [work-threads-21] o.d.soul.plugin.base.AbstractSoulPlugin  : divide selector success match , selector name :/http
 2021-01-14 20:48:34.460  INFO 29812 --- [work-threads-21] o.d.soul.plugin.base.AbstractSoulPlugin  : divide selector success match , selector name :/http/test/**
 2021-01-14 20:48:34.460  INFO 29812 --- [work-threads-21] o.d.s.plugin.httpclient.WebClientPlugin  : The request urlPath is http://172.27.121.155:8189/test/findByUserId?userId=1, retryTimes is 0
@@ -124,9 +125,13 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 2021-01-14 20:48:40.976  INFO 29812 --- [-work-threads-1] o.d.soul.plugin.base.AbstractSoulPlugin  : divide selector success match , selector name :/http/test/**
 2021-01-14 20:48:40.977  INFO 29812 --- [-work-threads-1] o.d.s.plugin.httpclient.WebClientPlugin  : The request urlPath is http://172.27.121.155:8188/test/findByUserId?userId=1, retryTimes is 0
 </code></pre>
-<p>可以观察到请求既有转发到8188端口的，也有转发到8189的，可以实现负载均衡</p>
-<h4>3.2.3. 压测</h4>
-<p>简单对直连和试用网关两种方式的请求进行压测</p>
+<h4>3.2.3. Press test</h4>
+<p>Use <code>wrk</code> to press test and compare the two ways as follows.</p>
+<ol>
+<li>Visit the backend service directly.</li>
+<li>Visit the service via soul.</li>
+</ol>
+<p>The performance drops slightly after using the gateway, probably because of the extra layer of forwarding.</p>
 <pre><code class="language-shell">➜  soul git:(master) ✗ wrk -t8 -c40 -d30s http://localhost:8189/test/findByUserId\?userId\=1
 Running 30s test @ http://localhost:8189/test/findByUserId?userId=1
   8 threads and 40 connections
@@ -146,12 +151,10 @@ Running 30s test @ http://localhost:9195/http/test/findByUserId?userId=1
 Requests/sec:   3639.60
 Transfer/sec:    390.98KB
 </code></pre>
-<p>可以发现，使用网关后性能有些下降，主要是因为多了一层转发。</p>
-<h4>3.2.4. 问题</h4>
-<p>在启动8189端口时，注册的客户端端口还是8188</p>
+<h4>3.2.4. Problem in the process</h4>
+<p>When startup the port of <code>8189</code>，but the output of console is still <code>8188</code>.</p>
 <p><img src="/img/soul/01/16106270140398.jpg" alt="-w1675"></p>
-<p>先手动配置选择器的配置，后来在群友的帮助下定位到是 <code>soul.http.port</code>没有改</p>
-<p>修改后的配置如下</p>
+<p>After modify the value of <code>soul.http.port</code>, the problem solved.</p>
 <p><img src="/img/soul/01/16106405075031.jpg" alt="-w520"></p>
 </section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>Any unit or individual reprint all relevant information of this website, please indicate the source.</p></div><div class="col col-6"><dl><dt>Document</dt><dd><a href="/en-us/docs/soul/soul.html" target="_self">Overview </a></dd><dd><a href="/en-us/docs/soul/soul.html" target="_self">Stat up</a></dd><dd><a href="/en-us/docs/soul/soul.html" target="_self">Developer Guide</a></dd></dl></div><div class="col col-6"><dl><dt>Resource</dt><dd><a href="/en-us/blog/index.html" target="_self">Blog</a></dd><dd><a href="/en-us/community/index.html" target="_self">Community</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>

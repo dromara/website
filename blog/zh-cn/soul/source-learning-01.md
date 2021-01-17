@@ -176,7 +176,7 @@ soul:
 
 #### 3.2.3. 压测
 
-简单对直连和试用网关两种方式的请求进行压测
+简单对直连和使用网关两种方式的请求进行压测
 
 ```shell
 ➜  soul git:(master) ✗ wrk -t8 -c40 -d30s http://localhost:8189/test/findByUserId\?userId\=1

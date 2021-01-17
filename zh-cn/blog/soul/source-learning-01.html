@@ -126,7 +126,7 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 </code></pre>
 <p>可以观察到请求既有转发到8188端口的，也有转发到8189的，可以实现负载均衡</p>
 <h4>3.2.3. 压测</h4>
-<p>简单对直连和试用网关两种方式的请求进行压测</p>
+<p>简单对直连和使用网关两种方式的请求进行压测</p>
 <pre><code class="language-shell">➜  soul git:(master) ✗ wrk -t8 -c40 -d30s http://localhost:8189/test/findByUserId\?userId\=1
 Running 30s test @ http://localhost:8189/test/findByUserId?userId=1
   8 threads and 40 connections
