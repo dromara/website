@@ -290,7 +290,81 @@ soul :
           return new A();
   }
   ```
-
+## 服务治理
+* 标签路由
+    * 请求时在header中添加`Dubbo_Tag_Route`，并设置对应的值，之后当前请求就会路由到指定tag的provider，只对当前请求有效；
+* 服务提供者直连
+    * 设置`@SoulDubboClient`注解中的`url`属性；
+    * 修改Admin控制台修改元数据内的url属性；
+    * 对所有请求有效；
+* 参数验证和自定义异常
+    * 指定`validation="soulValidation"`;
+    * 在接口中抛出`SoulException`时，异常信息会返回，需要注意的是显式抛出`SoulException`；
+    ```java
+    @Service(validation = "soulValidation")
+    public class TestServiceImpl implements TestService {
+    
+        @Override
+        @SoulDubboClient(path = "/test", desc = "test method")
+        public String test(@Valid HelloServiceRequest name) throws SoulException {
+            if (true){
+                throw new SoulException("Param binding error.");
+            }
+            return "Hello " + name.getName();
+        }
+    }
+    ```
+    * 请求参数
+    ```java
+    public class HelloServiceRequest implements Serializable {
+    
+        private static final long serialVersionUID = -5968745817846710197L;
+    
+        @NotEmpty(message = "name cannot be empty")
+        private String name;
+    
+        @NotNull(message = "age cannot be null")
+        private Integer age;
+    
+        public String getName() {
+            return name;
+        }
+    
+        public void setName(String name) {
+            this.name = name;
+        }
+    
+        public Integer getAge() {
+            return age;
+        }
+    
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+    }
+    ```
+    * 发送请求
+    ```java
+    {
+        "name": ""
+    }
+    ```
+    * 返回
+    ```java
+    {
+        "code": 500,
+        "message": "Internal Server Error",
+        "data": "name cannot be empty,age cannot be null"
+    }
+    ```
+    * 当按照要求传递请求参数时，会返回自定义异常的信息
+    ```java
+        {
+            "code": 500,
+            "message": "Internal Server Error",
+            "data": "Param binding error."
+        }
+    ```
 ## 大白话讲解如果通过http --> 网关--> dubbo provider
 
 * 说白了，就是把http请求，转成dubbo协议，内部使用dubbo泛化来进行调用。
