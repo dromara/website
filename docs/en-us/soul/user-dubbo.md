@@ -292,7 +292,81 @@ soul :
           return new A();
   }
   ```
-  
+## Service governance
+* Tag route
+    * Add `Dubbo_Tag_Route` when send request, the current request will be routed to the provider of the specified tag, which is only valid for the current request.
+* Explicit Target
+    * Set the `url` property in the annotation `@SoulDubboClient`.
+    * Update the configuration in Admin.
+    * It's valid for all request.
+* Param valid and SoulException
+    * Set `validation="soulValidation"`.
+    * When `SoulException` is thrown in the interface, exception information will be returned. It should be noted that `SoulException` is thrown explicitly.
+    ```java
+    @Service(validation = "soulValidation")
+    public class TestServiceImpl implements TestService {
+    
+        @Override
+        @SoulDubboClient(path = "/test", desc = "test method")
+        public String test(@Valid HelloServiceRequest name) throws SoulException {
+            if (true){
+                throw new SoulException("Param binding error.");
+            }
+            return "Hello " + name.getName();
+        }
+    }
+    ```
+    * Request param
+    ```java
+    public class HelloServiceRequest implements Serializable {
+    
+        private static final long serialVersionUID = -5968745817846710197L;
+    
+        @NotEmpty(message = "name cannot be empty")
+        private String name;
+    
+        @NotNull(message = "age cannot be null")
+        private Integer age;
+    
+        public String getName() {
+            return name;
+        }
+    
+        public void setName(String name) {
+            this.name = name;
+        }
+    
+        public Integer getAge() {
+            return age;
+        }
+    
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+    }
+    ```
+    * Send request
+    ```java
+    {
+        "name": ""
+    }
+    ```
+    * Response
+    ```java
+    {
+        "code": 500,
+        "message": "Internal Server Error",
+        "data": "name cannot be empty,age cannot be null"
+    }
+    ```
+    * Error message
+    ```java
+    {
+        "code": 500,
+        "message": "Internal Server Error",
+        "data": "Param binding error."
+    }
+    ```
 ## Let's break down this process: http --> gateway --> dubbo provider
 
 * It basically switches from HTTP request to Dubbo protocol，then invoke Dubbo service and return to the result.
