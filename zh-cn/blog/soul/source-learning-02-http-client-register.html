@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="dromara.org" />
+	<meta name="description" content="dromara.org" />
+	<!-- 网页标签标题 -->
+	<title>dromara(Open source organization)</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dromara.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="#">文档</a><div class="sub-menu"><ul><li><a href="/zh-cn/docs/soul/soul.html" target="_self">Soul</a></li><li><a href="/zh-cn/docs/hmily/index.html" target="_self">Hmily</a></li></ul></div></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/blog/index.html" target="_self">博客</a><div class="sub-menu"><ul></ul></div></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a><div class="sub-menu"><ul></ul></div></li></ul></div></div></header><section class="blog-content markdown-body"><h1>HTTP 用户接入 Soul 网关注册逻辑分析</h1>
+<h2>1. 注册入口</h2>
+<p>HTTP 用户接入 Soul 网关时，会调用 soul-admin 一个接口，把需要 Soul 网关管理的接口注册，今天就具体看看到底干了点儿啥。</p>
+<p>先看下调用的接口信息如下：</p>
+<pre><code class="language-java"><span class="hljs-comment">// SpringMvcClientBeanPostProcessor.java</span>
+<span class="hljs-comment">/**
+ * Instantiates a new Soul client bean post processor.
+ *
+ * <span class="hljs-doctag">@param</span> soulSpringMvcConfig the soul spring mvc config
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SpringMvcClientBeanPostProcessor</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SoulSpringMvcConfig soulSpringMvcConfig)</span> </span>{
+    ValidateUtils.validate(soulSpringMvcConfig);
+    <span class="hljs-keyword">this</span>.soulSpringMvcConfig = soulSpringMvcConfig;
+    url = soulSpringMvcConfig.getAdminUrl() + <span class="hljs-string">"/soul-client/springmvc-register"</span>;
+    executorService = <span class="hljs-keyword">new</span> ThreadPoolExecutor(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0L</span>, TimeUnit.MILLISECONDS, <span class="hljs-keyword">new</span> LinkedBlockingQueue&lt;&gt;());
+}
+</code></pre>
+<h2>2. springmvc-register 接口逻辑</h2>
+<p>全局搜索 &quot;springmvc-register&quot;，找到 soul-admin 模块下的 SoulClientController，看到这里，对于经常写 CRUD 的我们是不是很熟悉？哈哈~</p>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientController.java</span>
+<span class="hljs-comment">/**
+ * Register spring mvc string.
+ *
+ * <span class="hljs-doctag">@param</span> springMvcRegisterDTO the spring mvc register dto
+ * <span class="hljs-doctag">@return</span> the string
+ */</span>
+<span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/springmvc-register"</span>)
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">registerSpringMvc</span><span class="hljs-params">(@RequestBody <span class="hljs-keyword">final</span> SpringMvcRegisterDTO springMvcRegisterDTO)</span> </span>{
+    <span class="hljs-keyword">return</span> soulClientRegisterService.registerSpringMvc(springMvcRegisterDTO);
+}
+</code></pre>
+<p>Service 层实现类：</p>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientRegisterServiceImpl.java</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-meta">@Transactional</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">registerSpringMvc</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SpringMvcRegisterDTO dto)</span> </span>{
+    <span class="hljs-keyword">if</span> (dto.isRegisterMetaData()) {
+        MetaDataDO exist = metaDataMapper.findByPath(dto.getPath());
+        <span class="hljs-keyword">if</span> (Objects.isNull(exist)) {
+            saveSpringMvcMetaData(dto);
+        }
+    }
+    String selectorId = handlerSpringMvcSelector(dto);
+    handlerSpringMvcRule(selectorId, dto);
+    <span class="hljs-keyword">return</span> SoulResultMessage.SUCCESS;
+}
+</code></pre>
+<p>dto.isRegisterMetaData() 这个是否注册元数据信息的判断，不知道什么时候用，存疑 //TODO，先往下走。</p>
+<h3>2.1 先看看这个方法 handlerSpringMvcSelector，处理 Selector。</h3>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientRegisterServiceImpl.java</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">handlerSpringMvcSelector</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SpringMvcRegisterDTO dto)</span> </span>{
+    String contextPath = dto.getContext();
+    <span class="hljs-comment">// 根据 contextPath 到数据库里查询，是否已经注册过。</span>
+    SelectorDO selectorDO = selectorService.findByName(contextPath);
+    String selectorId;
+    String uri = String.join(<span class="hljs-string">":"</span>, dto.getHost(), String.valueOf(dto.getPort()));
+    <span class="hljs-keyword">if</span> (Objects.isNull(selectorDO)) {
+        <span class="hljs-comment">// 还没有注册过</span>
+        selectorId = registerSelector(contextPath, dto.getRpcType(), dto.getAppName(), uri);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 已经注册过，业务系统重启了会到这里</span>
+        selectorId = selectorDO.getId();
+        <span class="hljs-comment">//update upstream</span>
+        String handle = selectorDO.getHandle();
+        String handleAdd;
+        DivideUpstream addDivideUpstream = buildDivideUpstream(uri);
+        SelectorData selectorData = selectorService.buildByName(contextPath);
+        <span class="hljs-keyword">if</span> (StringUtils.isBlank(handle)) {
+            handleAdd = GsonUtils.getInstance().toJson(Collections.singletonList(addDivideUpstream));
+        } <span class="hljs-keyword">else</span> {
+            List&lt;DivideUpstream&gt; exist = GsonUtils.getInstance().fromList(handle, DivideUpstream<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+            <span class="hljs-keyword">for</span> (DivideUpstream upstream : exist) {
+                <span class="hljs-keyword">if</span> (upstream.getUpstreamUrl().equals(addDivideUpstream.getUpstreamUrl())) {
+                    <span class="hljs-keyword">return</span> selectorId;
+                }
+            }
+            exist.add(addDivideUpstream);
+            handleAdd = GsonUtils.getInstance().toJson(exist);
+        }
+        selectorDO.setHandle(handleAdd);
+        selectorData.setHandle(handleAdd);
+        <span class="hljs-comment">// update db</span>
+        selectorMapper.updateSelective(selectorDO);
+        <span class="hljs-comment">// submit upstreamCheck</span>
+        upstreamCheckService.submit(contextPath, addDivideUpstream);
+        <span class="hljs-comment">// publish change event.</span>
+        eventPublisher.publishEvent(<span class="hljs-keyword">new</span> DataChangedEvent(ConfigGroupEnum.SELECTOR, DataEventTypeEnum.UPDATE,
+                Collections.singletonList(selectorData)));
+    }
+    <span class="hljs-keyword">return</span> selectorId;
+}
+</code></pre>
+<h4>2.1.1 第一次接入 Soul 网关</h4>
+<p>新接入的，到数据库里肯定查不到 selectorDO，进入 registerSelector 方法，仔细看看到底往哪些数据库表中插数据了。</p>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientRegisterServiceImpl.java</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">registerSelector</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String contextPath, <span class="hljs-keyword">final</span> String rpcType, <span class="hljs-keyword">final</span> String appName, <span class="hljs-keyword">final</span> String uri)</span> </span>{
+    SelectorDTO selectorDTO = SelectorDTO.builder()
+            .name(contextPath)
+            .type(SelectorTypeEnum.CUSTOM_FLOW.getCode())
+            .matchMode(MatchModeEnum.AND.getCode())
+            .enabled(Boolean.TRUE)
+            .loged(Boolean.TRUE)
+            .continued(Boolean.TRUE)
+            .sort(<span class="hljs-number">1</span>)
+            .build();
+    <span class="hljs-keyword">if</span> (RpcTypeEnum.DUBBO.getName().equals(rpcType)) {
+        selectorDTO.setPluginId(getPluginId(PluginEnum.DUBBO.getName()));
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (RpcTypeEnum.SPRING_CLOUD.getName().equals(rpcType)) {
+        selectorDTO.setPluginId(getPluginId(PluginEnum.SPRING_CLOUD.getName()));
+        selectorDTO.setHandle(GsonUtils.getInstance().toJson(buildSpringCloudSelectorHandle(appName)));
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (RpcTypeEnum.SOFA.getName().equals(rpcType)) {
+        selectorDTO.setPluginId(getPluginId(PluginEnum.SOFA.getName()));
+        selectorDTO.setHandle(appName);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (RpcTypeEnum.TARS.getName().equals(rpcType)) {
+        selectorDTO.setPluginId(getPluginId(PluginEnum.TARS.getName()));
+        selectorDTO.setHandle(appName);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">//is divide</span>
+        DivideUpstream divideUpstream = buildDivideUpstream(uri);
+        String handler = GsonUtils.getInstance().toJson(Collections.singletonList(divideUpstream));
+        selectorDTO.setHandle(handler);
+        selectorDTO.setPluginId(getPluginId(PluginEnum.DIVIDE.getName()));
+        upstreamCheckService.submit(selectorDTO.getName(), divideUpstream);
+    }
+    SelectorConditionDTO selectorConditionDTO = <span class="hljs-keyword">new</span> SelectorConditionDTO();
+    selectorConditionDTO.setParamType(ParamTypeEnum.URI.getName());
+    selectorConditionDTO.setParamName(<span class="hljs-string">"/"</span>);
+    selectorConditionDTO.setOperator(OperatorEnum.MATCH.getAlias());
+    selectorConditionDTO.setParamValue(contextPath + <span class="hljs-string">"/**"</span>);
+    selectorDTO.setSelectorConditions(Collections.singletonList(selectorConditionDTO));
+    <span class="hljs-keyword">return</span> selectorService.register(selectorDTO);
+}
+</code></pre>
+<p>看到这么多 if else，是不是很兴奋，小伙伴们可以想想怎么优化掉这么多 if else，PR 搞起来  ^ - ^。</p>
+<p>写了这么多，无非是封装 SelectorDTO 对象，最后调用 selectorService.register(selectorDTO) 入库，继续跟进去。</p>
+<pre><code class="language-java"><span class="hljs-comment">// SelectorServiceImpl.java</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">register</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SelectorDTO selectorDTO)</span> </span>{
+    SelectorDO selectorDO = SelectorDO.buildSelectorDO(selectorDTO);
+    List&lt;SelectorConditionDTO&gt; selectorConditionDTOs = selectorDTO.getSelectorConditions();
+    <span class="hljs-keyword">if</span> (StringUtils.isEmpty(selectorDTO.getId())) {
+        selectorMapper.insertSelective(selectorDO);
+        selectorConditionDTOs.forEach(selectorConditionDTO -&gt; {
+            selectorConditionDTO.setSelectorId(selectorDO.getId());
+            <span class="hljs-comment">// 这里在 for 循环里调用 dao 层插入数据，是不是可以考虑挪出去一次性批量插入？</span>
+            selectorConditionMapper.insertSelective(SelectorConditionDO
+                    .buildSelectorConditionDO(selectorConditionDTO));
+        });
+    }
+    publishEvent(selectorDO, selectorConditionDTOs);
+    <span class="hljs-keyword">return</span> selectorDO.getId();
+}
+</code></pre>
+<p>看到这里有2条入库方法，分别向 selector 和 selector_condition 表中插入了数据。这里我们先不具体追究表结构及业务意义，后面补上。</p>
+<p>publishEvent 方法，涉及到 ApplicationEventPublisher 接口，是观察者模式的一个实现，发布事件后通过监听器完成后续操作，这里先按下不表，后续单写一篇文章分析。</p>
+<h4>2.1.2 已经接入 Soul 网关</h4>
+<p>就跟盗梦空间似的，我们回退2层梦境，回到插入数据的另一个分支，可以想见，就是，已经接入过 Soul 网关的系统重启，或新节点启动走的逻辑。</p>
+<p>把前面的代码再贴过来：</p>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientRegisterServiceImpl.java</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">handlerSpringMvcSelector</span><span class="hljs-params">(<span class="hljs-keyword">final</span> SpringMvcRegisterDTO dto)</span> </span>{
+    String contextPath = dto.getContext();
+    <span class="hljs-comment">// 根据 contextPath 到数据库里查询，是否已经注册过。</span>
+    SelectorDO selectorDO = selectorService.findByName(contextPath);
+    String selectorId;
+    String uri = String.join(<span class="hljs-string">":"</span>, dto.getHost(), String.valueOf(dto.getPort()));
+    <span class="hljs-keyword">if</span> (Objects.isNull(selectorDO)) {
+        <span class="hljs-comment">// 还没有注册过</span>
+        selectorId = registerSelector(contextPath, dto.getRpcType(), dto.getAppName(), uri);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 已接入的业务系统重启，或新节点启动，会到这里</span>
+        selectorId = selectorDO.getId();
+        <span class="hljs-comment">//update upstream</span>
+        <span class="hljs-comment">// handle 字段存储这个接口真实节点信息，可能存在多台机器需要负载均衡的场景</span>
+        String handle = selectorDO.getHandle();
+        String handleAdd;
+        DivideUpstream addDivideUpstream = buildDivideUpstream(uri);
+        SelectorData selectorData = selectorService.buildByName(contextPath);
+        <span class="hljs-keyword">if</span> (StringUtils.isBlank(handle)) {
+            <span class="hljs-comment">// 这个接口虽然之前注册过，但第1个服务器节点接入 Soul 时会进来</span>
+            handleAdd = GsonUtils.getInstance().toJson(Collections.singletonList(addDivideUpstream));
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// 如果已经至少有1个服务器节点已接入，会进到这里，判断是否是同一个节点（使用 upstreamUrl 区分），如果相同直接返回</span>
+            List&lt;DivideUpstream&gt; exist = GsonUtils.getInstance().fromList(handle, DivideUpstream<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+            <span class="hljs-keyword">for</span> (DivideUpstream upstream : exist) {
+                <span class="hljs-keyword">if</span> (upstream.getUpstreamUrl().equals(addDivideUpstream.getUpstreamUrl())) {
+                    <span class="hljs-keyword">return</span> selectorId;
+                }
+            }
+            <span class="hljs-comment">// 如果不是同一个节点，把新节点加入到 handle 字段中</span>
+            exist.add(addDivideUpstream);
+            handleAdd = GsonUtils.getInstance().toJson(exist);
+        }
+        selectorDO.setHandle(handleAdd);
+        selectorData.setHandle(handleAdd);
+        <span class="hljs-comment">// update db 更新数据库</span>
+        selectorMapper.updateSelective(selectorDO);
+        <span class="hljs-comment">// submit upstreamCheck</span>
+        upstreamCheckService.submit(contextPath, addDivideUpstream);
+        <span class="hljs-comment">// publish change event.</span>
+        eventPublisher.publishEvent(<span class="hljs-keyword">new</span> DataChangedEvent(ConfigGroupEnum.SELECTOR, DataEventTypeEnum.UPDATE,
+                Collections.singletonList(selectorData)));
+    }
+    <span class="hljs-keyword">return</span> selectorId;
+}
+</code></pre>
+<p>因为还没有研究数据库表结构设计，根据已知部分猜测，1个 selector 对应一个 divide 插件，这个插件以 contextPath 为标识（在这里就是 &quot;/http&quot;），一个 contextPath 可以部署多个服务器节点，这些节点信息已 json 形式保存在 handle 字段中。</p>
+<pre><code class="language-json"><span class="hljs-comment">// handle/handleAdd 数据格式</span>
+[
+	{
+		<span class="hljs-attr">"upstreamHost"</span>: <span class="hljs-string">"localhost"</span>,
+		<span class="hljs-attr">"protocol"</span>: <span class="hljs-string">"http://"</span>,
+		<span class="hljs-attr">"upstreamUrl"</span>: <span class="hljs-string">"10.0.0.12:8188"</span>,
+		<span class="hljs-attr">"weight"</span>: <span class="hljs-number">50</span>,
+		<span class="hljs-attr">"status"</span>: <span class="hljs-literal">true</span>,
+		<span class="hljs-attr">"timestamp"</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">"warmup"</span>: <span class="hljs-number">0</span>
+	}
+]
+</code></pre>
+<p>下面紧接着就是更新数据库 updateSelective。</p>
+<p>upstreamCheckService.submit(contextPath, addDivideUpstream); 把真实服务器节点信息缓存在一个 Map(UPSTREAM_MAP) 里，有定时任务定期探活，如果发现服务节点宕机了，就把他剔除出去，防止把请求发送到已经宕机的节点上。</p>
+<p>然后就是 eventPublisher.publishEvent()，跟前面的 publishEvent 方法一样，发布事件后通过监听器完成后续操作（简单介绍下，这里是通过与 Soul 网关建立的 websocket 长连接发送数据 SelectorData 修改的消息，Soul 网关根据消息修改数据，这个具体改的什么数据，怎么修改的，后面分析）。</p>
+<p>到这里终于把 handlerSpringMvcSelector 这个方法分析完了。</p>
+<h3>2.2 再来看看这个方法 handlerSpringMvcRule，处理 Rule。</h3>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientRegisterServiceImpl.java</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handlerSpringMvcRule</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String selectorId, <span class="hljs-keyword">final</span> SpringMvcRegisterDTO dto)</span> </span>{
+    RuleDO ruleDO = ruleMapper.findByName(dto.getRuleName());
+    <span class="hljs-keyword">if</span> (Objects.isNull(ruleDO)) {
+        registerRule(selectorId, dto.getPath(), dto.getRpcType(), dto.getRuleName());
+    }
+}
+</code></pre>
+<p>首先拿着规则名字，到 rule 表里捞数据，如果捞到了表名已经注册过了，无操作。</p>
+<p>看下数据库数据，就是业务系统下的接口地址。</p>
+<pre><code class="language-bash">mysql&gt; use soul;
+Database changed
+
+mysql&gt; select * from rule <span class="hljs-built_in">where</span> name = <span class="hljs-string">'/http/order/findById'</span> \G
+*************************** 1. row ***************************
+          id: 1349650371868782592
+ selector_id: 1349650371302551552
+  match_mode: 0
+        name: /http/order/findById
+     enabled: 1
+       loged: 1
+        sort: 1
+      handle: {<span class="hljs-string">"loadBalance"</span>:<span class="hljs-string">"random"</span>,<span class="hljs-string">"retry"</span>:0,<span class="hljs-string">"timeout"</span>:3000}
+date_created: 2021-01-14 17:31:39
+date_updated: 2021-01-14 17:31:39
+1 row <span class="hljs-keyword">in</span> <span class="hljs-built_in">set</span> (0.00 sec)
+</code></pre>
+<p>如果没捞到数据，注册这个规则。</p>
+<pre><code class="language-java"><span class="hljs-comment">// SoulClientRegisterServiceImpl.java</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerRule</span><span class="hljs-params">(<span class="hljs-keyword">final</span> String selectorId, <span class="hljs-keyword">final</span> String path, <span class="hljs-keyword">final</span> String rpcType, <span class="hljs-keyword">final</span> String ruleName)</span> </span>{
+    RuleHandle ruleHandle = RuleHandleFactory.ruleHandle(RpcTypeEnum.acquireByName(rpcType), path);
+    RuleDTO ruleDTO = RuleDTO.builder()
+            .selectorId(selectorId)
+            .name(ruleName)
+            .matchMode(MatchModeEnum.AND.getCode())
+            .enabled(Boolean.TRUE)
+            .loged(Boolean.TRUE)
+            .sort(<span class="hljs-number">1</span>)
+            .handle(ruleHandle.toJson())
+            .build();
+    RuleConditionDTO ruleConditionDTO = RuleConditionDTO.builder()
+            .paramType(ParamTypeEnum.URI.getName())
+            .paramName(<span class="hljs-string">"/"</span>)
+            .paramValue(path)
+            .build();
+    <span class="hljs-keyword">if</span> (path.indexOf(<span class="hljs-string">"*"</span>) &gt; <span class="hljs-number">1</span>) {
+        ruleConditionDTO.setOperator(OperatorEnum.MATCH.getAlias());
+    } <span class="hljs-keyword">else</span> {
+        ruleConditionDTO.setOperator(OperatorEnum.EQ.getAlias());
+    }
+    ruleDTO.setRuleConditions(Collections.singletonList(ruleConditionDTO));
+    ruleService.register(ruleDTO);
+}
+</code></pre>
+<p>第1行，根据 rpcType(&quot;http&quot;) 获取其对应的 RuleHandle，这里，默认内置3种类型，我们这里的是 HTTP，对应 DivideRuleHandle。</p>
+<pre><code class="language-java"><span class="hljs-comment">// RuleHandleFactory.java</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RuleHandleFactory</span> </span>{
+
+    <span class="hljs-comment">/**
+     * The RpcType to RuleHandle class map.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Map&lt;RpcTypeEnum, Class&lt;? extends RuleHandle&gt;&gt; RPC_TYPE_TO_RULE_HANDLE_CLASS = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;();
+
+    <span class="hljs-comment">/**
+     * The default RuleHandle.
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Class&lt;? extends RuleHandle&gt; DEFAULT_RULE_HANDLE = SpringCloudRuleHandle<span class="hljs-class">.<span class="hljs-keyword">class</span></span>;
+
+    <span class="hljs-keyword">static</span> {
+        RPC_TYPE_TO_RULE_HANDLE_CLASS.put(RpcTypeEnum.HTTP, DivideRuleHandle<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        RPC_TYPE_TO_RULE_HANDLE_CLASS.put(RpcTypeEnum.DUBBO, DubboRuleHandle<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+        RPC_TYPE_TO_RULE_HANDLE_CLASS.put(RpcTypeEnum.SOFA, SofaRuleHandle<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+    }
+
+    <span class="hljs-comment">/**
+     * Get a RuleHandle object with given rpc type and path.
+     * <span class="hljs-doctag">@param</span> rpcType   rpc type.
+     * <span class="hljs-doctag">@param</span> path      path.
+     * <span class="hljs-doctag">@return</span>          RuleHandle object.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> RuleHandle <span class="hljs-title">ruleHandle</span><span class="hljs-params">(<span class="hljs-keyword">final</span> RpcTypeEnum rpcType, <span class="hljs-keyword">final</span> String path)</span> </span>{
+        <span class="hljs-keyword">if</span> (Objects.isNull(rpcType)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        Class&lt;? extends RuleHandle&gt; clazz = RPC_TYPE_TO_RULE_HANDLE_CLASS.getOrDefault(rpcType, DEFAULT_RULE_HANDLE);
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">return</span> clazz.newInstance().createDefault(path);
+        } <span class="hljs-keyword">catch</span> (InstantiationException | IllegalAccessException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> SoulException(
+                    String.format(<span class="hljs-string">"Init RuleHandle failed with rpc type: %s, rule class: %s, exception: %s"</span>,
+                            rpcType,
+                            clazz.getSimpleName(),
+                            e.getMessage()));
+        }
+    }
+}
+</code></pre>
+<p>下面构造 RuleDTO 对象，注册规则。</p>
+<pre><code class="language-java"><span class="hljs-comment">// RuleServiceImpl.java</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">register</span><span class="hljs-params">(<span class="hljs-keyword">final</span> RuleDTO ruleDTO)</span> </span>{
+    RuleDO ruleDO = RuleDO.buildRuleDO(ruleDTO);
+    List&lt;RuleConditionDTO&gt; ruleConditions = ruleDTO.getRuleConditions();
+    <span class="hljs-keyword">if</span> (StringUtils.isEmpty(ruleDTO.getId())) {
+        ruleMapper.insertSelective(ruleDO);
+        ruleConditions.forEach(ruleConditionDTO -&gt; {
+            ruleConditionDTO.setRuleId(ruleDO.getId());
+            <span class="hljs-comment">// 这里在 for 循环里调用 dao 层插入数据，是不是可以考虑挪出去一次性批量插入？</span>
+            ruleConditionMapper.insertSelective(RuleConditionDO
+                    .buildRuleConditionDO(ruleConditionDTO));
+        });
+    }
+    publishEvent(ruleDO, ruleConditions);
+    <span class="hljs-keyword">return</span> ruleDO.getId();
+}
+</code></pre>
+<p>分别向 rule 和 rule_condition 表中插入数据。</p>
+<p>publishEvent() 方法，通过 websocket 长连接，向 Soul 网关发送 RuleData 数据。</p>
+<h2>3.总结</h2>
+<p>到这里，调用 &quot;/soul-client/springmvc-register&quot; 接口逻辑分析完了，我们总结下：</p>
+<ul>
+<li>处理 selector
+<ul>
+<li>新增或修改 selector、selector_condition 表数据，持久化到 MySQL。</li>
+<li>通过 websocket 向 Soul 网关发送数据改动信息。</li>
+</ul>
+</li>
+<li>处理 rule
+<ul>
+<li>新增或修改 rule、rule_condition 表数据，持久化到 MySQL。</li>
+<li>通过 websocket 向 Soul 网关发送数据改动信息。</li>
+</ul>
+</li>
+</ul>
+<p>其中表结构及字段含义还需进一步学习和研究，websocket 发送给 Soul 网关后，网关做了什么处理也需要后续分析。</p>
+<p>到这里，HTTP 用户接入 Soul 网关注册逻辑就分析完了。</p>
+<p>如果在工作中你有使用网关的需求，或是个人有学习网关的追求，欢迎来跟我一起分析和学习，Soul 网关，你值得拥有。</p>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dromara.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>任何单位或个人转载本网站的所有相关信息，请注明来源。</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/soul/soul.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright ©2020 xiaoyu@apache.org by xiaoyu</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>
