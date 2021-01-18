@@ -361,11 +361,11 @@ soul :
     ```
     * Error message
     ```java
-        {
-            "code": 500,
-            "message": "Internal Server Error",
-            "data": "Param binding error."
-        }
+    {
+        "code": 500,
+        "message": "Internal Server Error",
+        "data": "Param binding error."
+    }
     ```
 ## Let's break down this process: http --> gateway --> dubbo provider
 

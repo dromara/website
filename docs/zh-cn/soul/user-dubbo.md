@@ -359,11 +359,11 @@ soul :
     ```
     * 当按照要求传递请求参数时，会返回自定义异常的信息
     ```java
-        {
-            "code": 500,
-            "message": "Internal Server Error",
-            "data": "Param binding error."
-        }
+    {
+        "code": 500,
+        "message": "Internal Server Error",
+        "data": "Param binding error."
+    }
     ```
 ## 大白话讲解如果通过http --> 网关--> dubbo provider
 
