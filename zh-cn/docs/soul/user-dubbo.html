@@ -332,6 +332,95 @@
          <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> A();
  }
 </code></pre>
+<h2>服务治理</h2>
+<ul>
+<li>标签路由
+<ul>
+<li>请求时在header中添加<code>Dubbo_Tag_Route</code>，并设置对应的值，之后当前请求就会路由到指定tag的provider，只对当前请求有效；</li>
+</ul>
+</li>
+<li>服务提供者直连
+<ul>
+<li>设置<code>@SoulDubboClient</code>注解中的<code>url</code>属性；</li>
+<li>修改Admin控制台修改元数据内的url属性；</li>
+<li>对所有请求有效；</li>
+</ul>
+</li>
+<li>参数验证和自定义异常
+<ul>
+<li>指定<code>validation=&quot;soulValidation&quot;</code>;</li>
+<li>在接口中抛出<code>SoulException</code>时，异常信息会返回，需要注意的是显式抛出<code>SoulException</code>；</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-meta">@Service</span>(validation = <span class="hljs-string">"soulValidation"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestService</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-meta">@SoulDubboClient</span>(path = <span class="hljs-string">"/test"</span>, desc = <span class="hljs-string">"test method"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">test</span><span class="hljs-params">(@Valid HelloServiceRequest name)</span> <span class="hljs-keyword">throws</span> SoulException </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> SoulException(<span class="hljs-string">"Param binding error."</span>);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello "</span> + name.getName();
+    }
+}
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceRequest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">5968745817846710197L</span>;
+
+    <span class="hljs-meta">@NotEmpty</span>(message = <span class="hljs-string">"name cannot be empty"</span>)
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-meta">@NotNull</span>(message = <span class="hljs-string">"age cannot be null"</span>)
+    <span class="hljs-keyword">private</span> Integer age;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> age;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>{
+        <span class="hljs-keyword">this</span>.age = age;
+    }
+}
+</code></pre>
+<ul>
+<li>发送请求</li>
+</ul>
+<pre><code class="language-java">{
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">""</span>
+}
+</code></pre>
+<ul>
+<li>返回</li>
+</ul>
+<pre><code class="language-java">{
+    <span class="hljs-string">"code"</span>: <span class="hljs-number">500</span>,
+    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Internal Server Error"</span>,
+    <span class="hljs-string">"data"</span>: <span class="hljs-string">"name cannot be empty,age cannot be null"</span>
+}
+</code></pre>
+<ul>
+<li>当按照要求传递请求参数时，会返回自定义异常的信息</li>
+</ul>
+<pre><code class="language-java">{
+    <span class="hljs-string">"code"</span>: <span class="hljs-number">500</span>,
+    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Internal Server Error"</span>,
+    <span class="hljs-string">"data"</span>: <span class="hljs-string">"Param binding error."</span>
+}
+</code></pre>
+</li>
+</ul>
 <h2>大白话讲解如果通过http --&gt; 网关--&gt; dubbo provider</h2>
 <ul>
 <li>

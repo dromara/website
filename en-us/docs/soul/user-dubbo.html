@@ -334,6 +334,95 @@ method.</p>
          <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> A();
  }
 </code></pre>
+<h2>Service governance</h2>
+<ul>
+<li>Tag route
+<ul>
+<li>Add <code>Dubbo_Tag_Route</code> when send request, the current request will be routed to the provider of the specified tag, which is only valid for the current request.</li>
+</ul>
+</li>
+<li>Explicit Target
+<ul>
+<li>Set the <code>url</code> property in the annotation <code>@SoulDubboClient</code>.</li>
+<li>Update the configuration in Admin.</li>
+<li>It's valid for all request.</li>
+</ul>
+</li>
+<li>Param valid and SoulException
+<ul>
+<li>Set <code>validation=&quot;soulValidation&quot;</code>.</li>
+<li>When <code>SoulException</code> is thrown in the interface, exception information will be returned. It should be noted that <code>SoulException</code> is thrown explicitly.</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-meta">@Service</span>(validation = <span class="hljs-string">"soulValidation"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">TestService</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-meta">@SoulDubboClient</span>(path = <span class="hljs-string">"/test"</span>, desc = <span class="hljs-string">"test method"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">test</span><span class="hljs-params">(@Valid HelloServiceRequest name)</span> <span class="hljs-keyword">throws</span> SoulException </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">true</span>){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> SoulException(<span class="hljs-string">"Param binding error."</span>);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello "</span> + name.getName();
+    }
+}
+</code></pre>
+<ul>
+<li>Request param</li>
+</ul>
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloServiceRequest</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = -<span class="hljs-number">5968745817846710197L</span>;
+
+    <span class="hljs-meta">@NotEmpty</span>(message = <span class="hljs-string">"name cannot be empty"</span>)
+    <span class="hljs-keyword">private</span> String name;
+
+    <span class="hljs-meta">@NotNull</span>(message = <span class="hljs-string">"age cannot be null"</span>)
+    <span class="hljs-keyword">private</span> Integer age;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>{
+        <span class="hljs-keyword">this</span>.name = name;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> age;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(Integer age)</span> </span>{
+        <span class="hljs-keyword">this</span>.age = age;
+    }
+}
+</code></pre>
+<ul>
+<li>Send request</li>
+</ul>
+<pre><code class="language-java">{
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">""</span>
+}
+</code></pre>
+<ul>
+<li>Response</li>
+</ul>
+<pre><code class="language-java">{
+    <span class="hljs-string">"code"</span>: <span class="hljs-number">500</span>,
+    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Internal Server Error"</span>,
+    <span class="hljs-string">"data"</span>: <span class="hljs-string">"name cannot be empty,age cannot be null"</span>
+}
+</code></pre>
+<ul>
+<li>Error message</li>
+</ul>
+<pre><code class="language-java">{
+    <span class="hljs-string">"code"</span>: <span class="hljs-number">500</span>,
+    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Internal Server Error"</span>,
+    <span class="hljs-string">"data"</span>: <span class="hljs-string">"Param binding error."</span>
+}
+</code></pre>
+</li>
+</ul>
 <h2>Let's break down this process: http --&gt; gateway --&gt; dubbo provider</h2>
 <ul>
 <li>
