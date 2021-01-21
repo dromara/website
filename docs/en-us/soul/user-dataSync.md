@@ -15,7 +15,7 @@ description: use different data-sync strategy.
 ## Websocket sync（default method，recommend）
 
 * gateway setting（note:restart）
-  
+
     * Add these dependencies in `pom.xml`：
  ```xml
     <!--soul data sync start use websocket-->
@@ -24,7 +24,7 @@ description: use different data-sync strategy.
       <artifactId>soul-spring-boot-starter-sync-data-websocket</artifactId>
       <version>${last.version}</version>
     </dependency>
-   ``` 
+   ```
    * add these config values in springboot yaml file:
   ```yaml
   soul :
@@ -49,8 +49,8 @@ soul:
 ## zookeeper sync
 
 * gateway setting（note: restart）
-  
-    * Add these dependencies in `pom.xml`: 
+
+    * Add these dependencies in `pom.xml`:
 
  ```xml
     <!--soul data sync start use zookeeper-->
@@ -60,7 +60,7 @@ soul:
             <version>${last.version}</version>
       </dependency>
  ```
-  
+
    * Add these dependencies in  springboot yaml file:
  ```yaml
   soul :
@@ -87,18 +87,18 @@ soul:
 ## Http long-polling sync
 
 * gateway setting（note:restart）
-  
+
     * Add these dependencies in `pom.xml`：
 
  ```xml
-    <!--soul data sync start use zookeeper-->
+    <!--soul data sync start use http-->
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-http</artifactId>
             <version>${last.version}</version>
       </dependency>
    ```
-  
+
    * add these config values in your springboot yaml file:
    ```yaml
   soul :
@@ -114,7 +114,7 @@ soul:
      http:
 ```
 
-* HTTP long-polling makes the gateway lightweight, but less time-sensitive. 
+* HTTP long-polling makes the gateway lightweight, but less time-sensitive.
 
 * It pulls according to the group key, if the data is too large, it will have some influences, a small change under a group will pull the entire group.
 
@@ -123,17 +123,17 @@ soul:
 ## nacos sync
 
 * gateway setting（note:restart）
-  
+
     * Add these dependencies in your `pom.xml`：
  ```xml
-    <!--soul data sync start use zookeeper-->
+    <!--soul data sync start use nacos-->
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-nacos</artifactId>
             <version>${last.version}</version>
       </dependency>
    ```
-  
+
   * add these config values in the springboot yaml file:
  ```yaml
   soul :
@@ -144,9 +144,9 @@ soul:
               acm:
                 enabled: false
                 endpoint: acm.aliyun.com
-                namespace: 
-                accessKey: 
-                secretKey: 
+                namespace:
+                accessKey:
+                secretKey:
   # url: config with your nacos address, pls use (,) to split your cluster environment.
   # other configure，pls refer to the naocs website.
  ```
@@ -160,7 +160,7 @@ soul :
               acm:
                 enabled: false
                 endpoint: acm.aliyun.com
-                namespace: 
-                accessKey: 
-                secretKey: 
+                namespace:
+                accessKey:
+                secretKey:
 ```
