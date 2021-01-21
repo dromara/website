@@ -90,7 +90,7 @@ soul:
     * 首先在 `pom.xml` 文件中 引入以下依赖：
 
  ```xml
-    <!--soul data sync start use zookeeper-->
+    <!--soul data sync start use http-->
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-http</artifactId>
@@ -125,7 +125,7 @@ soul:
 
     * 首先在 `pom.xml` 文件中 引入以下依赖：
  ```xml
-    <!--soul data sync start use zookeeper-->
+    <!--soul data sync start use nacos-->
       <dependency>
            <groupId>org.dromara</groupId>
             <artifactId>soul-spring-boot-starter-sync-data-nacos</artifactId>
