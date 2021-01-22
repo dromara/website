@@ -18,3 +18,4 @@ description: Team Introduction
  |Liang Ziqiang             |241600489      |  committer | [didi](https://www.didiglobal.com/)              | 
  |zhuang hao chao           |dmsolr         |  committer | [YY](https://www.yy.com/)                        |  
  |Jiang Xiaofeng            |SteNicholas    |  committer | [aliyun](https://www.aliyun.com)                 |
+ |Ding jianming             |nuo-promise    |  committer | a start-up company                               |

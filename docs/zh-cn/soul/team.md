@@ -18,3 +18,4 @@ description: 团队介绍
  |梁自强      |241600489    |  committer   | [滴滴](https://www.didiglobal.com/)       | 
  |庄浩潮      |dmsolr       |  committer   | [欢聚时代（YY）](https://www.yy.com/)      | 
  |蒋晓峰      |SteNicholas  |  committer   | [阿里云](https://www.aliyun.com)          |
+ |丁剑明      |nuo-promise  |  committer   | 某创业公司                                 |
