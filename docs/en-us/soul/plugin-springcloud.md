@@ -6,14 +6,14 @@ description: springcloud plugin
 
 ## Explanation
 
-* This plugin is the core of transforming `http protocol` into `springCloud protocol`.
+* This plugin is the core of transforming `HTTP protocol` into `SpringCloud protocol`.
 
 ## Introducing Plugin Support of SpringCould Gateway
 
 * Introducing those dependencies in the pom.xml file of the gateway. 
 
 ```xml
-  <!--soul springCloud plugin start-->
+  <!--soul SpringCloud plugin start-->
   <dependency>
        <groupId>org.dromara</groupId>
        <artifactId>soul-spring-boot-starter-plugin-springcloud</artifactId>
@@ -25,7 +25,7 @@ description: springcloud plugin
        <artifactId>soul-spring-boot-starter-plugin-httpclient</artifactId>
        <version>${last.version}</version>
    </dependency>
-   <!--soul springCloud plugin end-->
+   <!--soul SpringCloud plugin end-->
 
    <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -41,7 +41,7 @@ description: springcloud plugin
 
 ## Plugin Setting
 
-* In `soul-admin` --> plugin management-> springCloud ,set to enable. 
+* In `soul-admin` --> plugin management-> SpringCloud ,set to enable. 
 
 * This plugin needs to cooperate with `starter` dependency, please refer to:[user-spring](docs/en-us/soul/user-springcloud.md).
 
@@ -51,5 +51,5 @@ description: springcloud plugin
 
 * Application name: it is your specific application name that needs to be invoked after the conditions are matched.
 
-* Soul will obtain the real IP of the corresponding service and initiate http proxy calls from registration center of springCloud.
-   
+* Soul will obtain the real IP of the corresponding service and initiate http proxy calls from registration center of SpringCloud.
+  
